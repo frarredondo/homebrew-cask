@@ -1,6 +1,6 @@
 cask "sound-control" do
-  version "3.2.2"
-  sha256 "70a6ac69fb2e3127a01149b270676f973c1bfcf449f187374417201ede244c45"
+  version "3.3.3"
+  sha256 "0d00495d22ae5e5bd25b29647023a124a02c85cb1005e9da5973a7c083f54aa9"
 
   url "https://s3.amazonaws.com/staticz.net/downloads/soundcontrol/SoundControl_#{version}.dmg",
       verified: "s3.amazonaws.com/staticz.net/downloads/soundcontrol/"
@@ -9,15 +9,12 @@ cask "sound-control" do
   homepage "https://staticz.com/soundcontrol/"
 
   livecheck do
-    url :homepage
-    regex(/Sound\s+Control\s+v?(\d+(?:\.\d+)+)\s+Release\s+Notes/im)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| match[0] }
-    end
+    url "https://staticz.com/download/4297/"
+    strategy :header_match
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Sound Control.app"
 

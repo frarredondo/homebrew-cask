@@ -1,28 +1,33 @@
 cask "keet" do
-  arch arm: "Apple-Silicon", intel: "Intel"
+  arch intel: "-Intel"
 
-  version "2.3.0"
-  sha256  arm:   "e3398b8d7be64fef86ec4510b57b07eb445100f681b28e112085c02519dbf732",
-          intel: "449c104609bae608627daad59025e8b52e7ea1be5cb42b75e0152bd3ad373447"
+  version "4.21.0"
+  sha256 arm:   "b45bb82a8621e6efcff3a1ca4c7637a4bbf64349f0660aefec0090c1f12b10f6",
+         intel: "4c9713b9fda0bed31b9142cc3c7cc6bde333b3562545eb6a0a9b7506923f3b09"
 
-  url "https://keet.io/downloads/#{version}/Keet-#{arch}.dmg"
+  url "https://static.keet.io/downloads/#{version}/Keet#{arch}.dmg"
   name "keet"
   desc "Peer-to-peer video and text chat"
   homepage "https://keet.io/"
 
   livecheck do
-    url "https://keet.io/downloads/"
-    regex(/(\d+(?:\.\d+)+)/i)
+    url "https://static.keet.io/downloads/"
+    regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Keet.app"
 
+  uninstall quit: "io.keet.app"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.keet.app.sfl*",
+    "~/Library/Application Support/Keet",
     "~/Library/Application Support/pear",
     "~/Library/Application Support/pear-runtime",
+    "~/Library/Preferences/io.keet.app.plist",
     "~/Library/Saved Application State/io.keet.app.savedState",
   ]
 end

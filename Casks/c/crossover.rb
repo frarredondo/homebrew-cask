@@ -1,6 +1,6 @@
 cask "crossover" do
-  version "24.0.7"
-  sha256 "48492145a8e9f463a53036adfa8da176dc7843ef6cb0c6e46307659122d757d7"
+  version "26.3.0"
+  sha256 "8688e0848c4e5f79f1cc351cb52d32447da00c6c00cfd3b4bb2d164d44589a26"
 
   url "https://media.codeweavers.com/pub/crossover/cxmac/demo/crossover-#{version}.zip"
   name "CrossOver"
@@ -13,7 +13,7 @@ cask "crossover" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "CrossOver.app"
 
@@ -32,8 +32,4 @@ cask "crossover" do
     "~/Library/Preferences/com.codeweavers.*",
     "~/Library/Saved Application State/com.codeweavers.CrossOver*",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

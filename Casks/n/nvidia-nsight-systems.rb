@@ -1,36 +1,23 @@
 cask "nvidia-nsight-systems" do
-  version "2025.1.1.131-3554042"
-  sha256 "85e1b3319695003f2dfe26a35916e35856b0d43db063053419a079f75b53625c"
+  arch arm: "-arm64"
 
-  url "https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/#{version.major_minor.dots_to_underscores}/NsightSystems-macos-public-#{version}.dmg"
+  version "2026.4.1.191-3860507"
+  sha256 arm:   "4b510c087f325c3464f1334d7c86773a55d30eab75d7a043ac0a632ff1dcad44",
+         intel: "82bf6e7eaebd87d11f19da07a8c8e5631cb6b20c3d63eb3c2b4481c19573106f"
+
+  url "https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/#{version.major_minor.dots_to_underscores}/NsightSystems-macos#{arch}-public-#{version}.dmg"
   name "NVIDIA Nsight Systems"
   desc "System-wide performance analysis tool"
   homepage "https://developer.nvidia.com/nsight-systems"
 
   livecheck do
-    url "https://developer.nvidia.com/tools-downloads.json"
-    regex(/NsightSystems[._-]macos[._-]public[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
-    strategy :json do |json, regex|
-      json["downloads"]&.map do |download|
-        next unless download["development_platform"]&.include?("osx")
-
-        download["files"]&.map do |file|
-          match = file["url"]&.match(regex)
-          next if match.blank?
-
-          match[1]
-        end
-      end&.flatten
-    end
+    url "https://developer.nvidia.com/nsight-systems/get-started"
+    regex(/NsightSystems[._-]macos#{arch}[._-]public[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "NVIDIA Nsight Systems.app"
 
   zap trash: "~/Library/Saved Application State/com.nvidia.devtools.QuadD.savedState"
-
-  caveats do
-    requires_rosetta
-  end
 end

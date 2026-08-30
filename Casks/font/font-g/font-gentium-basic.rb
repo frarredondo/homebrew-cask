@@ -6,10 +6,8 @@ cask "font-gentium-basic" do
   name "Gentium Basic"
   homepage "https://software.sil.org/gentium/"
 
-  livecheck do
-    url "https://software.sil.org/gentium/download/"
-    regex(/Gentium\s+Basic\s+v?(\d+(?:\.\d+)+)/i)
-  end
+  deprecate! date: "2025-06-23", because: :discontinued
+  disable! date: "2026-06-25", because: :discontinued
 
   font "GentiumBasic_#{version.no_dots}/GenBasB.ttf"
   font "GentiumBasic_#{version.no_dots}/GenBasBI.ttf"

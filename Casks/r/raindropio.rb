@@ -1,9 +1,9 @@
 cask "raindropio" do
   arch arm: "arm64", intel: "x64"
 
-  version "5.6.76"
-  sha256 arm:   "7d95f686cb79d239645b88d6a90d5040c93ca537919a1f3bd2a7f85aabbdba0c",
-         intel: "8e6b074324ed7e91e7530e434f9f3c73634a5d2b818b06881a14d3a8825c2ed3"
+  version "5.7.9"
+  sha256 arm:   "be2f654e5e978de6925a8636ea11540d783caef3379eb820965b55d06b13c44d",
+         intel: "43d4a82eabcb597c1b98aa733efe590924d0654087538d4a6f036615b18aa5c6"
 
   url "https://github.com/raindropio/desktop/releases/download/v#{version}/Raindrop-#{arch}.dmg",
       verified: "github.com/raindropio/desktop/"
@@ -18,16 +18,18 @@ cask "raindropio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Raindrop.io.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.raindrop.macapp.sfl*",
     "~/Library/Application Support/Raindrop.io",
     "~/Library/Caches/com.apple.Safari/Extensions/Raindrop.io.safariextension",
     "~/Library/Cookies/io.raindrop.mac.binarycookies",
     "~/Library/Preferences/io.raindrop.mac.helper.plist",
     "~/Library/Preferences/io.raindrop.mac.plist",
+    "~/Library/Preferences/io.raindrop.macapp.plist",
     "~/Library/Safari/Extensions/Raindrop.io.safariextz",
     "~/Library/Saved Application State/io.raindrop.mac.savedState",
   ]

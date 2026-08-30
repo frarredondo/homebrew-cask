@@ -7,9 +7,10 @@ cask "slicer@preview" do
   desc "Medical image processing and visualization system"
   homepage "https://www.slicer.org/"
 
-  deprecate! date: "2025-05-01", because: :unsigned
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   conflicts_with cask: "slicer"
+  depends_on macos: :sonoma
 
   app "Slicer.app"
 
@@ -20,4 +21,8 @@ cask "slicer@preview" do
     "~/Library/Preferences/Slicer.plist",
     "~/Library/Saved Application State/org.slicer.slicer.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

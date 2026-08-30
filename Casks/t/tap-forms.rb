@@ -1,6 +1,6 @@
 cask "tap-forms" do
-  version "5.3.41,dLlrE4jNTVumseG6si5D"
-  sha256 "b2280d66fa80f520c63c0b371c3b585940aa4d5ac8cc6e3645bb2715684fecaf"
+  version "5.3.45,sVRdq8QqvjZ3jBJUQNwZ"
+  sha256 "82a6e945b233e1202373393919e97dca891fc5a0f472ff2ebcc71cefacbaf991"
 
   url "https://paddle.s3.amazonaws.com/fulfillment_downloads/9234/503174/#{version.csv.second}_Tap%20Forms%20Install%20#{version.csv.first}.dmg",
       verified: "paddle.s3.amazonaws.com/"
@@ -10,7 +10,7 @@ cask "tap-forms" do
 
   livecheck do
     url "https://vendors.paddle.com/download/product/503174"
-    regex(/([A-z0-9]+)[._-]Tap%20Forms%20Install%20v?(\d+(?:\.\d+)+)\.dmg/i)
+    regex(/([a-z0-9]+)[._-]Tap%20Forms%20Install%20v?(\d+(?:\.\d+)+)\.dmg/i)
     strategy :header_match do |headers, regex|
       match = headers["location"]&.match(regex)
       next if match.blank?
@@ -19,7 +19,7 @@ cask "tap-forms" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Tap Forms Mac #{version.major}.app"
 

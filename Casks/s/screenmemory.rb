@@ -1,6 +1,6 @@
 cask "screenmemory" do
-  version "2.0.8"
-  sha256 "4efe88091853a716fc6a2a4357b8ae98a4ae413baa9a93da0c0dbd4c957582c0"
+  version "2.6.6"
+  sha256 "216b87f5568be7aac3b71f5676641d707ccbea3f4a72988088a3a7ca7691aefd"
 
   url "https://f005.backblazeb2.com/file/screenmemory/ScreenMemory.#{version}.dmg",
       verified: "f005.backblazeb2.com/file/screenmemory/"
@@ -13,7 +13,7 @@ cask "screenmemory" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "ScreenMemory.app"
 

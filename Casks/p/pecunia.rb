@@ -1,6 +1,6 @@
 cask "pecunia" do
-  version "2.1.9"
-  sha256 "dbaccb5a8e25d11945ce0e0b7a8b654d5eb54ba6875a9ff8811c75aa1a7cb04e"
+  version "2.2.2"
+  sha256 "9223d9d4d7bab655830f07feb876a9bef68c68e0a4087a29f56204726ffc6c41"
 
   url "https://pecuniabanking.de/downloads/#{version}/Pecunia.zip"
   name "Pecunia"
@@ -12,12 +12,12 @@ cask "pecunia" do
     regex(%r{href=.*?downloads/v?(\d+(?:\.\d+)+)/Pecunia\.zip}i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Pecunia.app"
 
   zap trash: [
-    "~/Library/Application Scripts/de.pecuniabanking.pecunia/",
-    "~/Library/Containers/de.pecuniabanking.pecunia/",
+    "~/Library/Application Scripts/de.pecuniabanking.pecunia",
+    "~/Library/Containers/de.pecuniabanking.pecunia",
   ]
 end

@@ -13,6 +13,9 @@ cask "runway" do
     strategy :electron_builder
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "Runway.app"
 
   zap trash: [

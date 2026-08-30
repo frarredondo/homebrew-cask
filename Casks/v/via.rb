@@ -8,7 +8,9 @@ cask "via" do
   desc "Keyboard configurator"
   homepage "https://caniusevia.com/"
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "VIA.app"
 

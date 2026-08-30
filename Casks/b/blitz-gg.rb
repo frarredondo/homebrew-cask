@@ -1,8 +1,8 @@
 cask "blitz-gg" do
-  version "2.1.269"
-  sha256 "20d71ada5177f0a96186da799b7a99a3ddd7c1149b3ac0bd0e19118ff34b25d4"
+  version "2.1.624"
+  sha256 "05868ea6ffb6746fd06a81203a2f59c53f3abac134f0247dd0ea0563511dd73c"
 
-  url "https://blitz-main.blitz.gg/Blitz-x64-#{version}.dmg"
+  url "https://blitz-main.blitz.gg/Blitz-universal-#{version}.dmg"
   name "Blitz"
   desc "Performance analysis software"
   homepage "https://blitz.gg/"
@@ -13,7 +13,7 @@ cask "blitz-gg" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Blitz.app"
 
@@ -28,8 +28,4 @@ cask "blitz-gg" do
     "~/Library/Preferences/com.blitz.app.plist",
     "~/Library/Saved Application State/com.blitz.app.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

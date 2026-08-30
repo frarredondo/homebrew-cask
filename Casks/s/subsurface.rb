@@ -1,6 +1,6 @@
 cask "subsurface" do
-  version "6.0.5299"
-  sha256 "41afa57032b2fd44d8d7b8d4d8d870a0809b2ec68ceeeabd1765308f801a5b8b"
+  version "6.0.5576"
+  sha256 "e8ba59cdfe0a02b4eeab1d9588ae0fadb5639590b3595a458c794d3fe97a8d14"
 
   url "https://subsurface-divelog.org/downloads/Subsurface-#{version}-CICD-release.dmg",
       user_agent: :fake
@@ -12,6 +12,8 @@ cask "subsurface" do
     url "https://subsurface-divelog.org/current-release/"
     regex(/href=.*?Subsurface[._-]v?(\d+(?:\.\d+)+)[._-]CICD[._-]release\.dmg/i)
   end
+
+  depends_on macos: :monterey
 
   app "Subsurface.app"
 

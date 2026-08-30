@@ -1,9 +1,9 @@
 cask "touchdesigner" do
   arch arm: "arm64", intel: "intel"
 
-  version "2023.12230"
-  sha256 arm:   "0fa0d49613f09e7a3c5d7546c2b0e9036a0412f682fe252f35749692e68f45d3",
-         intel: "0212e49c89bc929c8e9f0c1cb83e453313c201bca71ebf741a19a7f3afd8f7d0"
+  version "2025.33070"
+  sha256 arm:   "7a71ddcf02c4a11350623dc30823b2603e7aeef8d04ba6f8e87d9aac27882575",
+         intel: "b0b1a4d64f9878bf4e1304925bc651fc7b88727d540ba3f2d9999fa49bf50eda"
 
   url "https://download.derivative.ca/TouchDesigner.#{version}.#{arch}.dmg"
   name "Derivative TouchDesigner"
@@ -15,12 +15,12 @@ cask "touchdesigner" do
     regex(/Build\s+(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :ventura
 
   app "TouchDesigner.app"
 
   zap trash: [
-    "~/Library/Application Support/Derivative/TouchDesigner099/",
-    "~/Library/Saved Application State/ca.derivative.TouchDesigner.savedState/",
+    "~/Library/Application Support/Derivative/TouchDesigner099",
+    "~/Library/Saved Application State/ca.derivative.TouchDesigner.savedState",
   ]
 end

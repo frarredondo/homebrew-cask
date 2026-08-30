@@ -1,9 +1,9 @@
 cask "logos" do
   arch arm: "-arm"
 
-  version "40.1.0.0010"
-  sha256 arm:   "4b15c791e48d62576c546261cb36b5c2d3d7664e91cbefa7338b5c17a282a040",
-         intel: "b6c5ffe70bf383ced0fcc089f5a49cc6f4cf4e0dc97cf8f5957ee4407c31623f"
+  version "53.1.0.0002"
+  sha256 arm:   "d37a843c5a1fe5ee53bf9d774e07dcac8f1f5391e0e0c68a720f40c282970889",
+         intel: "f9d45282b396f0c124df0562334a7d34d6e413d1d2aaba6a3061949337ea33d1"
 
   url "https://downloads.logoscdn.com/LBS10/Installer/#{version}/LogosMac#{arch}.dmg",
       verified: "downloads.logoscdn.com/"
@@ -19,16 +19,16 @@ cask "logos" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Logos.app"
 
   uninstall launchctl: "com.logos.LogosIndexer",
-            quit:      "com.logos.Logos"
+            quit:      ["com.logos.desktop.logos", "com.logos.desktop.logossplashscreen", "com.logos.Logos"]
 
   zap trash: [
-    "~/Library/Preferences/com.logos.Logos.plist",
-    "~/Library/Preferences/com.logos.LogosCEF.plist",
-    "~/Library/Preferences/com.logos.LogosIndexer.plist",
+    "~/Library/Application Support/Logos4",
+    "~/Library/LaunchAgents/com.logos.desktop.logosindexer.plist",
+    "~/Library/Preferences/com.logos.*.plist",
   ]
 end

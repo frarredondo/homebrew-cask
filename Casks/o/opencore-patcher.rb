@@ -1,6 +1,6 @@
 cask "opencore-patcher" do
-  version "2.2.0"
-  sha256 "4437144a7d39f7dbf7f86d3b9730216049587af3c261f9468da8ad87d5501a25"
+  version "2.4.1"
+  sha256 "a8c0732c197b49337d2b8b970ce57f5151495a2dac300e1f93e802a0261e188d"
 
   url "https://github.com/dortania/OpenCore-Legacy-Patcher/releases/download/#{version}/OpenCore-Patcher.pkg",
       verified: "github.com/dortania/OpenCore-Legacy-Patcher/"
@@ -9,6 +9,7 @@ cask "opencore-patcher" do
   homepage "https://dortania.github.io/OpenCore-Legacy-Patcher/"
 
   auto_updates true
+  depends_on :macos
 
   pkg "OpenCore-Patcher.pkg"
 

@@ -1,6 +1,6 @@
 cask "helio" do
-  version "3.14"
-  sha256 "7d850e8d84b0723d3e253abb8e01b02ad3909f10209793c5169a60dd47a0ece4"
+  version "3.17"
+  sha256 "11aec7e5bb4a234257eba6546223735c30bcb8b24b303797d2185bc1ef3a8381"
 
   url "https://ci.helio.fm/helio-#{version}.dmg"
   name "Helio"
@@ -13,6 +13,7 @@ cask "helio" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Helio.app"
 

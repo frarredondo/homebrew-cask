@@ -1,6 +1,6 @@
 cask "rive" do
-  version "0.8.2618"
-  sha256 "a1a864b7170a3564dc12bc6537c05902cbd6e2c0622cc9b0152ee0367a189654"
+  version "0.8.5589"
+  sha256 "92f4ae49369824d7c81dcf5ee514ca365e319a9b7cebd8adfaa7c866eda8072e"
 
   url "https://releases.rive.app/macos/#{version}/Rive.dmg"
   name "Rive"
@@ -12,12 +12,14 @@ cask "rive" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :mojave"
+  auto_updates true
+  depends_on :macos
 
   app "Rive.app"
 
   zap trash: [
     "~/Library/Application Scripts/app.rive.editor",
+    "~/Library/Caches/app.rive.editor",
     "~/Library/Containers/app.rive.editor",
   ]
 end

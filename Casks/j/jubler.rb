@@ -1,12 +1,22 @@
 cask "jubler" do
-  version "8.0.0"
-  sha256 "f834a5396d8b612fda0aba21d576f8c2d487977bac518f637675d37b9b7ef497"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://github.com/teras/Jubler/releases/download/v#{version}/Jubler-#{version}.dmg",
+  version "10.0.0"
+  sha256 arm:   "68b241a9fa4dd1d1d9c747871664d506be01df9fdd8b683976ed5cf107fc9ccb",
+         intel: "3f8fabd5195a65c0c1a82e4b95d6bf76de83cc2796fe42ea554f433464dfaeca"
+
+  url "https://github.com/teras/Jubler/releases/download/v#{version}/Jubler-#{version}-#{arch}.dmg",
       verified: "github.com/teras/Jubler/"
   name "Jubler"
   desc "Subtitle editor"
   homepage "https://www.jubler.org/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on :macos
 
   app "Jubler.app"
 

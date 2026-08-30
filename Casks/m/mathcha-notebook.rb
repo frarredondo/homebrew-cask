@@ -1,8 +1,11 @@
 cask "mathcha-notebook" do
-  version "1.0.440"
-  sha256 "e78161427d6c06c66dbccf01ad1a111a24478b6db8a20a3031356239c0b4cf81"
+  arch arm: "-arm64"
 
-  url "https://notebook-downloads.mathcha.io/public/Mathcha%20Notebook-#{version}-mac.zip"
+  version "1.0.463"
+  sha256 arm:   "9756c366cc009c8d31188fe2b7c044cda3443df3afb2c10aac2c56367aa03adf",
+         intel: "c81275f2471d2c5707c7327e0955a1652134b9b539acf9fbf30a6e340348e634"
+
+  url "https://notebook-downloads.mathcha.io/public/Mathcha%20Notebook-#{version}#{arch}-mac.zip"
   name "Mathcha Notebook"
   desc "Mathematics editor"
   homepage "https://www.mathcha.io/"
@@ -13,6 +16,7 @@ cask "mathcha-notebook" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "Mathcha Notebook.app"
 
@@ -22,8 +26,4 @@ cask "mathcha-notebook" do
     "~/Library/Preferences/mathcha.com.mathnotebook.plist",
     "~/Library/Saved Application State/mathcha.com.mathnotebook.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

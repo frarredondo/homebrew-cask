@@ -1,9 +1,9 @@
 cask "plexamp" do
   arch arm: "arm64", intel: "x64"
 
-  version "4.11.5"
-  sha256 arm:   "0ef7a8b8ccc930e9a815994158414f6e21462c286f41b612ef9c201ab82b5d1e",
-         intel: "15f21271ca8f128fdc3ea1ff090164cd555e0e1cf04822b277839f309a1ba9d3"
+  version "4.13.2"
+  sha256 arm:   "96f0b8537797460153d7cebf8944ddcbde4161a845c34fc814ee647b986bab7c",
+         intel: "7aff81136c661a8425e0c438662c4c390b16277ed381b8227c474e7983ea57ab"
 
   url "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-#{version}-#{arch}.dmg",
       verified: "plexamp.plex.tv/"
@@ -17,7 +17,7 @@ cask "plexamp" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Plexamp.app"
 

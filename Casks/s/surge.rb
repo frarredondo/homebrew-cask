@@ -1,6 +1,6 @@
 cask "surge" do
-  version "5.10.1,3207,1e925800c695a40e8a34ceca6d856b0d"
-  sha256 "ab60891cd043ed83bb4e8d9499c16be0214c6055b7a7bc6032fa431514e728f6"
+  version "6.8.1,12030,69f4be88db9663476f31a6b264109f0b"
+  sha256 "ad99691d823b2f7d4504a39170b01bf4f8639da7c6857c583a57cdf46e5c05c4"
 
   url "https://dl.nssurge.com/mac/v#{version.major}/Surge-#{version.tr(",", "-")}.zip"
   name "Surge"
@@ -8,7 +8,8 @@ cask "surge" do
   homepage "https://nssurge.com/"
 
   livecheck do
-    url "https://www.nssurge.com/mac/v#{version.major}/appcast-signed.xml"
+    # The SPUFeedURL from Info.plist is https://nssurge.com/mac/latest/appcast-signed.xml
+    url "https://nssurge.com/mac/latest/appcast-signed.xml"
     regex(/[._-](\d+(?:\.\d+)+)[._-](\d+)[._-](\h+)\.zip/i)
     strategy :sparkle do |item, regex|
       match = item.url.match(regex)
@@ -20,18 +21,25 @@ cask "surge" do
 
   auto_updates true
   conflicts_with cask: "surge@4"
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey # Confirmed by LSMinimumSystemVersion "12.0"
 
   app "Surge.app"
+  binary "#{appdir}/Surge.app/Contents/Applications/Surge Dashboard.app", target: "#{appdir}/Surge Dashboard.app"
+  binary "#{appdir}/Surge.app/Contents/Applications/surge-cli"
+  binary "#{appdir}/Surge.app/Contents/Applications/surge-dhcpd", target: "#{HOMEBREW_PREFIX}/sbin/surge-dhcpd"
 
   uninstall launchctl: "com.nssurge.surge-mac.helper",
             delete:    "/Library/PrivilegedHelperTools/com.nssurge.surge-mac.helper"
 
   zap delete: [
+    "~/Library/Application Support/bugsnag-shared-com.nssurge.surge-mac",
+    "~/Library/Application Support/com.bugsnag.Bugsnag/com.nssurge.surge-mac",
     "~/Library/Application Support/com.nssurge.surge-mac",
     "~/Library/Application Support/Surge",
+    "~/Library/Caches/bugsnag-shared-com.nssurge.surge-mac",
     "~/Library/Caches/com.nssurge.surge-mac*",
     "~/Library/HTTPStorages/com.nssurge.surge-mac",
+    "~/Library/HTTPStorages/com.nssurge.surge-mac.binarycookies",
     "~/Library/Logs/Surge",
     "~/Library/Preferences/com.nssurge.surge*",
     "~/Library/Saved Application State/com.nssurge.surge*",

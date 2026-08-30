@@ -1,6 +1,6 @@
 cask "mumble" do
-  version "1.5.735"
-  sha256 "9f7e5f0677e577a480269df218349dca4263a3785461294f3c8f26ca4c308641"
+  version "1.5.901"
+  sha256 "9618a7abf0da3743e1d8c13ddb45ea6524fcfff001e844d9bb95a86867aa6f47"
 
   url "https://github.com/mumble-voip/mumble/releases/download/v#{version}/mumble_client-#{version}.x64.dmg",
       verified: "github.com/mumble-voip/mumble/"
@@ -13,8 +13,10 @@ cask "mumble" do
     strategy :header_match
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   conflicts_with cask: "mumble@snapshot"
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Mumble.app"
 

@@ -1,6 +1,6 @@
 cask "subler" do
-  version "1.8.5"
-  sha256 "ddf0c13044da6a090c6db1b5f5ca7332880c1312a31004416b63b20d22b7d175"
+  version "1.9.2"
+  sha256 "72846b93d1b890364716b1da75545915810f2f184bd99d0e77d41d41102388e9"
 
   url "https://github.com/SublerApp/Subler/releases/download/#{version}/Subler-#{version}.zip",
       verified: "github.com/SublerApp/Subler/"
@@ -14,7 +14,7 @@ cask "subler" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Subler.app"
 

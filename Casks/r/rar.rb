@@ -1,9 +1,9 @@
 cask "rar" do
   arch arm: "arm", intel: "x64"
 
-  version "7.10"
-  sha256 arm:   "81b6c5ca75583d5b0e340e0683c045a7327fe08c8d8424ff286855d6f8ed2054",
-         intel: "cd835c92bc4e02e82c34510d8cd4466859866856eb46fef78e911e4e6425a3c0"
+  version "7.23"
+  sha256 arm:   "68b393c000758d477fde43c955ff7542f12f76f3f5e87cdda923152fc791bd4d",
+         intel: "da1fb3c3d7748136c9b369b683d574b372cb1ed049a634a81f85d93918346d8f"
 
   url "https://www.rarlab.com/rar/rarmacos-#{arch}-#{version.no_dots}.tar.gz"
   name "RAR Archiver"
@@ -14,6 +14,10 @@ cask "rar" do
     url "https://www.rarlab.com/download.htm"
     regex(/>\s*RAR\s+for\s+macOS.*?v?(\d+(:?\.\d+)+)\s*</i)
   end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   binary "rar/rar"
   binary "rar/unrar"

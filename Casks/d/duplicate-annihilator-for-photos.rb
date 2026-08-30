@@ -12,7 +12,7 @@ cask "duplicate-annihilator-for-photos" do
     strategy :extract_plist
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Duplicate Annihilator for Photos.app"
 

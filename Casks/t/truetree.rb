@@ -8,7 +8,7 @@ cask "truetree" do
   desc "Command-line tool for pstree-like output"
   homepage "https://themittenmac.com/the-truetree-concept/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   binary "TrueTree"
 

@@ -20,15 +20,25 @@ cask "codelite" do
         skip "Legacy version"
       end
     end
-    on_sonoma :or_newer do
+    on_sonoma do
       arch arm: "macOS_14.7.2-arm64"
 
       version "18.1.0"
       sha256 "ba61b4a13cadc0eb4a4a220bbece25cbccd23e16c1f29c55337a00d6cadc092a"
 
       livecheck do
+        skip "Legacy version"
+      end
+    end
+    on_sequoia :or_newer do
+      arch arm: "macOS_26.4.1-arm64"
+
+      version "18.4.0"
+      sha256 "395e227230446d8274767ef274f67a7ca087da2af1b61366b0548259b7949a11"
+
+      livecheck do
         url "https://downloads.codelite.org/"
-        regex(/CodeLite\s*(\d+\.\d+)((?:\.\d+)*)\s*-\s*Stable/i)
+        regex(/CodeLite\s*(\d+\.\d+)((?:\.\d+)*)\s*-\s*(?:Latest|Stable)/i)
         strategy :page_match do |page, regex|
           match = page.match(regex)
           next if match.blank?
@@ -54,7 +64,9 @@ cask "codelite" do
   desc "IDE for C, C++, PHP and Node.js"
   homepage "https://codelite.org/"
 
-  depends_on macos: ">= :monterey"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :monterey
 
   app "codelite.app"
 

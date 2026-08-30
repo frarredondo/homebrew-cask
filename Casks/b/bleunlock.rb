@@ -7,7 +7,7 @@ cask "bleunlock" do
   desc "Lock/unlock Apple computers using the proximity of a bluetooth low energy device"
   homepage "https://github.com/ts1/BLEUnlock"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "BLEUnlock.app"
 

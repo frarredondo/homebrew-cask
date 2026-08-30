@@ -1,39 +1,29 @@
 cask "psychopy" do
-  version "2024.2.5"
-  sha256 "68290d6dab4c8b7600cb7d586384604b3b0a522fea6e335a0d1150390a86afa8"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://github.com/psychopy/psychopy/releases/download/#{version.csv.first.major_minor_patch}/StandalonePsychoPy-#{version.csv.first}-macOS#{"_#{version.csv.second}" if version.csv.second}-3.10.dmg",
-      verified: "github.com/psychopy/psychopy/"
+  version "2026.2.3"
+  sha256 arm:   "d715f35ea58ab3802f6bd8fa72ccc4969d84c051c65d80bce384dcdc4051fb6d",
+         intel: "0e0fe98bcac0910cbd8a96c4bda239a6865aa45b874c6e8c38d87b0b1019a642"
+
+  url "https://github.com/psychopy/psychopy/releases/download/#{version}/StandalonePsychoPy-#{version}-macOS-#{arch}-3.11.dmg"
   name "PsychoPy"
   desc "Create experiments in behavioral science"
   homepage "https://www.psychopy.org/"
 
   livecheck do
     url :url
-    regex(/StandalonePsychoPy[._-]v?(\d+(?:\.\d+)+)[._-]macOS[._-]?(\d+(?:[._-]\d+)+)?[._-](?:py)?3\.10\.dmg/i)
-    strategy :github_releases do |json, regex|
-      json.map do |release|
-        next if release["draft"] || release["prerelease"]
-
-        release["assets"]&.map do |asset|
-          match = asset["name"]&.match(regex)
-          next if match.blank?
-
-          match[2].present? ? "#{match[1]},#{match[2]}" : match[1]
-        end
-      end.flatten
-    end
+    strategy :github_latest
   end
 
+  depends_on macos: :big_sur
+
   app "PsychoPy.app"
+
+  uninstall quit: "org.opensciencetools.psychopy"
 
   zap trash: [
     "~/.psychopy3",
     "~/Library/Preferences/org.opensciencetools.psychopy.plist",
     "~/Library/Saved Application State/org.opensciencetools.psychopy.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

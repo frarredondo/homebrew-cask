@@ -8,6 +8,9 @@ cask "nasas-eyes" do
   homepage "https://science.nasa.gov/eyes/"
 
   deprecate! date: "2024-10-12", because: :discontinued
+  disable! date: "2025-10-12", because: :discontinued
+
+  depends_on :macos
 
   app "NASA's Eyes.app"
 

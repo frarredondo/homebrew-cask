@@ -1,6 +1,6 @@
 cask "metashape" do
-  version "2.2.0"
-  sha256 "8fb43bbd7ff1677bb589d16c1a1d8eb5a03e9987c7cb04383d41eb5aa272ab84"
+  version "2.3.2"
+  sha256 "8e3c1cea20cd405661ae2e44adac5a41624084c471bbfacf801a9b6d79fe6b6d"
 
   url "https://download.agisoft.com/metashape_#{version.dots_to_underscores}.dmg"
   name "Agisoft Metashape Standard Edition"
@@ -12,7 +12,11 @@ cask "metashape" do
     regex(/Metashape\s*(\d+(?:\.\d+)+)/i)
   end
 
+  depends_on macos: :big_sur
+
   app "Metashape.app"
+
+  uninstall quit: "com.agisoft.metashape.standard"
 
   zap trash: [
     "~/Library/Preferences/com.agisoft.Metashape.plist",

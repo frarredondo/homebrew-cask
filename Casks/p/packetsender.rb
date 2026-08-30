@@ -1,6 +1,6 @@
 cask "packetsender" do
-  version "8.8.9"
-  sha256 "3a18d640b1ed985e3a0b1414f615b615780982cc600e91a81b6dbb577d18f567"
+  version "8.11.1"
+  sha256 "f573d24fa1245e5572bc578d4fa9b1865dccd802e8fe333b7dc0512eb5bb5a30"
 
   url "https://github.com/dannagle/PacketSender/releases/download/v#{version}/PacketSender_v#{version}.dmg",
       verified: "github.com/dannagle/PacketSender/"
@@ -9,14 +9,18 @@ cask "packetsender" do
   homepage "https://packetsender.com/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://packetsender.com/update"
+    strategy :json do |json|
+      json["macversion"]&.tr("v", "")
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on macos: :sonoma
 
   app "PacketSender.app"
+
+  uninstall quit: "com.packetsender.desktop"
 
   zap trash: "~/Library/Application Support/PacketSender"
 end

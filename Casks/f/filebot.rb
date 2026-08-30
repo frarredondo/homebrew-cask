@@ -1,11 +1,11 @@
 cask "filebot" do
   arch arm: "arm64", intel: "x64"
 
-  version "5.1.6"
-  sha256 arm:   "abab420f18ef537df6e460e0f87fc2814eb4f9e41eee9938728ea4d7280c8cdf",
-         intel: "d9457eb1be1f4f7b2e94c60c65d1cbaa41129da2922bf7ebd193d12cdc1acf29"
+  version "5.2.3"
+  sha256 arm:   "1f590c7f70122c5c4614989571323dc7956e77ee9463bb91f3fba538a82846fb",
+         intel: "1382721b03872653309d4d86e2a1fe2df822b0c9c0fa8e74c6317d9eb0ade97c"
 
-  url "https://get.filebot.net/filebot/FileBot_#{version}/FileBot_#{version}_#{arch}.app.tar.xz"
+  url "https://get.filebot.net/filebot/FileBot_#{version}/FileBot_#{version}_#{arch}.pkg"
   name "FileBot"
   desc "Tool for organising and renaming movies, TV shows, anime or music"
   homepage "https://www.filebot.net/"
@@ -15,12 +15,13 @@ cask "filebot" do
     regex(/href=.*?FileBot[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.pkg/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
-  app "FileBot.app"
-  binary "#{appdir}/FileBot.app/Contents/MacOS/filebot.sh", target: "filebot"
-  binary "#{appdir}/FileBot.app/Contents/Resources/bash_completion.d/filebot_completion",
-         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/filebot"
+  pkg "FileBot_#{version}_#{arch}.pkg"
+  bash_completion "#{appdir}/FileBot.app/Contents/Resources/bash_completion.d/filebot_completion", target: "filebot"
+
+  uninstall pkgutil: "net.filebot.FileBot.pkg",
+            delete:  "/Applications/FileBot.app"
 
   zap trash: [
     "~/Library/Application Scripts/net.filebot.FileBot",

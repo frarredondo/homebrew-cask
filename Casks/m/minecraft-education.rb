@@ -1,6 +1,6 @@
 cask "minecraft-education" do
-  version "1.21.06.0"
-  sha256 "6679ae6fd1a87a295ac8d19bd43cc46ef14ab2b61a70a2d163824401d5ed6cb7"
+  version "1.26.32.0"
+  sha256 "8aaada426842ebc054acb70ecd0a44fcb9abe02988e98d5488f17376380e2960"
 
   url "https://downloads.minecrafteduservices.com/retailbuilds/MacOS/Minecraft_Education_#{version}.dmg",
       verified: "downloads.minecrafteduservices.com/"
@@ -14,7 +14,7 @@ cask "minecraft-education" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "minecraft-edu.app", target: "Minecraft Education.app"
@@ -29,8 +29,4 @@ cask "minecraft-education" do
     "~/Library/Saved Application State/com.microsoft.minecraftpe.savedState",
     "~/Library/WebKit/com.microsoft.minecraftpe",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

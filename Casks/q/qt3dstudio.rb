@@ -19,7 +19,7 @@ cask "qt3dstudio" do
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   installer manual: "qt-3dstudio-opensource-mac-x64-#{version}.app"
 

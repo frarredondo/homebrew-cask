@@ -1,9 +1,9 @@
 cask "kunkun" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.1.33"
-  sha256 arm:   "589db17e81a4a1ff394c22088a7d9a6ab295cbae5c4f8ac7104083069b5a4cb1",
-         intel: "176db7fc7be160b6940a83defef5081da8c59e92d2598c6d7afa638f65a72e0c"
+  version "0.1.37"
+  sha256 arm:   "d93fcacc2e8a1c364f1cfaa2be3b1664401e17ddf3a33c4e5caea7f4dd386aa1",
+         intel: "54a88e04f148039f52f590f811eac189e622b496f81097c8860d722b9447302b"
 
   url "https://download.kunkun.sh/Kunkun-v#{version}/kunkun_#{arch}.app.tar.gz"
   name "Kunkun"
@@ -18,7 +18,7 @@ cask "kunkun" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "kunkun.app"
 

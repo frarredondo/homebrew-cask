@@ -1,6 +1,6 @@
 cask "geotag" do
-  version "5.4"
-  sha256 "fdbfbac5eb9f09e90b884b4858d2b7be47f598375c3358ccc41e46ba0759243f"
+  version "6.0.2"
+  sha256 "0ff88045309d29f5227f8a4f83a536056d042b6f0f4e92e0c65349885c42e8ba"
 
   url "https://www.snafu.org/GeoTag/GeoTag-#{version}.dmg"
   name "GeoTag"
@@ -12,7 +12,7 @@ cask "geotag" do
     regex(/href=.*?GeoTag[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :tahoe
   depends_on formula: "exiftool"
 
   app "GeoTag.app"

@@ -1,6 +1,6 @@
 cask "epic-games" do
-  version "18.0.0"
-  sha256 "541f5aa674420e8ce9f037449ddb4eb9941968fdcf4e32f76e8adda103e193fb"
+  version "20.1.4"
+  sha256 "5c4f204ed623b01890f26cc99d4af657c3fbd6be1d04be7fed176ddbc94b1259"
 
   url "https://epicgames-download1.akamaized.net/Builds/UnrealEngineLauncher/Installers/Mac/EpicInstaller-#{version}.dmg",
       verified: "epicgames-download1.akamaized.net/"
@@ -14,7 +14,7 @@ cask "epic-games" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on macos: :ventura
 
   app "Epic Games Launcher.app"
 
@@ -27,8 +27,4 @@ cask "epic-games" do
     "~/Library/Logs/Unreal Engine/EpicGamesLauncher",
     "~/Library/Preferences/Unreal Engine/EpicGamesLauncher",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

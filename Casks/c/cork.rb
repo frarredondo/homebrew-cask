@@ -1,22 +1,32 @@
 cask "cork" do
-  version "1.5.2"
-  sha256 "57c739aed4c5bb05f723703959c98a4a34866b7b81a6c1ee19ec292a6f792f77"
+  version "2.0.0"
+  sha256 "5ea636f386d836b4cf1d6ecb934a00ac03dde520c96d290a5ff8e1a1c0ccc0dc"
 
-  url "https://github.com/buresdv/Cork/releases/download/v#{version}/Cork.zip",
-      verified: "github.com/buresdv/Cork/"
+  url "https://corkmac.app/RLS/#{version}/Cork.zip"
   name "Cork"
   desc "GUI companion app for Homebrew"
-  homepage "https://www.corkmac.app/"
+  homepage "https://corkmac.app/"
 
-  depends_on macos: ">= :ventura"
+  livecheck do
+    url "https://corkmac.app/RLS/"
+    regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
+  end
+
+  depends_on macos: :sonoma
 
   app "Cork.app"
 
+  uninstall quit: "eu.davidbures.cork"
+
   zap trash: [
     "~/Documents/Cork",
+    "~/Library/Application Support/Cork",
     "~/Library/Caches/com.davidbures.cork",
+    "~/Library/Caches/eu.davidbures.cork",
     "~/Library/HTTPStorages/com.davidbures.cork",
+    "~/Library/HTTPStorages/eu.davidbures.cork",
     "~/Library/Preferences/com.davidbures.cork.plist",
+    "~/Library/Preferences/eu.davidbures.cork.plist",
     "~/Library/Saved Application State/com.davidbures.cork.savedState",
   ]
 end

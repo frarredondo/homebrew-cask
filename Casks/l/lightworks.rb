@@ -1,21 +1,21 @@
 cask "lightworks" do
-  version "2025.1,149933"
-  sha256 "06ca7ebada7236bb8dfec4040a6517a65d0b9a5f6740b41e1a0ca118e9d62d82"
+  version "2025.2.56356"
+  sha256 "8771f90dfc4a1872567e320679729df1a9a06b14ad47f69a4b1200528eef0ef1"
 
-  url "https://cdn.lwks.com/releases/#{version.csv.first}/lightworks_#{version.csv.first.major_minor}_r#{version.csv.second}.dmg"
+  url "https://cdn.lwks.com/releases/#{version.major_minor}/Lightworks-#{version.major_minor}-#{version.patch}.dmg"
   name "Lightworks"
   desc "Complete video creation package"
   homepage "https://www.lwks.com/"
 
   livecheck do
     url "https://forum.lwks.com/forums/product-releases.19/index.rss"
-    regex(/v?(\d+(?:\.\d+)+).*?revision\s+(\d+)/i)
+    regex(/v?(\d+(?:[._-]\d+)+)[._-]now[._-]available/i)
     strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+      page.scan(regex).map { |match| match.first&.tr("-", ".") }
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Lightworks.app"
 

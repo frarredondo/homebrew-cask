@@ -1,9 +1,9 @@
 cask "yubihsm2-sdk" do
   arch arm: "arm64", intel: "amd64"
 
-  version "2024-09"
-  sha256 arm:   "95eea279c84f6bc472746ba62c263dd6a317a1a031a8ef6b2285225e1fad08a9",
-         intel: "ffa41fd6b59370aa9184a712a1f508f1c8d600d539d8f8a00dde6e076fd5dec8"
+  version "2026-04"
+  sha256 arm:   "2f8e80e97acdb3e2bad353e545ff799b7951d8d13a8c313cf212b4554c9e0612",
+         intel: "89d227829525bcc5f50c6e32df24cf8fc25d1a836dd1370e87359ad75c2cca59"
 
   url "https://developers.yubico.com/YubiHSM2/Releases/yubihsm2-sdk-#{version}-darwin-#{arch}.pkg"
   name "YubiHSM 2 SDK"
@@ -12,8 +12,10 @@ cask "yubihsm2-sdk" do
 
   livecheck do
     url "https://developers.yubico.com/YubiHSM2/Releases/"
-    regex(%r{href=.*?/yubihsm2-sdk[._-]v?(\d+(?:[.-]\d+)+)-darwin-#{arch}\.pkg}i)
+    regex(/href=.*?yubihsm2-sdk[._-]v?(\d+(?:[.-]\d+)+[a-z]?)[._-]darwin[._-]#{arch}\.pkg/i)
   end
+
+  depends_on :macos
 
   pkg "yubihsm2-sdk-#{version}-darwin-#{arch}.pkg"
 

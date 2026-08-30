@@ -7,6 +7,10 @@ cask "xcodeclangformat" do
   desc "Format code in Xcode with clang-format"
   homepage "https://github.com/mapbox/XcodeClangFormat"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "XcodeClangFormat.app"
 
   zap trash: [

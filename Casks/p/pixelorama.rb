@@ -1,6 +1,6 @@
 cask "pixelorama" do
-  version "1.0.5"
-  sha256 "2ec545418e1da67468459dac54e608639c20c223f452277c133155552f8063f3"
+  version "1.2.1"
+  sha256 "0999c2652473ae0688fa1d53de3863059b6d17ed1588a9a6aaf5b22c6c4ccf27"
 
   url "https://github.com/Orama-Interactive/Pixelorama/releases/download/v#{version}/Pixelorama-Mac.dmg",
       verified: "github.com/Orama-Interactive/Pixelorama/"
@@ -8,9 +8,13 @@ cask "pixelorama" do
   desc "2D sprite editor made with the Godot Engine"
   homepage "https://orama-interactive.itch.io/pixelorama"
 
-  depends_on macos: ">= :sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :big_sur
 
   app "Pixelorama.app"
+
+  uninstall quit: "com.orama-interactive.pixelorama"
 
   zap trash: "~/Library/Saved Application State/com.orama_interactive.pixelorama.savedState"
 end

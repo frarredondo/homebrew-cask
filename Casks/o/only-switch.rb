@@ -1,6 +1,6 @@
 cask "only-switch" do
-  version "2.5.6"
-  sha256 "4472026c40f7b0bad13fa70aa679a537e5ae6ec8db026d4f6926c285338e335b"
+  version "2.7.2"
+  sha256 "6ec78cdf0deb14a5bec7569a8795db87f2cae828c4edd750e01e4cdf75323508"
 
   url "https://github.com/jacklandrin/OnlySwitch/releases/download/release_#{version}/OnlySwitch.dmg"
   name "OnlySwitch"
@@ -8,18 +8,24 @@ cask "only-switch" do
   homepage "https://github.com/jacklandrin/OnlySwitch"
 
   livecheck do
-    url "http://jacklandrin.github.io/appcast.xml"
+    url "https://jacklandrin.github.io/appcast.xml"
     strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :sonoma
 
   app "Only Switch.app"
 
   zap trash: [
+    "~/Library/Application Scripts/*.OnlySwitch.shared",
+    "~/Library/Application Scripts/jacklandrin.OnlySwitch.OnlyWidget",
+    "~/Library/Application Support/jacklandrin.OnlySwitch",
     "~/Library/Application Support/OnlySwitch",
     "~/Library/Caches/jacklandrin.OnlySwitch",
+    "~/Library/Containers/jacklandrin.OnlySwitch.OnlyWidget",
+    "~/Library/Group Containers/*.OnlySwitch.shared",
+    "~/Library/HTTPStorages/jacklandrin.OnlySwitch",
     "~/Library/OnlySwitch",
     "~/Library/Preferences/jacklandrin.OnlySwitch.plist",
   ]

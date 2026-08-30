@@ -1,6 +1,6 @@
 cask "keysafe" do
-  version "1.7.0"
-  sha256 "974c1fc807566b12cb4bf9706d085837d7815100e80edde1816840745814e5be"
+  version "1.9.2"
+  sha256 "4679f62b10fd67aade65c54e8c4091a1f037491b21eee2f0e868be2ebef9bb3e"
 
   url "https://miln.eu/keysafe/miln-keysafe-v#{version}-darwin-universal.zip"
   name "Keysafe"
@@ -11,6 +11,8 @@ cask "keysafe" do
     url "https://miln.eu/keysafe/miln-keysafe-darwin-universal.zip"
     strategy :header_match
   end
+
+  depends_on :macos
 
   binary "miln-keysafe-v#{version}-darwin-universal/keysafe"
 

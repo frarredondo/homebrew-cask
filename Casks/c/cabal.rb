@@ -8,6 +8,10 @@ cask "cabal" do
   desc "Desktop client for the chat platform Cabal"
   homepage "https://cabal.chat/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "Cabal.app"
 
   zap trash: [

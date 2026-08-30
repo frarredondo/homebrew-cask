@@ -1,5 +1,5 @@
 cask "cloudmounter" do
-  version "4.11"
+  version "4.18"
   sha256 :no_check
 
   url "https://cdn.electronic.us/products/cloudmounter/mac/download/cloudmounter.dmg",
@@ -14,15 +14,21 @@ cask "cloudmounter" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: :monterey
 
   app "CloudMounter.app"
 
   zap trash: [
+    "~/Library/Application Scripts/*.com.eltima.cloudmounter*",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.eltima.cloudmounter.sfl*",
     "~/Library/Application Support/com.eltima.cloudmounter",
+    "~/Library/Application Support/FileProvider/com.eltima.cloudmounter.mountprovider",
     "~/Library/Caches/com.eltima.cloudmounter",
+    "~/Library/Containers/com.eltima.cloudmounter.*",
+    "~/Library/Group Containers/*.com.eltima.cloudmounter",
+    "~/Library/HTTPStorages/com.eltima.cloudmounter",
     "~/Library/Logs/CloudMounter.log",
+    "~/Library/Preferences/com.eltima.activator.xml",
     "~/Library/Preferences/com.eltima.cloudmounter.plist",
   ]
 end

@@ -13,7 +13,15 @@ cask "bricksmith" do
     strategy :sparkle
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  auto_updates true
+  depends_on :macos
+
   app "Bricksmith/Bricksmith.app"
 
-  zap trash: "~/Library/Preferences/com.AllenSmith.Bricksmith.plist"
+  zap trash: [
+    "~/Library/HTTPStorages/com.AllenSmith.Bricksmith",
+    "~/Library/Preferences/com.AllenSmith.Bricksmith.plist",
+  ]
 end

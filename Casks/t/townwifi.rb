@@ -8,8 +8,10 @@ cask "townwifi" do
   homepage "https://townwifi.jp/"
 
   deprecate! date: "2024-11-03", because: :unmaintained
+  disable! date: "2025-11-03", because: :unmaintained
 
   auto_updates true
+  depends_on :macos
 
   app "TownWifi.app"
 

@@ -7,6 +7,10 @@ cask "qlswift" do
   desc "Quick Look plugin for Swift files"
   homepage "https://github.com/lexrus/QLSwift"
 
+  deprecate! date: "2025-09-22", because: :no_longer_meets_criteria
+
+  depends_on :macos
+
   qlplugin "QLSwift.qlgenerator"
 
   # No zap stanza required

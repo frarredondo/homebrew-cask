@@ -12,7 +12,7 @@ cask "codespace" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "Codespace.app"
 

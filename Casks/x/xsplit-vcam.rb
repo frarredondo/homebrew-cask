@@ -17,7 +17,7 @@ cask "xsplit-vcam" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   pkg "XSplit_VCam_#{version}_#{arch}.pkg"
 

@@ -1,16 +1,20 @@
 cask "tiled" do
-  version "1.11.2"
+  version "1.12.2"
 
-  on_catalina :or_older do
-    sha256 "9cd3dae263fd142c72ede7d6b78190860e25580f7ae645145daa39d918aa1ce5"
+  on_monterey :or_older do
+    sha256 "7ccac675b6e71e7a87d558f5b3330040c59a091eafba9cff313261eb84eb8214"
 
-    url "https://github.com/mapeditor/tiled/releases/download/v#{version}/Tiled-#{version}_macOS-10.12-10.15.zip",
+    url "https://github.com/mapeditor/tiled/releases/download/v#{version}/Tiled-#{version}_macOS-10.13-12.zip",
         verified: "github.com/mapeditor/tiled/"
-  end
-  on_big_sur :or_newer do
-    sha256 "1170faae26789569ac9c6ff9a176e0cc1c3a6c3beecf148f9c91760fd3b72bb5"
 
-    url "https://github.com/mapeditor/tiled/releases/download/v#{version}/Tiled-#{version}_macOS-11+.zip",
+    caveats do
+      requires_rosetta
+    end
+  end
+  on_ventura :or_newer do
+    sha256 "75712ec3a892701a9b2b7a12e44d636a1dbbe4caa6bb8bba729e697bd8a80433"
+
+    url "https://github.com/mapeditor/tiled/releases/download/v#{version}/Tiled-#{version}_macOS-13+.zip",
         verified: "github.com/mapeditor/tiled/"
   end
 
@@ -23,19 +27,11 @@ cask "tiled" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Tiled.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/tiled.wrapper.sh"
-  binary shimscript, target: "tiled"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/Tiled.app/Contents/MacOS/Tiled' "$@"
-    EOS
-  end
+  command_wrapper "tiled",
+                  executable: "#{appdir}/Tiled.app/Contents/MacOS/Tiled"
 
   zap trash: [
     "~/Library/Application Support/Tiled",

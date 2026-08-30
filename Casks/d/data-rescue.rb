@@ -12,7 +12,7 @@ cask "data-rescue" do
     regex(/>\s*Data\s+Rescue(?:\s+\d+)?\s+\(Mac\)\s*<.+?v?(\d+(?:\.\d+)+)/im)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Data Rescue.app"
 

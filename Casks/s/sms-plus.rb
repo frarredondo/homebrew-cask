@@ -12,7 +12,7 @@ cask "sms-plus" do
     regex(/<h2>SMS\s+Plus\s+v?(\d+(?:\.\d+)+)[" <]/i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "SMS Plus v#{version}/SMS Plus.app"
 

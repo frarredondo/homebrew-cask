@@ -8,6 +8,9 @@ cask "messenger-native" do
   homepage "https://github.com/gastonmorixe/MessengerNative"
 
   deprecate! date: "2024-10-14", because: :unmaintained
+  disable! date: "2025-10-14", because: :unmaintained
+
+  depends_on :macos
 
   app "osx64/Messenger Native.app"
 

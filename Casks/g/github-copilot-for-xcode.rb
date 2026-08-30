@@ -1,21 +1,26 @@
 cask "github-copilot-for-xcode" do
-  version "0.31.0"
-  sha256 "f29662f9411e2c69fa89a9d073ea05cbc680650039bb5fde14abfcac40270b19"
+  version "0.51.0"
+  sha256 "4bdf74338a366f166bbe85fa2e06616036de7bde41fa154becc95e6ec34adbf0"
 
-  url "https://github.com/github/CopilotForXcode/releases/download/#{version}/GitHubCopilotForXcode.dmg"
+  url "https://githubcopilotide.z13.web.core.windows.net/#{version}/GitHubCopilotForXcode.dmg",
+      verified: "githubcopilotide.z13.web.core.windows.net/"
   name "GitHub Copilot for Xcode"
   desc "Xcode extension for GitHub Copilot"
   homepage "https://github.com/github/CopilotForXcode"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://githubcopilotide.z13.web.core.windows.net/appcast.xml"
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "GitHub Copilot for Xcode.app"
+
+  uninstall launchctl: "com.github.CopilotForXcode.CommunicationBridge"
 
   zap trash: [
     "~/Library/Application Scripts/com.github.CopilotForXcode.EditorExtension",

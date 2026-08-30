@@ -8,6 +8,10 @@ cask "alpha" do
   desc "Text editor based on Apple's Cocoa framework"
   homepage "https://alphacocoa.sourceforge.io/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "Alpha.app"
 
   zap trash: [

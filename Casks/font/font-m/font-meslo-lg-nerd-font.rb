@@ -1,8 +1,8 @@
 cask "font-meslo-lg-nerd-font" do
-  version "3.3.0"
-  sha256 "322d3a72da704b75cce5e52a6c3b875cbff3ca5ad01b40d0e2ad2f65be21648e"
+  version "3.5.1"
+  sha256 "6b6624632dc6873dfb7681c3f818e7c01ab601ab707690b6440933bbe57e2b11"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Meslo.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Meslo.tar.xz"
   name "MesloLG Nerd Font families (Meslo LG)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-meslo-lg-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "MesloLGLDZNerdFont-Bold.ttf"
   font "MesloLGLDZNerdFont-BoldItalic.ttf"

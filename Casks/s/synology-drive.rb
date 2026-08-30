@@ -1,6 +1,6 @@
 cask "synology-drive" do
-  version "3.5.2,16110"
-  sha256 "af1729a23587298cd57ef12a202c0d6ae4fc8a9adee08d1c89a043b4f28f8e76"
+  version "4.2.0,20058"
+  sha256 "a059321b58a9dfe7dff618516a90f86bf1e3f99aca7045ae7482abe0e32d6094"
 
   url "https://global.download.synology.com/download/Utility/SynologyDriveClient/#{version.tr(",", "-")}/Mac/Installer/synology-drive-client-#{version.csv.second}.dmg"
   name "Synology Drive"
@@ -15,6 +15,7 @@ cask "synology-drive" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "Install Synology Drive Client.pkg"
 

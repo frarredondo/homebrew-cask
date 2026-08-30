@@ -14,7 +14,7 @@ cask "monofocus" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "MonoFocus.app"
 

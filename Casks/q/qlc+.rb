@@ -1,18 +1,25 @@
 cask "qlc+" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "4.14.0"
-  sha256 arm:   "f1c062b09b61cbe347e6f945c806491e501c52a855a15e6e1fc5494967775eb4",
-         intel: "1603b49c19a85c280ec4866ab515106c6abf29d4bf461a13b8b73228ad08b115"
+  version "5.2.2"
+  sha256 arm:   "116b83e96be1bbc66b89f3bbc98dc79be8766f4a123bb7347658b34d07eb1c18",
+         intel: "6e07bb853e115655db8447ac7f5123f38f233426f27a8d4dfe77e5c59dcb2146"
 
-  url "https://qlcplus.org/downloads/#{version}/QLC+_#{version}_#{arch}.dmg"
+  on_arm do
+    depends_on macos: :ventura
+  end
+  on_intel do
+    depends_on macos: :monterey
+  end
+
+  url "https://www.qlcplus.org/downloads/#{version.split("-").first}/QLC+_#{version}_#{arch}.dmg"
   name "Q Light Controller+"
   desc "Control DMX or analogue lighting systems"
-  homepage "https://qlcplus.org/"
+  homepage "https://www.qlcplus.org/"
 
   livecheck do
-    url "https://qlcplus.org/download"
-    regex(/href=.*?QLC\+[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
+    url "https://www.qlcplus.org/download"
+    regex(/href=.*?QLC\+[._-]v?(\d+(?:[.-]\d+)+)[._-]#{arch}\.dmg/i)
   end
 
   app "QLC+.app"

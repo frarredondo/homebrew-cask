@@ -1,5 +1,5 @@
 cask "ibackup-viewer" do
-  version "4.3101"
+  version "4.3215"
   sha256 :no_check
 
   url "https://www.imactools.com/download/iBackupViewer.dmg"
@@ -13,7 +13,7 @@ cask "ibackup-viewer" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "iBackup Viewer.app"
 

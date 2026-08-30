@@ -12,12 +12,12 @@ cask "vidl" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "ViDL.app"
 
   zap trash: [
-    "~/Library/Application Support/ViDL/",
+    "~/Library/Application Support/ViDL",
     "~/Library/Caches/com.omz-software.ViDL",
     "~/Library/Containers/com.omz-software.ViDL.ViDL-SafariExtension",
     "~/Library/Saved Application State/com.omz-software.ViDL.savedState",

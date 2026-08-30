@@ -12,7 +12,7 @@ cask "talon" do
     regex(/<h\d>\s*(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Talon.app"
 

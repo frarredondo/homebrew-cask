@@ -1,5 +1,5 @@
 cask "backblaze-downloader" do
-  version "9.1.0.832"
+  version "9.2.2.878"
   sha256 :no_check
 
   url "https://secure.backblaze.com/mac_restore_downloader"
@@ -11,6 +11,8 @@ cask "backblaze-downloader" do
     url "https://www.backblaze.com/computer-backup/docs/downloader-app-release-notes-mac"
     regex(/Version\s+v?(\d+(?:\.\d+)+)/i)
   end
+
+  depends_on :macos
 
   app "BackblazeDownloader.app"
 

@@ -1,6 +1,6 @@
 cask "yuque" do
-  version "4.1.6.1319,BJ01202048963f4117a817081cc1ba01ed"
-  sha256 "5179fcb522d343c14fd124d2acf12d9238179f3e569c4fed9ce7290f6e027ef0"
+  version "4.2.1.1333,BJ573111a41a6d47e0a380a8cac832ae49"
+  sha256 "671d849c158cd3e893d52d992b6cc855f3bd25f43caa73e776723c694c23a7b1"
 
   url "https://app.nlark.com/yuque-desktop/#{version.csv.first}/#{version.csv.second}/Yuque-#{version.csv.first}.dmg",
       verified: "app.nlark.com/yuque-desktop/"
@@ -19,7 +19,7 @@ cask "yuque" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "语雀.app"
 

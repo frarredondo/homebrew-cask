@@ -1,15 +1,15 @@
 cask "rambox" do
-  version "2.4.1"
-  sha256 "b54c7a650e94eb80961bf1b1f476a12e0519f037a3181f73a6a7c4227751ff90"
+  version "2.7.1"
+  sha256 "4d4339b562447ee4e95b11273a5952dcf773bea6d2e3ea31007f0935c338a156"
 
   url "https://github.com/ramboxapp/download/releases/download/v#{version}/Rambox-#{version}-mac.zip",
       verified: "github.com/ramboxapp/download/"
   name "Rambox"
-  desc "Free and Open Source messaging and emailing app"
+  desc "Workspace simplifier - to organize your workspace and boost your productivity"
   homepage "https://rambox.app/"
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Rambox.app"
 

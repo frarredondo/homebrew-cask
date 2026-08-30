@@ -12,6 +12,9 @@ cask "displaperture" do
     strategy :sparkle, &:short_version
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "Displaperture.app"
 
   uninstall quit: "com.manytricks.Displaperture"

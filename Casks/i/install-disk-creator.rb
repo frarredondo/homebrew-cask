@@ -1,5 +1,5 @@
 cask "install-disk-creator" do
-  version "1.5"
+  version "2.0,3"
   sha256 :no_check
 
   url "https://macdaddy.io/InstallDiskCreator.zip"
@@ -11,6 +11,8 @@ cask "install-disk-creator" do
     url :url
     strategy :extract_plist
   end
+
+  depends_on :macos
 
   app "Install Disk Creator.app"
 

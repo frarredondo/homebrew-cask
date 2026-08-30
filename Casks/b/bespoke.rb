@@ -8,7 +8,7 @@ cask "bespoke" do
   desc "Software modular synth"
   homepage "https://www.bespokesynth.com/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "BespokeSynth.app"
 

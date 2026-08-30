@@ -17,7 +17,7 @@ cask "klokki" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Klokki.app"
 

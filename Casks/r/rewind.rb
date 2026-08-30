@@ -1,6 +1,6 @@
 cask "rewind" do
   version "1.5310,15310.1"
-  sha256  :no_check
+  sha256 :no_check
 
   url "https://download.rewind.ai/Rewind.dmg"
   name "Rewind"
@@ -8,9 +8,10 @@ cask "rewind" do
   homepage "https://www.rewind.ai/"
 
   deprecate! date: "2024-12-31", because: :unmaintained
+  disable! date: "2026-01-05", because: :unmaintained
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Rewind.app"
 

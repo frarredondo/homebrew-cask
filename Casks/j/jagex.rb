@@ -1,9 +1,9 @@
 cask "jagex" do
-  version "1.18.0"
+  version "2.3.0"
   sha256 :no_check
 
   url "https://cdn.jagex.com/Jagex%20Launcher%20Installer.dmg"
-  name "jagex"
+  name "Jagex"
   desc "Official Jagex Launcher"
   homepage "https://www.jagex.com/"
 
@@ -13,6 +13,7 @@ cask "jagex" do
   end
 
   auto_updates true
+  depends_on :macos
 
   installer manual: "Jagex Launcher Installer.app"
 

@@ -1,12 +1,11 @@
 cask "0-ad" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.27.0"
-  sha256 arm:   "21decc117d06fe882f491b101ca533e09174a47c7f5139fcb8160cd15a91d6e3",
-         intel: "bca8deb6461c8055e4f34216867d439a22657a13dfbc7c98e0f8497d8c8643cd"
+  version "0.28.0"
+  sha256 arm:   "8c53566123fed9a79766c364e543d6e9dc7c84f642c78d2bb5892eeea9c4c052",
+         intel: "3d30cbafb293fb1178c08075ed8336d1dbfb1090d3702ada76092e85e9c4f076"
 
-  url "https://releases.wildfiregames.com/0ad-#{version}-macos-#{arch}.dmg",
-      verified: "releases.wildfiregames.com/"
+  url "https://releases.wildfiregames.com/0ad-#{version}-macos-#{arch}.dmg"
   name "0 A.D."
   desc "Real-time strategy game"
   homepage "https://play0ad.com/"
@@ -16,7 +15,7 @@ cask "0-ad" do
     regex(/href=.*?0ad[._-]v?(.*?)[._-]macos[._-]#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "0 A.D..app"
 

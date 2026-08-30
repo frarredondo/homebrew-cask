@@ -1,31 +1,15 @@
 cask "datweatherdoe" do
-  on_catalina :or_older do
-    version "2.2.0"
-    sha256 "0e7c7a9a770f3f7e10a17610e4e8670f3c7050a872b1cb2947bfbbbfda94174f"
-
-    livecheck do
-      skip "Legacy version for Catalina and earlier"
-    end
-  end
-  on_big_sur do
+  on_monterey :or_older do
     version "3.3.0"
     sha256 "8f122fb410019c4065229b01bb3af9630eceef192f3bcb605ea679c7c9143f4a"
 
     livecheck do
-      skip "Legacy version for Big Sur"
-    end
-  end
-  on_monterey do
-    version "3.3.0"
-    sha256 "8f122fb410019c4065229b01bb3af9630eceef192f3bcb605ea679c7c9143f4a"
-
-    livecheck do
-      skip "Legacy version for Monterey"
+      skip "Legacy version"
     end
   end
   on_ventura :or_newer do
-    version "5.3.1"
-    sha256 "efb99303978b234191093760e7e901f20d7ea2b18fecba5c5ed495d1a07cba3b"
+    version "5.6.2"
+    sha256 "584675744f74286eb03ff5e877c7f70a3764465ac8d59e49c21f3a279193e450"
 
     livecheck do
       url :url
@@ -37,6 +21,8 @@ cask "datweatherdoe" do
   name "DatWeatherDoe"
   desc "Menu bar weather app"
   homepage "https://github.com/inderdhir/DatWeatherDoe"
+
+  depends_on :macos
 
   app "DatWeatherDoe.app"
 

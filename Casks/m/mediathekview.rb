@@ -1,9 +1,9 @@
 cask "mediathekview" do
   arch arm: "mac-as", intel: "mac"
 
-  version "14.2.0"
-  sha256 arm:   "1870dd359e48856f16a4656229e6a15ce5caeb22d877f6504a479afb95559b8d",
-         intel: "bfebfce084372713483bd5cb884b6a3812e6e2e1c8ed5afad5f9ab1aff323d22"
+  version "14.5.0"
+  sha256 arm:   "21f269571bea732fbd478095cba64e74e40507a7e758d932d8e11f73585de07c",
+         intel: "4f7660c4bda8df608590e2bdf1c2d2fa315ff6907d617d68206eebc5aa9d6d45"
 
   url "https://download.mediathekview.de/stabil/MediathekView-#{version}-#{arch}.dmg"
   name "MediathekView"
@@ -15,7 +15,7 @@ cask "mediathekview" do
     regex(%r{href=.*?/MediathekView-(\d+(?:\.\d+)+)-#{arch}\.dmg}i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "MediathekView.app"
 

@@ -1,12 +1,13 @@
 cask "font-codicon" do
-  version "0.0.36"
-  sha256 "360527575395ad70f940eff1e43eb7c2ec64f4e69f89dc5861b73420d2a578f0"
+  version "0.0.46-24"
+  sha256 "d77bf2ed152e82c4b81288c5271a3481c61559d1a5416593756e3b0fe8a02bf1"
 
-  url "https://github.com/microsoft/vscode-codicons/releases/download/#{version}/codicon.ttf"
+  url "https://registry.npmjs.org/@vscode/codicons/-/codicons-#{version}.tgz",
+      verified: "registry.npmjs.org/@vscode/codicons/"
   name "Codicon"
   homepage "https://github.com/microsoft/vscode-codicons"
 
-  font "codicon.ttf"
+  font "package/dist/codicon.ttf"
 
   # No zap stanza required
 end

@@ -1,6 +1,6 @@
 cask "spike" do
-  version "3.4.5"
-  sha256 "cfc84ff2f7ea4cc7c9ec4765a9ba408f1532ac778d50441add9efc3635518e33"
+  version "3.6.1"
+  sha256 "3ada0f885232dd5bf1255f1a7fa64d196bfbc5638fbb2b328b80fa5d82205f9e"
 
   url "https://education.lego.com/_/downloads/SPIKE_APP_#{version.major}_macOS__#{version}_Global.dmg"
   name "Lego SPIKE"
@@ -12,7 +12,7 @@ cask "spike" do
     regex(/SPIKE[._-]APP[._-]\d+[._-]macOS[._-]+v?(\d+(?:\.\d+)+)[._-]Global\.dmg/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Spike.app"
 

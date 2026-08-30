@@ -1,6 +1,6 @@
 cask "preform" do
-  version "3.45.1,488_90954"
-  sha256 "2e8b47f609111664e53a514aaa1a8c50dd2a44828b8520decf0163255eb4f8cf"
+  version "3.48.0,523_98058"
+  sha256 "2758ca2e82768b81d1246c8b24a505d8e320241de5b6e4f5c3bc7349d329752a"
 
   url "https://downloads.formlabs.com/PreForm/Release/#{version.csv.first}/PreForm_mac_#{version.csv.first}_release_releaser_#{version.csv.second}.dmg"
   name "PreForm"
@@ -15,7 +15,7 @@ cask "preform" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "PreForm.app"
 

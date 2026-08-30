@@ -1,5 +1,5 @@
 cask "integrity" do
-  version "12.10.2"
+  version "12.12.1"
   sha256 :no_check
 
   url "https://peacockmedia.software/mac/integrity/integrity.dmg"
@@ -12,7 +12,7 @@ cask "integrity" do
     regex(/<h3>v?(\d+(?:\.\d+)+)\s(?!.*beta)/i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Integrity.app"
 

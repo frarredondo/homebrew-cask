@@ -8,6 +8,9 @@ cask "pixel-check" do
   homepage "http://macguitar.me/apps/pixelcheck/"
 
   deprecate! date: "2024-11-01", because: :unmaintained
+  disable! date: "2025-11-01", because: :unmaintained
+
+  depends_on :macos
 
   app "PiXel Check #{version}/PiXel Check.app"
 

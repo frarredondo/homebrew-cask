@@ -1,5 +1,5 @@
 cask "wd-security" do
-  version "2.1.3.171"
+  version "2.1.5.427"
   sha256 :no_check
 
   url "https://downloads.wdc.com/wdapp/WD_Security_MACOS.zip",
@@ -13,6 +13,7 @@ cask "wd-security" do
     regex(/Version:?\s*(\d+(?:\.\d+)+)/i)
   end
 
+  depends_on :macos
   container nested: "WD Security Installer.dmg"
 
   installer script: {

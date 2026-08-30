@@ -1,6 +1,6 @@
 cask "parallels-virtualization-sdk" do
-  version "20.2.2-55879"
-  sha256 "4cde3582fd9300d7dc07a262e1e3fd72f37f8d865b1012bdf2983ecc04436b53"
+  version "26.4.0-57513"
+  sha256 "c79e3acd1747a129a6e8730a884de74ec8a6ccef871bdb48fc648ae66eacbbf7"
 
   url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsVirtualizationSDK-#{version}-mac.dmg"
   name "Parallels Virtualization SDK"
@@ -10,6 +10,8 @@ cask "parallels-virtualization-sdk" do
   livecheck do
     cask "parallels"
   end
+
+  depends_on macos: :ventura
 
   pkg "Parallels Virtualization SDK.pkg"
 

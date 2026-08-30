@@ -1,7 +1,7 @@
 cask "spotify" do
   arch arm: "ARM64"
 
-  version "1.2.58.498"
+  version "1.2.98.301"
   sha256 :no_check
 
   url "https://download.scdn.co/Spotify#{arch}.dmg",
@@ -16,7 +16,7 @@ cask "spotify" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Spotify.app"
 
@@ -39,5 +39,6 @@ cask "spotify" do
     "~/Library/Preferences/com.spotify.client.helper.plist",
     "~/Library/Preferences/com.spotify.client.plist",
     "~/Library/Saved Application State/com.spotify.client.savedState",
+    "~/Library/WebKit/com.spotify.client",
   ]
 end

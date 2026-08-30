@@ -1,14 +1,13 @@
 cask "font-plangothic" do
-  version "1.9.5769"
-  sha256 "d58680d8a71ab80ec47bb6ce6d896cd528d01a7ee782298d312e2c4883d54a7e"
+  version "2.9.5795"
+  sha256 "5a6c8a957ca03487ab86157dc5880af9a4e9f1fa1b74b3693486408d975ff1f9"
 
-  url "https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Plangothic-Project/archive/refs/tags/V#{version}.tar.gz"
+  url "https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Plangothic_Project/releases/download/V#{version}/Plangothic-OTF-V#{version}.7z"
   name "Plangothic"
   homepage "https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Plangothic-Project"
 
-  font "Plangothic_Project-#{version}/PlangothicP1-Regular (allideo).otf"
-  font "Plangothic_Project-#{version}/PlangothicP1-Regular (fallback).otf"
-  font "Plangothic_Project-#{version}/PlangothicP2-Regular.otf"
+  font "Plangothic-OTF-V#{version}/PlangothicP1-Regular.otf"
+  font "Plangothic-OTF-V#{version}/PlangothicP2-Regular.otf"
 
   # No zap stanza required
 end

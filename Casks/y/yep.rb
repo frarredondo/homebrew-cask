@@ -12,7 +12,8 @@ cask "yep" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on :macos
 
   app "Yep.app"
 

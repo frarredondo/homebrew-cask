@@ -8,13 +8,15 @@ cask "tsh" do
   desc "SSH server for teams managing distributed infrastructure"
   homepage "https://goteleport.com/"
 
-  deprecate! date: "2024-11-18", because: :unmaintained, replacement: "teleport"
+  deprecate! date: "2024-11-18", because: :unmaintained, replacement_cask: "teleport"
+  disable! date: "2025-11-18", because: :unmaintained, replacement_cask: "teleport"
 
-  conflicts_with cask:    [
-                   "teleport",
-                   "tsh@13",
-                 ],
-                 formula: "teleport"
+  conflicts_with cask: [
+    "teleport-suite",
+    "teleport-suite@16",
+    "teleport-suite@17",
+  ]
+  depends_on :macos
 
   pkg "tsh-#{version}.pkg"
 

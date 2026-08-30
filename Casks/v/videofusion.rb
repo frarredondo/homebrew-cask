@@ -1,6 +1,6 @@
 cask "videofusion" do
-  version "7.7.0.11201"
-  sha256 "63d92545e09f171872d9d90bac338ad3d9483819e44ac528cdd0557f6fe6136c"
+  version "11.3.0.13047"
+  sha256 "a054c7b6fe4ec39679808bb1918d27361f7e178a6770ecf2bbffb9805b7ac670"
 
   url "https://lf3-package.vlabstatic.com/obj/faceu-packages/Jianying_#{version.dots_to_underscores}_jianyingpro_0_creatortool.dmg",
       verified: "lf3-package.vlabstatic.com/obj/faceu-packages/"
@@ -26,7 +26,7 @@ cask "videofusion" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "VideoFusion-macOS.app"
 

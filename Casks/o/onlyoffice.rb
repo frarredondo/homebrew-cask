@@ -1,30 +1,38 @@
 cask "onlyoffice" do
-  arch arm: "arm", intel: "x86_64"
+  arch arm: on_system_conditional(macos: "arm", linux: "arm64"), intel: "x86_64"
+  os macos: "ONLYOFFICE-#{arch}.dmg", linux: "DesktopEditors-#{arch}.AppImage"
 
-  version "8.3.1"
-  sha256 arm:   "74965b8778b1b7423163f0deb5525d3f24e522fba47126974234433df51381a2",
-         intel: "9d81ec243e7cff8d008628b994fd8e4cc355c097b4e702b5fb6a82f12951915a"
+  version "9.4.0"
+  sha256 arm:          "e965be2222609add6b5a70baa2a8cdb599402491fb2925825d9039dcb154beb4",
+         intel:        "43ac517493c0c316f268ce4b7dc3810b77a7aefe83c0edc1655476d9f21681d2",
+         arm64_linux:  "7dfc2fa195ff9912a4022841613b9a99fdba2a238792648f257007a7df887b7c",
+         x86_64_linux: "f5faf24552665262fe94486a510b997d2e5a24bde14df94c802c79bf17f9254c"
 
-  url "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v#{version}/ONLYOFFICE-#{arch}.dmg",
-      verified: "github.com/ONLYOFFICE/DesktopEditors/"
+  on_macos do
+    auto_updates true
+    depends_on macos: :big_sur
+
+    app "ONLYOFFICE.app"
+
+    zap trash: [
+      "~/Library/Application Support/asc.onlyoffice.ONLYOFFICE",
+      "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/asc.onlyoffice.onlyoffice.sfl*",
+      "~/Library/HTTPStorages/asc.onlyoffice.ONLYOFFICE",
+      "~/Library/Preferences/asc.onlyoffice.editors-helper-renderer.plist",
+      "~/Library/Preferences/asc.onlyoffice.ONLYOFFICE.plist",
+    ]
+  end
+  on_linux do
+    app_image "DesktopEditors-#{arch}.AppImage", target: "ONLYOFFICE.AppImage"
+  end
+
+  url "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v#{version}/#{os}"
   name "ONLYOFFICE"
   desc "Document editor"
   homepage "https://www.onlyoffice.com/"
 
   livecheck do
     url :url
-    regex(/(\d+(?:\.\d+)+)/i)
     strategy :github_latest
   end
-
-  auto_updates true
-  depends_on macos: ">= :sierra"
-
-  app "ONLYOFFICE.app"
-
-  zap trash: [
-    "~/Library/Application Support/asc.onlyoffice.ONLYOFFICE",
-    "~/Library/Preferences/asc.onlyoffice.editors-helper-renderer.plist",
-    "~/Library/Preferences/asc.onlyoffice.ONLYOFFICE.plist",
-  ]
 end

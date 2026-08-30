@@ -2,7 +2,7 @@ cask "eudic" do
   version :latest
   sha256 :no_check
 
-  url "https://static.frdic.com/pkg/eudicmac.dmg",
+  url "https://static.frdic.com/pkg/eudicmac.dmg?version",
       verified:   "static.frdic.com/",
       user_agent: :fake
   name "Eudic"
@@ -10,7 +10,7 @@ cask "eudic" do
   desc "English dictionary"
   homepage "https://www.eudic.net/v4/en/app/eudic"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Eudic.app"
 

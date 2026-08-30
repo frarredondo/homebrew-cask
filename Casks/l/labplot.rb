@@ -1,9 +1,9 @@
 cask "labplot" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2.11.1"
-  sha256 arm:   "61af87d94f83f9e254b2ada3ae801c9fdc9c034047c13aa7dd10dfc24b846380",
-         intel: "59180a91db2661dc1f0bd52a684213b8ea8f449be3fe108636f96e1438411650"
+  version "2.12.1"
+  sha256 arm:   "6f6f8675189059d08a6a6cfe33b14ff8b864ce18ea2987d412f120a31e32aa56",
+         intel: "61d1bca44121bfdf87252feb76673d8f7719b4597dc16a7434563550371b9711"
 
   url "https://download.kde.org/stable/labplot/labplot-#{version}-#{arch}.dmg"
   name "LabPlot"
@@ -15,9 +15,9 @@ cask "labplot" do
     regex(/href=.*?labplot[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
-  app "labplot#{version.major}.app"
+  app "LabPlot.app"
 
   zap trash: [
     "~/Library/Preferences/labplot#{version.major}rc",

@@ -1,6 +1,6 @@
 cask "vassal" do
-  version "3.7.15"
-  sha256 "a8da627afd7fcd0f05e809a14bb52103ca98fb9e1ff62bd5b962871e38db4639"
+  version "3.7.26"
+  sha256 "e46f0957b820bc284bb79de5a325448dbf5c47e0fdebaa2aecff165f9cb7e3e0"
 
   url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macos-universal.dmg",
       verified: "github.com/vassalengine/vassal/"
@@ -13,7 +13,13 @@ cask "vassal" do
     strategy :github_latest
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "VASSAL.app"
+
+  uninstall quit: "org.vassalengine.vassal"
 
   zap trash: "~/Library/Application Support/VASSAL"
 end

@@ -1,6 +1,6 @@
 cask "gpg-suite@nightly" do
-  version "3579n"
-  sha256 "59dfb8a97a41c985dc219dc9fcea1f45efd5a8cb420e6d3562e6167d661018b8"
+  version "3633n"
+  sha256 "16fa6c1dfa6b440e900632618a6ebaac7d974c3faed3a0e14ce3d1ee6826c9c5"
 
   url "https://releases.gpgtools.org/nightlies/GPG_Suite-#{version}.dmg"
   name "GPG Suite Nightly"
@@ -17,15 +17,14 @@ cask "gpg-suite@nightly" do
     "gpg-suite",
     "gpg-suite-no-mail",
     "gpg-suite-pinentry",
-  ], formula: "gnupg"
-  depends_on macos: ">= :mojave"
+  ]
+  depends_on :macos
 
   pkg "Install.pkg"
 
-  uninstall_postflight do
-    ["gpg", "gpg2", "gpg-agent"].map { |exec_name| Pathname("/usr/local/bin")/exec_name }.each do |exec|
-      exec.unlink if exec.exist? && exec.readlink.to_s.include?("MacGPG2")
-    end
+  uninstall_postflight_steps do
+    remove ["/usr/local/bin/gpg", "/usr/local/bin/gpg2", "/usr/local/bin/gpg-agent"],
+           symlink_target_contains: "MacGPG2"
   end
 
   uninstall launchctl: [

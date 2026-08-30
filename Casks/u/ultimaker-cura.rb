@@ -1,14 +1,9 @@
 cask "ultimaker-cura" do
   arch arm: "ARM64", intel: "X64"
 
-  on_arm do
-    version "5.9.1"
-    sha256 "44f23535df79e5d836c6567d9ca96ddc8cc4d90a1ccc187f4187399639eda025"
-  end
-  on_intel do
-    version "5.9.1"
-    sha256 "6a0e131ca6e0cabb82a1f016a71067f4995bb3906f11e196aaad4c0a99bb7a0d"
-  end
+  version "5.13.0"
+  sha256 arm:   "1483806486a19728bc0f363f847d75be3f179ea43c7f074bfc327f5b5c6e05ad",
+         intel: "341ea41e0bc7a75361823cf9720c1d1ded9a8b2f3c4d791de2266f8d647f5d85"
 
   url "https://github.com/Ultimaker/Cura/releases/download/#{version.csv.second || version.csv.first}/UltiMaker-Cura-#{version.csv.first}-macos-#{arch}.dmg",
       verified: "github.com/Ultimaker/Cura/"
@@ -28,6 +23,8 @@ cask "ultimaker-cura" do
       (match[1] == tag) ? match[1] : "#{match[1]},#{tag}"
     end
   end
+
+  depends_on macos: :big_sur
 
   app "UltiMaker Cura.app"
 

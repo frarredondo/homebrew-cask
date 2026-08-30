@@ -1,6 +1,6 @@
 cask "rectangle-pro" do
-  version "3.0.46"
-  sha256 "0792ef3268d436cd413211eabee38d908b0e4879e8abb6d2022f6edc87ee83af"
+  version "3.89"
+  sha256 "c7ff7eceaa9f74d60e3227da6ebfc63c5c23ad2830c7acaabb086c8080593fef"
 
   url "https://rectangleapp.com/pro/downloads/Rectangle%20Pro%20#{version}.dmg"
   name "Rectangle Pro"
@@ -13,11 +13,12 @@ cask "rectangle-pro" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :ventura
 
   app "Rectangle Pro.app"
 
-  uninstall quit: "com.knollsoft.Hookshot"
+  uninstall quit:       "com.knollsoft.Hookshot",
+            login_item: "Rectangle Pro"
 
   zap trash: [
     "~/Library/Application Support/Rectangle Pro",

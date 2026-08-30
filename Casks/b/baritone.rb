@@ -9,6 +9,9 @@ cask "baritone" do
   homepage "https://tma02.github.io/baritone/"
 
   deprecate! date: "2024-10-12", because: :unmaintained
+  disable! date: "2025-10-12", because: :unmaintained
+
+  depends_on :macos
 
   app "Baritone-darwin-x64/Baritone.app"
 

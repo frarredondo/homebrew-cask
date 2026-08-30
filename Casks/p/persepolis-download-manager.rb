@@ -1,6 +1,6 @@
 cask "persepolis-download-manager" do
-  version "5.0.1"
-  sha256 "a2b178da461c1095c6f897fd243663483a1ec09ec3f5a41158fae6043a195240"
+  version "5.2.0"
+  sha256 "548b4b07904f8ec57d7f5d746459bf32a1bd0e0ae710e58108a37e3f17043895"
 
   url "https://github.com/persepolisdm/persepolis/releases/download/#{version}/persepolis_#{version}_macos.dmg",
       verified: "github.com/persepolisdm/persepolis/"
@@ -12,6 +12,10 @@ cask "persepolis-download-manager" do
     url :url
     strategy :github_latest
   end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Persepolis Download Manager.app"
 

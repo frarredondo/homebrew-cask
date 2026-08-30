@@ -1,9 +1,9 @@
 cask "nperf" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "1.12.3"
-  sha256 arm:   "4b2d260a02a1d5567badc2ea15de06c03be80deeb8ef74bb155c5b222b8d4d37",
-         intel: "4aed59b0718a88037a2ab3413e22b10605face4b114010bb3acfb69e83b1f47a"
+  version "2.15.11"
+  sha256 arm:   "f580cf744aef82b9ea60af6b4d2e1211402043e2014c7b8f85dc8d0446e32c24",
+         intel: "a1788c5970bae842b2e18c1501d412d444126fd9f0dabf5019f332e020900f73"
 
   url "https://repo.nperf.com/macos/nperf/nPerf-#{arch}-#{version}.pkg"
   name "nPerf"
@@ -14,6 +14,8 @@ cask "nperf" do
     url "https://app.nperf.com/getMacApp?arch=#{arch}"
     strategy :header_match
   end
+
+  depends_on :macos
 
   pkg "nPerf-#{arch}-#{version}.pkg"
 

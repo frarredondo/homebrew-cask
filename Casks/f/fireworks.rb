@@ -12,7 +12,7 @@ cask "fireworks" do
     regex(/Download\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Fireworks.app"
 

@@ -1,8 +1,8 @@
 cask "font-iosevka-nerd-font" do
-  version "3.3.0"
-  sha256 "a55e4e6d1ef065d0d09d5d6c6c6f3b9dd547d734db5850e107993a92e3258283"
+  version "3.5.1"
+  sha256 "3b94ea1dc3955756762f977b7677bca671947dd56bc755a6f8465a8e83b5f257"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Iosevka.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Iosevka.tar.xz"
   name "Iosevka Nerd Font (Iosevka)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-iosevka-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "IosevkaNerdFont-Bold.ttf"
   font "IosevkaNerdFont-BoldItalic.ttf"

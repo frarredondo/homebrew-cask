@@ -12,7 +12,7 @@ cask "scenica-player" do
     regex(/href=.*?scenica[._-]player[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Scenica Player.app"
 

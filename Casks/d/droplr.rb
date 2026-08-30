@@ -13,7 +13,7 @@ cask "droplr" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   pkg "Droplr#{version.csv.first.no_dots}-#{version.csv.second}.pkg"
 

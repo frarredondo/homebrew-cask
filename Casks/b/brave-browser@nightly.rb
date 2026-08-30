@@ -2,9 +2,15 @@ cask "brave-browser@nightly" do
   arch arm: "arm64", intel: "x64"
   folder = on_arch_conditional arm: "nightly-arm64", intel: "nightly"
 
-  version "1.78.19.0"
-  sha256 arm:   "377423e3730001a91e23aec5d2d6d68942f807fae3250eec283fc411029360a3",
-         intel: "9c5ae3e9e0597c5facee340fc3d2c8007f7fd791c668f9475a76147a1ce1ac41"
+  sha256 arm:   "a70970aaa55d6f532a6437e0261ae3c97e03b9ae1afa1b2a62cfb3b624fad8a8",
+         intel: "604573f5abe7f7dc7e90f1fd9d61ab94d3e8f93b7f0f0c0d3b2c32a36e9cbafd"
+
+  on_arm do
+    version "1.96.27.0"
+  end
+  on_intel do
+    version "1.96.27.0"
+  end
 
   url "https://updates-cdn.bravesoftware.com/sparkle/Brave-Browser/#{folder}/#{version.major_minor_patch.sub(".", "")}/Brave-Browser-Nightly-#{arch}.dmg",
       verified: "updates-cdn.bravesoftware.com/sparkle/Brave-Browser/"
@@ -18,7 +24,7 @@ cask "brave-browser@nightly" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "Brave Browser Nightly.app"
 

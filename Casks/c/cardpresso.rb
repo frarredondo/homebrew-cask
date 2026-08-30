@@ -1,19 +1,20 @@
 cask "cardpresso" do
-  version "1.7.115"
-  sha256 "4d8808cb1beffc5e4c2944976d7a5b4e7b2ab1cf46995bc2fca5cecc88e402b7"
+  version "1.7.140"
+  sha256 "fccb6c5de6de364136b49d84bbac9e337ab220a7e53846304cb85e6e81dcfc4c"
 
-  url "https://www.cardpresso.com/downloads/cardpresso_releases/for_mac_osx/cardPresso#{version}.dmg"
-  name "cardpresso"
+  url "https://www.cardpressodownloads.com/downloads/cardpresso_releases/for_mac_osx/cardPresso#{version}.zip",
+      verified: "cardpressodownloads.com/downloads/cardpresso_releases/for_mac_osx/"
+  name "cardPresso"
   desc "Card software tool for professional card production"
   homepage "https://www.cardpresso.com/"
 
   livecheck do
     url "https://www.cardpresso.com/cardpresso-software/latest-release/"
-    regex(/href=.*?cardPresso[._-]?v?(\d+(?:\.\d+)+)\.dmg/i)
+    regex(/href=.*?cardPresso[._-]?v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "cardPresso.app"
 

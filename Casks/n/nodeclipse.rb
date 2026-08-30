@@ -9,6 +9,9 @@ cask "nodeclipse" do
   homepage "https://nodeclipse.github.io/"
 
   deprecate! date: "2024-09-01", because: :unmaintained
+  disable! date: "2025-09-02", because: :unmaintained
+
+  depends_on :macos
 
   # Renamed for clarity: app name is inconsistent with its branding.
   # Also renamed to avoid conflict with other eclipse Casks.

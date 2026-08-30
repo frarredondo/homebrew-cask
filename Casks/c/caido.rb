@@ -1,9 +1,9 @@
 cask "caido" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.46.0"
-  sha256 arm:   "bc87f24990dea8c80a3462e06e963ba993cd8675541cf08b7fd569c82535d997",
-         intel: "aa032ec7825cef8550dd136ca465a6b548f343f1c749ea28a359fcfdbe237b11"
+  version "0.58.2"
+  sha256 arm:   "465aee61799c4eb781f76607a4847b30d32ddd1db97455ab983426d13561f1c4",
+         intel: "c33fe20906aae3af1b15a5f6dd89064402902fd06a4b5fc12b12c3bc4343cfe5"
 
   url "https://caido.download/releases/v#{version}/caido-desktop-v#{version}-mac-#{arch}.dmg",
       verified: "caido.download/"
@@ -18,7 +18,7 @@ cask "caido" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Caido.app"
   binary "#{appdir}/Caido.app/Contents/Resources/bin/caido-cli"
@@ -27,6 +27,7 @@ cask "caido" do
     "~/Library/Application Support/Caido",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.caido.caido.sfl*",
     "~/Library/Application Support/io.caido.Caido",
+    "~/Library/Logs/Caido",
     "~/Library/Preferences/io.caido.Caido.plist",
     "~/Library/Saved Application State/io.caido.Caido.savedState",
   ]

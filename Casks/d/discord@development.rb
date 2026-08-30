@@ -1,6 +1,6 @@
 cask "discord@development" do
-  version "0.0.81"
-  sha256 "42d70e2b6ebff5b036c5be7d6c804001c00849899a106f92a172c853cf0b9103"
+  version "1.0.1021"
+  sha256 "91b387c2e20013f3358f1cf192c94be6d9445f70cba36b82ab66a9cf2be7d718"
 
   url "https://dl-development.discordapp.net/apps/osx/#{version}/DiscordDevelopment.dmg",
       verified: "dl-development.discordapp.net/"
@@ -14,11 +14,12 @@ cask "discord@development" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Discord Development.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hnc.discorddevelopment.sfl*",
     "~/Library/Application Support/discorddevelopment",
     "~/Library/Caches/com.hnc.DiscordDevelopment",
     "~/Library/Caches/com.hnc.DiscordDevelopment.ShipIt",

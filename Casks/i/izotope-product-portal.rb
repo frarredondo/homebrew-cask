@@ -9,7 +9,8 @@ cask "izotope-product-portal" do
   homepage "https://www.izotope.com/en/products/downloads.html"
 
   livecheck do
-    url "https://www.izotope.com/in-app/pp/download/mac"
+    url "https://www.izotope.com/in-app/pp/download/mac",
+        user_agent: :curl
     regex(/iZotope[._-]Product[._-]Portal[._-]v?(\d+(?:[._-]\d+)+\w?)\.dmg/i)
     strategy :header_match do |headers, regex|
       match = headers["location"]&.match(regex)
@@ -18,6 +19,8 @@ cask "izotope-product-portal" do
       match[1].tr("_", ".")
     end
   end
+
+  depends_on :macos
 
   installer script: {
     executable: "#{staged_path}/Install Product Portal.app/Contents/MacOS/installbuilder.sh",

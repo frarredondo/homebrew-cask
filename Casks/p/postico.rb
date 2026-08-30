@@ -1,6 +1,6 @@
 cask "postico" do
-  version "2.1.2,9702"
-  sha256 "97bad62e1e7bf254f85e52e78ede5dc194f6e3f4ce52175a6bdec052bd52972f"
+  version "2.3.3,9804"
+  sha256 "347fe06cff1be1dca930f34b5b13242b455f8e22bc85cfa6f34f89ae483df11e"
 
   url "https://downloads.eggerapps.at/postico/postico-#{version.csv.second}.dmg"
   name "Postico"
@@ -14,7 +14,7 @@ cask "postico" do
 
   auto_updates true
   conflicts_with cask: "postico@1"
-  depends_on macos: ">= :catalina"
+  depends_on macos: :sonoma
 
   app "Postico #{version.major}.app"
 

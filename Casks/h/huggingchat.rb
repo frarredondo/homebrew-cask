@@ -3,11 +3,13 @@ cask "huggingchat" do
   sha256 "b421090d0e68230b7fc2dc086bb12b1e846acce0682af45edc26e66b4be15ce1"
 
   url "https://github.com/huggingface/chat-macOS/releases/download/v#{version}/HuggingChat.zip"
-  name "huggingchat"
+  name "HuggingChat"
   desc "Chat client for models on HuggingFace"
   homepage "https://github.com/huggingface/chat-macOS"
 
-  depends_on macos: ">= :sonoma"
+  deprecate! date: "2026-05-02", because: :discontinued
+
+  depends_on macos: :sonoma
 
   app "HuggingChat.app"
 

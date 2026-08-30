@@ -1,9 +1,9 @@
 cask "openchrom" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "1.5.0"
-  sha256 arm:   "0b8cafe4bbcbbabba640ac5cccf7b85ba3f9b285dbe850404ab6681f2971cf35",
-         intel: "64e9cd4f6b61a6aeb77da727f23e974c3ed588d935030369b6e955aab09c2256"
+  version "1.6.30"
+  sha256 arm:   "004bb15e7175ec46912118ae826ee50d9b592cc7667ef66b2aa148cff5a30573",
+         intel: "f52273ba86a75a4f55a1e27655efd8fa399eb3c1b0a3276bd0888491728bdaea"
 
   url "https://products.lablicate.com/openchrom/#{version}/OpenChrom_#{version}_#{arch}.dmg",
       verified: "products.lablicate.com/openchrom/"
@@ -21,10 +21,15 @@ cask "openchrom" do
     end
   end
 
+  depends_on macos: :big_sur
+
   app "OpenChrom.app"
+
+  uninstall quit: "net.openchrom.rcp.compilation.community.product.id"
 
   zap trash: [
     "~/.openchrom",
+    "~/Library/Preferences/net.openchrom.rcp.compilation.community.product.id.plist",
     "~/OpenChrom",
   ]
 end

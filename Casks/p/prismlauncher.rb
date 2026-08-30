@@ -1,17 +1,26 @@
 cask "prismlauncher" do
-  version "9.2"
-
-  on_mojave :or_older do
-    sha256 "324b0bf66d18d9dbf563e9859dd12ae1e5f2041b63b620afa0cd2b0f60b4255b"
-
-    url "https://github.com/PrismLauncher/PrismLauncher/releases/download/#{version}/PrismLauncher-macOS-Legacy-#{version}.zip",
-        verified: "github.com/PrismLauncher/PrismLauncher/"
-  end
-  on_catalina :or_newer do
-    sha256 "637901e5244ca55411f3d106949b265f23858ca58e1942c60a4ac484d9f1c316"
+  on_big_sur :or_older do
+    version "9.4"
+    sha256 "5cc0148e427d28c632978a9e83e2da3fc02f5072990d9e7732dff3fdb1912ae4"
 
     url "https://github.com/PrismLauncher/PrismLauncher/releases/download/#{version}/PrismLauncher-macOS-#{version}.zip",
         verified: "github.com/PrismLauncher/PrismLauncher/"
+
+    livecheck do
+      skip "Legacy version"
+    end
+  end
+  on_monterey :or_newer do
+    version "11.0.3"
+    sha256 "b8e06ef55ec78fceddfa9f4270b3d4d93f2606b83f70ad6a2c6dde90f2b65408"
+
+    url "https://github.com/PrismLauncher/PrismLauncher/releases/download/#{version}/PrismLauncher-macOS-#{version}.zip",
+        verified: "github.com/PrismLauncher/PrismLauncher/"
+
+    livecheck do
+      url "https://prismlauncher.org/feed/appcast.xml"
+      strategy :sparkle
+    end
   end
 
   name "Prism Launcher"
@@ -19,9 +28,10 @@ cask "prismlauncher" do
   homepage "https://prismlauncher.org/"
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Prism Launcher.app"
+  binary "#{appdir}/Prism Launcher.app/Contents/MacOS/prismlauncher"
 
   zap trash: [
     "~/Library/Application Support/PrismLauncher/metacache",

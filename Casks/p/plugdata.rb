@@ -1,6 +1,6 @@
 cask "plugdata" do
-  version "0.9.1"
-  sha256 "ae45c3a214e56035b6aa663a92919de4d2f5b4b316778194436749a5fdbbc1b6"
+  version "0.9.3"
+  sha256 "44344723ec6b975d59823725277e886b5513a04cb397dff0a5ce8ad8e042564b"
 
   url "https://github.com/plugdata-team/plugdata/releases/download/v#{version}/plugdata-macOS-Universal.pkg",
       verified: "github.com/plugdata-team/plugdata/"
@@ -15,6 +15,7 @@ cask "plugdata" do
 
   auto_updates true
   conflicts_with cask: "plugdata@nightly"
+  depends_on :macos
 
   pkg "plugdata-macOS-Universal.pkg"
 

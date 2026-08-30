@@ -8,9 +8,10 @@ cask "moonlight" do
   desc "GameStream client"
   homepage "https://moonlight-stream.org/"
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Moonlight.app"
+  binary "#{appdir}/Moonlight.app/Contents/MacOS/Moonlight", target: "moonlight"
 
   zap trash: [
     "~/Library/Caches/Moonlight Game Streaming Project",

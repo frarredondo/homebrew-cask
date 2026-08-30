@@ -1,6 +1,6 @@
 cask "applite" do
-  version "1.3.0"
-  sha256 "380dc4b18a3e387b8939d89c1ce4968641e74669c2f2f6a92fd6a2d72311ae2b"
+  version "1.4.0"
+  sha256 "5344b3c868a80eb9b4ce6734f35c18e13b1c4ed1559038ddec8e271257abdeab"
 
   url "https://github.com/milanvarady/Applite/releases/download/v#{version}/Applite.dmg",
       verified: "github.com/milanvarady/Applite/"
@@ -9,12 +9,12 @@ cask "applite" do
   homepage "https://aerolite.dev/applite"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://milanvarady.github.io/Applite/appcast.xml"
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Applite.app"
 

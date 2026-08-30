@@ -1,5 +1,5 @@
 cask "free42-decimal" do
-  version "3.2.5"
+  version "3.3.12"
   sha256 :no_check
 
   url "https://thomasokken.com/free42/download/Free42Mac.zip"
@@ -12,7 +12,7 @@ cask "free42-decimal" do
     regex(/:\s*release\s*(\d+(?:\.\d+)+[a-z]?)\s*(?:$|\([^\n)]*MacOS)/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Free42 Decimal.app"
 

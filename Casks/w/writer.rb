@@ -8,6 +8,9 @@ cask "writer" do
   homepage "https://github.com/HendrikNoeller/Writer"
 
   deprecate! date: "2024-09-06", because: :unmaintained
+  disable! date: "2025-09-06", because: :unmaintained
+
+  depends_on :macos
 
   app "Writer.app"
 

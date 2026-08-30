@@ -1,6 +1,6 @@
 cask "rescuetime" do
-  version "3.2.5.1"
-  sha256 "4b04faef32f89144ddb656fc1670156ce0e8ae5c5098380ca40b16a827467022"
+  version "3.2.12.3"
+  sha256 "c7de80741554f19205d66bb7886b2183c02a761db7b8b0522d6d7a40a29d2e56"
 
   url "https://assets.rescuetime.com/installers/RescueTimeInstaller_#{version}.app.zip"
   name "RescueTime"
@@ -13,7 +13,7 @@ cask "rescuetime" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "RescueTime.app"
 

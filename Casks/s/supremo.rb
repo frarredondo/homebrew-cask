@@ -1,8 +1,8 @@
 cask "supremo" do
-  version "4.11.3.2751"
-  sha256 "c4f5b409cfa458714d96ea193ffa9ce95983157d8ad7c820e2c6eca4b6fd2162"
+  version "4.12.0.2999"
+  sha256 "458a2263b9164f7cfddfd7df16379d9a38c3109ac65421dfae54290a1abed61a"
 
-  url "https://www.nanosystems.com/AutoUpdateS/macOS/stable/Supremo_#{version}.dmg",
+  url "https://assets.nanosystems.com/AutoUpdateS/macOS/standard/stable/Supremo_#{version}.dmg",
       verified: "nanosystems.com/"
   name "Supremo"
   desc "Remote desktop software"
@@ -14,7 +14,7 @@ cask "supremo" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Supremo.app"
 
@@ -22,8 +22,4 @@ cask "supremo" do
     "~/Library/Application Support/SupremoRemoteDesktop",
     "~/Library/Preferences/Supremo.plist",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

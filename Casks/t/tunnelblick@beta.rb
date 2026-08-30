@@ -1,6 +1,6 @@
 cask "tunnelblick@beta" do
-  version "6.1beta2,6180"
-  sha256 "4619513160824205409a3c6fb0049e6daf50a0f21f1e0aab47731ecdc16295b1"
+  version "10.0beta01,6500"
+  sha256 "ca9c8809700a8c3a151ab74b7c8c1ba483d84810a9995bd93fd06943508404ed"
 
   url "https://tunnelblick.net/iprelease/Tunnelblick_#{version.csv.first}_build_#{version.csv.second}.dmg"
   name "Tunnelblick"
@@ -19,12 +19,12 @@ cask "tunnelblick@beta" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Tunnelblick.app"
 
-  uninstall_preflight do
-    set_ownership "#{appdir}/Tunnelblick.app"
+  uninstall_preflight_steps do
+    set_ownership "Tunnelblick.app", base: :appdir
   end
 
   uninstall launchctl: [

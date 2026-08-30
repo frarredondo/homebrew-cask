@@ -11,7 +11,7 @@ cask "piphero" do
   desc "Menu bar app to picture-in-picture any window"
   homepage "https://piphero.app/"
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "PiPHero.app"
 

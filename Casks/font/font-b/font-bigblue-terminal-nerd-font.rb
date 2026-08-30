@@ -1,8 +1,8 @@
 cask "font-bigblue-terminal-nerd-font" do
-  version "3.3.0"
-  sha256 "1bf7384fa7649153ffa2666a71948f48ec19db5cf6753fa9eae5736e280f1fc1"
+  version "3.5.1"
+  sha256 "5c2589a37394459fe2207a6e46ccb5c37a978c51c6a5a2f92985a1356be27846"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/BigBlueTerminal.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/BigBlueTerminal.tar.xz"
   name "BigBlueTerm Nerd Font families (BigBlue Terminal)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-bigblue-terminal-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "BigBlueTerm437NerdFont-Regular.ttf"
   font "BigBlueTerm437NerdFontMono-Regular.ttf"

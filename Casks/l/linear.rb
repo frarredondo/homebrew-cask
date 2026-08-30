@@ -1,23 +1,27 @@
 cask "linear" do
-  version "1.5"
-  sha256 "a449b498e552fcc9de0f42a360f894d26e1796ce44ab1dc150fc87acab10a9c2"
+  version "1.32.2"
+  sha256 "25edf80d3fdc4a615d7f09bb3c27cf63815520a753308318576dba368efa5581"
 
-  url "https://github.com/mikaa123/linear/releases/download/#{version}/linear.zip",
-      verified: "github.com/mikaa123/linear/"
+  url "https://releases.linear.app/Linear-#{version}-universal.dmg"
   name "Linear"
-  desc "Ruler app with web-development in mind"
-  homepage "https://linear.theuxshop.com/"
+  desc "App to manage software development and track bugs"
+  homepage "https://linear.app/"
 
-  disable! date: "2024-06-07", because: :unmaintained
+  livecheck do
+    url "https://releases.linear.app/mac"
+    strategy :header_match
+  end
 
-  app "linear.app"
+  auto_updates true
+  depends_on macos: :monterey
+
+  app "Linear.app"
 
   zap trash: [
-    "~/.linear",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.electron.linear.sfl*",
-    "~/Library/Application Support/linear",
-    "~/Library/Caches/linear",
-    "~/Library/Preferences/com.electron.linear.plist",
-    "~/Library/Saved Application State/com.electron.linear.savedState",
+    "~/Library/Application Support/Linear",
+    "~/Library/Caches/com.linear",
+    "~/Library/Caches/com.linear.ShipIt",
+    "~/Library/Preferences/com.linear.plist",
+    "~/Library/Saved Application State/com.linear.savedState",
   ]
 end

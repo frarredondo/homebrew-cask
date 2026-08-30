@@ -1,6 +1,6 @@
 cask "unite" do
-  version "5.3.0.1"
-  sha256 "702ebb71368472f05562e738edc8e0192c7847bc17be1327cd44b728c79995fe"
+  version "6.6"
+  sha256 "3b6e006e91d61694262c807598c7c4c62938fa642757083ef224cbce6e36d5ff"
 
   url "https://bzgdownloads.s3.amazonaws.com/Unite/Unite+#{version}.zip",
       verified: "bzgdownloads.s3.amazonaws.com/Unite/"
@@ -14,7 +14,7 @@ cask "unite" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Unite.app"
 

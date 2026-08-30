@@ -1,9 +1,9 @@
 cask "webstorm" do
   arch arm: "-aarch64"
 
-  version "2024.3.4,243.25659.40"
-  sha256 arm:   "7e7745429e3541bd6cfaffda84aba4bcfe252db5cf93c7b2e2c75205217af57a",
-         intel: "337f80f0a5a9179b64ac4552a89ffc93a1e3f1b5c8a1b94a04a9cad9d0d18808"
+  version "2026.2.1,262.9437.145"
+  sha256 arm:   "a0e7a65b5621312fc1390afe30ef45ebd8267ff07e605046230092f604692a01",
+         intel: "e46846c3108582f7cfc4e9e574d7d6b367334b4be2cc5d873908fe435725f47d"
 
   url "https://download.jetbrains.com/webstorm/WebStorm-#{version.csv.first}#{arch}.dmg"
   name "WebStorm"
@@ -24,10 +24,11 @@ cask "webstorm" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "WebStorm.app"
-  binary "#{appdir}/WebStorm.app/Contents/MacOS/webstorm"
+  command_wrapper "webstorm",
+                  executable: "#{appdir}/WebStorm.app/Contents/MacOS/webstorm"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/WebStorm#{version.major_minor}",

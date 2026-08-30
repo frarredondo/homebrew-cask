@@ -1,6 +1,6 @@
 cask "satellite-eyes" do
-  version "1.5.0"
-  sha256 "c3646cd60618824f4aad9f4f744e5e6e3db7d96ceb11d72147a583bf02f74336"
+  version "2.1.2"
+  sha256 "2975aeed754ed060ff5bc7bfd05856e5d9bb90a37b08b1c4c80c0fe315fa828e"
 
   url "https://satellite-eyes.s3.amazonaws.com/satellite-eyes-#{version}.zip",
       verified: "satellite-eyes.s3.amazonaws.com/"
@@ -14,7 +14,7 @@ cask "satellite-eyes" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on macos: :ventura
 
   app "Satellite Eyes.app"
 

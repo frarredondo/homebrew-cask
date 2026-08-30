@@ -1,6 +1,6 @@
 cask "nordvpn" do
-  version "8.35.2"
-  sha256 "440858fc5511c5e1e1c0ea3853b94ab5f65cba7bec0c2af5bab300c0dc30f77b"
+  version "10.9.0"
+  sha256 "d619a30c5f1c40bd095dff9bd1b60fbea3f952861423248f06e86c7812d00f7d"
 
   url "https://downloads.nordcdn.com/apps/macos/generic/NordVPN-OpenVPN/#{version}/NordVPN.pkg",
       verified: "downloads.nordcdn.com/apps/macos/generic/"
@@ -14,7 +14,7 @@ cask "nordvpn" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   pkg "NordVPN.pkg"
 
@@ -39,7 +39,7 @@ cask "nordvpn" do
     "~/Library/Caches/com.nordvpn.macos",
     "~/Library/Containers/com.nordvpn.NordVPN.*",
     "~/Library/Cookies/com.nordvpn.macos.binarycookies",
-    "~/Library/Logs/NordVPN/",
+    "~/Library/Logs/NordVPN",
     "~/Library/Preferences/com.nordvpn.macos.plist",
     "~/Library/Saved Application State/com.nordvpn.macos.savedState",
   ]

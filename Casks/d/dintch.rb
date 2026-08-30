@@ -1,9 +1,8 @@
 cask "dintch" do
-  version "1.6,2023.05"
-  sha256 "61444cc980f6c6f9dc11bf222e60d04d479b96d3c3d5f8cbbae3675809a9292a"
+  version "1.8,2025.07"
+  sha256 "4f336dcfc77fcc2c253a1d3b0684a47a1281f6e9fb9bb1b70040b6d27f5edd41"
 
-  url "https://eclecticlightdotcom.files.wordpress.com/#{version.csv.second.major}/#{version.csv.second.minor}/dintch#{version.csv.first.no_dots}.zip",
-      verified: "eclecticlightdotcom.files.wordpress.com/"
+  url "https://eclecticlight.co/wp-content/uploads/#{version.csv.second.major}/#{version.csv.second.minor}/dintch#{version.csv.first.no_dots}.zip"
   name "Dintch"
   desc "Check the integrity of your files"
   homepage "https://eclecticlight.co/dintch"
@@ -24,7 +23,7 @@ cask "dintch" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "dintch#{version.csv.first.no_dots}/Dintch.app"
 

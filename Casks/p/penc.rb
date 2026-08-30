@@ -8,7 +8,7 @@ cask "penc" do
   desc "Trackpad-oriented window manager"
   homepage "https://deniz.co/penc/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Penc.app"
 

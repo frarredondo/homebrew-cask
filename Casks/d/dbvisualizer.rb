@@ -1,9 +1,9 @@
 cask "dbvisualizer" do
   arch arm: "aarch64", intel: "x64"
 
-  version "24.3.3"
-  sha256 arm:   "b5287560d42ebeed948264f58665c4f3ded56da1b46ae8c7fbd931e7f320795b",
-         intel: "e0511cdcbd4491a06fc095abdf727c74cae9858494e81c0f7427e0a0be0dff0d"
+  version "26.2.2"
+  sha256 arm:   "1b4bf5481b80306645d81fa64b134fc6675be8447229d64c559653b12063f4c2",
+         intel: "a694a0831e9b6095e5df3e1381aa356d0ff1fc04ef155b6dcaa2bd21ae82717e"
 
   url "https://www.dbvis.com/product_download/dbvis-#{version}/media/dbvis_macos-#{arch}_#{version.dots_to_underscores}.dmg"
   name "DbVisualizer"
@@ -15,7 +15,7 @@ cask "dbvisualizer" do
     regex(/href=.*?dbvis[._-](\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "DbVisualizer.app"
 

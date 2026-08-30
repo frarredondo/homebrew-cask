@@ -27,6 +27,10 @@ cask "duckietv" do
     end
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   pkg "DuckieTV-#{version}-OSX-x64.pkg"
 
   uninstall pkgutil: "tv.duckie.base.pkg",

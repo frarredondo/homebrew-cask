@@ -1,26 +1,19 @@
 cask "pixpin" do
-  version "1.9.11.8"
-  sha256 "69fe9b9d2ccb51acc07f95599594c0638764c99e0285e301164efa1ada52b9f6"
+  version "3.4.3.2"
+  sha256 "ab09b0502d16d31e697161c4e3080ea1561e887e7eaeea0e66032acdd541b6d2"
 
-  url "https://download.pixpin.cn/PixPin_#{version}.dmg"
+  url "https://down.pixpin.cn/PixPin_mac_#{version}_uni.dmg"
   name "PixPin"
   desc "Screenshot tool"
   homepage "https://pixpin.cn/"
 
   livecheck do
-    url :homepage
-    regex(%r{href=.*/PixPin[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
-    strategy :page_match do |page, regex|
-      changelog_path = page[%r{href=.*?/docs/official-log/(v?\d+(?:\.\d+)+(?:\.html)?)["' >]}i, 1]
-      next if changelog_path.blank?
-
-      version_page = Homebrew::Livecheck::Strategy.page_content("https://pixpin.cn/docs/official-log/#{changelog_path}")
-      version_page[:content]&.scan(regex)&.map { |match| match[0] }
-    end
+    url "https://pixpin.cn/download/"
+    regex(/href=.*?PixPin(?:[._-]mac)?[._-]v?(\d+(?:\.\d+)+)(?:[._-]uni)?\.dmg/i)
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "PixPin.app"
 

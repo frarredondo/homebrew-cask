@@ -1,16 +1,16 @@
 cask "praat" do
-  version "6.4.27,6427"
-  sha256 "d6e7ffb5c21eae0612d6c762b210875c426a6a075bd62eac4f6ea2ca2d27b3d9"
+  version "7.0.02,7002"
+  sha256 "9e4d1d220cff32ccfa4521114d23c11ebbfd792db61884f6019a44bd4aba19d4"
 
-  url "https://github.com/praat/praat/releases/download/v#{version.csv.first}/praat#{version.csv.second}_mac.dmg",
-      verified: "github.com/praat/praat/"
+  url "https://github.com/praat/praat.github.io/releases/download/v#{version.csv.first}/praat#{version.csv.second}_mac.dmg",
+      verified: "github.com/praat/praat.github.io/"
   name "Praat"
   desc "Doing phonetics by computer"
-  homepage "https://www.fon.hum.uva.nl/praat/"
+  homepage "https://praat.org/"
 
   livecheck do
     url :url
-    regex(%r{/v?(\d+(?:\.\d+)+)/praat(\d+)[._-]mac\.dmg$}i)
+    regex(%r{/v?(\d+(?:\.\d+)+[a-z]?)/praat(\d+)[._-]mac\.dmg$}i)
     strategy :github_latest do |json, regex|
       json["assets"]&.map do |asset|
         match = asset["browser_download_url"]&.match(regex)
@@ -20,6 +20,8 @@ cask "praat" do
       end
     end
   end
+
+  depends_on :macos
 
   app "Praat.app"
   binary "#{appdir}/Praat.app/Contents/MacOS/Praat", target: "praat"

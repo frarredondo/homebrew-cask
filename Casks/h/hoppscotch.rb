@@ -1,9 +1,9 @@
 cask "hoppscotch" do
-  arch arm: "aarch64", intel: "x86_64"
+  arch arm: "aarch64", intel: "x64"
 
-  version "25.2.0-0"
-  sha256 arm:   "12f2e308c894224e9f48c7c3e03e9d1d5d991cfe18ceba59604d31a85f2c546c",
-         intel: "2161be897cc8b48e531ef5d1321f69ee8a296eb8b2e8729264326f9e0c7c357a"
+  version "26.8.0-0"
+  sha256 arm:   "a1aba6712a80cf346ac0502b649d1ddb4170747e54209e98853d20bf06cb5f36",
+         intel: "dc8bdb027a189c2c112258463564d02072f4dc5fd6c78b3b22d4f1424545984d"
 
   url "https://github.com/hoppscotch/releases/releases/download/v#{version}/Hoppscotch_mac_#{arch}.dmg",
       verified: "github.com/hoppscotch/releases/"
@@ -11,9 +11,12 @@ cask "hoppscotch" do
   desc "Open source API development ecosystem"
   homepage "https://hoppscotch.com/"
 
-  depends_on macos: ">= :high_sierra"
+  conflicts_with cask: "hoppscotch-selfhost"
+  depends_on :macos
 
   app "Hoppscotch.app"
+
+  uninstall quit: "io.hoppscotch.desktop"
 
   zap trash: [
     "~/Library/Application Support/io.hoppscotch.desktop",

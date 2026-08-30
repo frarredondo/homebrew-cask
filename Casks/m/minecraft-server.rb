@@ -1,49 +1,70 @@
 cask "minecraft-server" do
-  version "1.21.4,4707d00eb834b446575d89a61a11b5d548d8c001"
-  sha256 "1066970b09e9c671844572291c4a871cc1ac2b85838bf7004fa0e778e10f1358"
+  version "26.1.2,97ccd4c0ed3f81bbb7bfacddd1090b0c56f9bc51"
+  sha256 "cd47e7c38328f64768fd17af8fcd8b22496b40b63d4ffee81e71ae059fedcb42"
 
-  url "https://launcher.mojang.com/v#{version.major}/objects/#{version.csv.second}/server.jar",
-      verified: "launcher.mojang.com/"
+  url "https://piston-data.mojang.com/v1/objects/#{version.csv.second}/server.jar",
+      verified: "piston-data.mojang.com/"
   name "Minecraft Server"
   desc "Run a Minecraft multiplayer server"
   homepage "https://www.minecraft.net/en-us/"
 
+  # The server download page (https://www.minecraft.net/en-us/download/server)
+  # HTML does not contain version information or a download link, as they are
+  # fetched using separate JavaScript requests.
   livecheck do
-    url "https://www.minecraft.net/en-us/download/server"
-    regex(%r{href=.*?/objects/(\h+)/server\.jar[^>]*>minecraft[_-]server[._-]v?(\d+(?:\.\d+)*)\.jar}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[1]},#{match[0]}" }
+    url "https://net-secondary.web.minecraft-services.net/api/v1.0/download/latest"
+    regex(%r{/objects/(\h+)/server\.jar}i)
+    strategy :json do |json, regex|
+      latest_version = json["result"]
+      next unless latest_version
+
+      # Only fetch the download links JSON if the upstream version is newer than
+      # the current cask version
+      next version if latest_version == version.csv.first
+
+      links_content = Homebrew::Livecheck::Strategy.page_content(
+        "https://net-secondary.web.minecraft-services.net/api/v1.0/download/links",
+      )[:content]
+      next latest_version if links_content.blank?
+
+      links_json = Homebrew::Livecheck::Strategy::Json.parse_json(links_content)
+      link_hash = nil
+      links_json.dig("result", "links")&.each do |link|
+        next if link["downloadType"] != "serverJar"
+
+        match = link["downloadUrl"]&.match(regex)
+        next if match.blank?
+
+        link_hash = match[1]
+        break
+      end
+
+      link_hash ? "#{latest_version},#{link_hash}" : latest_version
     end
   end
 
   container type: :naked
 
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/minecraft-server.wrapper.sh"
-  binary shimscript, target: "minecraft-server"
-
   config_dir = HOMEBREW_PREFIX.join("etc", "minecraft-server")
 
-  preflight do
-    FileUtils.mkdir_p config_dir
+  command_wrapper "minecraft-server", content: <<~EOS
+    #!/bin/sh
+    cd '#{config_dir}' && \
+      exec /usr/bin/java ${@:--Xms1024M -Xmx1024M} -jar '#{staged_path}/server.jar' nogui
+  EOS
 
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      cd '#{config_dir}' && \
-        exec /usr/bin/java ${@:--Xms1024M -Xmx1024M} -jar '#{staged_path}/server.jar' nogui
-    EOS
+  preflight_steps do
+    mkdir_p "{{HOMEBREW_PREFIX}}/etc/minecraft-server"
   end
 
   eula_file = config_dir.join("eula.txt")
 
-  postflight do
-    system_command shimscript
-    File.write(eula_file, File.read(eula_file).sub("eula=false", "eula=TRUE"))
+  postflight_steps do
+    run "minecraft-server.wrapper.sh", base: :staged_path
+    inreplace "{{HOMEBREW_PREFIX}}/etc/minecraft-server/eula.txt", "eula=false", "eula=TRUE", audit_result: false
   end
 
-  uninstall_preflight do
-    FileUtils.rm(eula_file) if eula_file.exist?
-  end
+  uninstall delete: eula_file
 
   zap trash: config_dir
 

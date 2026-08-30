@@ -1,6 +1,6 @@
 cask "profind" do
-  version "1.29"
-  sha256 "748a1bf58cffefc5e5691b2b6eccd2bb09286d434f772fca25b2c5957542a329"
+  version "1.41"
+  sha256 "384dd212746d79c374143468974b4f65cc0c7ad57c25ac9dc0917c61046bf969"
 
   url "https://www.zeroonetwenty.com/profind/downloads/ProFind#{version.major_minor.no_dots}.dmg"
   name "ProFind"
@@ -12,14 +12,19 @@ cask "profind" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: :big_sur
 
   app "ProFind.app"
+
+  uninstall launchctl: "com.zeroonetwenty.ProFindHelper",
+            quit:      "com.zeroonetwenty.ProFind"
 
   zap trash: [
     "~/Library/Application Scripts/com.zeroonetwenty.ProFind",
     "~/Library/Application Support/com.zeroonetwenty.ProFind",
     "~/Library/Caches/com.zeroonetwenty.ProFind",
+    "~/Library/HTTPStorages/com.zeroonetwenty.ProFind",
     "~/Library/Preferences/com.zeroonetwenty.ProFind.plist",
     "~/Library/Saved Application State/com.zeroonetwenty.ProFind.savedState",
   ]

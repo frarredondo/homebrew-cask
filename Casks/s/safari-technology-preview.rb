@@ -1,14 +1,13 @@
 cask "safari-technology-preview" do
-  # when adjusting the on_{os} scoping, also update the livecheck regex
-  on_sonoma :or_older do
-    version "214,072-89899-20250227-8bc5c94a-97a9-4c9c-b334-2da7b040727b"
-    sha256 "3ae10570834e0528310149764fc10a4893b87473c3c14e0cbce0e32eb62b7812"
+  on_tahoe :or_older do
+    version "251,140-94790-20260826-3c91860d-070e-431a-8a0d-0927cf32dc6c"
+    sha256 "1dec128ebadb74a87913b5e4878ca2fe38425da4ac66b5a53d23f88575ed2e0c"
 
     livecheck do
       url :homepage
       regex(%r{
         href=.*?/([^/]+)/Safari(?:%20|\+)?Technology(?:%20|\+)?Preview\.dmg
-        .*?macOS(?:\s|&nbsp;)*14[\s.<]
+        .*?macOS(?:\s|&nbsp;)*26[\s.<]
       }ix)
       strategy :page_match do |page, regex|
         release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)[^<]*<}i, 1]
@@ -17,15 +16,16 @@ cask "safari-technology-preview" do
       end
     end
   end
-  on_sequoia :or_newer do
-    version "214,072-89897-20250227-53e6a02a-71d4-45a6-b90c-34cc3c913676"
-    sha256 "e309dbc2402e4e43dc8e956bedc949521e7d6bf193498a5d3a7ff5fffcbea33a"
+  # when adjusting the on_{os} scoping, also update the livecheck regex
+  on_golden_gate :or_newer do
+    version "247,140-34366-20260630-87ebbe6a-e3ef-4af1-9d0e-848f2ab2ec7a"
+    sha256 "65b28478653fd40a51c6488814793e785e07cc7632d7ddc337e6d1a1f4ec9e2b"
 
     livecheck do
       url :homepage
       regex(%r{
         href=.*?/([^/]+)/Safari(?:%20|\+)?Technology(?:%20|\+)?Preview\.dmg
-        .*?macOS(?:\s|&nbsp;)*15[\s.<]
+        .*?macOS(?:\s|&nbsp;)*27[\s.<]
       }ix)
       strategy :page_match do |page, regex|
         release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)[^<]*<}i, 1]
@@ -41,12 +41,18 @@ cask "safari-technology-preview" do
   homepage "https://developer.apple.com/safari/resources/"
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :tahoe
 
   pkg "Safari Technology Preview.pkg"
 
-  uninstall launchctl: "com.apple.SafariTechnologyPreview.History",
+  uninstall launchctl: [
+              "com.apple.AuthenticationServicesCore.AuthenticationServicesAgent-STP",
+              "com.apple.SafariTechnologyPreview.History",
+              "com.apple.SafariTechnologyPreview.SyncService",
+              "com.apple.webkit.webpushd.relocatable",
+            ],
             quit:      "com.apple.SafariTechnologyPreview",
+            pkgutil:   "com.apple.pkg.SafariTechPreviewPackage",
             delete:    "/Applications/Safari Technology Preview.app"
 
   zap trash: [

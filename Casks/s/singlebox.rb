@@ -1,6 +1,6 @@
 cask "singlebox" do
-  version "55.4.0"
-  sha256 "5af670e8fc8386ab5d36da71b2c3fee58ecc5965f5d2960256f304d583cb2f7d"
+  version "67.1.1"
+  sha256 "365ac40e0699239966547ee2990ba4b6b4e15ec4a09bf389caf7490d0ce4c9d3"
 
   url "https://cdn-2.webcatalog.io/singlebox2/Singlebox-#{version}-universal.dmg",
       verified: "cdn-2.webcatalog.io/singlebox2/"
@@ -14,7 +14,7 @@ cask "singlebox" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "Singlebox.app"
 

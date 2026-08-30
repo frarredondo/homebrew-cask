@@ -1,8 +1,8 @@
 cask "fxfactory" do
-  version "8.0.21,8056"
+  version "9.0.5,8654"
   sha256 :no_check # required as upstream package is often updated in place
 
-  url "https://store.fxfactory.com/products/noiseindustries/fxfactory/FxFactory-#{version.csv.first}-#{version.csv.second}.zip"
+  url "https://files.fxfactory.com/fxfactory/FxFactory-#{version.csv.first}-#{version.csv.second}.zip"
   name "FxFactory"
   desc "Browse, install and purchase effects and plugins from a huge catalogue"
   homepage "https://fxfactory.com/"
@@ -18,7 +18,7 @@ cask "fxfactory" do
     end
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   pkg "Install FxFactory #{version.csv.first}.pkg"
 
@@ -33,6 +33,8 @@ cask "fxfactory" do
 
   zap trash: [
     "~/Library/Application Scripts/com.fxfactory.FxFactoryService.pluginkit",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.fxfactory.fxfactory.sfl*",
+    "~/Library/Caches/com.fxfactory.FxFactory",
     "~/Library/Preferences/com.fxfactory.FxFactory.plist",
     "~/Movies/Motion Templates.localized",
   ]

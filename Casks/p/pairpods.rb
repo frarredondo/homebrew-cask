@@ -1,6 +1,6 @@
 cask "pairpods" do
-  version "0.1.0"
-  sha256 "0e9fdc89b1fc9fd57e646fd4f3efcdd4c8f15274b8df672e2b9a20adc20b7c1f"
+  version "0.7.0"
+  sha256 "08c900877a33c2f3c54398001e129933a98d3e931d102929a97efc6c995bc1b0"
 
   url "https://github.com/wozniakpawel/PairPods/releases/download/v#{version}/PairPods-#{version}.app.zip",
       verified: "github.com/wozniakpawel/PairPods/"
@@ -9,7 +9,7 @@ cask "pairpods" do
   homepage "https://pairpods.app/"
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "PairPods.app"
 

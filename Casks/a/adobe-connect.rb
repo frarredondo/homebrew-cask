@@ -1,15 +1,16 @@
 cask "adobe-connect" do
-  version "2024.11.64,11"
-  sha256 "0b5481409f831934885ea5e51403aec89467829076257625cc86a28f9dd07cf7"
+  version "2026.01.39,11"
+  sha256 "e1f1d1497b2bea65b77729771fc304e4792a9fa0db92e179e836039e02b35392"
 
-  url "https://download.adobe.com/pub/connect/updaters/meeting/#{version.csv.second}/AdobeConnect_#{version.csv.first.dots_to_underscores}.dmg"
+  url "https://download.adobe.com/pub/connect/updaters/meeting/#{version.csv.second}/AdobeConnect_#{version.csv.first.major}_#{version.csv.first.minor}_#{version.csv.first.patch}.dmg"
   name "Adobe Connect"
   desc "Virtual meeting client"
   homepage "https://www.adobe.com/products/adobeconnect.html"
 
   livecheck do
-    url "https://helpx.adobe.com/adobe-connect/connect-downloads-updates.html"
-    regex(/macOS.*?v?(\d+(?:\.\d+)+)[< "]/im)
+    url "https://helpx.adobe.com/adobe-connect/connect-downloads-updates.html",
+        user_agent: :browser
+    regex(/Download\s+for\s+macOS.*?v?(\d+(?:\.\d+)+)[< "]/im)
     strategy :page_match do |page, regex|
       version = page.scan(regex)&.flatten&.first
       directory = page.scan(/href=.*ConnectMac(\d+)Plus/i)&.flatten&.first
@@ -20,6 +21,7 @@ cask "adobe-connect" do
   end
 
   auto_updates true
+  depends_on :macos
 
   installer manual: "AdobeConnectInstaller.app"
 

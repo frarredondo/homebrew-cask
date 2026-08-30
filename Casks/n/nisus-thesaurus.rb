@@ -12,7 +12,7 @@ cask "nisus-thesaurus" do
     regex(/Version\s*(\d+(?:\.\d+)*)/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Nisus Thesaurus.app"
 

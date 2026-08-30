@@ -1,6 +1,6 @@
 cask "linearmouse" do
-  version "0.10.0"
-  sha256 "21cd1d11010dd5eefc1ff3368ce8366c4114f99b59ea737aca4309f9d6fb69f1"
+  version "0.11.4"
+  sha256 "755127ba3cb053c50615dc1240ed7ad7fd7a337ab3f3bbb890a06644cd62d85f"
 
   url "https://dl.linearmouse.org/v#{version}/LinearMouse.dmg"
   name "LinearMouse"
@@ -16,7 +16,7 @@ cask "linearmouse" do
 
   auto_updates true
   conflicts_with cask: "linearmouse@beta"
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "LinearMouse.app"
 
@@ -25,6 +25,7 @@ cask "linearmouse" do
 
   zap trash: [
     "~/.config/linearmouse",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.lujjjh.linearmouse.sfl*",
     "~/Library/Preferences/com.lujjjh.LinearMouse.plist",
   ]
 end

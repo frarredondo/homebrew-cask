@@ -1,6 +1,6 @@
 cask "zenmap" do
-  version "7.95"
-  sha256 "fc069b88f6b64cbb56b02a644075d78df603d9417d3947ff32acc0566439de3c"
+  version "7.991"
+  sha256 "a1726429e4b6717ee9c98213a52e5fae2f365037bd1bf5fd570cebb68965049e"
 
   url "https://nmap.org/dist/nmap-#{version}.dmg"
   name "Zenmap"
@@ -12,7 +12,9 @@ cask "zenmap" do
     regex(/href=.*?nmap[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  conflicts_with formula: "nmap"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   pkg "nmap-#{version}.mpkg"
 

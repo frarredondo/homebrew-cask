@@ -1,6 +1,6 @@
 cask "virtualbuddy" do
-  version "1.7,132"
-  sha256 "c669ab7ca417a0cb533b12c64e398d4e564dec67f24a8dd349e2ef5d7fe07b8d"
+  version "2.1,325"
+  sha256 "6ed17e8d7245931fd405c419321ace7ef9333fe2e3d59b3a7f78e34fcbe628b6"
 
   url "https://su.virtualbuddy.app/VirtualBuddy_v#{version.csv.first}-#{version.csv.second}.dmg",
       verified: "su.virtualbuddy.app/"
@@ -16,13 +16,15 @@ cask "virtualbuddy" do
   auto_updates true
   conflicts_with cask: "virtualbuddy@beta"
   depends_on arch: :arm64
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "VirtualBuddy.app"
+  binary "#{appdir}/VirtualBuddy.app/Contents/MacOS/vctool", target: "vctool"
 
   zap trash: [
     "~/Library/Application Support/VirtualBuddy",
     "~/Library/Caches/codes.rambo.VirtualBuddy",
+    "~/Library/Caches/VirtualBuddy",
     "~/Library/HTTPStorages/codes.rambo.VirtualBuddy",
     "~/Library/Preferences/codes.rambo.VirtualBuddy.plist",
   ]

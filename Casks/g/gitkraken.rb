@@ -1,18 +1,19 @@
 cask "gitkraken" do
-  arch arm: "darwin-arm64", intel: "darwin"
+  arch arm: "arm64", intel: "x64"
+  livecheck_arch = on_arch_conditional arm: "-arm64"
 
-  version "10.7.0"
-  sha256 arm:   "ec19b8a441816c57463b3b114388337a04cbb23be09e0c4e90f13330f73531de",
-         intel: "04fdcc5e1d967350db60ca456d1de706805c6c9605ad64628d4d46b1bacd930c"
+  version "12.4.0"
+  sha256 arm:   "c7aec6ea8a5469d8f7d541866f8357aa22c4a813580ea20d085663e8840f8b1b",
+         intel: "c65be15b4875ddd616b4579893a34c7a7bd3162a7a98f41f78e24ed1f6a1e008"
 
-  url "https://release.axocdn.com/#{arch}/GitKraken-v#{version}.zip",
-      verified: "release.axocdn.com/"
+  url "https://api.gitkraken.dev/releases/production/darwin/#{arch}/#{version}/GitKraken-v#{version}.zip",
+      verified: "api.gitkraken.dev/releases/production/"
   name "GitKraken"
   desc "Git client focusing on productivity"
   homepage "https://www.gitkraken.com/"
 
   livecheck do
-    url "https://release.axocdn.com/#{arch}/RELEASES?v=0.0.0&darwin=999"
+    url "https://release.gitkraken.com/darwin#{livecheck_arch}/RELEASES?v=0.0.0&darwin=999"
     strategy :json do |json|
       json["name"]
     end
@@ -20,7 +21,7 @@ cask "gitkraken" do
 
   auto_updates true
   conflicts_with cask: "gitkraken-on-premise-serverless"
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "GitKraken.app"
 

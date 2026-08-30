@@ -1,6 +1,6 @@
 cask "deezer" do
-  version "7.0.31"
-  sha256 "f1f1ec928481f664188beea3ac45d4f2825aba06528e0e40b9aaa323fdc88e5e"
+  version "7.1.320"
+  sha256 "c1898eb6c516e9c3ddc70ee4adf0468c08310f8579a9f1cf68ca503069b4df0f"
 
   url "https://www.deezer.com/desktop/download/artifact-darwin-x64-#{version}"
   name "Deezer"
@@ -13,12 +13,13 @@ cask "deezer" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Deezer.app"
 
   zap trash: [
     "~/Library/Application Support/Caches/deezer-desktop-updater",
+    "~/Library/Application Support/Deezer",
     "~/Library/Application Support/deezer-desktop",
     "~/Library/Caches/com.deezer.deezer*",
     "~/Library/Logs/Deezer",

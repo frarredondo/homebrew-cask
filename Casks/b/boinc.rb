@@ -1,6 +1,6 @@
 cask "boinc" do
-  version "8.0.2"
-  sha256 "ac579dec5effb5b2495c51808e9eddedd70405a3494e2d6f4a29d9030eec2e39"
+  version "8.2.11"
+  sha256 "0b98428629eebc83bd73404cfe8cfaafe8e35681acb184792ac825854def1bb5"
 
   url "https://boinc.berkeley.edu/dl/boinc_#{version}_macOSX_universal.zip"
   name "Berkeley Open Infrastructure for Network Computing"
@@ -13,7 +13,10 @@ cask "boinc" do
     regex(%r{href=.*?/boinc[._-]v?(\d+(?:\.\d+)+)[._-]macOSX[._-]universal\.zip}i)
   end
 
-  pkg "boinc_#{version}_macOSX_universal/BOINC Installer.app/Contents/Resources/BOINC.pkg"
+  depends_on :macos
+
+  # The pkg installer requires user interaction, so cannot be installed headlessly
+  installer manual: "boinc_#{version}_macOSX_universal/BOINC Installer.app/Contents/Resources/BOINC.pkg"
 
   uninstall launchctl: [
               "edu.berkeley.boinc-sshelper",

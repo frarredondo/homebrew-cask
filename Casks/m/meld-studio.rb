@@ -1,5 +1,5 @@
 cask "meld-studio" do
-  version "0.8.4.3"
+  version "0.10.5.3"
   sha256 :no_check
 
   url "https://packages.streamwithmeld.com/MeldStudioInstaller.dmg",
@@ -14,9 +14,15 @@ cask "meld-studio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Meld Studio.app"
+
+  uninstall launchctl: [
+    "co.meldstudio.keystone.agent",
+    "co.meldstudio.keystone.xpcservice",
+    "co.meldstudio.MeldStudioUpdater.wake",
+  ]
 
   zap trash: [
     "~/Library/Application Support/MeldStudio",

@@ -1,8 +1,8 @@
 cask "font-hurmit-nerd-font" do
-  version "3.3.0"
-  sha256 "ca1f7aa90464d5f2c795eff508539cf022a0331d78971e05b306bda4e73038b6"
+  version "3.5.1"
+  sha256 "61c1a9e87216eb25b69171cd8f39098be86306ebdf65b3b3a273192f3a3bbbb0"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Hermit.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Hermit.tar.xz"
   name "Hurmit Nerd Font (Hermit)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-hurmit-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "HurmitNerdFont-Bold.otf"
   font "HurmitNerdFont-BoldItalic.otf"

@@ -1,14 +1,8 @@
 cask "bartender" do
-  on_ventura :or_older do
-    version "4.2.25"
-    sha256 "f1a2ecf300cf56aaf531324cba646442026cb0b63b4f90f46a1aee5b0804688a"
-  end
-  on_sonoma :or_newer do
-    version "5.2.7"
-    sha256 "74b555843002a080c9701b27566f9a9d5a89102b455f4f46ea5ac2636a8df36d"
-  end
+  version "6.6.2"
+  sha256 "e178616bc09956e39f0ab0ff9112b8fe89f744b406f8e417fb7b2aaf3524e064"
 
-  url "https://macbartender.com/B2/updates/#{version.dots_to_hyphens}/Bartender%20#{version.major}.zip"
+  url "https://downloads.macbartender.com/B2/updates/#{version.dots_to_hyphens}/Bartender%20#{version.major}.zip"
   name "Bartender"
   desc "Menu bar icon organiser"
   homepage "https://www.macbartender.com/"
@@ -22,7 +16,7 @@ cask "bartender" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   app "Bartender #{version.major}.app"
 
@@ -36,8 +30,15 @@ cask "bartender" do
             ]
 
   zap trash: [
+    "~/Library/Application Scripts/24J875RH8J.com.surteesstudios.Bartender",
+    "~/Library/Application Support/Bartender #{version.major}",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.surteesstudios.bartender.sfl*",
+    "~/Library/Application Support/com.surteesstudios.Bartender.revenuecat",
     "~/Library/Caches/com.surteesstudios.Bartender",
+    "~/Library/Caches/com.surteesstudios.Bartender.revenuecat",
     "~/Library/Cookies/com.surteesstudios.Bartender.binarycookies",
+    "~/Library/Group Containers/24J875RH8J.com.surteesstudios.Bartender",
+    "~/Library/HTTPStorages/com.surteesstudios.Bartender",
     "~/Library/Preferences/com.surteesstudios.Bartender.plist",
   ]
 end

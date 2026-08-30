@@ -1,16 +1,9 @@
 cask "texstudio" do
-  arch arm: "-m1", intel: ""
+  arch arm: "-m1"
 
-  version "4.8.6"
-  sha256 arm:   "3ba37f5bbf1232af5bdefbca7b859639c09b180aba26b2801119708f402b5c4a",
-         intel: "7d4326f2e4a59cc7022d950f1c7f01ce1978bc69c66a7199b4c73ac2cca37b37"
-
-  on_arm do
-    depends_on macos: ">= :sonoma"
-  end
-  on_intel do
-    depends_on macos: ">= :big_sur"
-  end
+  version "4.9.7"
+  sha256 arm:   "5ac66e53c7cfab83621e50db3287edc7f977b2e5259806949a3915090f1898b1",
+         intel: "13ef12b15c44d3cd44b58a24a5ba8ef1b5dd1304d7b67e2a0e8ba3ec0868db07"
 
   url "https://github.com/texstudio-org/texstudio/releases/download/#{version}/texstudio-#{version}-osx#{arch}.zip",
       verified: "github.com/texstudio-org/texstudio/"
@@ -18,7 +11,13 @@ cask "texstudio" do
   desc "LaTeX editor"
   homepage "https://texstudio.org/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :ventura
+
   app "texstudio-#{version}-osx#{arch}.app"
+
+  uninstall quit: "texstudio"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/texstudio.sfl*",

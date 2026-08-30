@@ -1,6 +1,6 @@
 cask "hstracker" do
-  version "3.1.10"
-  sha256 "eb97d9812ab1d0b4db2bdfb74eee6ab098c8b5a4e6215b73d5e57e2d8eb92819"
+  version "3.6.7"
+  sha256 "edfde0587376ad5d34cdbb5347a4bd6470c9737adc13bb1740e7f8905c415dac"
 
   url "https://github.com/HearthSim/HSTracker/releases/download/#{version}/HSTracker.app.zip",
       verified: "github.com/HearthSim/HSTracker/"
@@ -16,9 +16,11 @@ cask "hstracker" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "HSTracker.app"
+
+  uninstall quit: "net.hearthsim.hstracker"
 
   zap trash: [
     "~/Library/Application Support/HSTracker",
@@ -30,8 +32,4 @@ cask "hstracker" do
     "~/Library/Preferences/net.hearthsim.hstracker.plist",
     "~/Library/Saved Application State/net.hearthsim.hstracker.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

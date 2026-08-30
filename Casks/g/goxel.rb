@@ -8,7 +8,7 @@ cask "goxel" do
   desc "Open Source Voxel Editor"
   homepage "https://goxel.xyz/"
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Goxel.app"
 

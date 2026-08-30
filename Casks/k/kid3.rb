@@ -1,28 +1,18 @@
 cask "kid3" do
+  arch arm: "arm64", intel: "amd64"
+
   # NOTE: "3" is not a version number, but an intrinsic part of the product name (ID3 tags)
-  version "3.9.6"
+  version "3.10.1"
+  sha256 arm:   "b8d5339c8b2e584e073a42f8f90fce8cc6865e121040d1a10d476d74d0a54950",
+         intel: "243c842d7bc74b54934051562ad4a6ebbdf4ef6866b4c35a4a8e41803b97cfcc"
 
-  on_high_sierra :or_older do
-    sha256 "34ef3f1f157be232f7c4c59468081266f9cd3c99be499d82c1d32e858a7bb0e4"
-
-    url "https://downloads.sourceforge.net/kid3/kid3-#{version}-Darwin-Qt5.dmg",
-        verified: "downloads.sourceforge.net/kid3/"
-  end
-  on_mojave :or_newer do
-    arch arm: "arm64", intel: "amd64"
-
-    sha256 arm:   "f16a4bc4d8351270b70de0e0e9016f3654ad7eb5af51974b1874a7b1a7269e6e",
-           intel: "34ef3f1f157be232f7c4c59468081266f9cd3c99be499d82c1d32e858a7bb0e4"
-
-    url "https://downloads.sourceforge.net/kid3/kid3-#{version}-Darwin-#{arch}.dmg",
-        verified: "downloads.sourceforge.net/kid3/"
-  end
-
+  url "https://downloads.sourceforge.net/kid3/kid3-#{version}-Darwin-#{arch}.dmg",
+      verified: "downloads.sourceforge.net/kid3/"
   name "Kid3"
   desc "Audio tagger focusing on efficiency"
   homepage "https://kid3.kde.org/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :ventura
 
   app "kid3.app"
   binary "#{appdir}/kid3.app/Contents/MacOS/kid3-cli"

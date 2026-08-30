@@ -1,27 +1,36 @@
 cask "sketch" do
-  on_big_sur :or_older do
-    version "96.3,167315"
-    sha256 "3ba2c147aab6b2fcb4b5cc3e3ee7fce3f63551e6ef743a7afe459bd0a87bb4a6"
-
+  on_sonoma :or_older do
+    on_big_sur :or_older do
+      version "96.3,167315"
+      sha256 "3ba2c147aab6b2fcb4b5cc3e3ee7fce3f63551e6ef743a7afe459bd0a87bb4a6"
+    end
+    on_monterey do
+      version "100.3,180165"
+      sha256 "e51efde061eb3d5b9b999f7821d0d547114ce5b3ed06c0ca3278d60fb4d92678"
+    end
+    on_ventura do
+      version "101.9,182113"
+      sha256 "e6de9d00399f4511711f895c74b909496f690d4f0f4ba66340b158106262e873"
+    end
+    on_sonoma do
+      version "2026.2.1,231087"
+      sha256 "97a0b99a69b562747c9b6c2bd6acc15815ff9297144204816344bece13cd4544"
+    end
     livecheck do
       skip "Legacy version"
     end
   end
-  on_monterey do
-    version "100.3,180165"
-    sha256 "e51efde061eb3d5b9b999f7821d0d547114ce5b3ed06c0ca3278d60fb4d92678"
+  on_sequoia :or_newer do
+    version "2026.3,233959"
+    sha256 "a868d974167ae7b7c20d5edbf71c1430c65412911d19839e9fb35ab3136f3b0e"
 
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_ventura :or_newer do
-    version "101.8,182106"
-    sha256 "619913f16a7ec019748b1c5c4ed1a39cbb7bc26c9b68038f02ca330e5ab31725"
-
+    # Older versions may have a more recent `pubDate` than newer versions, so
+    # we have to check all of the items in the appcast.
     livecheck do
       url "https://download.sketch.com/sketch-versions.xml"
-      strategy :sparkle
+      strategy :sparkle do |items|
+        items.map(&:nice_version)
+      end
     end
   end
 
@@ -31,7 +40,7 @@ cask "sketch" do
   homepage "https://www.sketch.com/"
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Sketch.app"
 

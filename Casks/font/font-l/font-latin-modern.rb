@@ -1,14 +1,20 @@
 cask "font-latin-modern" do
-  version "2.004"
-  sha256 "5b0236051d3728be6616f1b274e3b910473875b5a3ef9382f0ef00384ddb161b"
+  version "2.007,31_03_2026"
+  sha256 "2d8e05083e211ac838a9e306fb5e4856ed37ec15130e185a971e2683a7c5d1a1"
 
-  url "https://www.gust.org.pl/projects/e-foundry/latin-modern/download/lm#{version}otf.zip"
+  url "https://www.gust.org.pl/projects/e-foundry/latin-modern/download/Latin_Modern-otf-#{version.csv.first.dots_to_underscores}#{"-#{version.csv.second}" if version.csv.second}.zip"
   name "Latin Modern"
   homepage "https://www.gust.org.pl/projects/e-foundry/latin-modern"
 
   livecheck do
     url "https://www.gust.org.pl/projects/e-foundry/latin-modern/download"
-    regex(/lm(\d+(?:\.\d+)+)otf\.zip/i)
+    regex(/href=.*?Latin[._-]Modern[._-]otf[._-]v?(\d+(?:[._]\d+)+)(?:-(\d+(?:[._]\d+)+))?\.zip/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map do |match|
+        version = match[0].tr("_", ".")
+        match[1].present? ? "#{version},#{match[1]}" : version
+      end
+    end
   end
 
   font "lmmono10-italic.otf"
@@ -38,6 +44,7 @@ cask "font-latin-modern" do
   font "lmroman12-bold.otf"
   font "lmroman12-italic.otf"
   font "lmroman12-regular.otf"
+  font "lmroman17-oblique.otf"
   font "lmroman17-regular.otf"
   font "lmroman5-bold.otf"
   font "lmroman5-regular.otf"
@@ -61,7 +68,6 @@ cask "font-latin-modern" do
   font "lmromanslant10-bold.otf"
   font "lmromanslant10-regular.otf"
   font "lmromanslant12-regular.otf"
-  font "lmromanslant17-regular.otf"
   font "lmromanslant8-regular.otf"
   font "lmromanslant9-regular.otf"
   font "lmromanunsl10-regular.otf"

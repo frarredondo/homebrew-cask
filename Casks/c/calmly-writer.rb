@@ -1,30 +1,23 @@
 cask "calmly-writer" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "-arm64"
+  livecheck_arch = on_arch_conditional arm: "arm64", intel: "x64"
 
-  version "2.0.58"
+  version "2.0.66"
+  sha256 arm:   "68d4901681e4eb908ed34db32ae529bf93cccf1c52e0313482eaa91132006428",
+         intel: "59ba1f8ffd667fba623e30bd68950b824353068c45d2a5c825ae9f7662ba7053"
 
-  on_arm do
-    sha256 "b1b82148ac1b90980c3e9a50663325363e257970bb1dd28738f11b61f4a5228a"
-
-    url "https://www.calmlywriter.com/releases/Calmly%20Writer-#{version}-#{arch}.dmg"
-  end
-  on_intel do
-    sha256 "4b63e139037642c56faf8e6dc670401811e10f762e08a3ef6e0f453026b8f4fa"
-
-    url "https://www.calmlywriter.com/releases/Calmly%20Writer-#{version}.dmg"
-  end
-
+  url "https://www.calmlywriter.com/releases/Calmly%20Writer-#{version}#{arch}.dmg"
   name "Calmly Writer"
   desc "Word processor with markdown formatting and select themes"
   homepage "https://calmlywriter.com/"
 
   livecheck do
-    url "https://calmlywriter.com/releases/#{arch}/download.php"
+    url "https://calmlywriter.com/releases/#{livecheck_arch}/download.php"
     regex(/Calmly(?:\s+|%20|[._-])?Writer[._-]v?(\d+(?:\.\d+)+)/i)
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :big_sur
 
   app "Calmly Writer.app"
 

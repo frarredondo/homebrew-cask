@@ -1,6 +1,6 @@
 cask "hyperconnect" do
-  version "1.3.0"
-  sha256 "430d008e0341eee37ece0a1e568a3c722a7bf6d308921442235ff7fb9aefc742"
+  version "3.0.300"
+  sha256 "651cdf44a1dbb4a969cf530feaa887566cfdad4cd30be9551d3da13c9ec35db0"
 
   url "https://cdn.cnbj1.fds.api.mi-img.com/mijia-ios-adhoc/hyperconnect/HyperConnect-#{version}.dmg",
       verified: "mi-img.com/mijia-ios-adhoc/hyperconnect/"
@@ -17,7 +17,7 @@ cask "hyperconnect" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "小米互联服务.app"
 

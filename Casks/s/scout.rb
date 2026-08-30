@@ -9,6 +9,9 @@ cask "scout" do
   homepage "https://scout-app.io/"
 
   deprecate! date: "2024-11-11", because: :unmaintained
+  disable! date: "2025-11-11", because: :unmaintained
+
+  depends_on :macos
 
   app "Scout-App.app"
 

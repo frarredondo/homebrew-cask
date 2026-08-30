@@ -1,8 +1,8 @@
 cask "font-symbols-only-nerd-font" do
-  version "3.3.0"
-  sha256 "2078603c1e7a2fc2fa9e625ba1c30264d5d7c39907813d89beaa373f73a3a340"
+  version "3.5.1"
+  sha256 "01172f37db8543edb102e5cb5c64101c9f4686630804d49b419aa07b23a69996"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/NerdFontsSymbolsOnly.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/NerdFontsSymbolsOnly.tar.xz"
   name "Symbols Nerd Font (Symbols Only)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-symbols-only-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "SymbolsNerdFont-Regular.ttf"
   font "SymbolsNerdFontMono-Regular.ttf"

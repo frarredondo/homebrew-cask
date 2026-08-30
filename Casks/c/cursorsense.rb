@@ -1,6 +1,6 @@
 cask "cursorsense" do
-  version "2.4.1"
-  sha256 "7e48bb55ce5b486d0927b05a0596d86e026ffa57c6bd73111566c5ed28035fa3"
+  version "2.4.3"
+  sha256 "431f92df25412ef68c1471d85ee509beb9ca378939ce46ec9f10bb778ee0237b"
 
   url "https://plentycom.jp/ctrl/files_cs/CursorSense#{version}.dmg"
   name "CursorSense"
@@ -12,7 +12,7 @@ cask "cursorsense" do
     regex(%r{href=.*?/CursorSensev?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "CursorSense.app"
 

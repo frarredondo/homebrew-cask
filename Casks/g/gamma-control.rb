@@ -12,7 +12,7 @@ cask "gamma-control" do
     regex(/href=.*?gamma[._-]control[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Gamma Control.app"
 

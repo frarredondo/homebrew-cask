@@ -1,6 +1,6 @@
 cask "rstudio@daily" do
-  version "2025.04.0-daily-354"
-  sha256 "c98d7b7b93fedaccce721166009e48d4da7bd5d640dbcc9c730d924e37b5947a"
+  version "2026.09.0-daily-146"
+  sha256 "e0279d48ac348b16ff95fcd52089c64ee5d982e074f801e34ca0a1539a4e2da4"
 
   url "https://rstudio-ide-build.s3.amazonaws.com/electron/macos/RStudio-#{version}.dmg",
       verified: "rstudio-ide-build.s3.amazonaws.com/electron/macos/"
@@ -17,16 +17,23 @@ cask "rstudio@daily" do
   end
 
   conflicts_with cask: "rstudio"
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "RStudio.app"
 
-  zap trash: "~/.rstudio-desktop"
+  uninstall quit: "com.rstudio.desktop"
+
+  zap trash: [
+    "~/.rstudio-desktop",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.rstudio.desktop.sfl*",
+    "~/Library/Application Support/RStudio",
+    "~/Library/Preferences/com.rstudio.desktop.plist",
+  ]
 
   caveats <<~EOS
     #{token} depends on R. The R Project provides official binaries:
 
-      brew install --cask r
+      brew install --cask r-app
 
     Alternatively, the Homebrew-compiled version of R omits the GUI app:
 

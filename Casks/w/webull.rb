@@ -1,6 +1,6 @@
 cask "webull" do
-  version "8.10.5,8000100008"
-  sha256 "411b9e8aef3c7bc2aac01520895fad7797f65334c14275c10df2628efa5ecd12"
+  version "9.14.0,9000300091"
+  sha256 "7f204d274233baa18032facd94f364faa533a34717ede99bf840bf5359db1aed"
 
   url "https://u1sweb.webullfintech.com/us/Webull%20Desktop_#{version.csv.first}_#{version.csv.second}_global_universalsigned.dmg",
       verified: "u1sweb.webullfintech.com/us/"
@@ -16,7 +16,7 @@ cask "webull" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Webull Desktop.app"
 

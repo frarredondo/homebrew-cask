@@ -1,6 +1,6 @@
 cask "coin-wallet" do
-  version "6.8.0"
-  sha256 "17f65df1979a9e0b3a2b0e497d8146f565466df6f88b470929cfd99c436a0075"
+  version "6.29.0"
+  sha256 "04afee2a05d0d3a4c295e850a5ad28aa2f11dc33d209b966b3c32dc2e1ee6a38"
 
   url "https://github.com/CoinSpace/CoinSpace/releases/download/v#{version}/Coin.Wallet.dmg",
       verified: "github.com/CoinSpace/CoinSpace/"
@@ -8,7 +8,15 @@ cask "coin-wallet" do
   desc "Digital currency wallet"
   homepage "https://coin.space/"
 
+  livecheck do
+    url "https://coin.space/api/v4/update/mac/x64/v0.0.0"
+    strategy :json do |json|
+      json["version"]&.sub("v", "")
+    end
+  end
+
   auto_updates true
+  depends_on macos: :big_sur
 
   app "Coin Wallet.app"
 

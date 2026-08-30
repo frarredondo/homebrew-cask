@@ -1,9 +1,9 @@
 cask "transfer" do
-  version "2.2.4"
-  sha256 "64898ae7227ddc2a7f0b90721366bea7176f37b77bb955b1be9586d4fbee2331"
+  version "2.4.3"
+  sha256 "f97bd2d3ef07ec54a607926eef6b6a605a72f87eb66cb07ae2e9a1e2e42b5613"
 
   url "https://www.intuitibits.com/downloads/Transfer_#{version}.dmg"
-  name "transfer"
+  name "Transfer"
   desc "Standalone TFTP, FTP, and SFTP server"
   homepage "https://www.intuitibits.com/products/transfer/"
 
@@ -12,14 +12,20 @@ cask "transfer" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :mojave"
+  auto_updates true
+  depends_on macos: :ventura
 
   app "Transfer.app"
 
   zap trash: [
     "~/Library/Application Support/Transfer",
     "~/Library/Caches/com.adriangranados.Transfer",
+    "~/Library/Caches/com.apple.helpd/Generated/com.intuitibits.transfer.help*",
+    "~/Library/HTTPStorages/com.adriangranados.Transfer",
+    "~/Library/HTTPStorages/com.adriangranados.Transfer.binarycookies",
     "~/Library/Preferences/com.adriangranados.Transfer.plist",
+    "~/Library/Saved Application State/com.adriangranados.Transfer.savedState",
+    "~/Library/WebKit/com.adriangranados.Transfer",
     "~/Transfer",
   ]
 end

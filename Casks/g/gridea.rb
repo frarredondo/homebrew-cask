@@ -8,7 +8,10 @@ cask "gridea" do
   desc "Static blog writing client"
   homepage "https://gridea.dev/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
+  depends_on :macos
 
   app "Gridea.app"
 

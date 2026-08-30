@@ -8,9 +8,11 @@ cask "classicftp" do
   homepage "https://www.nchsoftware.com/classic/index.html"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://www.nchsoftware.com/classic/versions.html"
+    regex(/Version\s+v?(\d+(?:\.\d+)+)[^>]*>\s*macOS/im)
   end
+
+  depends_on :macos
 
   app "ClassicFTP.app"
 

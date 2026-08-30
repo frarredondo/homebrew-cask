@@ -1,6 +1,6 @@
 cask "mural" do
-  version "3.0.3"
-  sha256 "717dc23905c53a31146f638f612ce7b3a4a4d3e331de463f4fcd27507690b27e"
+  version "3.0.4"
+  sha256 "7f92a2eb91e5824d6a5cd3eee8619cab2edb4fdce0da5a2bed7cf85a0a4846c9"
 
   url "https://download.mural.co/mac-app/Mural-#{version}.dmg"
   name "MURAL"
@@ -12,12 +12,16 @@ cask "mural" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on :macos
 
   app "MURAL.app"
 
   zap trash: [
+    "~/Library/Application Support/Mural for macOS",
     "~/Library/Application Support/murally-electron",
+    "~/Library/Caches/mural-updater",
+    "~/Library/Logs/Mural for macOS",
     "~/Library/Logs/MURAL",
     "~/Library/Logs/murally-electron",
     "~/Library/Preferences/co.mural.macOS.plist",

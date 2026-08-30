@@ -4,12 +4,13 @@ cask "firebase-admin" do
 
   url "https://firebaseadmin.com/downloads/#{version}/firebase-admin-mac-#{version}.dmg"
   name "Firebase Admin"
+  desc "Admin user interface for Firebase"
   homepage "https://firebaseadmin.com/"
 
-  livecheck do
-    url "https://firebaseadmin.com/download.php?os=mac"
-    strategy :header_match
-  end
+  deprecate! date: "2025-06-01", because: :unmaintained
+  disable! date: "2026-06-01", because: :unmaintained
+
+  depends_on :macos
 
   app "firebase-admin.app"
 

@@ -12,7 +12,7 @@ cask "crescendo" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Crescendo.app"
 

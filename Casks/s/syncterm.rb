@@ -1,12 +1,16 @@
 cask "syncterm" do
-  version "1.6"
-  sha256 "38a60952feeb32465a5aafa38bc8e0a9f8e9a27f2e75f62424781fa2c12eb6cd"
+  version "1.8"
+  sha256 "7503af422651382e0fa81b8f439b61998cefe1a518eae22ed8b1140d04985b5c"
 
   url "https://downloads.sourceforge.net/syncterm/syncterm/syncterm-#{version}/syncterm-#{version}-macos.zip",
       verified: "sourceforge.net/syncterm/"
   name "SyncTERM"
   desc "BBS terminal program"
   homepage "https://syncterm.bbsdev.net/"
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :ventura
 
   app "SyncTERM.app"
 

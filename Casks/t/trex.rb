@@ -1,19 +1,18 @@
 cask "trex" do
-  version "1.8.1"
-  sha256 "a7031d1c3cfe0af18afe21c9d69cd9dc5e60a864d25e36de3a8acb1b2fd4836f"
+  version "2.0.0"
+  sha256 "4e8defc680daa6e09cb2daba576aa243683c775b93a9510ce5f12544d222de4d"
 
-  url "https://github.com/amebalabs/TRex/releases/download/v#{version}/TRex.zip",
-      verified: "github.com/amebalabs/TRex/"
+  url "https://github.com/amebalabs/TRex/releases/download/v#{version}/TRex-#{version}.zip"
   name "TRex"
   desc "Easy to use text extraction tool"
-  homepage "https://trex.ameba.co/"
+  homepage "https://github.com/amebalabs/TRex/"
 
   livecheck do
     url :url
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "TRex.app"
 

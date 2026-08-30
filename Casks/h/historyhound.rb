@@ -1,6 +1,6 @@
 cask "historyhound" do
-  version "2.3.5"
-  sha256 "1a3f5199c7f822949a784dd53e55256d15910d09dbda900baf64032ec3a6ea56"
+  version "2.3.7"
+  sha256 "d2f7b578529fa3bf3d7b10578a6fc4ed5e3274752c510e0894fee6eb8c0acef2"
 
   url "https://www.stclairsoft.com/download/HistoryHound-#{version}.dmg"
   name "HistoryHound"
@@ -13,7 +13,7 @@ cask "historyhound" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "HistoryHound.app"
 

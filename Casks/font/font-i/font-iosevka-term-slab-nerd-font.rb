@@ -1,8 +1,8 @@
 cask "font-iosevka-term-slab-nerd-font" do
-  version "3.3.0"
-  sha256 "91144bd216bdc083b038cfe53e58ae4061a27cc6eb49e2737f03bbaa1a50c30e"
+  version "3.5.1"
+  sha256 "a31b73c260b5466a534c0a5e53e97b871353a93d19f37a5a522d11218313f95f"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/IosevkaTermSlab.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/IosevkaTermSlab.tar.xz"
   name "IosevkaTermSlab Nerd Font (Iosevka Term Slab)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-iosevka-term-slab-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "IosevkaTermSlabNerdFont-Bold.ttf"
   font "IosevkaTermSlabNerdFont-BoldItalic.ttf"

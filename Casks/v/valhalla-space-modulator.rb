@@ -10,11 +10,13 @@ cask "valhalla-space-modulator" do
 
   livecheck do
     url "https://valhalladsp.com/demos-downloads/"
-    regex(/href=.*?ValhallaSpaceModulatorOSX[._-]v?(\d+(?:[._]\d+)+)v?\d?\.dmg/i)
+    regex(/ValhallaSpaceModulatorOSX[._-]v?(\d+(?:[._]\d+)+)v?\d?\.dmg/i)
     strategy :page_match do |page, regex|
       page.scan(regex).map { |match| match&.first&.tr("_", ".") }
     end
   end
+
+  depends_on :macos
 
   pkg "ValhallaSpaceModulatorOSX.pkg"
 

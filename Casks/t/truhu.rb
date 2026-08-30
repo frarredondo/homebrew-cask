@@ -1,6 +1,6 @@
 cask "truhu" do
-  version "330"
-  sha256 "89c82ace48605c2081c4f6a901c16e5ad557d3e3e3a10c2d23e241ed4c17f730"
+  version "400"
+  sha256 "af43851e500af8a1878a5ea1266995e8357b9ea919deb79ebe461a0ac7eb1b85"
 
   url "https://truhu-mobile-builds.s3.amazonaws.com/TruHu+Desktop+#{version}.dmg",
       verified: "truhu-mobile-builds.s3.amazonaws.com/"
@@ -22,7 +22,7 @@ cask "truhu" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "TruHu Mac Desktop.app"
 

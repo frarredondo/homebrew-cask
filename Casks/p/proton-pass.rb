@@ -1,14 +1,14 @@
 cask "proton-pass" do
-  version "1.29.5"
-  sha256 "437811dc4a267b76ca8d54dc25e03f0e861637951c256b75b9bf92675845335c"
+  version "1.39.1"
+  sha256 "3fbe2b08ce39413b23fb1851983f2ea421da8aa51be4f94c13ff9916363df9a4"
 
-  url "https://proton.me/download/PassDesktop/darwin/universal/ProtonPass_#{version}.dmg"
+  url "https://proton.me/download/pass/macos/ProtonPass_#{version}.dmg"
   name "Proton Pass"
   desc "Desktop client for Proton Pass"
   homepage "https://proton.me/pass"
 
   livecheck do
-    url "https://proton.me/download/PassDesktop/darwin/universal/version.json"
+    url "https://proton.me/download/pass/macos/version.json"
     strategy :json do |json|
       json["Releases"]&.map do |item|
         next unless item["CategoryName"]&.match?("Stable")
@@ -19,7 +19,7 @@ cask "proton-pass" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Proton Pass.app"
 

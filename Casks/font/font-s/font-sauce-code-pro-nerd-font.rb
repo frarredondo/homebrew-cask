@@ -1,8 +1,8 @@
 cask "font-sauce-code-pro-nerd-font" do
-  version "3.3.0"
-  sha256 "51bed1bda04bc557f7d7cb762daa9cdacccc0b6f0681f53933464dd7cbf90ac6"
+  version "3.5.1"
+  sha256 "50ead7bb7addce27cf4b55f4fffb669b5f1899fece675fad623a2a75a478c8c7"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/SourceCodePro.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/SourceCodePro.tar.xz"
   name "SauceCodePro Nerd Font (Source Code Pro)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-sauce-code-pro-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "SauceCodeProNerdFont-Black.ttf"
   font "SauceCodeProNerdFont-BlackItalic.ttf"

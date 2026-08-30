@@ -1,20 +1,27 @@
 cask "dymo-connect" do
-  version "1.4.8.2"
-  sha256 "a8bcc3eb6abfe4ec1fcdb674c1e026a0938e7569dda25bf146b4aa16f8ed6e3d"
+  arch arm: "Arm64", intel: "X64"
 
-  url "https://download.dymo.com/dymo/Software/Mac/DCDMac#{version}.pkg"
+  version "1.6.1.4"
+  # At present, the checksum are the same across architectures, but this may change in future.
+  sha256 "5b3b201c99235aadc6178f0dd0dae30d6edb64e7cef6e1de5faa875c5fb5967b"
+
+  url "https://dymoreleasecontent.blob.core.windows.net/dymo-release/DCDMAC/DCDMac#{version}-#{arch}.pkg",
+      verified: "dymoreleasecontent.blob.core.windows.net/dymo-release/"
   name "Dymo Connect"
   desc "Software for DYMO LabelWriters"
   homepage "https://www.dymo.com/support?cfid=online-support"
 
-  # This can return a page with a CAPTCHA instead of the expected content
-  # (e.g. when the check is run in the homebrew/cask CI environment).
   livecheck do
-    url :homepage
-    regex(/href=.*?DCDMacv?(\d+(?:\.\d+)+)\.pkg/i)
+    url "https://download.dymo.com/Software/dymoconnect/updates/Mac/Updates.xml"
+    strategy :xml do |xml|
+      xml.elements["//DYMOConnect/Version"]&.text&.strip
+    end
   end
 
-  pkg "DCDMac#{version}.pkg"
+  auto_updates true
+  depends_on :macos
+
+  pkg "DCDMac#{version}-#{arch}.pkg"
 
   uninstall launchctl: [
               "com.dymo.dcd.webservice",

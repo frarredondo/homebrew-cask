@@ -7,25 +7,16 @@ cask "postico@1" do
   desc "GUI client for PostgreSQL databases"
   homepage "https://eggerapps.at/postico/v1.php"
 
-  # The version number is only present on the homepage. The id must be extracted
-  # using header_match from the unversioned download link.
   livecheck do
-    url :homepage
-    regex(/version\s+(\d+(?:\.\d+)+)/i)
+    url "https://releases.eggerapps.at/postico2/downloads"
+    regex(/>\s*Postico\s+v?(1(?:\.\d+){2,})\s*<.*?href=["']?[^"' >]*?postico[._-]v?(\d+(?:\.\d+)*)\.zip/im)
     strategy :page_match do |page, regex|
-      v = page.scan(regex).flatten.first
-
-      header_url = "https://eggerapps.at/postico/download/"
-      headers = Homebrew::Livecheck::Strategy.page_headers(header_url)
-      id = headers.first["location"]&.match(/postico-(\d+(?:\.\d+)*)\.zip/i)
-
-      next if v.blank? || id.blank?
-
-      "#{v},#{id[1]}"
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
     end
   end
 
   conflicts_with cask: "postico"
+  depends_on :macos
 
   app "Postico.app"
 

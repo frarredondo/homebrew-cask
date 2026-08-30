@@ -14,12 +14,27 @@ cask "propresenter" do
       end
     end
   end
-  on_monterey :or_newer do
-    version "18.3,302186513"
-    sha256 "e5524ebba8c5c7007bcafb9985f02617197d0cff3b47e2243f66c4cf9f099dcd"
+  on_monterey do
+    version "19.0.1,318767361"
+    sha256 "a428409c5a59c0e1f0ced0d8788d521c75672fadd50ec15e20992a1fffbd4b9d"
 
     livecheck do
-      url "https://api.renewedvision.com/v1/pro/upgrade?platform=macos&osVersion=#{MacOS.full_version}&appVersion=0&buildNumber=0&includeNotes=0"
+      url "https://api.renewedvision.com/v1/pro/upgrade?platform=macos&osVersion=12.0&appVersion=0&buildNumber=0&includeNotes=0"
+      strategy :json do |json|
+        json["upgrades"]&.map do |item|
+          next if item["version"].blank? || item["buildNumber"].blank?
+
+          "#{item["version"]},#{item["buildNumber"]}"
+        end
+      end
+    end
+  end
+  on_ventura :or_newer do
+    version "21.4,352583705"
+    sha256 "a428409c5a59c0e1f0ced0d8788d521c75672fadd50ec15e20992a1fffbd4b9d"
+
+    livecheck do
+      url "https://api.renewedvision.com/v1/pro/upgrade?platform=macos&osVersion=99&appVersion=0&buildNumber=0&includeNotes=0"
       strategy :json do |json|
         json["upgrades"]&.map do |item|
           next if item["version"].blank? || item["buildNumber"].blank?
@@ -37,7 +52,7 @@ cask "propresenter" do
 
   auto_updates true
   conflicts_with cask: "propresenter@beta"
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "ProPresenter.app"
 

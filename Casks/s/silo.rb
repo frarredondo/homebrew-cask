@@ -1,20 +1,25 @@
 cask "silo" do
-  version "2025.0.1"
-  sha256 "6a8204f6b1292e90c1e116477d1fc0292beb04056711389335ec7848deab5924"
+  version "2026.2.0"
+  sha256 "007d0b62134745336ffa3781549c12957290873282f330d4e6c2bc23ce493548"
 
-  url "https://nevercenter.com/silo/download/filearchive/Install_Silo_#{version.major}_#{version.minor}#{version.patch.presence || "0"}_mac.dmg"
+  url "https://nevercenter.com/silo/download/filearchive/Install_Silo_#{version.dots_to_underscores}_mac.dmg"
   name "Silo"
   desc "3D polygonal modeller and UV mapper"
   homepage "https://nevercenter.com/silo/"
 
   livecheck do
-    url "https://nevercenter.com/silo/download/"
-    regex(/Silo\s+v?(\d+(?:\.\d+)+)/i)
+    url "https://nevercenter.com/silo/download/?filetype=silomac"
+    regex(/href=.*?Install[._-]Silo[._-]v?(\d+(?:[._]\d+)+)(?:[._-]mac)?\.dmg/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| match[0].tr("_", ".") }
+    end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Silo.app"
+
+  uninstall quit: "com.nevercenter.silo"
 
   zap trash: [
     "/Library/Caches/com.nevercenter.silo",

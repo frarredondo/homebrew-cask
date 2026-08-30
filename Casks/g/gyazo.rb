@@ -1,6 +1,6 @@
 cask "gyazo" do
-  version "9.7.2"
-  sha256 "3d159b7891e5deff0671f326d76847d0d3f4740d86d7b5dcc47cdd0f62cbb49a"
+  version "11.0.0"
+  sha256 "c670af8a5781795d39e7c02a1a6a65e3454925cd63c09e1143fc4cc650aaad66"
 
   url "https://files.gyazo.com/setup/Gyazo-#{version}.pkg"
   name "Nota Gyazo GIF"
@@ -12,7 +12,7 @@ cask "gyazo" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   pkg "Gyazo-#{version}.pkg"
 

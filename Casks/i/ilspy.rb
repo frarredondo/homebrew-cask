@@ -10,12 +10,10 @@ cask "ilspy" do
   desc "Avalonia-based .NET decompiler"
   homepage "https://github.com/icsharpcode/AvaloniaILSpy"
 
-  # This cask uses an unstable version and this `livecheck` block is only used
-  # to prevent livecheck from skipping pre-release versions by default. This
-  # should be removed/updated if the cask is updated to a stable version.
-  livecheck do
-    url :url
-  end
+  deprecate! date: "2025-07-27", because: :unmaintained
+  disable! date: "2026-07-27", because: :unmaintained
+
+  depends_on macos: :big_sur
 
   app "artifacts/osx-#{arch}/ILSpy.app"
 

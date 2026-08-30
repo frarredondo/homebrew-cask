@@ -13,7 +13,7 @@ cask "torguard" do
     regex(/TorGuard[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   pkg "Install TorGuard.pkg"
 

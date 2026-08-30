@@ -22,7 +22,7 @@ cask "cd-to" do
   desc "Finder Toolbar app to open the current directory in the Terminal"
   homepage "https://github.com/jbtule/cdto"
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "cd to.app"
 

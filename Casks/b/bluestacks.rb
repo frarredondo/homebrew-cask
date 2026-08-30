@@ -1,14 +1,14 @@
 cask "bluestacks" do
-  version "10.4.0.6907,f1d20c10cba982dc3ee4b6d975380943"
-  sha256 "b3c5220119bbd29bfcd9f7f3eea4b1054e9cbb7ca8be134b3647aebf64210c00"
+  version "5.21.785.7533,5705bb9982864feeaf81191256adb6c1"
+  sha256 "c60cdff4ce3e5d1855eec34ec7e178745b01aaabbc0aaec94c83905d53d4e428"
 
-  url "https://mac-cdn.bluestacks.com/public/app-player/mac/nxt_mac/#{version.csv.first}/#{version.csv.second}/md5/x64/BlueStacks_X_#{version.csv.first}.dmg"
+  url "https://ak-build.bluestacks.com/public/app-player/mac/nxt_mac2/#{version.csv.first}/#{version.csv.second}/BlueStacksInstaller_#{version.csv.first}.pkg"
   name "BlueStacks"
   desc "Mobile gaming platform"
   homepage "https://www.bluestacks.com/"
 
   livecheck do
-    url "https://cloud.bluestacks.com/api/getdownloadnow?platform=mac&mac_version=#{MacOS.full_version}"
+    url "https://cloud.bluestacks.com/api/getdownloadnow?platform=mac"
     regex(%r{/(\d+(?:\.\d+)*)/([^/]+)/}i)
     strategy :header_match do |headers, regex|
       match = headers["location"]&.match(regex)
@@ -18,11 +18,25 @@ cask "bluestacks" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on arch: :arm64
+  depends_on macos: :big_sur
 
-  app "BlueStacks X.app"
+  pkg "BlueStacksInstaller_#{version.csv.first}.pkg"
+
+  uninstall launchctl: "com.now.gg.BlueStacks.cleanup",
+            pkgutil:   [
+              "com.now.gg.BlueAI",
+              "com.now.gg.BlueStacks",
+              "com.now.gg.BlueStacksAirMIM",
+              "com.now.gg.BlueStacksMIM",
+            ],
+            delete:    [
+              "/Applications/BlueStacks Air multi-instance manager.app",
+              "/Applications/BlueStacksMIM.app",
+            ]
 
   zap trash: [
+        "/Users/Shared/Library/Application Support/BlueStacks",
         "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bluestacks.bluestacks-support-tool.sfl*",
         "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bluestacks.bluestacks.sfl*",
         "~/Library/BlueStacks",

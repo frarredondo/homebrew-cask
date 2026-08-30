@@ -13,7 +13,7 @@ cask "overflow" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Overflow #{version.major}.app"
 

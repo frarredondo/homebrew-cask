@@ -1,27 +1,24 @@
 cask "cleanmymac" do
-  version "5.0.6,50006.0.2502281404,1740752534"
-  sha256 "82b4c8c1f30d206ecfb048a773cf4b8bb7ef4f08ef327665376e6da775fcffd6"
+  version "5.6.0,50600.0.2608201300"
+  sha256 "12eb9308835820c26927f953a1bb8a186538004539282d06a6eb0d73a3955cb8"
 
-  url "https://dl.devmate.com/com.macpaw.CleanMyMac#{version.major}/#{version.csv.second}/#{version.csv.third}/CleanMyMac#{version.major}-#{version.csv.second}.zip",
-      verified: "dl.devmate.com/"
+  url "https://updates.cleanmymac.com/com.macpaw.cleanmymac#{version.major}/releases/CleanMyMac#{version.major}_#{version.csv.second}.zip",
+      verified: "updates.cleanmymac.com/"
   name "CleanMyMac"
   desc "Tool to remove unnecessary files and folders from disk"
   homepage "https://macpaw.com/cleanmymac"
 
   livecheck do
-    url "https://updates.devmate.com/com.macpaw.CleanMyMac#{version.major}.xml"
+    url "https://updates.cleanmymac.com/com.macpaw.cleanmymac#{version.major}/updates.xml"
     regex(%r{/([^/]+)/CleanMyMac#{version.major}[._-]v?(?:\d+(?:\.\d+)+)\.zip}i)
-    strategy :sparkle do |item, regex|
-      directory = item.url[regex, 1]
-      next if directory.blank?
-
-      "#{item.short_version},#{item.version},#{directory}"
+    strategy :sparkle do |item|
+      "#{item.short_version},#{item.version}"
     end
   end
 
   auto_updates true
   conflicts_with cask: "cleanmymac-zh"
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "CleanMyMac_#{version.major}.app", target: "CleanMyMac.app"

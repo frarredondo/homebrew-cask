@@ -7,6 +7,11 @@ cask "explorer" do
   desc "Data Explorer"
   homepage "https://github.com/jfbouzereau/explorer"
 
+  deprecate! date: "2025-04-20", because: :unmaintained
+  disable! date: "2026-04-30", because: :unmaintained
+
+  depends_on :macos
+
   app "Explorer-darwin-x64.app"
 
   zap trash: [

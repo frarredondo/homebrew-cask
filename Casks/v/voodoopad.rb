@@ -13,7 +13,7 @@ cask "voodoopad" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "VoodooPad.app"
 

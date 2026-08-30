@@ -1,6 +1,6 @@
 cask "sauce-connect" do
-  version "5.2.2"
-  sha256 "1384bb85b2d29d177933fc8e894c8f6ac60d83b666435d12e9fca7f50b350459"
+  version "5.5.3"
+  sha256 "3b48b144a262c254cfb86483557d80474d696411563d69b2a90c4c12bed7e339"
 
   url "https://saucelabs.com/downloads/sauce-connect/#{version}/sauce-connect-#{version}_darwin.all.zip"
   name "Sauce Connect"
@@ -12,10 +12,12 @@ cask "sauce-connect" do
     regex(/href=.*?sauce-connect[._-]v?(\d+(?:\.\d+)+)[._-]darwin\.all\.zip/i)
   end
 
+  depends_on :macos
+
   binary "sc"
-  binary "completions/sc.bash", target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/sc"
-  binary "completions/sc.fish", target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/sc.fish"
-  binary "completions/sc.zsh", target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_sc"
+  bash_completion "completions/sc.bash"
+  fish_completion "completions/sc.fish"
+  zsh_completion "completions/sc.zsh"
 
   # No zap stanza required
 end

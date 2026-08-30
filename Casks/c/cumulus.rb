@@ -8,6 +8,11 @@ cask "cumulus" do
   desc "SoundCloud player that lives in the menu bar"
   homepage "https://gillesdemey.github.io/Cumulus/"
 
+  deprecate! date: "2025-04-21", because: :unmaintained
+  disable! date: "2026-04-30", because: :unmaintained
+
+  depends_on :macos
+
   app "Cumulus.app"
 
   zap trash: [

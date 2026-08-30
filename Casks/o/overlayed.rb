@@ -8,7 +8,7 @@ cask "overlayed" do
   desc "Modern, open-source, and free voice chat overlay for Discord"
   homepage "https://overlayed.dev/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Overlayed.app"
 

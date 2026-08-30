@@ -1,6 +1,6 @@
 cask "neo-network-utility" do
-  version "1.1.1"
-  sha256 "fbfe0984b7751b647d3f433b64412a50d989d7abdcb5fbeead2392428370dfcf"
+  version "2.0"
+  sha256 "803a4590c5c15a224f7418989e5c4e5bec490317b7cc9415b2a97a88cdb60ff6"
 
   url "https://download.devontechnologies.com/download/freeware/networkutility/#{version}/Neo_Network_Utility.dmg.zip"
   name "Neo Network Utility"
@@ -13,7 +13,7 @@ cask "neo-network-utility" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Network Utility.app"
 

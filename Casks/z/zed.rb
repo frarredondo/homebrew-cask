@@ -1,9 +1,9 @@
 cask "zed" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.176.2"
-  sha256 arm:   "b788a83a4b4144671bcab12a46216200f33bb9ea0d9cd25a788e94201c3732a5",
-         intel: "43e3380e17cd7a6ee81c1a7e4e23c079614ad3fd49d46a9fee3524df933fe5a0"
+  version "1.17.2"
+  sha256 arm:   "820bae87e44056d59924d543c30540f7c56d34b9c7a816903f5b1da29214e389",
+         intel: "756f1b7c7b23400c1d61ccacfa3fcb3dfd6d083f66e9e7d67cf967b612d5cf91"
 
   url "https://zed.dev/api/releases/stable/#{version}/Zed-#{arch}.dmg"
   name "Zed"
@@ -11,17 +11,21 @@ cask "zed" do
   homepage "https://zed.dev/"
 
   livecheck do
-    url "https://zed.dev/api/releases/latest?asset=Zed.dmg&stable=1&os=macos&arch=#{arch}"
+    url "https://cloud.zed.dev/releases/stable/latest/asset?asset=zed&os=macos&arch=#{arch}"
     strategy :json do |json|
       json["version"]
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Zed.app"
   binary "#{appdir}/Zed.app/Contents/MacOS/cli", target: "zed"
+  generate_completions_from_executable "#{HOMEBREW_PREFIX}/bin/zed", "--completions",
+                                       shells: [:bash, :zsh, :fish, :pwsh]
+
+  uninstall quit: "dev.zed.Zed"
 
   zap trash: [
     "~/.config/zed",

@@ -20,7 +20,7 @@ cask "logitech-camera-settings" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   pkg "LogiCameraSettings_#{version}.pkg"
 

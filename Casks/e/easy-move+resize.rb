@@ -1,13 +1,18 @@
 cask "easy-move+resize" do
-  version "1.7.0"
-  sha256 "5c7bab623ae11bfa1daa48535495f97678532e4d66bcd3920ebe1c303228c53d"
+  version "1.8.1"
+  sha256 "34f48f465017d2aed58fb3c681aa0d132d0bf121f744f6864bd9819694e0ff76"
 
-  url "https://github.com/dmarcotte/easy-move-resize/releases/download/#{version}/Easy.Move+Resize.app.zip"
+  url "https://github.com/dmarcotte/easy-move-resize/releases/download/#{version}/EasyMoveResize-signed.zip"
   name "Easy Move+Resize"
   desc "Utility to support moving and resizing using a modifier key and mouse drag"
   homepage "https://github.com/dmarcotte/easy-move-resize"
 
-  depends_on macos: ">= :high_sierra"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on :macos
 
   app "Easy Move+Resize.app"
 

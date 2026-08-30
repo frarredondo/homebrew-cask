@@ -1,6 +1,6 @@
 cask "isyncer" do
-  version "4.1.0"
-  sha256 "70a9b492a99749ca739faf38485195ea3d19070f41f329abe2bc7dbc6b34a886"
+  version "4.3.0"
+  sha256 "15b2854bf6cac10b2b36efad9b5d9d15b033e50ffbe833380bb2b61a7fd470ab"
 
   url "https://www.isyncer.de/system/iSyncerV#{version}mac-installer.tgz"
   name "iSyncer"
@@ -11,6 +11,10 @@ cask "isyncer" do
     url "https://www.isyncer.de/en/releases/"
     regex(/href=.*?iSyncer[._-]?v?(\d+(?:\.\d+)+)[._-]?mac[._-]installer\.t/i)
   end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   pkg "iSyncer-installer-#{version}.pkg"
 

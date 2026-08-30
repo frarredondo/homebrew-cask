@@ -13,7 +13,7 @@ cask "wallpaper-wizard" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Wallpaper Wizard.app"
 

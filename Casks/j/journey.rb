@@ -9,6 +9,7 @@ cask "journey" do
   homepage "https://2appstudio.com/journey/"
 
   auto_updates true
+  depends_on :macos
 
   app "Journey.app"
 
@@ -18,4 +19,8 @@ cask "journey" do
     "~/Library/Preferences/com.journey.mac#{version.major}.plist",
     "~/Library/Saved Application State/com.journey.mac#{version.major}.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

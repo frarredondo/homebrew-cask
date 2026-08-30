@@ -1,12 +1,19 @@
 cask "tableau" do
   arch arm: "-arm64"
 
-  version "2024.3.3"
-  sha256 arm:   "2bb01bb19891c1d98e68a4df3381c4e8e514c18c93aacef3d66a13d992995f8d",
-         intel: "23ff456ac0e3ad4698feb81ca80cd964aacf0a63c1455d48701b5cb600cb49f8"
+  version "2026.2.2"
+  sha256 arm:   "afd70c92b40a68dd34f9e1e86554b8e550e0d76507033c682068721042ec0ed9",
+         intel: "4d52bd7178436aedb2fa0dc4e218b1424f38e74f5e30313c7fdace26a4507d44"
+
+  on_arm do
+    depends_on macos: :ventura
+  end
+  on_intel do
+    depends_on macos: :big_sur
+  end
 
   url "https://downloads.tableau.com/esdalt/#{version}/TableauDesktop-#{version.dots_to_hyphens}#{arch}.dmg",
-      user_agent: "curl/8.7.1"
+      user_agent: :curl
   name "Tableau Desktop"
   desc "Data visualization software"
   homepage "https://www.tableau.com/products/desktop"
@@ -17,7 +24,8 @@ cask "tableau" do
   # should return to checking the XML file if/when it starts being reliably
   # updated to include the newest releases again.
   livecheck do
-    url "https://www.tableau.com/support/releases"
+    url "https://www.tableau.com/support/releases",
+        user_agent: :browser
     regex(%r{href=.*?desktop/v?(\d+(?:\.\d+)+)[^"' >]*["' >]}i)
     strategy :page_match do |page, regex|
       page.scan(regex).map do |match|
@@ -30,7 +38,7 @@ cask "tableau" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: :ventura
 
   pkg "Tableau Desktop.pkg"
 

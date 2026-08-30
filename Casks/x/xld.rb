@@ -14,10 +14,15 @@ cask "xld" do
     strategy :sparkle, &:short_version
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
+  depends_on :macos
 
   app "XLD.app"
-  binary "CLI/xld"
+  command_wrapper "xld",
+                  executable: "#{appdir}/XLD.app/Contents/MacOS/XLD",
+                  args:       "--cmdline"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/jp.tmkk.xld.sfl*",

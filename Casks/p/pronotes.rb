@@ -1,19 +1,23 @@
 cask "pronotes" do
-  version "0.7.7"
-  sha256 "582ef7c759e4995255ef51ded5532c045c323e7d92e1e6071fe8e08e33a9550d"
+  version "0.7.8.2"
+  sha256 "c4f8ff1beae55203453e3c674cfb161828f91223a10d23e3891916646331de59"
 
   url "https://assets.pronotes.app/downloads/ProNotes-#{version}.zip"
   name "ProNotes"
   desc "Apple Notes extension"
   homepage "https://www.pronotes.app/"
 
+  # This file is served with a `Content-Encoding: aws-chunked` header when
+  # compression is requested but that causes curl to error because it doesn't
+  # understand what decompression to apply.
   livecheck do
-    url "https://www.pronotes.app/appcast.xml"
+    url "https://assets.pronotes.app/downloads/appcast.xml",
+        compressed: false
     strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "ProNotes.app"
 

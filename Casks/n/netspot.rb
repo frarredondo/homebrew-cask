@@ -1,5 +1,5 @@
 cask "netspot" do
-  version "4.0.4502"
+  version "6.0.6016"
   sha256 :no_check
 
   url "https://cdn.netspotapp.com/download/NetSpot.dmg"
@@ -13,9 +13,11 @@ cask "netspot" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "NetSpot.app"
+
+  uninstall quit: "com.etwok.netspotwifi"
 
   zap trash: [
     "~/Library/Application Support/NetSpot",

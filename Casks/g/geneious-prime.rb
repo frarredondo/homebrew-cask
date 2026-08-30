@@ -1,6 +1,6 @@
 cask "geneious-prime" do
-  version "2025.0.3"
-  sha256 "f449163736bc3d9894ed48d064938842464ad38441acd915412615971074b05f"
+  version "2026.1.2"
+  sha256 "3d1d19536489141f1a837a73a85e5396c91898963f3a1cbd4712b27e06025cfe"
 
   url "https://assets.geneious.com/installers/geneious/release/Geneious_Prime_mac64_#{version.dots_to_underscores}_with_jre.dmg"
   name "Geneious Prime"
@@ -15,6 +15,8 @@ cask "geneious-prime" do
     end
   end
 
+  depends_on :macos
+
   app "Geneious Prime.app"
 
   zap trash: [
@@ -24,8 +26,4 @@ cask "geneious-prime" do
     "~/Library/Preferences/Geneious.in.use.vmoptions",
     "~/Library/Saved Application State/com.biomatters.Geneious.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

@@ -1,6 +1,6 @@
 cask "duo-connect" do
-  version "2.0.5"
-  sha256 "5b580fb2721212cab63479c53a3ecf56cee0339cb58aafcc899ceb502229989a"
+  version "2.0.9"
+  sha256 "12e8dd11775db5094ee2c9577ba3c11fb4c2fc4a3c696260ce2957a8d22e0b29"
 
   url "https://dl.duosecurity.com/DuoConnect-#{version}.pkg",
       verified: "dl.duosecurity.com/"
@@ -12,6 +12,8 @@ cask "duo-connect" do
     url "https://duo.com/docs/checksums#duoconnect-for-macos"
     regex(%r{href=.*?/DuoConnect[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
   end
+
+  depends_on :macos
 
   pkg "DuoConnect-#{version}.pkg"
 

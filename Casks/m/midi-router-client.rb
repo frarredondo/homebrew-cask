@@ -1,11 +1,20 @@
 cask "midi-router-client" do
-  version "2.0.1"
-  sha256 "1fe496db0b6582f8af434df3aae6f7f3bee414076977045ccc912d198201708b"
+  version "2.44.0"
+  sha256 "7674176f095cc734d45d305ee7da9ee5a83314c9709114f3d590c62fd7e36f14"
 
   url "https://downloads.sourceforge.net/midi-router-client/midi-router-client-#{version}-Darwin.dmg"
   name "Midi Router Client"
   desc "Create routes from anywhere to anywhere"
   homepage "https://sourceforge.net/projects/midi-router-client/"
+
+  livecheck do
+    url :url
+    regex(%r{url=.*?/midi-router-client[._-]v?(\d+(?:\.\d+)+)[._-]Darwin\.(?:dmg|zip)}i)
+  end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :tahoe
 
   app "midi-router-client.app"
 

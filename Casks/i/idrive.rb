@@ -1,6 +1,6 @@
 cask "idrive" do
-  version "4.0.0.20,021925"
-  sha256 "dd9b4ba00d42791305980b8f82cfa8d0b426596f37c1d8c07e8317a1f89d1783"
+  version "4.0.0.89,082626"
+  sha256 "7fd1383c185047d557e38cc7ac78b0fea4a8c0528b3831220b24e6027237441e"
 
   url "https://static.idriveonlinebackup.com/downloads/#{version.csv.second}/IDrive.dmg",
       verified: "static.idriveonlinebackup.com/downloads/"
@@ -23,11 +23,15 @@ cask "idrive" do
     end
   end
 
+  depends_on :macos
+
   pkg "IDrive.pkg"
 
   uninstall launchctl: [
               "com.iDrive.FinderPluginApp",
               "com.prosoftnet.DaemonHelper",
+              "com.prosoftnet.idrivedaemon",
+              "com.prosoftnet.idsyncdaemon",
               "IDriveDaemon",
               "IDSyncDaemon",
               "IDWifiManager",
@@ -38,13 +42,22 @@ cask "idrive" do
               "com.prosoftnet.IDriveDaemon",
               "com.prosoftnet.IDriveMonitor",
             ],
-            pkgutil:   "com.profsoftnet.idrive.*"
+            pkgutil:   [
+              "com.idrive.IDrive",
+              "com.profsoftnet.idrive.*",
+            ]
 
   zap trash: [
     "/Library/Application Support/IDriveforMac",
+    "~/Library/Application Scripts/Idrive.Finder*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.prosoftnet.idrivemonitor.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/idrive.finderpluginapp.sfl*",
     "~/Library/Application Support/IDriveforMac",
     "~/Library/Caches/com.prosoftnet.IDriveMonitor",
+    "~/Library/Containers/Idrive.FinderPluginApp.IDriveFinderSync",
+    "~/Library/Group Containers/Idrive.Finder",
     "~/Library/Preferences/com.prosoftnet.IDrive.plist",
     "~/Library/Preferences/com.prosoftnet.IDriveMonitor.plist",
+    "~/Library/Preferences/Idrive.FinderPluginApp.plist",
   ]
 end

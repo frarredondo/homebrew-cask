@@ -1,6 +1,6 @@
 cask "superlist" do
-  version "1.26.0"
-  sha256 "57c7f949afb60e4fbb94111f7d7133cfdb732fb1e79f329912782dac43863a00"
+  version "1.57.1"
+  sha256 "01e1313e9b0ec0631ca19ea02de7fde0ffdf3bc2516000b9d9952b8388cf68ec"
 
   url "https://storage.googleapis.com/superlist-appcast/beta/updates/Superlist-#{version}.zip",
       verified: "storage.googleapis.com/superlist-appcast/beta/updates/"
@@ -14,13 +14,16 @@ cask "superlist" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Superlist.app"
+
+  uninstall quit: "com.superlist.superlist"
 
   zap trash: [
     "~/Library/Application Support/com.superlist.superlist*",
     "~/Library/Caches/com.superlist.superlist*",
+    "~/Library/Caches/superlist_sounds",
     "~/Library/HTTPStorages/com.superlist.superlist*",
     "~/Library/Preferences/com.superlist.superlist*.plist",
     "~/Library/Preferences/group.com.superlist.superlist.firebase.plist",

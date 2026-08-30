@@ -12,7 +12,7 @@ cask "cloudup" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Cloudup.app"
 

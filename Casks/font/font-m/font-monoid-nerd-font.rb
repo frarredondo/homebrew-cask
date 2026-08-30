@@ -1,8 +1,8 @@
 cask "font-monoid-nerd-font" do
-  version "3.3.0"
-  sha256 "ff3c9c0aa0f2635967298ba3572f36810883fafa544de0d690f5077c69d62623"
+  version "3.5.1"
+  sha256 "235d997cb92171296eab51871824a9c0d1a673a01f89a88312e1c0540ae3030d"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Monoid.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Monoid.tar.xz"
   name "Monoid Nerd Font (Monoid)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-monoid-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "MonoidNerdFont-Bold.ttf"
   font "MonoidNerdFont-Italic.ttf"

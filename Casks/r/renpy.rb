@@ -1,6 +1,6 @@
 cask "renpy" do
-  version "8.3.6"
-  sha256 "5499c9a510300dd66cf7c2d5331662fea5748c7dbc13a16c4dc36dbec45233c4"
+  version "8.5.3"
+  sha256 "ff57648f9c04f27e381c48af6d8e3ee3cdec296bed4d3831f47f09b0a71b505e"
 
   url "https://www.renpy.org/dl/#{version}/renpy-#{version}-sdk.zip"
   name "Ren'Py"
@@ -11,6 +11,8 @@ cask "renpy" do
     url "https://www.renpy.org/latest.html"
     regex(/href=.*?renpy[._-]v?(\d+(?:\.\d+)+)[._-]sdk\.dmg/i)
   end
+
+  depends_on :macos
 
   suite "renpy-#{version}-sdk"
 

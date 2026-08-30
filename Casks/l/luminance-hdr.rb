@@ -13,7 +13,7 @@ cask "luminance-hdr" do
     regex(%r{url=.*?/Luminance[_-]?HDR[._-]v?(\d+(?:\.\d+)+)[^"' ]*?\.dmg}i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Luminance HDR #{version.major_minor_patch}.app"
 

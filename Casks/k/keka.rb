@@ -1,6 +1,6 @@
 cask "keka" do
-  version "1.4.7"
-  sha256 "a9aedc5de8777ddc2afa8c2967b41b9ff94dc069ee624fa01e0d2a6dee56e2b6"
+  version "1.6.7"
+  sha256 "0fa0995fc3e58ba3e438ba53aba03636eb226c64002757d21250934116e19f7e"
 
   url "https://github.com/aonez/Keka/releases/download/v#{version}/Keka-#{version}.dmg",
       verified: "github.com/aonez/Keka/"
@@ -15,18 +15,12 @@ cask "keka" do
 
   auto_updates true
   conflicts_with cask: "keka@beta"
+  depends_on :macos
 
   app "Keka.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/keka.wrapper.sh"
-  binary shimscript, target: "keka"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/Keka.app/Contents/MacOS/Keka' '--cli' "$@"
-    EOS
-  end
+  command_wrapper "keka",
+                  executable: "#{appdir}/Keka.app/Contents/MacOS/Keka",
+                  args:       "--cli"
 
   zap trash: [
     "~/Library/Application Scripts/*.group.com.aone.keka",

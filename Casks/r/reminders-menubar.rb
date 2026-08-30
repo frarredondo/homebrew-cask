@@ -1,13 +1,14 @@
 cask "reminders-menubar" do
-  version "1.23.0"
-  sha256 "0d1f2fa221c5ed4306ed07d7085300c8c14ffc4c3c58f83a5a92d6913209d6e5"
+  version "2.1.1"
+  sha256 "1eafb0ef195f61c7e72823899b3ac031a7e6fc4967b56a459b2a78cd5a1795a1"
 
   url "https://github.com/DamascenoRafael/reminders-menubar/releases/download/v#{version}/reminders-menubar.zip"
   name "Reminders MenuBar"
   desc "Simple menu bar app to view and interact with reminders"
   homepage "https://github.com/DamascenoRafael/reminders-menubar"
 
-  depends_on macos: ">= :big_sur"
+  auto_updates true
+  depends_on macos: :big_sur
 
   app "Reminders MenuBar.app"
 
@@ -15,8 +16,10 @@ cask "reminders-menubar" do
 
   zap trash: [
     "~/Library/Application Scripts/br.com.damascenorafael.reminders-menubar",
+    "~/Library/Application Scripts/br.com.damascenorafael.reminders-menubar-launcher",
     "~/Library/Application Scripts/br.com.damascenorafael.RemindersLauncher",
     "~/Library/Containers/br.com.damascenorafael.reminders-menubar",
+    "~/Library/Containers/br.com.damascenorafael.reminders-menubar-launcher",
     "~/Library/Containers/br.com.damascenorafael.RemindersLauncher",
   ]
 end

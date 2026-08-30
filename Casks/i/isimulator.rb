@@ -7,7 +7,9 @@ cask "isimulator" do
   desc "Utility to control and manage the Simulator"
   homepage "https://github.com/wigl/iSimulator"
 
-  depends_on macos: ">= :catalina"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "iSimulator.app"
 

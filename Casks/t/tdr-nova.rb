@@ -1,6 +1,6 @@
 cask "tdr-nova" do
-  version "2.2.0"
-  sha256 "d2aae3690b65261d6792c2c3f7f8f3f33b4e28004b57c9cf1615e0fa8fa922de"
+  version "2.2.2"
+  sha256 "fce66850d17a089c4cebd96076aa98421f12f5eef605d991867f4207bdaf11fa"
 
   url "https://www.tokyodawn.net/labs/Nova/#{version}/TDR%20Nova.zip?x24775"
   name "TDR Nova"
@@ -11,6 +11,8 @@ cask "tdr-nova" do
     url :homepage
     regex(%r{latest\sversion:\s<strong>(\d+(?:\.\d+)+)</strong>}i)
   end
+
+  depends_on :macos
 
   pkg "TDR Nova.pkg"
 

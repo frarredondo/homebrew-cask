@@ -1,6 +1,6 @@
 cask "elecom-mouse-util" do
-  version "6.0.1"
-  sha256 "24bc432459f8184899fddbb1633ee532827139f0c700f978a04eb14c8671ba75"
+  version "6.3.2"
+  sha256 "701eecca8e662ffcad4044c789d3d8d2df8021282073f93dd7ec988e84283adb"
 
   url "https://dl.elecom.co.jp/support/download/peripheral/mouse/assistant/mac/ELECOM_MA_Setup_#{version}.zip"
   name "ELECOM Mouse Assistant"
@@ -12,17 +12,31 @@ cask "elecom-mouse-util" do
     regex(/ELECOM[._-]MA[._-]Setup[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   pkg "ELECOM_MA_Setup_#{version}.pkg"
 
-  uninstall launchctl: "jp.com.ELECOM.autorun.MouseAssistant",
+  uninstall launchctl: [
+              "application.jp.co.elecom.MouseAssistantUi.*",
+              "jp.com.ELECOM.autorun.MouseAssistant",
+            ],
+            quit:      "jp.co.elecom.MouseAssistant",
             pkgutil:   [
               "jp.co.ELECOM.MA5UninstallScript",
               "jp.co.ELECOM.MouseAssistant",
             ]
 
-  # No zap stanza required
+  zap trash: [
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/jp.co.elecom.mouseassistantui.sfl*",
+        "~/Library/Application Support/elecom_mouse_assistant_ui",
+        "~/Library/Application Support/jp.co.ELECOM/MouseAssistant",
+        "~/Library/Caches/jp.co.ELECOM/MouseAssistant",
+        "~/Library/Preferences/jp.co.elecom.MouseAssistantUi.plist",
+      ],
+      rmdir: [
+        "~/Library/Application Support/jp.co.ELECOM",
+        "~/Library/Caches/jp.co.ELECOM",
+      ]
 
   caveats do
     reboot

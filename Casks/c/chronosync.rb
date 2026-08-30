@@ -1,5 +1,5 @@
 cask "chronosync" do
-  version "11.0.5"
+  version "12.0.2"
   sha256 :no_check
 
   url "https://downloads.econtechnologies.com/CS4_Download.dmg"
@@ -12,7 +12,7 @@ cask "chronosync" do
     regex(/ChronoSync\s(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   pkg "Install.pkg"
 

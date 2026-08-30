@@ -1,6 +1,6 @@
 cask "kdocs" do
-  version "3.10.2,1001"
-  sha256 "c95c4aa5dd4639578e4df8c949871dc0577c5fe5576b003b682f30c7001e1511"
+  version "3.11.2,1001"
+  sha256 "9fe64f666405af7761e2858dcc486fbfb6a3ee58c242122155d989f5446de681"
 
   url "https://qn.cache.wpscdn.cn/kdocs/apk/kdesktopmac/KDocs_#{version.csv.second}_v#{version.csv.first}.dmg",
       verified: "qn.cache.wpscdn.cn/kdocs/apk/kdesktopmac/"
@@ -23,7 +23,7 @@ cask "kdocs" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "金山文档.app"
 

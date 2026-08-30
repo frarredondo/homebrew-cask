@@ -1,9 +1,9 @@
 cask "morgen" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.6.9,250305e7ecj4fy0"
-  sha256 arm:   "2e1ae917899f38fa00d5f043ee9239f35b7002ef2ebdc14840a3031931a8d790",
-         intel: "c210e38dcdc8b8366ba9649fd4204ac41b1aa84695fdbcf0160589c76ddbd50f"
+  version "4.0.6,260519by9gmr661"
+  sha256 arm:   "a707db932ca1e9b3b7e2cfa2de91cbdeb0c3f99fb80e00df03758d3387424b2d",
+         intel: "f03717da01d90ad53a2266279eba59aab0f32d263efae2c0953d1065cad06132"
 
   url "https://download.todesktop.com/210203cqcj00tw1/Morgen%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}.dmg",
       verified: "download.todesktop.com/210203cqcj00tw1/"
@@ -24,7 +24,8 @@ cask "morgen" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: :big_sur
 
   app "Morgen.app"
 

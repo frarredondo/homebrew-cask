@@ -1,16 +1,19 @@
 cask "datadog-agent" do
-  version "7.63.3-1"
-  sha256 "aeb122b4fcdba000637404674b1ae90c97c3695500d1b8d71d5a19c4d814983c"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://dd-agent.s3.amazonaws.com/datadog-agent-#{version}.dmg",
+  version "7.82.3-1"
+  sha256 arm:   "5368aff2fcf775566c50e773d9645d9521a00f5116c4f5554b3d4bde7b37d39a",
+         intel: "1c48c2b578f12f9352ab160622fc7765758a9d4a4a325617aa7e7da53cba89bb"
+
+  url "https://dd-agent.s3.amazonaws.com/datadog-agent-#{version}.#{arch}.dmg",
       verified: "dd-agent.s3.amazonaws.com/"
   name "Datadog Agent"
   desc "Monitoring and security across systems, apps, and services"
   homepage "https://www.datadoghq.com/"
 
   livecheck do
-    url "https://dd-agent.s3.amazonaws.com/"
-    regex(/datadog-agent[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
+    url "https://dd-agent.s3.amazonaws.com/?prefix=datadog-agent"
+    regex(/datadog-agent[._-]v?(\d+(?:[.-]\d+)+)\.#{arch}\.dmg/i)
     strategy :xml do |xml, regex|
       xml.get_elements("//Contents/Key").map do |item|
         match = item.text&.strip&.match(regex)
@@ -21,7 +24,9 @@ cask "datadog-agent" do
     end
   end
 
-  installer manual: "datadog-agent-#{version}.pkg"
+  depends_on macos: :monterey
+
+  installer manual: "datadog-agent-#{version}.#{arch}.pkg"
 
   uninstall launchctl: "com.datadoghq.agent",
             quit:      "com.datadoghq.agent",

@@ -7,7 +7,13 @@ cask "doughnut" do
   desc "Podcast client"
   homepage "https://github.com/dyerc/Doughnut/"
 
-  depends_on macos: ">= :catalina"
+  livecheck do
+    url "https://raw.githubusercontent.com/dyerc/Doughnut/master/appcast.xml"
+    strategy :sparkle, &:short_version
+  end
+
+  auto_updates true
+  depends_on :macos
 
   app "Doughnut.app"
 

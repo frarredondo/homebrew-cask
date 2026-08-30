@@ -12,7 +12,7 @@ cask "audiobook-builder" do
     regex(/class=.*["' >]Audiobook\sBuilder\s?(\d+(?:\.\d+)+)</i)
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "Audiobook Builder.app"
 

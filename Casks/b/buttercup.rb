@@ -8,13 +8,12 @@ cask "buttercup" do
   desc "Javascript Secrets Vault - Multi-Platform Desktop Application"
   homepage "https://buttercup.pw/"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  # https://gist.github.com/perry-mitchell/43ebfcec4d874b77a704be1d4f2262e6
+  deprecate! date: "2025-07-17", because: :discontinued
+  disable! date: "2026-07-22", because: :discontinued
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Buttercup.app"
 

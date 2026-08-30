@@ -1,6 +1,6 @@
 cask "cardo-update" do
-  version "4.5.0"
-  sha256 "196251e40a151f0cfece2032731bf42d12ee9200d7b69f001f0a078e43f94156"
+  version "4.7.0"
+  sha256 "e5bb2a0c738f795a142cea450a1e8677d22663f1aeba07a60a10d697bc9faa32"
 
   url "https://update.cardosystems.com/cardo-app/Cardo%20Update-#{version}-mac.zip"
   name "Cardo Update"
@@ -11,6 +11,8 @@ cask "cardo-update" do
     url "https://update.cardosystems.com/cardo-app/latest-mac.yml"
     strategy :electron_builder
   end
+
+  depends_on :macos
 
   app "Cardo Update.app"
 

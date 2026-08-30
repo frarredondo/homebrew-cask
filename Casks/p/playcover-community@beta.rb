@@ -12,12 +12,12 @@ cask "playcover-community@beta" do
     regex(/(\d+(?:\.\d+)+[._-]beta(\.\d+)?)/i)
   end
 
-  deprecate! date: "2025-05-01", because: :unsigned
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   auto_updates true
   conflicts_with cask: "playcover-community"
   depends_on arch: :arm64
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "PlayCover.app"
 

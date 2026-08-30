@@ -1,7 +1,7 @@
 cask "perimeter81" do
   # NOTE: "81" is not a version number, but an intrinsic part of the product name
-  version "11.2.1.3411"
-  sha256 "0674143d208627a64ee9fc1b1a5a57f2cd7d7e1690edca1ddf43a0171ed93219"
+  version "12.11.0.12314"
+  sha256 "aca03e07cd6e71c1f45ff3a1e2d0fc832ce9c61146eebab35b6557b1fe47307b"
 
   url "https://static.perimeter81.com/agents/mac/Harmony_SASE_#{version}.pkg"
   name "Perimeter 81"
@@ -13,11 +13,27 @@ cask "perimeter81" do
     regex(/href=.*?Harmony[._-]SASE[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
-  pkg "Harmony_SASE_#{version}.pkg"
+  # The pkg has detection for the `skip_autostart` flag to prevent launching after install
+  rename "Harmony_SASE_#{version}.pkg", "Harmony_SASE_#{version}_skip_autostart.pkg"
 
+  pkg "Harmony_SASE_#{version}_skip_autostart.pkg"
+
+  # Each uninstall declaration only allows a single script action,
+  # so multiple declarations are necessary here.
+  uninstall early_script: {
+    executable:   "/usr/bin/chflags",
+    args:         ["-RL", "noschg", "/Applications/Harmony SASE.app"],
+    must_succeed: false,
+  }
+  uninstall early_script: {
+    executable:   "/usr/bin/chflags",
+    args:         ["-RL", "noschg", "/Library/PrivilegedHelperTools/com.perimeter81.osx.HelperTool"],
+    must_succeed: false,
+  }
   uninstall launchctl: [
+              "com.harmonySASE.app",
               "com.perimeter81.osx.HelperTool",
               "com.perimeter81.Perimeter81",
               "com.perimeter81d",
@@ -26,10 +42,7 @@ cask "perimeter81" do
             ],
             signal:    ["TERM", "com.safervpn.osx.smb"],
             pkgutil:   "com.safervpn.osx.smb",
-            delete:    [
-              "/Library/PrivilegedHelperTools/com.perimeter81.osx.HelperTool",
-              "/Library/PrivilegedHelperTools/com.perimeter81d.app/Contents/MacOS/com.perimeter81d",
-            ]
+            delete:    "/Library/PrivilegedHelperTools/com.perimeter81.osx.HelperTool"
 
   zap trash: [
     "~/Library/Application Support/com.safervpn.osx.smb",

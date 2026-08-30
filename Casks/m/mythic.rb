@@ -1,18 +1,24 @@
 cask "mythic" do
-  version "0.4.4"
-  sha256 "7aeed97df6f10e0355540d2e450d4e83d3ec1ba77171235d8c58688f12d103c4"
+  version "0.6.0,92033dfd-7a35-4629-9ca5-60d66576fb65"
+  sha256 "bcdb543d56e71e6ae3e102ff5bebbbdecdb1066549228d4c5f1a3c5cfa82c816"
 
-  url "https://dl.getmythic.app/sparkle-temp/Mythic-#{version}.zip"
+  url "https://dl.getmythic.app/updates/#{version.csv.second}/Mythic.zip"
   name "Mythic"
   desc "Game launcher with the ability to run Windows games"
   homepage "https://getmythic.app/"
 
   livecheck do
-    url "https://getmythic.app/appcast.xml"
-    strategy :sparkle, &:short_version
+    url "https://dl.getmythic.app/updates/update.xml"
+    regex(%r{/(\h+(?:-\h+)*)/Mythic\.zip}i)
+    strategy :sparkle do |item, regex|
+      match = item.url.match(regex)
+      next item.short_version if match.blank?
+
+      "#{item.short_version},#{match[1]}"
+    end
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
   depends_on arch: :arm64
 
   app "Mythic.app"

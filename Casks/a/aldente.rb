@@ -1,20 +1,23 @@
 cask "aldente" do
-  version "1.31.2"
-  sha256 "6a20d3ccf0a60d552e82240bef86370a5258e112a09a4cab6b4ac0fa6877a3ae"
+  version "1.38.1"
+  sha256 "1ac545c21bb001d0efaa135add62a881b8320cffac3ce9e86911176bf30498d2"
 
-  url "https://github.com/AppHouseKitchen/AlDente-Charge-Limiter/releases/download/#{version}/AlDente.dmg",
-      verified: "github.com/AppHouseKitchen/AlDente-Charge-Limiter/"
+  url "https://apphousekitchen.com/aldente/AlDente#{version}.dmg"
   name "AlDente"
   desc "Menu bar tool to limit maximum charging percentage"
   homepage "https://apphousekitchen.com/"
 
+  # The Sparkle feed can contain items on the "beta" channel, so we restrict
+  # matching to the default channel.
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://apphousekitchen.com/aldente/aldenteproappcast.xml"
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "AlDente.app"
 

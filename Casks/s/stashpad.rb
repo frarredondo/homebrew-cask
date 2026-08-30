@@ -11,7 +11,7 @@ cask "stashpad" do
   desc "Notes app for collaborative work"
   homepage "https://www.stashpad.com/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Stashpad.app"
 

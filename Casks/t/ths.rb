@@ -1,6 +1,6 @@
 cask "ths" do
-  version "4.6.0"
-  sha256 "76b5f7a621e009db2f0ba433439bde0f4f6210ef22a05c833323eed0af8bfb0f"
+  version "5.3.4"
+  sha256 "9d8093b55d95f5ef9b759c4b76b26498f66ca086f01249763e9b5844090c06dd"
 
   url "https://sp.thsi.cn/staticS3/mobileweb-upload-static-server.file/app_6/downloadcenter/ThsMac#{version}.dmg",
       verified: "sp.thsi.cn/staticS3/mobileweb-upload-static-server.file/app_6/downloadcenter/"
@@ -14,7 +14,7 @@ cask "ths" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "同花顺.app"
 

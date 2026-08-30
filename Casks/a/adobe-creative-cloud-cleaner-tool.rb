@@ -1,5 +1,5 @@
 cask "adobe-creative-cloud-cleaner-tool" do
-  version "4.3.0.834"
+  version "4.3.0.1322"
   sha256 :no_check
 
   url "https://swupmf.adobe.com/webfeed/CleanerTool/mac/AdobeCreativeCloudCleanerTool.dmg"
@@ -12,7 +12,7 @@ cask "adobe-creative-cloud-cleaner-tool" do
     strategy :extract_plist
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Adobe Creative Cloud Cleaner Tool.app"
 

@@ -1,6 +1,6 @@
 cask "rectangle" do
-  version "0.86"
-  sha256 "5142f9c5a667f8d0d0e55be5547f5139e9390054397f264b1ae6cb73fa90a9c2"
+  version "1.100"
+  sha256 "5cfbe9b68a558458302c5305cb7060491f68029338e2a4561c54a2981eb8622f"
 
   url "https://github.com/rxhanson/Rectangle/releases/download/v#{version}/Rectangle#{version}.dmg",
       verified: "github.com/rxhanson/Rectangle/"
@@ -14,11 +14,12 @@ cask "rectangle" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Rectangle.app"
 
-  uninstall quit: "com.knollsoft.Rectangle"
+  uninstall quit:       "com.knollsoft.Rectangle",
+            login_item: "Rectangle"
 
   zap trash: [
     "~/Library/Application Scripts/com.knollsoft.RectangleLauncher",

@@ -12,6 +12,9 @@ cask "combine-pdfs" do
     strategy :sparkle
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "Combine PDFs.app"
 
   zap trash: [

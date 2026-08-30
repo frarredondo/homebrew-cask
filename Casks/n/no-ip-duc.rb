@@ -7,10 +7,10 @@ cask "no-ip-duc" do
   desc "Keeps current IP address in sync"
   homepage "https://www.noip.com/download?page=mac"
 
-  livecheck do
-    url "https://www.noip.com/client/macos/appcast.xml"
-    strategy :sparkle, &:short_version
-  end
+  deprecate! date: "2025-03-31", because: :unmaintained
+  disable! date: "2026-04-01", because: :unmaintained
+
+  depends_on :macos
 
   app "No-IP DUC.app"
 

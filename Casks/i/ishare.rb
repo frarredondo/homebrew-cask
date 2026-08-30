@@ -1,6 +1,6 @@
 cask "ishare" do
-  version "4.2.1"
-  sha256 "b55714ae1863f771c0ae4f2f58e2ec16e7a660ba1cf077aea65c76e9b102edce"
+  version "4.2.6"
+  sha256 "32d07f4703ec45dc00b6cd5e92df289b90c99e236aaa85d302ccb88b6dabb76b"
 
   url "https://github.com/castdrian/ishare/releases/download/v#{version}/ishare.dmg"
   name "ishare"
@@ -12,7 +12,7 @@ cask "ishare" do
     regex(/v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "ishare.app"
 

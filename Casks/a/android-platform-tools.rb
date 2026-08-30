@@ -1,8 +1,18 @@
 cask "android-platform-tools" do
-  version "35.0.2"
-  sha256 "1820078db90bf21628d257ff052528af1c61bb48f754b3555648f5652fa35d78"
+  os macos: "darwin", linux: "linux"
 
-  url "https://dl.google.com/android/repository/platform-tools_r#{version}-darwin.zip",
+  version "37.0.1"
+
+  on_macos do
+    sha256 "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d"
+  end
+  on_linux do
+    sha256 "d230f13842f60f782a8645f9c813f8f845bf36089ea7289f28c48f17979313f1"
+
+    depends_on arch: :x86_64
+  end
+
+  url "https://dl.google.com/android/repository/platform-tools_r#{version}-#{os}.zip",
       verified: "google.com/android/repository/"
   name "Android SDK Platform-Tools"
   desc "Android SDK component"

@@ -1,8 +1,9 @@
 cask "simplemind" do
-  version "2.6.0,b3082"
-  sha256 "6b655d345d8ba8f3b6c6db29778c8667becff3a6a07a938369b7f2b6dcda72c4"
+  version "2.10.0,b3379"
+  sha256 "7b2cb2bcfa6741d120e82b76edfd4846a99bd413e04df9cc274fc099d2ec91d1"
 
-  url "https://simpleapps.eu/simplemind/SM2Mac_G7Ynr4BfJYzhbHtCCTr/SimpleMindMacOS#{version.csv.first.no_dots}#{version.csv.second}.dmg"
+  url "https://modelmakertools.com/simplemind/SM2Mac_G7Ynr4BfJYzhbHtCCTr/SimpleMindMacOS#{version.csv.first.no_dots}#{version.csv.second}.dmg",
+      verified: "modelmakertools.com/simplemind/"
   name "SimpleMind"
   desc "Cross-platform mind mapping tool"
   homepage "https://simpleapps.eu/"
@@ -16,9 +17,11 @@ cask "simplemind" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :big_sur
 
   app "SimpleMind Pro.app"
+
+  uninstall quit: "com.modelmakertools.simplemindosx"
 
   zap trash: [
     "~/Library/Caches/com.modelmakertools.simplemindosx",

@@ -1,9 +1,8 @@
 cask "ulbow" do
-  version "1.10,2023.02"
-  sha256 "3fdafc940c348f611b784229727bc576b889fcad9a3969ecac3a30f2c33c5c0b"
+  version "1.11,2025.06"
+  sha256 "7665a3124538c08c52855a9863d1865507007095dfaac0d9ce8f89e4e53e30f8"
 
-  url "https://eclecticlightdotcom.files.wordpress.com/#{version.csv.second.major}/#{version.csv.second.minor}/ulbow#{version.csv.first.no_dots}.zip",
-      verified: "eclecticlightdotcom.files.wordpress.com/"
+  url "https://eclecticlight.co/wp-content/uploads/#{version.csv.second.major}/#{version.csv.second.minor}/ulbow#{version.csv.first.no_dots}.zip"
   name "Ulbow"
   desc "Log browser"
   homepage "https://eclecticlight.co/consolation-t2m2-and-log-utilities/"
@@ -24,7 +23,7 @@ cask "ulbow" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :big_sur
 
   app "ulbow#{version.csv.first.no_dots}/Ulbow.app"
 

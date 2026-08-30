@@ -1,8 +1,8 @@
 cask "font-proggy-clean-tt-nerd-font" do
-  version "3.3.0"
-  sha256 "375625156cfdd330aac49b7dbbbb3023f49339ffa17e596026741ef690068be2"
+  version "3.5.1"
+  sha256 "b7c0b6d558f92764fa26481d557ef867e6608e932d951a2aa8705b9fc6a50fd6"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ProggyClean.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ProggyClean.tar.xz"
   name "ProggyClean Nerd Font families (ProggyCleanTT)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-proggy-clean-tt-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "ProggyCleanCENerdFont-Regular.ttf"
   font "ProggyCleanCENerdFontMono-Regular.ttf"

@@ -1,6 +1,6 @@
 cask "viz" do
-  version "1.9"
-  sha256 "941521b530315ef772dacaa97aa5348839cb2124b691e6b49f3da25d772a6569"
+  version "2.3.3"
+  sha256 "a08aeebb2e9ff76da5f36bfe1a3385811e58443f260f7d62b82e4d56dda0343f"
 
   url "https://github.com/alienator88/Viz/releases/download/#{version}/Viz.zip",
       verified: "github.com/alienator88/Viz/"
@@ -14,7 +14,7 @@ cask "viz" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Viz.app"
 

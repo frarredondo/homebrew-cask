@@ -1,65 +1,48 @@
 cask "openzfs" do
-  version "2.2.3"
+  on_big_sur :or_older do
+    arch intel: "Big.Sur-11"
 
-  on_arm do
-    on_monterey :or_older do
-      arch arm: "Monterey-12-arm64"
-      sha256 "a48db951f53660115eac6dba3ed44cd895eab83dfad7e558de1679f3adb96fbd"
-    end
-    on_ventura do
-      arch arm: "Ventura-13-arm64"
-      sha256 "572e56f8acdd1954f14ac8d49b2141a591872ac6337c2e7912e533e5cf04ff3c"
-    end
-    on_sonoma do
-      arch arm: "Sonoma-14-arm64"
-      sha256 "675a682b2bb0128772de9732331fbd45550163835059b9252721ce00d1ce3b54"
-    end
-    on_sequoia :or_newer do
-      arch arm: "Sequoia-15-arm64"
-      sha256 "6e78efa1c466e4aeaff26698c097cad4f3fb7e918bdda0502be932360ab3051f"
-    end
+    # Upstream didn't ship a Big Sur package after with 2.4.1
+    version "2.3.1"
+    sha256 "d21e78cdec4974bf1ac783fc780c782caf6a4bd37ad2307f0fa65f9a57b22fc1"
+
+    depends_on arch: :x86_64
   end
-  on_intel do
-    on_el_capitan :or_older do
-      arch intel: "EL.CAPITAN-10.11"
-      sha256 "116fdd786d0e13f75baf0edbca7caa4fe44100ca42a79c694e991f499e1d81e8"
-    end
-    on_sierra do
-      arch intel: "Sierra-10.12"
-      sha256 "926d6ddc08e2ffdd3cda09ceca2f369f600b5a6dd0b185f818782680ae105a00"
-    end
-    on_high_sierra do
-      arch intel: "High.Sierra-10.13"
-      sha256 "8d6a43553cf2ca825aad49b23a3d768c491d7ec8762ebb9f91c8ec4cd8148ca8"
-    end
-    on_mojave do
-      arch intel: "Mojave-10.14"
-      sha256 "c8218f12b82f3fc716f77724bf7d2d874016529d4f07058c9cebef5cf7d11c75"
-    end
-    on_catalina do
-      arch intel: "Catalina-10.15"
-      sha256 "1edb9039f420cc7cd07fc23b6aceb35dd554e7d8ec6e77dac0b5b19c837e7b07"
-    end
-    on_big_sur do
-      arch intel: "Big.Sur-11"
-      sha256 "78dfde1c85e771d04511399e5ffb42a9f51a5725ae322bb5a51d078f9e900743"
-    end
-    on_monterey do
-      arch intel: "Monterey-12"
-      sha256 "092622af78a32e44f606cae01b5984af99eb8f91b9780054709ac78acd6b8778"
-    end
-    on_ventura do
-      arch intel: "Ventura-13"
-      sha256 "f413daf347e2a1ba98b5ca9ba08bba988106f446200dd498364df3afc36bf18e"
-    end
-    on_sonoma do
-      arch intel: "Sonoma-14"
-      sha256 "a742b587085f0d547b4cab404f3df197f32ef5089b606bd36f9a076e8fa46897"
-    end
-    on_sequoia :or_newer do
-      arch intel: "Sequoia-15"
-      sha256 "2cec90b23e7aa88385b5ef762229689a891f40c55c63cd64c4eefe24b286e880"
-    end
+  on_monterey do
+    arch arm: "Monterey-12-arm64", intel: "Monterey-12"
+
+    version "2.4.1"
+    sha256 arm:   "67143cc1e47a5499a0e80c19e6d4a7cc836dbe581289e868069072cf05ad77d6",
+           intel: "a407dd0f1115ee46e11209fc68bfd28595e130ae8bf36494d3f3c63531e96f52"
+  end
+  on_ventura do
+    arch arm: "Ventura-13-arm64", intel: "Ventura-13"
+
+    # The ventura package for 2.4.1 is broken, so we keep the last working version for ventura
+    version "2.3.1"
+    sha256 arm:   "dc56d95c7875659ba32396bd7406ced5895c9f9959c8fc77a6ee2e6157207f8d",
+           intel: "e05f14f7c02512da10d0115e0e0712ac2cabbb5f0c3924831ae13af35abaf42b"
+  end
+  on_sonoma do
+    arch arm: "Sonoma-14-arm64", intel: "Sonoma-14"
+
+    version "2.4.1"
+    sha256 arm:   "1dc35cd8278a483bf97cc7e8d0ca1ae89bec65999c479d7c9f9935cf2f4205fd",
+           intel: "b851b09d9bda4cce27af8d985b6d6b48272999306e8fc42d3351ba1716c84075"
+  end
+  on_sequoia do
+    arch arm: "Sequoia-15-arm64", intel: "Sequoia-15"
+
+    version "2.4.1"
+    sha256 arm:   "788703a95dd5ee12f85ceea89640b0193eb3fabacb1e9ed6f38515fe58e48d8f",
+           intel: "e10d0c8961e6745e3cbbc4351e06df179a84c39c0cbbcd6421f403fe9c6508dd"
+  end
+  on_tahoe :or_newer do
+    arch arm: "Tahoe.26-arm64", intel: "Tahoe.26-26"
+
+    version "2.4.1"
+    sha256 arm:   "6f363e0bcfc22b7f8a5ff09e748513fa914408b8d8a84d3e021fc0dd93e22567",
+           intel: "24c2867bcaaac770de398ecbfbc7a023cf2189b32264f77568e0e4599daba726"
   end
 
   url "https://github.com/openzfsonosx/openzfs-fork/releases/download/zfs-macOS-#{version}/OpenZFSonOsX-#{version}-#{arch}.pkg",
@@ -73,14 +56,21 @@ cask "openzfs" do
     strategy :github_latest
   end
 
-  pkg "OpenZFSonOsX-#{version}-#{arch}.pkg"
+  depends_on :macos
 
-  postflight do
+  pkg "OpenZFSonOsX-#{version}-#{arch}.pkg"
+  bash_completion "/etc/bash_completion.d/zfs"
+  bash_completion "/etc/bash_completion.d/zpool"
+
+  postflight_steps do
     set_ownership "/usr/local/zfs"
   end
 
-  uninstall_preflight do
-    system "sudo", "/usr/local/zfs/bin/zpool", "export", "-af"
+  uninstall_preflight_steps do
+    # Only try to export the pools if zfs module is loaded
+    if_path_exists "/dev/zfs" do
+      run "/usr/local/zfs/bin/zpool", args: ["export", "-af"], sudo: true
+    end
   end
 
   uninstall launchctl: [
@@ -91,6 +81,14 @@ cask "openzfs" do
               "org.openzfsonosx.zpool-import-all",
             ],
             pkgutil:   "org.openzfsonosx.zfs"
+
+  zap trash: [
+    "~/Library/LaunchDaemons/org.openzfsonosx.InvariantDisks.plist",
+    "~/Library/LaunchDaemons/org.openzfsonosx.zconfigd.plist",
+    "~/Library/LaunchDaemons/org.openzfsonosx.zed.plist",
+    "~/Library/LaunchDaemons/org.openzfsonosx.zpool-import-all.plist",
+    "~/Library/LaunchDaemons/org.openzfsonosx.zpool-import.plist",
+  ]
 
   caveats do
     kext

@@ -1,36 +1,31 @@
 cask "libcblite" do
-  version "3.2.1"
-  sha256 "0edac8996e7620fbb6f61c0ad0062193519b8ab93c55ae4ac47d52fe938f28bc"
+  version "4.1.0"
+  sha256 "fd229acbf4c342570fa356d11460184aa00c5f14809e1cd957abdab2e9020101"
 
   url "https://packages.couchbase.com/releases/couchbase-lite-c/#{version}/couchbase-lite-c-enterprise-#{version}-macos.zip"
   name "Couchbase Lite (Enterprise Edition)"
   desc "Couchbase Lite Libraries for C and C++ (Enterprise Edition)"
-  homepage "https://www.couchbase.com/products/lite"
+  homepage "https://docs.couchbase.com/couchbase-lite/current/"
 
   livecheck do
-    url "https://docs.couchbase.com/couchbase-lite/current/c/gs-install.html"
+    url "https://docs.couchbase.com/couchbase-lite/current/c/gs-downloads.html"
     regex(/href=.*?couchbase[._-]lite[._-]c[._-]enterprise[._-]v?(\d+(?:\.\d+)+)[._-]macos\.zip/i)
   end
 
   conflicts_with cask: "libcblite-community"
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   artifact "libcblite-#{version}/include/cbl", target: "#{HOMEBREW_PREFIX}/include/cbl"
+  artifact "libcblite-#{version}/include/cbl++", target: "#{HOMEBREW_PREFIX}/include/cbl++"
   artifact "libcblite-#{version}/include/fleece", target: "#{HOMEBREW_PREFIX}/include/fleece"
   artifact "libcblite-#{version}/lib/cmake/CouchbaseLite", target: "#{HOMEBREW_PREFIX}/lib/cmake/CouchbaseLite"
   artifact "libcblite-#{version}/lib/libcblite.#{version}.dylib", target: "#{HOMEBREW_PREFIX}/lib/libcblite.#{version}.dylib"
 
-  postflight do
-    puts "Creating library symlinks in #{HOMEBREW_PREFIX}/lib"
-    File.symlink("libcblite.#{version}.dylib", "#{HOMEBREW_PREFIX}/lib/libcblite.#{version.major}.dylib")
-    File.symlink("libcblite.#{version.major}.dylib", "#{HOMEBREW_PREFIX}/lib/libcblite.dylib")
-  end
-
-  uninstall_postflight do
-    if File.symlink?("#{HOMEBREW_PREFIX}/lib/libcblite.#{version.major}.dylib")
-      puts "Removing library symlinks in #{HOMEBREW_PREFIX}/lib"
-      File.unlink("#{HOMEBREW_PREFIX}/lib/libcblite.#{version.major}.dylib", "#{HOMEBREW_PREFIX}/lib/libcblite.dylib")
-    end
+  postflight_steps do
+    symlink "libcblite.#{version}.dylib", "{{HOMEBREW_PREFIX}}/lib/libcblite.#{version.major}.dylib",
+            source_base: :relative, remove_on_uninstall: true
+    symlink "libcblite.#{version.major}.dylib", "{{HOMEBREW_PREFIX}}/lib/libcblite.dylib",
+            source_base: :relative, remove_on_uninstall: true
   end
 
   # No zap stanza required

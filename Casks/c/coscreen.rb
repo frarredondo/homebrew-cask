@@ -1,9 +1,9 @@
 cask "coscreen" do
   arch arm: "arm64", intel: "x64"
 
-  version "8.2.119"
-  sha256 arm:   "01b8b8aef29a8eacc4d4a67b61a6fa5269f0cbda541d35001eb65adedae53ff4",
-         intel: "3167f98e29b9b2b08e441fc71f41bac11f787a9e3d792004c27cb68aad29ded7"
+  version "8.11.14"
+  sha256 arm:   "00a91e0532ad699c3eb9b1df6bd56334e161e255026b9776bbe761f65c1e28b5",
+         intel: "9f58c2e9157a8bbf57f9e48e6ac5d090b9c0420a62973a12259d7a115b83ec91"
 
   url "https://update.coscreen.org/CoScreen-#{version}-stable-#{arch}.dmg",
       verified: "update.coscreen.org/"
@@ -17,7 +17,7 @@ cask "coscreen" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "CoScreen.app"
 

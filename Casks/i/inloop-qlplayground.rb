@@ -7,6 +7,10 @@ cask "inloop-qlplayground" do
   desc "Quick Look generator for Xcode Playgrounds"
   homepage "https://github.com/inloop/qlplayground"
 
+  deprecate! date: "2025-09-22", because: :no_longer_meets_criteria
+
+  depends_on :macos
+
   qlplugin "inloop-qlplayground.qlgenerator"
 
   # No zap stanza required

@@ -1,9 +1,9 @@
 cask "scenebuilder" do
   arch arm: "aarch64", intel: "amd64"
 
-  version "23.0.1"
-  sha256 arm:   "591fb055748fff9613dc814cdd2e45ef5614246d614cb018ca4bc837461b311a",
-         intel: "99d9427c5ba1ff0fc8ee10c412a8e121e42dbe915934f6cfbb749d87da67f947"
+  version "26.0.0"
+  sha256 arm:   "0197a797d548c569e3e5e26b2dfaaad15db3a6a214780af6ee837717333dff99",
+         intel: "69a4d8a994d8ab57bc060c2e66e0e40d9f56043ac55577f7face0fdc64158af8"
 
   url "https://download2.gluonhq.com/scenebuilder/#{version}/install/mac/SceneBuilder-#{version}-#{arch}.dmg"
   name "Scene Builder"
@@ -12,10 +12,10 @@ cask "scenebuilder" do
 
   livecheck do
     url :homepage
-    regex(%r{href=.*?/SceneBuilder-(\d+(?:\.\d+)+)[._-]#{arch}\.dmg}i)
+    regex(/href=.*?SceneBuilder[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "SceneBuilder.app"
 

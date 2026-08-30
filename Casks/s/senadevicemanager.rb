@@ -1,6 +1,6 @@
 cask "senadevicemanager" do
-  version "4.4.14"
-  sha256 "4143cc5351ac1d99192b4635485c68a0144a5e168681727c75966caecbbfb6f1"
+  version "4.4.18"
+  sha256 "03bc4693c4eba7f52eb5a7841ae9db427fb25d57066a31572d38129aa81bb8a4"
 
   url "https://firmware.sena.com/senabluetoothmanager/SENADeviceManagerForMAC-v#{version}.pkg"
   name "Sena Bluetooth Device Manager"
@@ -12,7 +12,7 @@ cask "senadevicemanager" do
     regex(/SENADeviceManagerForMAC[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "SENADeviceManagerForMAC-v#{version}.pkg"
 

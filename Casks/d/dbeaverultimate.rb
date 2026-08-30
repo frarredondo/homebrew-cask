@@ -1,11 +1,12 @@
 cask "dbeaverultimate" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "24.3.0"
-  sha256 arm:   "f35b601d27ba75971b150932a0edbc19f0107b752b7146ec593abc576e95b7c9",
-         intel: "842f9973794acfcfabbba5151240c5c9b1b5933cc8810bada22d1748c5ae8a81"
+  version "26.1.0"
+  sha256 arm:   "ac134703e8cf541e8489d61367f9c0d29bd8fa048a1f18239978fe7355957786",
+         intel: "1401d140bd9e8c58d9e370d235a1861db4baa7b13494a545a94192a39dd237b9"
 
-  url "https://dbeaver.com/downloads-ultimate/#{version}/dbeaver-ue-#{version}-macos-#{arch}.dmg"
+  url "https://downloads.dbeaver.net/ultimate/#{version}/dbeaver-ue-#{version}-macos-#{arch}.dmg",
+      verified: "downloads.dbeaver.net/ultimate/"
   name "DBeaver Ultimate Edition"
   desc "Universal database tool and SQL client"
   homepage "https://dbeaver.com/dbeaver-ultimate/"
@@ -17,7 +18,7 @@ cask "dbeaverultimate" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "DBeaverUltimate.app"
 

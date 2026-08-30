@@ -1,9 +1,9 @@
 cask "rubymine" do
   arch arm: "-aarch64"
 
-  version "2024.3.4,243.25659.41"
-  sha256 arm:   "7d93ff5df263a1526c0cb901e6df2abee547f9e9116f355cfc13a93a20b8ea4a",
-         intel: "8cb255a6b66f77c5233cb2dd4c47cd4c8564c48cee3b1bb40128677a93cc39c8"
+  version "2026.2.1,262.9437.192"
+  sha256 arm:   "aae091d13b0e6b3524fcfa7a336d2870f35857e30497026ff346c2d75890a3ca",
+         intel: "6de071f1b139b0d0cce1a5af561f471701dee42834a9e10040af2129b773556a"
 
   url "https://download.jetbrains.com/ruby/RubyMine-#{version.csv.first}#{arch}.dmg"
   name "RubyMine"
@@ -24,10 +24,12 @@ cask "rubymine" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "RubyMine.app"
-  binary "#{appdir}/RubyMine.app/Contents/MacOS/rubymine"
+  command_wrapper "rubymine",
+                  executable: "/usr/bin/open",
+                  args:       ["-na", "RubyMine.app", "--args"]
 
   zap trash: [
     "~/Library/Application Support/RubyMine#{version.major_minor}",

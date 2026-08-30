@@ -8,7 +8,10 @@ cask "autumn" do
   desc "Window manager for JavaScript development"
   homepage "https://apandhi.github.io/Autumn/"
 
-  depends_on macos: ">= :high_sierra"
+  deprecate! date: "2025-04-21", because: :unmaintained
+  disable! date: "2026-04-30", because: :unmaintained
+
+  depends_on :macos
 
   app "Autumn.app"
 

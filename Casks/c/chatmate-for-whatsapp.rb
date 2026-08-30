@@ -8,18 +8,10 @@ cask "chatmate-for-whatsapp" do
   desc "Extension app WhatsApp"
   homepage "https://chatmate.io/"
 
-  livecheck do
-    url "https://updates.devmate.com/net.coldx.mac.WhatsApp.xml"
-    regex(%r{/(\d+)/ChatMateforWhatsApp\d*?[_-]v?(\d+(?:\.\d+)*)\.(?:dmg|zip)}i)
-    strategy :sparkle do |item, regex|
-      match = item.url.match(regex)
-      next if match.blank?
+  deprecate! date: "2025-03-30", because: :unmaintained
+  disable! date: "2026-03-30", because: :unmaintained
 
-      "#{item.short_version},#{match[2]},#{match[1]}"
-    end
-  end
-
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "ChatMate for WhatsApp.app"
 

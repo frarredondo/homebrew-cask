@@ -14,7 +14,7 @@ cask "mac-mouse-fix@2" do
   end
 
   conflicts_with cask: "mac-mouse-fix"
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Mac Mouse Fix.app"
 

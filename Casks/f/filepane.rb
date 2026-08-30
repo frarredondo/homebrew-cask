@@ -13,6 +13,8 @@ cask "filepane" do
     skip "Appcast only provides the version, no timestamp"
   end
 
+  depends_on :macos
+
   app "FilePane.app"
 
   zap trash: [
@@ -20,7 +22,7 @@ cask "filepane" do
     "~/Library/Application Support/FilePane",
     "~/Library/Caches/com.mymixapps.FilePane",
     "~/Library/Preferences/com.mymixapps.FilePane.plist",
-    "~/Users/Shared/FilePane/",
+    "~/Users/Shared/FilePane",
   ]
 
   caveats do

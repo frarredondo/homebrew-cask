@@ -1,5 +1,5 @@
 cask "cheetah3d" do
-  version "8.1.2"
+  version "8.1.3"
   sha256 :no_check
 
   url "https://www.cheetah3d.com/download/Cheetah3D.dmg"
@@ -12,7 +12,7 @@ cask "cheetah3d" do
     regex(%r{Download\s<br/>Cheetah3D\s(\d+(?:\.\d+)+)}i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Cheetah3D.app"
 

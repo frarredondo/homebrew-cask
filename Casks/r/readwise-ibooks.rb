@@ -12,7 +12,7 @@ cask "readwise-ibooks" do
     strategy :extract_plist
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Readwise_iBooks.app"
 

@@ -1,6 +1,6 @@
 cask "openhv" do
-  version "20230917"
-  sha256 "c7f0c0260f690d4039cf7146faad01bf1731b8b77a28eeb0cb9573200c5bc95f"
+  version "20250725"
+  sha256 "7ccb58351554bbabf2181c6330cfabd139ba555b7f71ee91d9880c7c8110c60f"
 
   url "https://github.com/OpenHV/OpenHV/releases/download/#{version}/OpenHV-#{version}.dmg",
       verified: "github.com/OpenHV/OpenHV/"
@@ -13,6 +13,8 @@ cask "openhv" do
     regex(/v?(\d+(?:\.\d+)*)/i)
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "OpenHV.app"
 

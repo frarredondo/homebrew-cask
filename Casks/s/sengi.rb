@@ -12,7 +12,9 @@ cask "sengi" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Sengi.app"
 
@@ -21,4 +23,8 @@ cask "sengi" do
     "~/Library/Preferences/org.sengi.desktop.plist",
     "~/Library/Saved Application State/org.sengi.desktop.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

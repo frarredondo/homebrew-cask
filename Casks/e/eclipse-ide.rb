@@ -1,9 +1,9 @@
 cask "eclipse-ide" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "4.34.0,2024-12"
-  sha256 arm:   "b5faba5a6fb8f740007c324e2aa2ad7f505a427b07ed2edbbe82d0bc0d7d05a3",
-         intel: "a54495cda85934bb1e4db3db69de53ceade7ea7ca240b3b62bbbc0cca52f9314"
+  version "4.40,2026-06"
+  sha256 arm:   "069e2418aa5faffd443516b0c147ad9f6453d6b4fc70e5209bd01b3673e48b53",
+         intel: "fa57f507844b7be46d1c1775f150c4edd77850d5e34f6eddbd104d36acec785e"
 
   url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-committers-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse IDE for Eclipse Committers"
@@ -11,21 +11,26 @@ cask "eclipse-ide" do
   homepage "https://eclipse.org/"
 
   livecheck do
-    url "https://www.eclipse.org/downloads/packages/"
+    url "https://download.eclipse.org/eclipse/downloads/data.json"
     regex(/href=.*?eclipse-committers-(\d+-\d+)-R-mac/i)
-    strategy :page_match do |page, regex|
-      date = page[regex, 1]
-      next if date.blank?
+    strategy :json do |json, regex|
+      versions = json["releases"]&.filter_map { |release| release["label"] }&.uniq
+      version = versions.max_by { |v| Version.new(v) }
+      next unless version
 
-      version_page = Homebrew::Livecheck::Strategy.page_content("https://projects.eclipse.org/releases/#{date}")[:content]
-      next if version_page.blank?
+      download_page = Homebrew::Livecheck::Strategy.page_content(
+        "https://www.eclipse.org/downloads/packages/",
+      )[:content]
+      next if download_page.blank?
 
-      version = version_page[%r{href=["']?/projects/technology\.packaging/releases/v?(\d+(?:\.\d+)+)/?["']?}i, 1]
-      next if version.blank?
+      date = download_page[regex, 1]
+      next unless date
 
       "#{version},#{date}"
     end
   end
+
+  depends_on macos: :big_sur
 
   app "Eclipse.app"
 

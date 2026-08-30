@@ -1,8 +1,8 @@
 cask "opencat" do
-  version "2.45.1,1085"
-  sha256 "82ce67132c8c4bf0126cd38aa7c8c9a0ee605eb9d322a8ee14246c3cbdaeffc6"
+  version "26.8.0,2528"
+  sha256 "4833f3b424f0486544435be6108693717cce7f0bda8b0d44affbedf4997016e2"
 
-  url "https://opencat.app/releases/OpenCat-#{version.csv.first}.#{version.csv.second}.dmg"
+  url "https://releases.opencat.app/OpenCat-#{version.csv.first}.#{version.csv.second}.dmg"
   name "OpenCat"
   desc "Native AI chat client"
   homepage "https://opencat.app/"
@@ -16,14 +16,24 @@ cask "opencat" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "OpenCat.app"
 
   zap trash: [
-    "~/Library/Application Scripts/tech.baye.OpenCat",
+    "~/Library/Application Scripts/group.tech.baye.openai",
+    "~/Library/Application Support/OpenCat",
+    "~/Library/Application Support/tech.baye.OpenCat",
+    "~/Library/Application Support/tech.baye.OpenCat.revenuecat",
+    "~/Library/Caches/CloudKit/tech.baye.OpenCat",
+    "~/Library/Caches/com.crashlytics.data/tech.baye.OpenCat",
+    "~/Library/Caches/SentryCrash/OpenCat",
+    "~/Library/Caches/tech.baye.OpenCat",
+    "~/Library/Caches/tech.baye.OpenCat.revenuecat",
     "~/Library/Containers/tech.baye.OpenCat",
     "~/Library/Group Containers/group.tech.baye.openai",
+    "~/Library/HTTPStorages/tech.baye.OpenCat",
+    "~/Library/Preferences/tech.baye.OpenCat.plist",
     "~/Library/Saved Application State/tech.baye.OpenCat.savedState",
   ]
 end

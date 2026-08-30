@@ -1,8 +1,8 @@
 cask "xaos" do
-  version "4.3.3"
-  sha256 "9dd58f609157841f29b7e8bc73321a87c6b6f940b65264e57a3196305e046c0d"
+  version "4.3.7"
+  sha256 "b265b728ddeb476661d09c70a3f6cdc7b25b2f9d2622c8d29f88748c2162e98a"
 
-  url "https://github.com/xaos-project/XaoS/releases/download/release-#{version}/XaoS-#{version}.dmg",
+  url "https://github.com/xaos-project/XaoS/releases/download/release-#{version}/XaoS.dmg",
       verified: "github.com/xaos-project/XaoS/"
   name "GNU XaoS"
   desc "Real-time interactive fractal zoomer"
@@ -13,7 +13,9 @@ cask "xaos" do
     regex(/^release[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on macos: ">= :big_sur"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :ventura
 
   app "XaoS.app"
 

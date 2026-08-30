@@ -1,11 +1,11 @@
 cask "snowflake-snowsql" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "1.3.3"
-  sha256 arm:   "8c2dcff194631a84c20dd800a0faf9da964c4ed90797834946e2873e06a45867",
-         intel: "0d85b4fa59dd4213b8b04524246b8c0e88313445383b05f8ff3491d48bd37eb0"
+  version "1.5.1"
+  sha256 arm:   "521e87e1b43284720dbab70357fbba32bf32b9a3709516be8dd650980d9fd4bf",
+         intel: "c9761bb580b00e6b0c6bc6b0c6004907846488f9ad9c62a7bb9de534728e6f12"
 
-  url "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/#{version.major_minor}/darwin_#{arch}/snowsql-#{version}-darwin_#{arch}.pkg",
+  url "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/#{version.csv.second || version.csv.first.major_minor}/darwin_#{arch}/snowsql-#{version.csv.first}-darwin_#{arch}.pkg",
       verified: "sfc-repo.snowflakecomputing.com/"
   name "SnowSQL"
   desc "Command-line client for connecting to Snowflake"
@@ -13,10 +13,18 @@ cask "snowflake-snowsql" do
 
   livecheck do
     url "https://www.snowflake.com/content/snowflake-site/global/en/developers/downloads/snowsql.model.json"
-    regex(/snowsql[._-]v?(\d+(?:\.\d+)+)[._-]darwin[._-]#{arch}\.pkg/i)
+    regex(%r{/(\d+(?:\.\d+)+)/darwin[._-]#{arch}/snowsql[._-]v?(\d+(?:\.\d+)+)[._-]darwin[._-]#{arch}\.pkg}i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map do |match|
+        # Only append the path version if it isn't the version major/minor
+        (match[0] == match[1][/^\d+\.\d+/]) ? match[1] : "#{match[1]},#{match[0]}"
+      end
+    end
   end
 
-  pkg "snowsql-#{version}-darwin_#{arch}.pkg"
+  depends_on :macos
+
+  pkg "snowsql-#{version.csv.first}-darwin_#{arch}.pkg"
 
   uninstall pkgutil: "net.snowflake.snowsql"
 

@@ -12,6 +12,8 @@ cask "vuze" do
     strategy :extract_plist
   end
 
+  depends_on :macos
+
   installer script: {
     executable: "Vuze Installer.app/Contents/MacOS/JavaApplicationStub",
     args:       ["-q"],

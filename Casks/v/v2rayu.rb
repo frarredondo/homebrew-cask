@@ -1,9 +1,9 @@
 cask "v2rayu" do
   arch arm: "arm64", intel: "64"
 
-  version "4.2.5"
-  sha256 arm:   "dbc04765b0fb6b4e46e3bfdf737548286d3b5ca228a74514dca10e4428a153ed",
-         intel: "e61e1a52d7868fedb186b2b053f5700c4071a3afb088d53846804a9487d2f8e5"
+  version "5.2.0"
+  sha256 arm:   "7a9f39702ae6d715e7ed0ccc69a7987a5a35be5c436781c3829c9b47ef945dae",
+         intel: "2ea8663a37e4fce45571b4cc80f7cd57209b95d8dc29aadf0fac4d5f85e29e10"
 
   url "https://github.com/yanue/V2rayU/releases/download/v#{version}/V2rayU-#{arch}.dmg"
   name "V2rayU"
@@ -17,8 +17,10 @@ cask "v2rayu" do
     strategy :github_latest
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   app "V2rayU.app"
 
@@ -28,7 +30,8 @@ cask "v2rayu" do
   ]
 
   zap trash: [
-    "~/.V2rayU/",
+    "~/.V2rayU",
+    "~/Library/Application Support/net.yanue.V2rayU",
     "~/Library/Caches/net.yanue.V2rayU",
     "~/Library/Containers/net.yanue.V2rayU.Launcher",
     "~/Library/HTTPStorages/net.yanue.V2rayU",

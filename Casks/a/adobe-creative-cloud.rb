@@ -1,12 +1,12 @@
 cask "adobe-creative-cloud" do
   arch arm: "macarm64", intel: "osx10"
 
-  version "6.5.0.348"
-  sha256 arm:   "1607e7fdf40d3ac56486f92e4b92b3f0781557af6bb05cafbfe7af082909956b",
-         intel: "805dfacf145fa7714be7fde35be7038d4ad70ac928cd8e812f269514aa71b6c4"
+  version "6.10.0.252.3"
+  sha256 arm:   "d02fc307e32b583c0552fbbca87cfe40b098f2fc707a12b033dff726091a21d6",
+         intel: "487de8f6957730def04c2ac6d2fcbe6abb4571e7ccc5bfdb4c0223082297c8ba"
 
   # If url breaks you can find the latest static urls - https://helpx.adobe.com/download-install/kb/creative-cloud-desktop-app-download.html
-  url "https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/#{version.major_minor_patch}/#{version.split(".").fourth}/#{arch}/ACCCx#{version.dots_to_underscores}.dmg"
+  url "https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/#{version.major_minor_patch}/#{version.split(".")[3..4].join(".")}/#{arch}/ACCCx#{version.dots_to_underscores}.dmg"
   name "Adobe Creative Cloud"
   desc "Collection of apps and services for photography, design, video, web, and UX"
   homepage "https://www.adobe.com/creativecloud.html"
@@ -23,6 +23,7 @@ cask "adobe-creative-cloud" do
   end
 
   auto_updates true
+  depends_on :macos
 
   installer script: {
     executable:   "#{staged_path}/Install.app/Contents/MacOS/Install",
@@ -30,16 +31,6 @@ cask "adobe-creative-cloud" do
     sudo:         true,
     print_stderr: false,
   }
-
-  uninstall_preflight do
-    set_ownership "/Library/Application Support/Adobe"
-  end
-
-  uninstall_postflight do
-    stdout, * = system_command "/bin/launchctl", args: ["print", "gui/#{Process.uid}"]
-    ccx_processes = stdout.lines.grep(/com\.adobe\.CCXProcess\.\d{5}/) { Regexp.last_match(0) }.uniq
-    ccx_processes.each { |id| system "/bin/launchctl", "bootout", "gui/#{Process.uid}/#{id}" }
-  end
 
   uninstall early_script: {
               executable:   "/usr/bin/pluginkit",
@@ -54,7 +45,9 @@ cask "adobe-creative-cloud" do
               "com.adobe.acc.installer",
               "com.adobe.acc.installer.v2",
               "com.adobe.AdobeCreativeCloud",
+              "com.adobe.AdobeDesktopService",
               "com.adobe.ccxprocess",
+              "com.adobe.CCXProcess.*",
             ],
             quit:         "com.adobe.acc.AdobeCreativeCloud",
             signal:       ["QUIT", "com.adobe.accmac"],

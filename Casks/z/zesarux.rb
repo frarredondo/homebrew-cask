@@ -1,8 +1,11 @@
 cask "zesarux" do
-  version "12.0"
-  sha256 "1abbb5e53f8557d07d1cc94b904eb07dcb79e064b7dff5c2253569f7c2f4a80c"
+  arch arm: "silicon", intel: "intel"
 
-  url "https://github.com/chernandezba/zesarux/releases/download/ZEsarUX-#{version}/ZEsarUX_macos-#{version}.dmg"
+  version "13.0"
+  sha256 arm:   "6902cdf17a04ae65cb1b6d243788e627e0d9b7ead66139e66779006c5dbc7747",
+         intel: "b6258aaa492c8790c5020da1a2bdedc91d7a9603a4e2a07211916735c6c3e266"
+
+  url "https://github.com/chernandezba/zesarux/releases/download/ZEsarUX-#{version}/ZEsarUX_macos-#{arch}-#{version}.dmg"
   name "ZEsarUX"
   desc "ZX machines emulator"
   homepage "https://github.com/chernandezba/zesarux"
@@ -13,14 +16,14 @@ cask "zesarux" do
     strategy :github_latest
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :big_sur
+
   app "ZEsarUX.app"
 
   zap trash: [
     "~/.zesaruxrc",
     "~/Library/Saved Application State/com.cesarhernandez.zesarux.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

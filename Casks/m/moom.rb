@@ -1,6 +1,6 @@
 cask "moom" do
-  version "4.1.3"
-  sha256 "e62b5e86be9f1351b6ea6d54babd3375d56e713da42b18373b5cd16993586ec6"
+  version "4.6.0"
+  sha256 "45217254124fce56c48c84687c9abf78507e84e2df4a860ad3801433357b87e9"
 
   url "https://manytricks.com/download/_do_not_hotlink_/moom#{version.no_dots}.dmg"
   name "Moom"
@@ -14,7 +14,7 @@ cask "moom" do
     url "https://manytricks.com/moom/appcast/"
     regex(/moom[._-]?v?(\d+(?:\.\d+)*)\.dmg/i)
     strategy :sparkle do |item, regex|
-      dotless_short_version = DSL::Version.new(item.short_version).no_dots
+      dotless_short_version = item.short_version.tr(".", "")
       next if dotless_short_version.blank?
 
       file_version = item.url[regex, 1]&.tr(".", "")
@@ -35,7 +35,7 @@ cask "moom" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Moom.app"
 

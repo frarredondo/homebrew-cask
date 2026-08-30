@@ -7,6 +7,9 @@ cask "fauxpas" do
   homepage "http://fauxpasapp.com/"
 
   deprecate! date: "2024-10-12", because: :unmaintained
+  disable! date: "2025-10-12", because: :unmaintained
+
+  depends_on :macos
 
   app "FauxPas.app"
 

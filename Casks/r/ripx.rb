@@ -1,6 +1,6 @@
 cask "ripx" do
-  version "7.5.1"
-  sha256 "d50916d2a066cffcbfb640fa1e6e9e7e4a364ec1f5fcaa9bad400f580ded7442"
+  version "8.0.3"
+  sha256 "c1a24eeda44dba2bc9a740f412bca5a364e5802494af255e4abfc83321b71d30"
 
   url "https://s3.us-east-2.amazonaws.com/downloads.hitnmix.com/RipXDAW_#{version.no_dots}.dmg",
       verified: "s3.us-east-2.amazonaws.com/downloads.hitnmix.com/"
@@ -12,17 +12,23 @@ cask "ripx" do
     url "https://hitnmix.com/changes/"
     regex(/^\s*v?(\d+(?:\.\d+)+)\s+changes(?:\s+\([^)]+?\))?(?:\s*(?:&[^;]+?;|.)?\s*mac(?:OS)?\s+Only)?\s*$/i)
     strategy :page_match do |page, regex|
-      page.scan(%r{<h3[^>]*?>.+?</h3>}i).map do |match|
-        # Remove HTML tags from text to simplify matching
-        match = match.gsub(/<[^>]+?>/, "").match(regex)
-        next if match.blank?
+      page.scan(%r{<h3[^>]*?>(.+?)</h3>}i).map do |match|
+        # Remove HTML tags from text to simplify matching. This iterates a fixed
+        # number of times (more than we should ever need), so we don't have to
+        # worry about an endless loop.
+        text = match[0]
+        previous = nil
+        while text != previous
+          previous = text
+          text = text.gsub(/<[^>]+?>/, "")
+        end
 
-        match[1]
+        text[regex, 1]
       end
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   pkg "RipX DAW.pkg"
 

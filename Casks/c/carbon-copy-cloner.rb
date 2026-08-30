@@ -1,6 +1,6 @@
 cask "carbon-copy-cloner" do
-  version "7.0.4,8082"
-  sha256 "61b6f29aaef669dc70e7707fe1a18acb312d96228d6c8b9d90bdac7b59375be1"
+  version "7.1.6,8368"
+  sha256 "4b3a70ea46ed1edc7013cc5fe0d853837f343ddcf68e4d4e645d4b98076ff248"
 
   url "https://bombich.scdn1.secure.raxcdn.com/software/files/ccc-#{version.csv.first}.#{version.csv.second}.zip",
       verified: "bombich.scdn1.secure.raxcdn.com/software/files/"
@@ -28,11 +28,8 @@ cask "carbon-copy-cloner" do
   end
 
   auto_updates true
-  conflicts_with cask: [
-    "carbon-copy-cloner@5",
-    "carbon-copy-cloner@6",
-  ]
-  depends_on macos: ">= :ventura"
+  conflicts_with cask: "carbon-copy-cloner@6"
+  depends_on macos: :ventura
 
   app "Carbon Copy Cloner.app"
 

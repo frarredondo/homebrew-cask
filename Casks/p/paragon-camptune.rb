@@ -1,5 +1,5 @@
 cask "paragon-camptune" do
-  version "12.0.37"
+  version "12.0.79"
   sha256 :no_check
 
   url "https://dl.paragon-software.com/demo/camptune_demo_#{version.major}.dmg"
@@ -9,12 +9,12 @@ cask "paragon-camptune" do
 
   livecheck do
     url :url
-    strategy :extract_plist do |versions|
-      versions.values.filter_map(&:short_version).first
+    strategy :extract_plist do |items|
+      items["com.paragon-software.camptunex"]&.short_version
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
   depends_on arch: :x86_64
 
   app "Paragon CampTune.app"
@@ -24,7 +24,7 @@ cask "paragon-camptune" do
               "/Library/Application Support/Paragon Software/com.paragon-software.camptunex.helper-data",
               "/Library/Application Support/Paragon Software/uc.camptunex",
             ],
-            rmdir:  "/Library/Application Support/Paragon Software/"
+            rmdir:  "/Library/Application Support/Paragon Software"
 
   zap trash: [
     "~/Library/Application Support/com.paragon-software.camptunex",
@@ -32,8 +32,4 @@ cask "paragon-camptune" do
     "~/Library/Preferences/com.paragon-software.camptunex.plist",
     "~/Library/Saved Application State/com.paragon-software.camptunex.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

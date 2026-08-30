@@ -1,5 +1,5 @@
 cask "batfi" do
-  version "2.3.2"
+  version "3.1.1"
   sha256 :no_check
 
   url "https://files.micropixels.software/batfi/BatFi-latest.zip"
@@ -9,11 +9,13 @@ cask "batfi" do
 
   livecheck do
     url "https://files.micropixels.software/batfi/appcast.xml"
-    strategy :sparkle, &:short_version
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
   depends_on arch: :arm64
 
   app "BatFi.app"

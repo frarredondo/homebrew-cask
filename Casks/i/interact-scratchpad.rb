@@ -9,8 +9,9 @@ cask "interact-scratchpad" do
   homepage "https://docs.getdrafts.com/docs/misc/interact-scratchpad"
 
   deprecate! date: "2024-11-15", because: :discontinued
+  disable! date: "2025-11-15", because: :discontinued
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Interact Scratchpad.app"
 

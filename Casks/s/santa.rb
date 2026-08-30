@@ -1,27 +1,41 @@
 cask "santa" do
-  version "2025.2"
-  sha256 "f66bc5fe463687f281c678a5cb52b5c6e505f2979a5b145f8ad82a6d2b497ef3"
+  version "2026.7"
+  sha256 "8504918fb6c00e23980f4c6d6037db07f4928e424181550d9c16b2a550b893ad"
 
   url "https://github.com/northpolesec/santa/releases/download/#{version}/santa-#{version}.dmg"
   name "Santa"
   desc "Binary authorization system"
   homepage "https://github.com/northpolesec/santa"
 
+  depends_on macos: :ventura
+
   pkg "santa-#{version}.pkg"
 
-  uninstall launchctl: [
+  uninstall early_script: {
+              executable:   "/Applications/Santa.app/Contents/MacOS/Santa",
+              args:         ["--unload-system-extension"],
+              sudo:         true,
+              must_succeed: false,
+            },
+            launchctl:    [
               "com.northpolesec.santa",
               "com.northpolesec.santa.bundleservice",
               "com.northpolesec.santa.metricservice",
               "com.northpolesec.santa.syncservice",
               "com.northpolesec.santad",
             ],
-            kext:      "com.northpolesec.santa-driver",
-            pkgutil:   "com.northpolesec.santa",
-            delete:    [
+            pkgutil:      "com.northpolesec.santa",
+            delete:       [
               "/Applications/Santa.app",
               "/usr/local/bin/santactl",
             ]
 
-  # No zap stanza required
+  zap delete: [
+        "/var/db/santa",
+        "/var/log/santa*",
+      ],
+      trash:  [
+        "/private/etc/asl/com.northpolesec.santa.asl.conf",
+        "/private/etc/newsyslog.d/com.northpolesec.santa.newsyslog.conf",
+      ]
 end

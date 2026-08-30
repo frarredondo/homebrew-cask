@@ -1,12 +1,11 @@
 cask "typinator" do
-  version "9.1"
-  sha256 "9921f35eafaa6d34e0d4a74dc50bf73ee43f12c3a00e36682d27ec22f45d3db6"
+  version "10.2"
+  sha256 "381d0a71931f08de2f588185ae9647d59692389d04735c0835322ed5fb3b9694"
 
-  url "https://www.ergonis.com/downloads/products/typinator/Typinator#{version.no_dots}-Install.dmg",
-      user_agent: :fake
+  url "https://storage.ergonis.com/apps/production/typinator/archive/Typinator_#{version.no_dots}.dmg"
   name "Typinator"
   desc "Tool to automate the insertion of frequently used text and graphics"
-  homepage "https://www.ergonis.com/products/typinator/"
+  homepage "https://ergonis.com/en/typinator/"
 
   livecheck do
     url "https://update.ergonis.com/vck/typinator.xml"
@@ -15,7 +14,7 @@ cask "typinator" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :ventura
 
   app "Typinator.app"
 

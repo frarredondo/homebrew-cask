@@ -1,6 +1,6 @@
 cask "wolfram-engine" do
-  version "14.2.0.0"
-  sha256 "1284cece5384e4c9b44c76b316104c0ffc8f4431b5ec994774d413a85e621763"
+  version "15.0.0.0"
+  sha256 "ca3f0252b0df22d87d139dee1371a2a53be9784106b5974787dd024ef6ef959b"
 
   url "https://files.wolframcdn.com/packages/Homebrew/#{version}/WolframEngine_#{version.major_minor_patch}_MAC.dmg",
       verified: "files.wolframcdn.com/packages/Homebrew/"
@@ -9,12 +9,11 @@ cask "wolfram-engine" do
   homepage "https://www.wolfram.com/engine/"
 
   livecheck do
-    url "https://account.wolfram.com/dl/WolframEngine?platform=Mac"
-    regex(%r{WolframEngine/(\d+(?:\.\d+)+)}i)
-    strategy :header_match
+    url "https://files.wolframcdn.com/packages/Homebrew/latest.txt"
+    regex(/^(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "Wolfram Engine.app"
   binary "#{appdir}/Wolfram Engine.app/Contents/Resources/Wolfram Player.app/Contents/MacOS/wolframscript"

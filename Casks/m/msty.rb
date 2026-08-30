@@ -1,7 +1,7 @@
 cask "msty" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.7.1"
+  version "1.9.2"
   sha256 :no_check
 
   url "https://assets.msty.app/prod/latest/mac/Msty_#{arch}.dmg"
@@ -9,13 +9,10 @@ cask "msty" do
   desc "Run LLMs locally"
   homepage "https://msty.app/"
 
-  livecheck do
-    url "https://assets.msty.app/prod/latest/mac/latest-mac.yml"
-    strategy :electron_builder
-  end
+  deprecate! date: "2026-01-02", because: :discontinued, replacement_cask: "mstystudio"
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Msty.app"
 

@@ -1,8 +1,8 @@
 cask "font-caskaydia-cove-nerd-font" do
-  version "3.3.0"
-  sha256 "045c12b3302989c291f92d0ba3bfcb6d37f633711fb8f22d822acb923bff0c94"
+  version "3.5.1"
+  sha256 "ae598e9401e2846aa3ee364513715de0490b844a4b54f0768991f45f23aa8369"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/CascadiaCode.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/CascadiaCode.tar.xz"
   name "CaskaydiaCove Nerd Font (Cascadia Code)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-caskaydia-cove-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "CaskaydiaCoveNerdFont-Bold.ttf"
   font "CaskaydiaCoveNerdFont-BoldItalic.ttf"

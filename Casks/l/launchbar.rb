@@ -1,6 +1,6 @@
 cask "launchbar" do
-  version "6.20.2"
-  sha256 "00e999aacd7c86274b6805cf6a002adf6bdc0c0a51be1e058a4703777ab07376"
+  version "6.24"
+  sha256 "8f71c28e8ac9d9d283ad7cda1f2f3d89a8b0b12a386b97277b197eb283886d1c"
 
   url "https://www.obdev.at/downloads/launchbar/LaunchBar-#{version}.dmg"
   name "LaunchBar"
@@ -13,7 +13,7 @@ cask "launchbar" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "LaunchBar.app"
 

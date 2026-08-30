@@ -1,8 +1,8 @@
 cask "font-fantasque-sans-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "849a660ce68cfba5b63dd8ee9cf90ed572f50579b8a098c2a2218559e6293fe5"
+  version "3.5.1"
+  sha256 "e7e0d7bd558a4e1cc0b448b8dfc6ae0bb7977683aaab6ddab24761e274d0a3dc"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/FantasqueSansMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/FantasqueSansMono.tar.xz"
   name "FantasqueSansM Nerd Font (Fantasque Sans Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-fantasque-sans-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "FantasqueSansMNerdFont-Bold.ttf"
   font "FantasqueSansMNerdFont-BoldItalic.ttf"

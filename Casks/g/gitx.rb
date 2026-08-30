@@ -1,9 +1,9 @@
 cask "gitx" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "1.0"
-  sha256 arm:   "1c0af5af1beff411a7cafc2b2c93aed43ecdc9e1074b2a87d8c4179429c64313",
-         intel: "e54f303909a7eadcf1a0718e77beb78bb43ca8d5cb7623c01680b6c718f3bab5"
+  version "1.5.5"
+  sha256 arm:   "6ccb18aa3149c590f7eec40fb804e8c42ec1d500ef5ae6123f10b85b0de2cdc5",
+         intel: "5d785243d816136fee89cf0ac785c1ddebb7c3060acdb9976316c0cbe90a5219"
 
   url "https://github.com/gitx/gitx/releases/download/#{version}/GitX-#{arch}.dmg"
   name "GitX"
@@ -15,7 +15,7 @@ cask "gitx" do
     strategy :github_latest
   end
 
-  conflicts_with cask: "rowanj-gitx"
+  depends_on macos: :ventura
 
   app "GitX.app"
   binary "#{appdir}/GitX.app/Contents/Resources/gitx"

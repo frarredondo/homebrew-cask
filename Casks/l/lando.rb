@@ -11,9 +11,11 @@ cask "lando" do
   desc "Local development environment and DevOps tool built on Docker"
   homepage "https://lando.dev/"
 
-  deprecate! date: "2024-09-07", because: "no longer distributing an install package"
+  deprecate! date: "2024-09-07", because: "no longer distributes an install package"
+  disable! date: "2025-09-07", because: "no longer distributes an install package"
 
   conflicts_with cask: "lando@edge"
+  depends_on :macos
   depends_on cask: "docker"
 
   pkg "LandoInstaller.pkg",

@@ -1,6 +1,6 @@
 cask "i1profiler" do
-  version "3.8.4.18193"
-  sha256 "055c9aba8afc431cdbbd3ce0dec1cf768e079f9453b0b9d67143641f9135c691"
+  version "3.8.7.19194"
+  sha256 "350fcaed0d069e555e1877a05a9910c41df65b5af29d9d3ac2407366c342ef63"
 
   url "https://downloads.xrite.com/downloads/software/i1Profiler/#{version.major_minor_patch}/Mac/i1Profiler.zip"
   name "i1Profiler"
@@ -13,6 +13,8 @@ cask "i1profiler" do
     url "https://downloads.xrite.com/downloads/autoupdate/i1profiler_mac_appcast.xml"
     strategy :sparkle
   end
+
+  depends_on :macos
 
   pkg "i1Profiler.pkg"
 

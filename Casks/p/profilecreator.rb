@@ -7,7 +7,9 @@ cask "profilecreator" do
   desc "Create standard or customised configuration profiles"
   homepage "https://github.com/ProfileCreator/ProfileCreator"
 
-  depends_on macos: ">= :big_sur"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :big_sur
 
   app "ProfileCreator.app"
 

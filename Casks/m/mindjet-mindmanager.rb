@@ -1,6 +1,6 @@
 cask "mindjet-mindmanager" do
-  version "24.1.155"
-  sha256 "984641a6620551efdf85066165ac6413d274c5b1a97378e08582c8c13a97fccb"
+  version "25.2.105"
+  sha256 "99034e012d02e6ffd0f92a08e7b351afbe1940d9f8d6a858cec4d6f7a9568d47"
 
   url "https://download.mindjet.com/MindManager_Mac_#{version}.dmg"
   name "Mindmanager"
@@ -13,7 +13,7 @@ cask "mindjet-mindmanager" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "MindManager.app"
 

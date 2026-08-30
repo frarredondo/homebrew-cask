@@ -7,7 +7,7 @@ cask "thumbhost3mf" do
   desc "Finder thumbnail provider for some .gcode, .bgcode and .3mf files"
   homepage "https://github.com/DavidPhillipOster/ThumbHost3mf/"
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "ThumbHost3mf.app"
 

@@ -19,19 +19,11 @@ cask "gitfiend" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "GitFiend.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/gitfiend.wrapper.sh"
-  binary shimscript, target: "gitfiend"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/GitFiend.app/Contents/MacOS/GitFiend' "$@"
-    EOS
-  end
+  command_wrapper "gitfiend",
+                  executable: "#{appdir}/GitFiend.app/Contents/MacOS/GitFiend"
 
   zap trash: [
     "~/Library/Application Support/GitFiend",

@@ -1,63 +1,25 @@
 cask "microsoft-excel" do
-  on_el_capitan :or_older do
-    version "16.16.20101200"
-    sha256 "bdd23b696d54e5ffeb40f30a9bd7f968d2936380ab78a6eaf29d05f5fc8eb78e"
+  on_ventura :or_older do
+    on_big_sur :or_older do
+      version "16.77.23091703"
+      sha256 "582fca32104e828e01c0928e674122f2d8044d84fd2dc1d7964e0a807e2f4695"
+    end
+    on_monterey do
+      version "16.89.24091630"
+      sha256 "81e02698c209b0681999737d9be8f685e12e43c8ceaf7ee2c7a08ad61adc99f7"
+    end
+    on_ventura do
+      version "16.101.25100321"
+      sha256 "251accd3472778f3519c89258fdfe17797fc987935fd57fc5bf7b713eb4d0915"
+    end
 
     livecheck do
       skip "Legacy version"
     end
   end
-  on_sierra do
-    version "16.30.19101301"
-    sha256 "9886b661067f4a99de544d140980fb0f8ef2f4871baa519024781fb814a02fe5"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_high_sierra do
-    version "16.43.20110804"
-    sha256 "2711a1b8864f7474458086b4b0a56673fee0097d2049f276788c50e004c47d72"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_mojave do
-    version "16.54.21101001"
-    sha256 "e09fe9f49a36b37af3745673a385be4de9ae8ec774965fd1753f8479a775fc54"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_catalina do
-    version "16.66.22101101"
-    sha256 "94148628c6f143f07555b3d2a70cea61cef817d963539d281b092834496f8f16"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_big_sur do
-    version "16.77.23091703"
-    sha256 "582fca32104e828e01c0928e674122f2d8044d84fd2dc1d7964e0a807e2f4695"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_monterey do
-    version "16.89.24091630"
-    sha256 "81e02698c209b0681999737d9be8f685e12e43c8ceaf7ee2c7a08ad61adc99f7"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_ventura :or_newer do
-    version "16.94.25020927"
-    sha256 "7ba1fd596243a955975a111242877cc5c5a08fb184fe40db9ed7a5aad6923d27"
+  on_sonoma :or_newer do
+    version "16.112.26082125"
+    sha256 "62aa6fb517d3f201ffb8c26694dbca181fc001a19dd6cef2210c2dc062c73e7a"
 
     livecheck do
       url "https://go.microsoft.com/fwlink/p/?linkid=525135"
@@ -65,7 +27,8 @@ cask "microsoft-excel" do
     end
   end
 
-  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_#{version}_Installer.pkg"
+  url "https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_#{version}_Installer.pkg",
+      verified: "res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/"
   name "Microsoft Excel"
   desc "Spreadsheet software"
   homepage "https://www.microsoft.com/en-US/microsoft-365/excel"
@@ -75,7 +38,7 @@ cask "microsoft-excel" do
     "microsoft-office",
     "microsoft-office-businesspro",
   ]
-  depends_on cask: "microsoft-auto-update"
+  depends_on :macos
 
   pkg "Microsoft_Excel_#{version}_Installer.pkg",
       choices: [

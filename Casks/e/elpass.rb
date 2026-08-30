@@ -1,6 +1,6 @@
 cask "elpass" do
-  version "1.5.7,503"
-  sha256 "501c5667c4875a7a019a0cc640462833b4417fdaf4f8cc49f5fe3ea4891179f7"
+  version "2.0.0,529"
+  sha256 "936f4a3ec8151931169d3a242485510d9e7e10802851a805ebf25c1b3a11d326"
 
   url "https://elpass.app/macos/Elpass-#{version.csv.first}-#{version.csv.second}.zip"
   name "Elpass"
@@ -12,7 +12,7 @@ cask "elpass" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :monterey
 
   app "Elpass.app"
 

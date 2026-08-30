@@ -1,27 +1,44 @@
 cask "aerial" do
-  version "3.5.1"
-  sha256 "69b44915c9ec2685a44ab42e4a472f0859699ba1a084b91654fa52742074e082"
+  version "4.0.16"
+  sha256 "33a6b4008b9e4b6271daf0d450363fdbddb452fd3836ff81966ba5fa80ccbfe9"
 
-  url "https://github.com/JohnCoates/Aerial/releases/download/v#{version}/Aerial.saver.zip",
-      verified: "github.com/JohnCoates/Aerial/"
-  name "Aerial Screensaver"
+  url "https://github.com/AerialScreensaver/Aerial/releases/download/v#{version}/Aerial-#{version}.zip",
+      verified: "github.com/AerialScreensaver/Aerial/"
+  name "Aerial"
   desc "Apple TV Aerial screensaver"
   homepage "https://aerialscreensaver.github.io/"
 
-  conflicts_with cask: "aerial@beta"
-  depends_on macos: ">= :sierra"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
-  screen_saver "Aerial.saver"
+  auto_updates true
+  conflicts_with cask: "aerial@beta"
+  depends_on macos: :sequoia
+
+  app "Aerial.app"
+
+  uninstall quit: "com.glouel.Aerial-App"
 
   zap trash: [
+    "/Users/Shared/Aerial",
+    "~/Library/Application Scripts/com.glouel.Aerial-App.AerialScreenSaverExtension",
     "~/Library/Application Support/Aerial",
-    "~/Library/Caches/Aerial",
+    "~/Library/Caches/com.glouel.Aerial-App",
     "~/Library/Containers/com.apple.ScreenSaver.Engine.legacyScreenSaver.x86-64/Data/Library/Application Support/Aerial",
     "~/Library/Containers/com.apple.ScreenSaver.Engine.legacyScreenSaver.x86-64/Data/Library/Caches/Aerial",
     "~/Library/Containers/com.apple.ScreenSaver.Engine.legacyScreenSaver/Data/Library/Application Support/Aerial",
     "~/Library/Containers/com.apple.ScreenSaver.Engine.legacyScreenSaver/Data/Library/Caches/Aerial",
     "~/Library/Containers/com.apple.ScreenSaver.Engine.legacyScreenSaver/Data/Library/Preferences/ByHost/com.JohnCoates.Aerial*.plist",
+    "~/Library/Containers/com.glouel.Aerial-App",
+    "~/Library/Containers/com.glouel.Aerial-App.AerialScreenSaverExtension",
+    "~/Library/Containers/com.glouel.Aerial-App.ScreenSaverExtension",
+    "~/Library/HTTPStorages/com.glouel.Aerial-App",
+    "~/Library/Logs/Aerial",
     "~/Library/Preferences/ByHost/com.JohnCoates.Aerial*",
+    "~/Library/Preferences/com.glouel.Aerial-App.plist",
+    "~/Library/Saved Application State/com.glouel.Aerial-App.savedState",
     "~/Library/Screen Savers/Aerial.saver",
   ]
 end

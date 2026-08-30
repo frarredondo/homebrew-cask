@@ -1,6 +1,6 @@
 cask "mweb-pro" do
-  version "4.6.9"
-  sha256 "2d64fd951bc084cdb13ecfaa30cd71125bf2bc9a78cd7117f783c955b5076b29"
+  version "4.8.2"
+  sha256 "e74ebb43dc51f456a3ba3aeb86df0ef2107993871c120f4df2da7850594aca3e"
 
   url "https://cdn.mwebapp.cn/MWebPro#{version.no_dots}.dmg",
       verified: "cdn.mwebapp.cn/"
@@ -15,7 +15,7 @@ cask "mweb-pro" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "MWeb Pro.app"
 

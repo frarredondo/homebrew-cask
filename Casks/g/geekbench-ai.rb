@@ -1,21 +1,22 @@
 cask "geekbench-ai" do
-  version "1.2.0"
-  sha256 "58da9d79488b2b8ca5edfbf057a5ed4a8f0672624208e920862fb85c57a4a82b"
+  version "1.7.0"
+  sha256 "04248377f5a6a9a268f8b84b9834f30b756943a352976e1414c6be1df932dc19"
 
   url "https://cdn.geekbench.com/GeekbenchAI-#{version}-Mac.zip"
   name "Geekbench AI"
   desc "Cross-platform AI benchmark to evaluate AI workload performance"
   homepage "https://www.geekbench.com/ai/"
 
-  # Upstream's appcast feed is not populated but may be able to be used in the future
-  # url "https://www.primatelabs.com/appcast/geekbenchai.xml"
-  # strategy :sparkle, &:short_version
+  # The Sparkle feed does not list items within a channel element, so it's
+  # necessary to parse it using the `xml` strategy.
   livecheck do
-    url "https://www.geekbench.com/ai/download/mac/"
-    regex(/href=.*?GeekbenchAI[._-]v?(\d+(?:\.\d+)+)[._-]Mac\.zip/i)
+    url "https://www.primatelabs.com/appcast/geekbenchai.xml"
+    strategy :xml do |xml|
+      xml.get_elements("//item/enclosure").map { |item| item.attributes["shortVersionString"] }
+    end
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Geekbench AI.app"
 

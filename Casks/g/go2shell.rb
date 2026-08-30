@@ -7,10 +7,10 @@ cask "go2shell" do
   desc "Opens a terminal window to the current directory in Finder"
   homepage "https://zipzapmac.com/go2shell"
 
-  livecheck do
-    url "http://appcast.zipzapmac.com/go2shell.xml"
-    strategy :sparkle, &:short_version
-  end
+  deprecate! date: "2025-03-30", because: :unmaintained
+  disable! date: "2026-03-30", because: :unmaintained
+
+  depends_on :macos
 
   app "Go2Shell.app"
 

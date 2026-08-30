@@ -1,6 +1,6 @@
 cask "openaudible" do
-  version "4.5.2"
-  sha256 "e8b9b2e63a8c199493ad0d8fbca699015a48b8b1722f435899289997d60d6dc6"
+  version "4.8.8"
+  sha256 "a9197f15293e9fac29a4ace0412423d24ff63ad411a54ef7da3d901f83990acc"
 
   url "https://github.com/openaudible/openaudible/releases/download/v#{version}/OpenAudible_#{version}.dmg",
       verified: "github.com/openaudible/openaudible/"
@@ -12,6 +12,8 @@ cask "openaudible" do
     url :url
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "OpenAudible.app"
 

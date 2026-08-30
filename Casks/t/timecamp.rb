@@ -1,6 +1,6 @@
 cask "timecamp" do
-  version "1.8.0.0"
-  sha256 "4989d37fc2805d67245111ec725bc0a69e2b5af2b39895fc296ed439e74e6dfa"
+  version "1.8.4.0"
+  sha256 "93005f0778689dcd5a40e8c6b928177037fbcfa811d7aaa30bf2a91827f8ec52"
 
   url "https://timecamp.s3.amazonaws.com/downloadsoft/#{version}/TimeCampSetup_macOS.dmg",
       verified: "timecamp.s3.amazonaws.com/"
@@ -13,11 +13,9 @@ cask "timecamp" do
     strategy :header_match
   end
 
+  depends_on :macos
+
   app "TimeCamp.app"
 
   zap rmdir: "~/Library/Application Support/TimeCamp"
-
-  caveats do
-    requires_rosetta
-  end
 end

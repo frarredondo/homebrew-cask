@@ -1,5 +1,5 @@
 cask "sirimote" do
-  version "1.4.5"
+  version "1.4.6"
   sha256 :no_check
 
   url "https://eternalstorms.at/sirimote/SiriMote.zip"
@@ -12,7 +12,7 @@ cask "sirimote" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "SiriMote.app"
 

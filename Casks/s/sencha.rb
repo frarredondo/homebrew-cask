@@ -1,8 +1,8 @@
 cask "sencha" do
-  version "7.8.0.59"
-  sha256 "28b8f10473fb8f444a265fef74e63d07debe79f64c1e0d73c36e7744937392e2"
+  version "8.0.0.48"
+  sha256 "f5c218ae530fa448ccf20a1e8678c2e886d59c0b4a956ba455099817105c9388"
 
-  url "https://trials.sencha.com/cmd/#{version.major_minor_patch}/SenchaCmd-#{version}-osx.app.zip"
+  url "https://trials.sencha.com/cmd/#{version.major_minor_patch}/jre/SenchaCmd-#{version}-osx.app.zip"
   name "Sencha Cmd"
   desc "Productivity and performance optimisation tool for Sencha Ext JS"
   homepage "https://www.sencha.com/products/sencha-cmd/"
@@ -11,13 +11,15 @@ cask "sencha" do
     skip "No reliable way to get version info"
   end
 
+  depends_on :macos
+
   installer script: {
     executable: "SenchaCmd-#{version}-osx.app/Contents/MacOS/JavaApplicationStub",
     args:       ["-Djava.awt.headless=true", "-q", "-dir", "/opt/Sencha/Cmd/#{version}"],
     sudo:       true,
   }
 
-  postflight do
+  postflight_steps do
     set_ownership "/opt/Sencha"
   end
 

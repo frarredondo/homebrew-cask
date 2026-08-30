@@ -1,6 +1,6 @@
 cask "clop" do
-  version "2.9.1"
-  sha256 "2a9778fbb3f8a785b8de9cc08d5d5b05a5aff3457c962f933f20050b26f94d4c"
+  version "3.3.6"
+  sha256 "1b1de1ff36a7566e988591b25f2afa4a1d0f53bf8c82eddf7b651923a0536334"
 
   url "https://files.lowtechguys.com/releases/Clop-#{version}.dmg"
   name "Clop"
@@ -9,11 +9,13 @@ cask "clop" do
 
   livecheck do
     url "https://files.lowtechguys.com/clop/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Clop.app"
 

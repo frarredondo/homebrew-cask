@@ -1,19 +1,22 @@
 cask "jumpcloud-password-manager" do
-  version "3.0.149"
-  sha256 "cff8776dc0396ebd32d2de53f0b364e028f2ffcd4a88645f6eb2d6701950cbcb"
+  arch arm: "arm64/"
 
-  url "https://cdn.pwm.jumpcloud.com/DA/release/JumpCloud-Password-Manager-#{version}.dmg"
+  version "3.3.49"
+  sha256 arm:   "69934cda2d3245d2d53288ab3051cc3935ed57dc653e8e6ddf1a80a32ea00d00",
+         intel: "d035c0b572857d645d13e95dceceba1adc7a2e54d49f8fb4df6292c5bf0aee55"
+
+  url "https://cdn.pwm.jumpcloud.com/DA/release/#{arch}JumpCloud-Password-Manager-#{version}.dmg"
   name "JumpCloud Password Manager"
   desc "Password management tool that provides authentication, sharing and credentials"
   homepage "https://cdn.pwm.jumpcloud.com/web/download.html#desktop"
 
   livecheck do
-    url "https://cdn.pwm.jumpcloud.com/DA/release/latest-mac.yml"
+    url "https://cdn.pwm.jumpcloud.com/DA/release/#{arch}latest-mac.yml"
     strategy :electron_builder
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "JumpCloud Password Manager.app"
 
@@ -22,8 +25,4 @@ cask "jumpcloud-password-manager" do
     "~/Library/Preferences/com.jumpcloud.pwm.desktop.live.plist",
     "~/Library/Saved Application State/com.jumpcloud.pwm.desktop.live.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

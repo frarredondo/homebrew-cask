@@ -1,9 +1,9 @@
 cask "mcreator" do
   arch arm: "aarch64", intel: "64bit"
 
-  version "2024.4.52410"
-  sha256 arm:   "852491c53dd8bf3eb0163610f74496945e74ab7a776f807a25f8d9a22961231e",
-         intel: "70fdb05425586d89418ab5a9aa79722e2d40ffd455d55e8c5c2354bf95a5930a"
+  version "2026.2.33518"
+  sha256 arm:   "e4750f18a4a0b3f26cdf10e5fae338b373acdcb1e8b6906db5bbae37ee328c62",
+         intel: "58b1d9ad9bfa356ddfab139f92c749227dab235195c10dce0e355878c61a7c77"
 
   url "https://github.com/MCreator/MCreator/releases/download/#{version}/MCreator.#{version.major_minor}.Mac.#{arch}.dmg",
       verified: "github.com/MCreator/MCreator/"
@@ -16,9 +16,11 @@ cask "mcreator" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "MCreator.app"
+
+  uninstall quit: "net.mcreator"
 
   zap trash: "~/.mcreator"
 end

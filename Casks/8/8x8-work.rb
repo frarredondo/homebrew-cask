@@ -1,23 +1,28 @@
 cask "8x8-work" do
   arch arm: "-arm64"
 
-  version "8.20.2-12"
-  sha256 arm:   "59b82274e1fe47de4663a75c49692736f199202fddf0262a80339a81905c09fd",
-         intel: "9cf69cd2683ee8d8d1e4d6de32eab81bf29da9070c20054f7747ddfdc1bcd9ad"
+  version "8.36.2-3"
+  sha256 arm:   "2cf54acde15ac58740db4baf8a474b601707023816d3637a616df203092d24a1",
+         intel: "ae5da045ddf28cd9f99e459dcc18033f9bc055c9f8c35ede1b65f63671bb5e7e"
 
   url "https://work-desktop-assets.8x8.com/prod-publish/ga/work#{arch}-dmg-v#{version}.dmg"
   name "8x8_work"
   desc "Communications application with voice, video, chat, and web conferencing"
-  homepage "https://www.8x8.com/products/apps"
+  homepage "https://docs.8x8.com/8x8WebHelp/8x8-work-for-desktop/Content/workd/about-the-app.htm"
 
   livecheck do
-    url "https://support-portal.8x8.com/helpcenter/docrenderservice/services/rest/documents/8bff4970-6fbf-4daf-842d-8ae9b533153d"
-    regex(/work[._-]dmg[._-]v(\d+(?:[.-]\d+)+)\.dmg/i)
+    url "https://help.8x8.com/docs/download-8x8-work-for-desktop"
+    regex(/href=.*?work#{arch}[._-]dmg[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "8x8 Work.app"
 
-  zap trash: "~/Library/Application Support/8x8 Work"
+  zap trash: [
+    "~/Library/Application Support/8x8 Work",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.electron.8x8---virtual-office.sfl*",
+    "~/Library/Logs/8x8 Work",
+    "~/Library/Preferences/com.electron.8x8---virtual-office.plist",
+  ]
 end

@@ -1,9 +1,9 @@
 cask "proclaim" do
   arch arm: "-arm"
 
-  version "4.9.0.0204"
-  sha256 arm:   "a5d79999c76d76fd2d0c2d0f1ca0db2c970cb15f2e4cedbfa64a826fb7a525a5",
-         intel: "ca60fe2d8f3be5f8ca8710e33f7c395d1d2e86494a95a5d34595ab96a83c9da8"
+  version "4.20.0.0126"
+  sha256 arm:   "2c7673bd31c0a3a3df9a4d32ae36f823a98114736f1e765227c606ef3b5a6f17",
+         intel: "afac1c2625724d21520929ff5bb8d8d13c416ff90d49bf3bcf2539a31c3af501"
 
   url "https://downloads.logoscdn.com/Proclaim/Installer/#{version}/Proclaim#{arch}.dmg",
       verified: "logoscdn.com/Proclaim/"
@@ -19,7 +19,7 @@ cask "proclaim" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Proclaim.app"
 

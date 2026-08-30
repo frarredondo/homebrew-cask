@@ -12,7 +12,8 @@ cask "adze" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :sierra"
+  auto_updates true
+  depends_on :macos
 
   app "Adze.app"
 

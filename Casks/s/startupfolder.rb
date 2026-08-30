@@ -1,6 +1,6 @@
 cask "startupfolder" do
-  version "1.1.4"
-  sha256 "6fe9593d29d6b43cbc15bb641401df1406b7f7884eb9f34ac1eb76b77e66e5ef"
+  version "1.2.1"
+  sha256 "e76683b8e4332a5c928f4ea69436bd6e0f1b101a7073267faf7bfb7e6575c96f"
 
   url "https://files.lowtechguys.com/releases/StartupFolder-#{version}.dmg"
   name "Startup Folder"
@@ -9,20 +9,25 @@ cask "startupfolder" do
 
   livecheck do
     url "https://files.lowtechguys.com/startupfolder/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "StartupFolder.app"
 
   uninstall launchctl:  "com.lowtechguys.StartupFolder",
             quit:       "com.lowtechguys.StartupFolder",
-            login_item: ["com.lowtechguys.StartupFolder", "StartupFolder.app"]
+            login_item: [
+              "com.lowtechguys.StartupFolder",
+              "StartupFolder.app",
+            ]
 
   zap trash: [
-        "~/Library/Caches/startup-folder-favicons/",
+        "~/Library/Caches/startup-folder-favicons",
         "~/Library/HTTPStorages/com.lowtechguys.StartupFolder",
         "~/Library/Preferences/com.lowtechguys.StartupFolder.plist",
         "~/Library/Saved Application State/com.lowtechguys.StartupFolder.savedState",

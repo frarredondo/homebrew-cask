@@ -1,6 +1,6 @@
 cask "sqlpro-for-postgres" do
-  version "2024.21"
-  sha256 "93ebee3997fe8b93c7485025508bd1ab3c576f4b194373325382ec1072c94f25"
+  version "2026.238"
+  sha256 "e5be77915d27dee0d6ac7d5fcc33f9143daf1a06d6cf8656ffe5b3e722dcc053"
 
   url "https://d3fwkemdw8spx3.cloudfront.net/postgres/SQLProPostgres.#{version}.app.zip",
       verified: "d3fwkemdw8spx3.cloudfront.net/postgres/"
@@ -13,7 +13,7 @@ cask "sqlpro-for-postgres" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :sonoma
 
   app "SQLPro for Postgres.app"
 

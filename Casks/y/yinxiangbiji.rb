@@ -1,6 +1,6 @@
 cask "yinxiangbiji" do
-  version "9.7.28_476952"
-  sha256 "74d444d044b6a21f81bcbd03411a9df510d8c582626c44e23594ddef4a486a2a"
+  version "9.8.5_478686"
+  sha256 "fd9f9f85e087109f81e11dddb14cf1cd80bb475e643c4c8fd30b40ffb9e6f6fe"
 
   url "https://cdn.yinxiang.com/mac-smd/public/YinxiangBiji_RELEASE_#{version}.zip"
   name "Evernote"
@@ -15,14 +15,15 @@ cask "yinxiangbiji" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: :monterey
 
   app "印象笔记.app"
 
-  uninstall quit: [
-    "com.yinxiang.Mac",
-    "com.yinxiang.MacHelper",
-  ]
+  uninstall launchctl: "com.yinxiang.Mac.XPCService",
+            quit:      [
+              "com.yinxiang.Mac",
+              "com.yinxiang.MacHelper",
+            ]
 
   zap trash: [
     "~/Library/Application Support/com.yinxiang.Mac",

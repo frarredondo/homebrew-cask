@@ -14,7 +14,7 @@ cask "istat-menus@6" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "iStat Menus.app"
 

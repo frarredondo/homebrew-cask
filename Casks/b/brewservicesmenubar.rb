@@ -7,6 +7,10 @@ cask "brewservicesmenubar" do
   desc "Menu item for starting and stopping homebrew services"
   homepage "https://github.com/andrewn/brew-services-menubar"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "BrewServicesMenubar.app"
 
   uninstall quit: "andrewnicolaou.BrewServicesMenubar"

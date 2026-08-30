@@ -1,6 +1,6 @@
 cask "icab" do
-  version "6.3"
-  sha256 "33d2053a1cc5210ee0991bf392171bc6e64c92e81ea4ca2f51585a32ac5459f0"
+  version "6.3.7"
+  sha256 "47b02c95b27f3a78659212f80f60edbe78d4bc938b43cdcfad97efb4cd625e29"
 
   url "https://icab.clauss-net.de/icab/iCab_#{version}.zip",
       verified: "icab.clauss-net.de/icab/"
@@ -13,7 +13,7 @@ cask "icab" do
     regex(/iCab\sv?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "iCab #{version}/iCab.app"
 

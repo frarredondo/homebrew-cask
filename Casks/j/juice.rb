@@ -7,7 +7,7 @@ cask "juice" do
   desc "Make your battery information a bit more interesting"
   homepage "https://github.com/brianmichel/Juice"
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Juice.app"
 
@@ -15,4 +15,8 @@ cask "juice" do
     "~/Library/Containers/com.bsm.macos.Juice",
     "~/Library/Containers/com.bsm.macos.JuiceHelper",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

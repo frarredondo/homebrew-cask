@@ -1,9 +1,9 @@
 cask "syncovery" do
   arch arm: "-Apple"
 
-  version "10.16.15"
-  sha256 arm:   "858f9e17976a34a13e7d46686b5fd5cd2388e9401725b138fb8cfa1269b8426c",
-         intel: "7468e690df1fcb12e556377a98e55132fa105c1a55041a331a664df7b74cb4a3"
+  version "12.5.1"
+  sha256 arm:   "3bf888150b2b959ff230ccc5214486b79a8f81f87ac5af01cffcb61ddc7ef88a",
+         intel: "35052bca60cc6d47679b4e859c3d87116c0e8d6547dbe4632290e0fe3cb41df4"
 
   url "https://www.syncovery.com/release/SyncoveryMac#{version}#{arch}.dmg"
   name "Syncovery"
@@ -15,9 +15,12 @@ cask "syncovery" do
     regex(%r{href=.*?/SyncoveryMac[._-]?v?(\d+(?:\.\d+)+[a-z]?)#{arch}\.dmg}i)
   end
 
+  depends_on :macos
+
   pkg "SyncoveryMac (double-click to install).pkg"
 
-  uninstall pkgutil: "com.company.Syncovery*"
+  uninstall pkgutil: "com.company.Syncovery*",
+            delete:  "/Applications/Syncovery.app"
 
   zap trash: [
     "~/Library/Application Support/Syncovery",

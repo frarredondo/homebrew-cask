@@ -1,9 +1,9 @@
 cask "termora" do
   arch arm: "aarch64", intel: "x86-64"
 
-  version "1.0.10"
-  sha256 arm:   "0df0ab98e178cbd689edb9c42c9ad06df96ac09603d6b1235605aba271b4fb23",
-         intel: "ad67898db22c704c37fadfcfb9a68c546fe268b233bf1b49cfe68a11873fc476"
+  version "1.0.17"
+  sha256 arm:   "d17af308c269e49b353059ce879bf6a242df6e322241f819d3908363e77f1479",
+         intel: "01b509e180d6677a96711170812b8d4d8701ff9f6a68382a2b7063392f2319de"
 
   url "https://github.com/TermoraDev/termora/releases/download/#{version}/termora-#{version}-osx-#{arch}.dmg"
   name "Termora"
@@ -11,7 +11,7 @@ cask "termora" do
   homepage "https://github.com/TermoraDev/termora"
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Termora.app"
 

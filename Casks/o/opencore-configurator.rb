@@ -1,5 +1,5 @@
 cask "opencore-configurator" do
-  version "2.77.1.0"
+  version "2.78.2.0"
   sha256 :no_check
 
   url "https://mackie100projects.altervista.org/apps/opencoreconf/download-new-build.php?version=last",
@@ -13,7 +13,10 @@ cask "opencore-configurator" do
     strategy :sparkle
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
+  depends_on :macos
 
   app "OpenCore Configurator.app"
 

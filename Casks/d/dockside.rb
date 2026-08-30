@@ -1,6 +1,6 @@
 cask "dockside" do
-  version "1.9.48"
-  sha256 "5a5b3c4925b6c7c73b7328ebb40674774da02bdca2a76aed34d08189efe98d95"
+  version "2.9.28"
+  sha256 "195c2701288686cb1ec408aaa347156c10096e7ad5a2f1cc1b3ef70f6f4d3ca9"
 
   url "https://github.com/PrajwalSD/Dockside/releases/download/v#{version}/Dockside.dmg",
       verified: "github.com/PrajwalSD/Dockside/"
@@ -14,9 +14,17 @@ cask "dockside" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Dockside.app"
 
-  zap trash: "~/Library/Preferences/com.hachipoo.Dockside.plist"
+  zap trash: [
+    "~/Library/Application Scripts/8T2DC9NRXS.group.com.hachipoo.Dockside",
+    "~/Library/Application Scripts/com.hachipoo.Dockside.Dockside*",
+    "~/Library/Caches/com.hachipoo.Dockside",
+    "~/Library/Containers/com.hachipoo.Dockside.Dockside*",
+    "~/Library/Group Containers/8T2DC9NRXS.group.com.hachipoo.Dockside",
+    "~/Library/HTTPStorages/com.hachipoo.Dockside",
+    "~/Library/Preferences/com.hachipoo.Dockside.plist",
+  ]
 end

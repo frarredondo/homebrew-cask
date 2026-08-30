@@ -1,6 +1,6 @@
 cask "banktivity" do
-  version "9.5.8,306"
-  sha256 "c9b3f2323175a175e12a9899cbf0c62f402a099b02fe4754a370d9be4997845d"
+  version "10.0.6,427"
+  sha256 "e78c3080cbbf32b216e013e41e2cedb4f1db16c160cc6c0c10159266b78a67c6"
 
   url "https://www.iggsoft.com/banktivity/Banktivity#{version.csv.first}-#{version.csv.second}.dmg",
       verified: "iggsoft.com/banktivity/"
@@ -17,7 +17,7 @@ cask "banktivity" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Banktivity.app"
 

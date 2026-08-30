@@ -1,6 +1,6 @@
 cask "ente-auth" do
-  version "4.3.2"
-  sha256 "7d2a2b67f2b8bcbc591925f40d51c599afccab7be330bc04ae29f8cfab258b72"
+  version "4.4.25"
+  sha256 "a1a2f979feb28d4b1cf210190ed0e2efe22cbbb42edc2c22545fd244567049c0"
 
   url "https://github.com/ente-io/ente/releases/download/auth-v#{version}/ente-auth-v#{version}.dmg",
       verified: "github.com/ente-io/ente/"
@@ -14,7 +14,7 @@ cask "ente-auth" do
     strategy :github_releases
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Ente Auth.app"
 

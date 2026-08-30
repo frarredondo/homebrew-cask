@@ -1,7 +1,7 @@
 cask "touch-portal" do
   arch arm: "M1"
 
-  version "4.4,1"
+  version "4.6,2"
   sha256 :no_check
 
   url "https://www.touch-portal.com/downloads/releases/mac/TouchPortalMacRelease#{arch}.dmg"
@@ -17,7 +17,7 @@ cask "touch-portal" do
     end
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "TouchPortal.app"
 

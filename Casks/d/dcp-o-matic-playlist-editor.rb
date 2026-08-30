@@ -1,8 +1,8 @@
 cask "dcp-o-matic-playlist-editor" do
-  version "2.18.12"
-  sha256 "7727e362ba2399a2f0d749d805f4f06f05b102c91c6a1d9e6e378a11feceeff0"
+  version "2.19.1"
+  sha256 "2db4b12f3866b05b19d6e6a798cabaaa02a32538434df752f94a750da516d5f9"
 
-  url "https://dcpomatic.com/dl.php?id=osx-10.10-playlist&version=#{version}"
+  url "https://download.dcpomatic.com/dl.php?id=osx-10.10-playlist&version=#{version}"
   name "DCP-o-matic Playlist Editor"
   desc "Convert video, audio and subtitles into DCP (Digital Cinema Package)"
   homepage "https://dcpomatic.com/"
@@ -11,7 +11,9 @@ cask "dcp-o-matic-playlist-editor" do
     cask "dcp-o-matic"
   end
 
+  depends_on macos: :big_sur
+
   app "DCP-o-matic #{version.major} Playlist Editor.app"
 
-  # No zap stanza required
+  zap trash: "~/Library/Preferences/com.dcpomatic.playlist.plist"
 end

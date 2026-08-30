@@ -3,7 +3,7 @@ cask "wings3d" do
 
   on_arm do
     version "2.4.1"
-    sha256  "95b301f81166c2fe2f90b4299045f57264731ec6f2ee8e24e3d31fa143430fd8"
+    sha256 "95b301f81166c2fe2f90b4299045f57264731ec6f2ee8e24e3d31fa143430fd8"
   end
   on_intel do
     version "2.3"
@@ -20,6 +20,10 @@ cask "wings3d" do
     url :url
     regex(/url=.*?wings[._-]v?(\d+(?:\.\d+)+)[._-]macos[._-]#{arch}\.dmg/i)
   end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Wings3D.app"
 

@@ -1,5 +1,5 @@
 cask "activedock" do
-  version "2.601"
+  version "2.881"
   sha256 :no_check
 
   url "https://macplus-software.com/downloads/ActiveDock.zip",
@@ -13,12 +13,14 @@ cask "activedock" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on macos: :sonoma
 
   app "ActiveDock #{version.major}.app"
 
   zap trash: [
     "~/Library/Application Support/ActiveDock #{version.major}",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.sergey-gerasimenko.activedock-#{version.major}.sfl*",
     "~/Library/Application Support/com.sergey-gerasimenko.ActiveDock-#{version.major}",
     "~/Library/Caches/com.sergey-gerasimenko.ActiveDock-#{version.major}",
     "~/Library/HTTPStorages/com.sergey-gerasimenko.ActiveDock-#{version.major}",

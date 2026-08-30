@@ -1,9 +1,8 @@
 cask "mints" do
-  version "1.20,2024.11"
-  sha256 "244671bda59a5ae3d8f232e6dfb093c81aa70caa3efd20b2928124a3015835d1"
+  version "1.22,2026.07"
+  sha256 "9c6e7485e6f563a1913b457ed4b830f3dcc953a283edb2088e611e63658243b8"
 
-  url "https://eclecticlightdotcom.files.wordpress.com/#{version.csv.second.major}/#{version.csv.second.minor}/mints#{version.csv.first.no_dots}.zip",
-      verified: "eclecticlightdotcom.files.wordpress.com/"
+  url "https://eclecticlight.co/wp-content/uploads/#{version.csv.second.major}/#{version.csv.second.minor}/mints#{version.csv.first.no_dots}.zip"
   name "Mints"
   desc "Logging tool suite"
   homepage "https://eclecticlight.co/mints-a-multifunction-utility/"
@@ -24,7 +23,7 @@ cask "mints" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "mints#{version.csv.first.no_dots}/Mints.app"
 

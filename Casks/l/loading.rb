@@ -12,7 +12,14 @@ cask "loading" do
     strategy :sparkle, &:short_version
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "Loading.app"
 
-  zap trash: "~/Library/Preferences/com.bonzaiapps.loading.plist"
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bonzaiapps.loading.sfl*",
+    "~/Library/HTTPStorages/com.bonzaiapps.loading",
+    "~/Library/Preferences/com.bonzaiapps.loading.plist",
+  ]
 end

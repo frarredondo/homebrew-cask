@@ -1,20 +1,31 @@
 cask "jamie" do
-  arch arm: "-arm64"
+  version "5.7.13"
+  sha256 "f5160ea2807d12c76dc59d461ad140f4d1922f1bd408454dd39be7dde5c12195"
 
-  version "4.2.5"
-  sha256 arm:   "0dfc2e08cc7c4d870e5cbc67dd812e2229867b0621d9ba5907c7f8c94e369d03",
-         intel: "9c55b9f1462be4c3babd5309aa5ccba4640631ec9a98c281585bc3622c89d841"
-
-  url "https://github.com/louismorgner/jamie-release/releases/download/v#{version}/jamie-#{version}#{arch}.dmg",
-      verified: "github.com/louismorgner/jamie-release/"
+  url "https://github.com/meetjamie/releases/releases/download/app-v#{version}/Jamie_#{version}_universal.app.tar.gz",
+      verified: "github.com/meetjamie/releases/"
   name "Jamie"
   desc "AI-powered meeting notes"
-  homepage "https://meetjamie.ai/"
+  homepage "https://www.meetjamie.ai/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
-  app "jamie.app"
+  app "Jamie.app"
 
-  zap trash: "~/Library/Application Support/jamie"
+  uninstall launchctl: "Jamie"
+
+  zap trash: [
+    "~/Library/Application Support/com.jamie.app",
+    "~/Library/Application Support/jamie",
+    "~/Library/Caches/com.jamie.app",
+    "~/Library/HTTPStorages/com.jamie.app.binarycookies",
+    "~/Library/LaunchAgents/Jamie.plist",
+    "~/Library/WebKit/com.jamie.app",
+  ]
 end

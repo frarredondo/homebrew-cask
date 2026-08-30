@@ -1,6 +1,6 @@
 cask "mellel" do
-  version "6.3.0,63005"
-  sha256 "7846609ae4e8bded2d9ec3d66aa897ff44007423e12c3948908183f4966da74e"
+  version "6.7.1,67102"
+  sha256 "c29a8f555a43b504fa4ecbfa186cfa526ac29a1f1a67a6b25d48014f4af7400d"
 
   url "https://d1riogbqt3a9uw.cloudfront.net/mellel_#{version.csv.second}.dmg",
       verified: "d1riogbqt3a9uw.cloudfront.net/"
@@ -22,12 +22,13 @@ cask "mellel" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Mellel #{version.major}.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.redlex.mellel",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.redlex.mellel#{version.major}.sfl*",
     "~/Library/Application Support/com.redlex.mellel#{version.major}",
     "~/Library/Application Support/Mellel #{version.major}",
     "~/Library/Caches/com.redlex.mellel#{version.major}",

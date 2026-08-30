@@ -1,20 +1,11 @@
 cask "eddie" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.24.6"
+  version "2.26.2"
+  sha256 arm:   "783d5180c3d0c30524e4faf87e83e44ec20d293a1c3292eb222f52cb6c47f041",
+         intel: "c23d79a15fe0a890c8f6679d8a58f03914266d54a6b4a1371c1dadfce786b686"
 
-  on_mojave :or_older do
-    sha256 "d788a47b2fe8a0c4f76593c959e3fabdc98918048c5e8ee879f091a4e03f0961"
-
-    url "https://eddie.website/download/?platform=macos-10.9&arch=#{arch}&ui=ui&format=disk.dmg&version=#{version}"
-  end
-  on_catalina :or_newer do
-    sha256 arm:   "821aafcaffea695bf938f671cce343d86416989f7f21d8db2d8bfe9aaa609d9c",
-           intel: "d46a8e8cffce5b05708e2a096fad825487920d2d57e6eede1a523b0862a82291"
-
-    url "https://eddie.website/download/?platform=macos-10.15&arch=#{arch}&ui=ui&format=disk.dmg&version=#{version}"
-  end
-
+  url "https://eddie.website/repository/eddie/#{version}/eddie-ui_#{version}_macos-10.15_#{arch}_disk.dmg"
   name "Air VPN"
   name "Eddie"
   desc "OpenVPN UI"
@@ -26,6 +17,8 @@ cask "eddie" do
     url "https://github.com/AirVPN/Eddie"
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "Eddie.app"
 

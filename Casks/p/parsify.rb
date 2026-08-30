@@ -11,7 +11,7 @@ cask "parsify" do
   desc "Extensible calculator with unit and currency conversions"
   homepage "https://parsify.app/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Parsify.app"
 

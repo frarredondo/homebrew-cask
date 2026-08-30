@@ -8,6 +8,9 @@ cask "jdiskreport" do
   homepage "https://www.jgoodies.com/freeware/jdiskreport/"
 
   deprecate! date: "2024-11-01", because: :unmaintained
+  disable! date: "2025-11-01", because: :unmaintained
+
+  depends_on :macos
 
   app "JDiskReport #{version}/JDiskReport.app"
 

@@ -9,6 +9,9 @@ cask "trolcommander" do
   homepage "https://trolsoft.ru/en/soft/trolcommander"
 
   deprecate! date: "2024-10-27", because: :unmaintained
+  disable! date: "2025-10-27", because: :unmaintained
+
+  depends_on :macos
 
   app "trolCommander.app"
 

@@ -1,25 +1,23 @@
 cask "muteme" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "arm64", intel: "64"
 
-  version "0.24.8"
-  sha256 arm:   "31288e7f8c1b49e2cedd3ed63a3a7ee2c7f7e648f151edc195a08fb4fb6efdb0",
-         intel: "c0b038cf3da93e17019c9969c5a72e2a45525076b5abd537d120e677a9402f90"
+  version "0.28.0"
+  sha256 arm:   "ec22c7b9635e16de6a83b1a4bb4cb05d5c67264e34525801d3dc30a8a43ea282",
+         intel: "ae0aa8c48c10b9049c610eb5617a418d649d668489e50d8ac32e351857ffbe6b"
 
-  url "https://mutemedownloads.s3.us-east-2.amazonaws.com/main/#{version}/MuteMe-Client-#{version}-#{arch}.dmg",
-      verified: "mutemedownloads.s3.us-east-2.amazonaws.com/"
+  url "https://downloads.muteme.com/download/#{version}/osx_#{arch}"
   name "MuteMe"
   desc "Companion application to MuteMe"
   homepage "https://muteme.com/"
 
   livecheck do
-    url "https://muteme.io/update/osx_#{arch}/0.0.0"
-    strategy :json do |json|
-      json["name"]
-    end
+    url "https://downloads.muteme.com/download/latest/osx_#{arch}"
+    regex(/v?(\d+(?:\.\d+)+)/i)
+    strategy :header_match
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :big_sur
 
   app "MuteMe-Client.app"
 

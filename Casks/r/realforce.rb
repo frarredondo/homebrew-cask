@@ -1,21 +1,17 @@
 cask "realforce" do
-  version "3.3.2"
-  sha256 "af5b168fddcb91b1eeb82d78cf463c37d041645a1c13353989aa91af40889bc0"
+  version "4.0.1"
+  sha256 "7b70a72aeca92ea430ec76f164b9b78ea438c02864b11ec7361670326a64a5ba"
 
   url "https://www.realforce.co.jp/support/download/software/mac/files/REALFORCE%20CONNECT%20Software_#{version.dots_to_hyphens}.pkg"
   name "REALFORCE for Mac"
   desc "Software for Realforce keyboards and mice"
   homepage "https://www.realforce.co.jp/"
 
-  livecheck do
-    url "https://www.realforce.co.jp/support/download/software/"
-    regex(%r{href=.*?/REALFORCE\s*?CONNECT\s*?Software[._-](\d+(?:-\d+)+)\.pkg}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| match[0].tr("-", ".") }
-    end
-  end
+  # The upstream website uses Cloudflare protections and the pkg file is
+  # inaccessible outside of a browser, so this cask is effectively unusable.
+  disable! date: "2026-05-28", because: :unreachable
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "REALFORCE CONNECT Software_#{version.dots_to_hyphens}.pkg"
 

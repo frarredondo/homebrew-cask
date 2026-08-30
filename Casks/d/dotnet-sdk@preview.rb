@@ -1,9 +1,10 @@
 cask "dotnet-sdk@preview" do
+  # Differs from the `dotnet` formula by including additional closed-source components
   arch arm: "arm64", intel: "x64"
 
-  version "9.0.200"
-  sha256 arm:   "4c78aa9b9762db73f2076d7464b7d4865c29ef8ff9e1fdf90379ebed66458c2e",
-         intel: "ed1231de3171af78cfc26fa431b4629004d118e74ddac688d77de9455e09793e"
+  version "11.0.100-preview.7.26381.103"
+  sha256 arm:   "df7704195094f778abd9d862288ac61d141ee0bd47b4ff66add4bb9078bd0201",
+         intel: "1306c0758625ed38b4ab4a83b81f7b7bd075389de8b2d76dd773e20c4ead8ea7"
 
   url "https://builds.dotnet.microsoft.com/dotnet/Sdk/#{version}/dotnet-sdk-#{version}-osx-#{arch}.pkg"
   name ".NET SDK"
@@ -20,26 +21,28 @@ cask "dotnet-sdk@preview" do
   end
 
   conflicts_with cask: [
-    "dotnet",
+    "dotnet-runtime",
+    "dotnet-runtime@preview",
     "dotnet-sdk",
-    "dotnet@preview",
-  ], formula: "dotnet"
-  depends_on macos: ">= :mojave"
+  ]
+  depends_on macos: :monterey
 
   pkg "dotnet-sdk-#{version.csv.first}-osx-#{arch}.pkg"
   binary "/usr/local/share/dotnet/dotnet"
 
   uninstall pkgutil: [
-              "com.microsoft.dotnet.*",
-              "com.microsoft.netstandard.pack.targeting.*",
-            ],
-            delete:  [
-              "/etc/paths.d/dotnet",
-              "/etc/paths.d/dotnet-cli-tools",
-            ]
-
-  zap trash: [
-    "~/.dotnet",
-    "~/.nuget",
+    "com.microsoft.dotnet.*#{version.major_minor}*#{arch}",
+    "com.microsoft.dotnet.sharedhost*#{arch}",
+    "com.microsoft.netstandard.pack.targeting.*",
   ]
+
+  zap pkgutil: "com.microsoft.dotnet.*",
+      delete:  [
+        "/etc/paths.d/dotnet",
+        "/etc/paths.d/dotnet-cli-tools",
+      ],
+      trash:   [
+        "~/.dotnet",
+        "~/.nuget",
+      ]
 end

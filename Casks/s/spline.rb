@@ -1,23 +1,25 @@
 cask "spline" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.12.5"
-  sha256 arm:   "85ebe3f7f7255fd0c5451ea453aade703cbe55b41efa096c55062175cb50c57f",
-         intel: "bbf43f7b34bff38396e1144a662329edf69713798ed890d151b49d3618623a35"
+  version "0.20.48"
+  sha256 arm:   "f54ffcf7506044d945448672f9dddb5ae5b186a847fff965bb536099a5d799ce",
+         intel: "5580444d9bf72b15ce32fd4d0d5b9b6af8904ba04716b8a6304b3334a2efca27"
 
-  url "https://cdn.spline.design/_assets/Spline-#{version}-#{arch}.mac.zip"
+  url "https://ejtmihpcmqboccdhutyk.supabase.co/storage/v1/object/public/desktop-releases/Spline-#{version}-#{arch}.mac.zip"
   name "Spline"
   desc "Design and collaborate in 3D"
   homepage "https://spline.design/"
 
   livecheck do
-    url :homepage
-    regex(/Spline[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}[._-]mac\.zip/i)
+    url "https://ejtmihpcmqboccdhutyk.supabase.co/storage/v1/object/public/desktop-releases/latest-mac.yml"
+    strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Spline.app"
+
+  uninstall launchctl: "com.design.spline.ShipIt"
 
   zap trash: "~/Library/Preferences/com.design.spline.plist"
 end

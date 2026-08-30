@@ -1,5 +1,5 @@
 cask "license-control-center" do
-  version "6.12.10.1326"
+  version "6.12.11.1328"
   sha256 :no_check
 
   url "https://download.steinberg.net/downloads/eLicenserControl.dmg",
@@ -8,10 +8,10 @@ cask "license-control-center" do
   desc "Music software license manager"
   homepage "https://helpcenter.steinberg.de/hc/en-us/articles/360008841379"
 
-  livecheck do
-    url "https://r.mb.steinberg.net/rc-elc-mac"
-    strategy :header_match
-  end
+  deprecate! date: "2025-05-27", because: :discontinued
+  disable! date: "2026-05-27", because: :discontinued
+
+  depends_on :macos
 
   installer manual: "eLicenserControlSetup.app"
 

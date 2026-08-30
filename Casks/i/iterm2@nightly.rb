@@ -1,9 +1,9 @@
 cask "iterm2@nightly" do
   # NOTE: "2" is not a version number, but an intrinsic part of the product name
-  version "3_5_20250228"
-  sha256 "a740a976d86f2b2223e9524bdcc2c37e14b57c44a44a2b870ee532470361d84e"
+  version "3_7_20260830"
+  sha256 "46e152169940acfc52ff519906c61356a1bc3720572e321f4c451f347ef559d2"
 
-  url "https://iterm2.com/nightly/iTerm2-#{version}-nightly.zip"
+  url "https://iterm2.com/downloads/nightly/iTerm2-#{version}-nightly.zip"
   name "iTerm2"
   desc "Terminal emulator as alternative to Apple's Terminal app"
   homepage "https://iterm2.com/"
@@ -17,9 +17,11 @@ cask "iterm2@nightly" do
     "iterm2",
     "iterm2@beta",
   ]
-  depends_on macos: ">= :catalina"
+  depends_on macos: :ventura
 
   app "iTerm.app"
+
+  uninstall quit: "com.googlecode.iterm2"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.googlecode.iterm2.sfl*",

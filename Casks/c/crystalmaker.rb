@@ -1,5 +1,5 @@
 cask "crystalmaker" do
-  version "11.5.0"
+  version "11.7.1"
   sha256 :no_check
 
   url "https://crystalmaker.com/downloads/crystalmaker#{version.major}_mac.zip"
@@ -14,7 +14,7 @@ cask "crystalmaker" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: :big_sur
 
   app "CrystalMaker.app"
 

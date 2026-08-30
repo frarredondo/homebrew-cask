@@ -1,6 +1,6 @@
 cask "mp3tag" do
-  version "1.9.1"
-  sha256 "6d2df36c814734c7c63314e9eaf12ed6ea6130f50cdecfb70bb3e3187dc949a7"
+  version "1.14.0"
+  sha256 "2996a0220f6faeb00c3e27517530cf63c598e95c2d0b9d9796cd17132f0b4eee"
 
   url "https://updates.mp3tag.app/Mp3tag-#{version}.zip"
   name "Mp3tag"
@@ -12,9 +12,11 @@ cask "mp3tag" do
     regex(/href=.*?Mp3tag[._-]?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Mp3tag.app"
+
+  uninstall quit: "app.mp3tag.Mp3tag"
 
   zap trash: [
     "~/Library/Application Scripts/app.mp3tag.Mp3tag",

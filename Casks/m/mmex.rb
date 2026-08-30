@@ -1,6 +1,6 @@
 cask "mmex" do
-  version "1.9.0"
-  sha256 "49542aaa6eefb9ea079df68082c8aef8156710bcf8eb6316cadc34a15f03146a"
+  version "1.9.3"
+  sha256 "8ee9338c435ea7e23efb7fd46daabd8723e69445a7ebdf934ee3d61dcaf1aed5"
 
   url "https://github.com/moneymanagerex/moneymanagerex/releases/download/v#{version}/mmex-#{version}-Darwin.dmg",
       verified: "github.com/moneymanagerex/moneymanagerex/"
@@ -13,7 +13,9 @@ cask "mmex" do
     strategy :github_latest
   end
 
-  app "MMEX.app"
+  depends_on :macos
+
+  app "mmex.app"
 
   zap trash: [
     "~/Library/Application Support/MoneyManagerEx",

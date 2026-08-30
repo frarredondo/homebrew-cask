@@ -12,7 +12,7 @@ cask "sococo" do
     strategy :extract_plist
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "Sococo.app"
 

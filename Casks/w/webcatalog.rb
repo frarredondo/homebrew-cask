@@ -1,6 +1,6 @@
 cask "webcatalog" do
-  version "64.4.2"
-  sha256 "500467cd675352b00f9fc1cc0bec1621fe905bd92741ddef289f652804dd106b"
+  version "78.0.0"
+  sha256 "823a0546ff697df59056ff4cd2be5a209b5e0de8407d318798e35b58567f59ac"
 
   url "https://cdn-2.webcatalog.io/webcatalog/WebCatalog-#{version}-universal.dmg"
   name "WebCatalog"
@@ -13,11 +13,12 @@ cask "webcatalog" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "WebCatalog.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.webcatalog.jordan.sfl*",
     "~/Library/Application Support/WebCatalog",
     "~/Library/Caches/com.webcatalog.jordan",
     "~/Library/Caches/com.webcatalog.jordan.ShipIt",

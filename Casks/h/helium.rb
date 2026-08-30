@@ -6,6 +6,10 @@ cask "helium" do
   name "Helium"
   homepage "https://github.com/koush/support-wiki/wiki/Helium-Desktop-Installer-and-Android-App"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "Helium.app"
 
   uninstall quit: "com.koushikdutta.Helium"

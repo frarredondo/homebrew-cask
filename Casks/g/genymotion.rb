@@ -8,8 +8,8 @@ cask "genymotion" do
     end
   end
   on_ventura :or_newer do
-    version "3.8.0"
-    sha256 "eda77ba81deb43e221e7e2e1a37f2e6feb362237ed0e160d917e3c7ee277b679"
+    version "3.10.0"
+    sha256 "38516b5ffd4b5e66990277e40537cd71b3c096260edc448033dfdd816770d35e"
 
     livecheck do
       url "https://www.genymotion.com/product-desktop/download/"
@@ -21,6 +21,8 @@ cask "genymotion" do
   name "Genymotion"
   desc "Android emulator"
   homepage "https://www.genymotion.com/"
+
+  depends_on :macos
 
   app "Genymotion.app"
   app "Genymotion Shell.app"

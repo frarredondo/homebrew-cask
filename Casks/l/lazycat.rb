@@ -1,23 +1,24 @@
 cask "lazycat" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.1.9"
-  sha256  arm:   "b759a476c95e25296151fea893fbee53865990e114cfa9a42e638ffa3776a64b",
-          intel: "1d7e5cff65ce7c8e20506b3689da8947ef63a7a1d814c717f63df191de68fdd5"
+  version "2.0.25"
+  sha256 arm:   "2b975b903b9137e91bade6e44d62713ad206f17057c97ff08899494a5b15ad73",
+         intel: "b0d915f3cfad2cae9b72c0dea6e2c20e34a2c20cfbd9a9b041d9d624725dd6de"
 
-  url "https://dl.lazycat.cloud/client/desktop/stable/lzc-client-desktop_v#{version}_#{arch}.dmg"
+  url "https://dl.lazycatmicroserver.com/client/desktop/stable/lzc-client-desktop_v#{version}_#{arch}.dmg",
+      verified: "dl.lazycatmicroserver.com/client/desktop/stable/"
   name "LazyCat"
   desc "Client for LazyCat hardware"
   homepage "https://lazycat.cloud/"
 
   livecheck do
-    url "https://dl.lazycat.cloud/client/desktop/lzc-client-desktop_#{arch}.dmg.metadata.json"
+    url "https://dl.lazycatmicroserver.com/client/desktop/lzc-client-desktop_#{arch}.dmg.metadata.json"
     strategy :json do |json|
       json["buildVersion"]&.delete_prefix("v")
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "懒猫微服.app"
 

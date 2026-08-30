@@ -1,5 +1,5 @@
 cask "honto" do
-  version "6.67.0"
+  version "6.73.0"
   sha256 :no_check
 
   url "https://dl.honto.jp/macapp/honto.dmg"
@@ -13,7 +13,7 @@ cask "honto" do
     regex(%r{Mac\s*<br\s*/?>\s*Ver[._-]v?(\d+(?:\.\d+)+)}i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "honto.app"
 

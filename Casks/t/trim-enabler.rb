@@ -19,6 +19,8 @@ cask "trim-enabler" do
     end
   end
 
+  depends_on :macos
+
   app "Trim Enabler.app"
 
   uninstall launchctl: "org.cindori.TEHelper",
@@ -36,4 +38,8 @@ cask "trim-enabler" do
     "~/Library/Preferences/org.cindori.TrimEnabler.plist",
     "~/Library/Saved Application State/org.cindori.TrimEnabler#{version.major}.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "qgroundcontrol" do
-  version "4.4.3"
-  sha256 "d27055eeab18a8cc8becd6898e2944a77b63fe8e32d75ddf0f682d790465ef9d"
+  version "5.1.3"
+  sha256 "8b0f2fd0a26f342da2cf25f92aed7ca144401f4ac5ee5d323df1e05f433a7c33"
 
   url "https://github.com/mavlink/qgroundcontrol/releases/download/v#{version}/QGroundControl.dmg",
       verified: "github.com/mavlink/qgroundcontrol/"
@@ -13,15 +13,13 @@ cask "qgroundcontrol" do
     strategy :github_latest
   end
 
-  app "qgroundcontrol.app"
+  depends_on macos: :ventura
+
+  app "QGroundControl.app"
 
   zap trash: [
     "~/Documents/QGroundControl",
     "~/Library/Caches/QGroundControl.org",
     "~/Library/Saved Application State/org.qgroundcontrol.QGroundControl.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

@@ -1,27 +1,32 @@
 cask "sonic-visualiser" do
-  version "5.0.1,2869"
-  sha256 "d719b1b97682f679b7a33f66fb5ce3c54d9fbd596e4076248c3b70dbc1398464"
+  version "5.2.1"
+  sha256 "bb86819411875cc8128fc49c3899a3c419fba6ff8286ad145bdec02c4bd212f0"
 
-  url "https://github.com/sonic-visualiser/sonic-visualiser/releases/download/sv_v#{version.csv.first}/Sonic.Visualiser.#{version.csv.first}.dmg",
+  url "https://github.com/sonic-visualiser/sonic-visualiser/releases/download/sv_v#{version.csv.second || version.csv.first}/Sonic.Visualiser.#{version.csv.first}.dmg",
       verified: "github.com/sonic-visualiser/sonic-visualiser/"
   name "Sonic Visualiser"
   desc "Visualisation, analysis, and annotation of music audio recordings"
   homepage "https://www.sonicvisualiser.org/"
 
   livecheck do
-    url "https://www.sonicvisualiser.org/download.html"
-    regex(%r{href=.*?/(\d+)/Sonic%20Visualiser%20(\d+(?:\.\d+)*)\.dmg}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[1]},#{match[0]}" }
+    url :url
+    regex(%r{/\D*(\d+(?:\.\d+)+)/Sonic[._-]?Visualiser[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+    strategy :github_latest do |json, regex|
+      json["assets"]&.map do |asset|
+        match = asset["browser_download_url"]&.match(regex)
+        next if match.blank?
+
+        (match[2] == match[1]) ? match[1] : "#{match[2]},#{match[1]}"
+      end
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Sonic Visualiser.app"
 
   zap trash: [
-    "~/Library/Application Support/sonic-visualiser/",
+    "~/Library/Application Support/sonic-visualiser",
     "~/Library/Preferences/org.sonicvisualiser.Sonic Visualiser.plist",
     "~/Library/Preferences/org.sonicvisualiser.SonicVisualiser.plist",
     "~/Library/Saved Application State/org.sonicvisualiser.SonicVisualiser.savedState",

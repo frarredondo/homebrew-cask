@@ -1,9 +1,9 @@
 cask "freeshow" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.3.9"
-  sha256 arm:   "073de7ea647e2af71267e0e360bf6a42d362122c0cce5801845ac2956817e777",
-         intel: "41674b4833ac082caa82d4448b5440bb5554ce45a9a7a1aada41eda22e0aa53b"
+  version "1.6.5"
+  sha256 arm:   "1de2c724b4a05717aa3a6ed74d7c30da9c1b4ae67fb031897b4220d75a63a270",
+         intel: "e07e45520615478e0c8ea1c39b45910b5d736b945897a1cd17716fa8e4c3c198"
 
   url "https://github.com/ChurchApps/FreeShow/releases/download/v#{version}/FreeShow-#{version}-#{arch}.zip",
       verified: "github.com/ChurchApps/"
@@ -17,11 +17,15 @@ cask "freeshow" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  conflicts_with cask: "freeshow@beta"
+  depends_on macos: :big_sur
 
   app "FreeShow.app"
 
+  uninstall quit: "app.freeshow"
+
   zap trash: [
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/app.freeshow.sfl*",
         "~/Library/Application Support/freeshow",
         "~/Library/Preferences/app.freeshow.plist",
         "~/Library/Saved Application State/app.freeshow.savedState",

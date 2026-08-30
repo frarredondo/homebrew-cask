@@ -1,9 +1,9 @@
 cask "bootstrap-studio" do
   arch arm: "arm64", intel: "x64"
 
-  version "7.0.3"
-  sha256 arm:   "d6569838bd74ca7a4781617df9f0db92ab638a83f69288c0bb58705564c1515d",
-         intel: "2fab903e7577e61fb7e521f980791ecbf35a6eb9065cb2225c115914a18415cc"
+  version "8.0.1"
+  sha256 arm:   "7a8fe9122381fb2dbc137dc0d8d34a318645a2e11fb710c3625642911cc5d544",
+         intel: "ff99e38acf63fc002a56ee0340118d0b42ef19bc632b9bca8eb064a0d7c56994"
 
   url "https://releases.bootstrapstudio.io/#{version}/Bootstrap%20Studio%20(#{arch}).dmg"
   name "Bootstrap Studio"
@@ -16,7 +16,7 @@ cask "bootstrap-studio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Bootstrap Studio.app"
 

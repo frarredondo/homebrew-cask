@@ -12,9 +12,8 @@ cask "smcfancontrol@beta" do
     regex(/^v?(\d+(?:\.\d+)+)[^ß]?/i)
   end
 
-  deprecate! date: "2025-05-01", because: :unsigned
-
   conflicts_with cask: "smcfancontrol"
+  depends_on :macos
 
   app "smcFanControl.app"
 
@@ -23,4 +22,8 @@ cask "smcfancontrol@beta" do
     "~/Library/Application Support/smcFanControl",
     "~/Library/Caches/com.eidac.smcFanControl#{version.major}",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

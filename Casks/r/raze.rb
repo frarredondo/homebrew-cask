@@ -13,7 +13,7 @@ cask "raze" do
     regex(/href=.*?raze[._-]macos[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Raze.app"
 

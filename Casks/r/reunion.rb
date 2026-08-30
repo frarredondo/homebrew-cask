@@ -1,6 +1,6 @@
 cask "reunion" do
-  version "14.0.0,250122unr"
-  sha256 "9eeb0990e498ad8d738ea3fdb084be5d7bbb2f83e61418515adbf8d126109a88"
+  version "14.0.0,260412unr"
+  sha256 "149d0de26fa8a9e930c1663dbcaa8e0493c2f0b97f9b23bfe282ae9979ffbb71"
 
   url "https://store.leisterpro.com/updates/reunion#{version.major}/Reunion-#{version.csv.first.dots_to_hyphens}-#{version.csv.second}.zip"
   name "Reunion"
@@ -16,6 +16,9 @@ cask "reunion" do
       end
     end
   end
+
+  auto_updates true
+  depends_on :macos
 
   app "Reunion #{version.major}.app"
 

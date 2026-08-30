@@ -1,8 +1,8 @@
 cask "font-m+-nerd-font" do
-  version "3.3.0"
-  sha256 "3f85b91067737c45f519c583594eb445d5c3e921a5c0f40cb43c02eba513b952"
+  version "3.5.1"
+  sha256 "e159e842616b340d88e402524a1f78795bb36e445a2c54967900fc462fa602dd"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/MPlus.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/MPlus.tar.xz"
   name "M+ Nerd Font families (MPlus)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-m+-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "M+1CodeNerdFont-Bold.ttf"
   font "M+1CodeNerdFont-ExtraLight.ttf"

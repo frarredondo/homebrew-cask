@@ -12,10 +12,16 @@ cask "jazzup" do
     strategy :sparkle
   end
 
+  depends_on :macos
+
   app "JazzUp.app"
 
   zap trash: [
     "~/Library/Caches/com.irradiatedsoftware.JazzUp",
     "~/Library/Preferences/com.irradiatedsoftware.JazzUp.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

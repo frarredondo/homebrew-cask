@@ -9,6 +9,9 @@ cask "waterfox-classic" do
   homepage "https://classic.waterfox.net/"
 
   deprecate! date: "2024-11-09", because: :unmaintained
+  disable! date: "2025-11-09", because: :unmaintained
+
+  depends_on :macos
 
   app "Waterfox Classic.app"
 

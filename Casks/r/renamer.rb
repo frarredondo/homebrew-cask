@@ -1,24 +1,25 @@
 cask "renamer" do
-  version "6.2.0"
-  sha256 "0a3098b7555d0f3f96e2ac16fccabfe2811c722045e6b403f056700314314af6"
+  version "7.3.3"
+  sha256 "0a831dd865b662e94b55a5408643942f9017f6fb5b1a7d6d569f402933c528ef"
 
-  url "https://storage.googleapis.com/incrediblebee/apps/Renamer-#{version.major}/Renamer-#{version}.zip",
-      verified: "storage.googleapis.com/incrediblebee/"
+  url "https://github.com/incbee/renamer-#{version.major}-releases/releases/download/v#{version}/Renamer-#{version}-universal-mac.zip",
+      verified: "github.com/incbee/renamer-#{version.major}-releases/"
   name "Renamer"
   desc "Batch file renamer application"
   homepage "https://renamer.com/"
 
   livecheck do
-    url "https://api.incrediblebee.com/appcasts/renamer-#{version.major}.xml"
-    strategy :sparkle, &:short_version
+    url "https://github.com/incbee/renamer-#{version.major}-releases/releases/latest/download/latest-mac.yml"
+    strategy :electron_builder
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :sequoia
 
   app "Renamer.app"
 
   zap trash: [
     "~/Library/Application Support/Renamer",
+    "~/Library/HTTPStorages/com.incrediblebee.Renamer",
     "~/Library/Logs/Renamer.log",
     "~/Library/Preferences/com.incrediblebee.Renamer#{version.major}.plist",
   ]

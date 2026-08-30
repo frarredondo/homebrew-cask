@@ -13,6 +13,10 @@ cask "dd-utility" do
     strategy :page_match
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "dd Utility.app"
 
   zap trash: "~/Library/Saved Application State/co.za.thefanclub.ddUtility.savedState"

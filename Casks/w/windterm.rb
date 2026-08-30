@@ -1,6 +1,6 @@
 cask "windterm" do
-  version "2.6.1,2.6.0"
-  sha256 "c1a1ff2263b3ded7816c8d2e7309e77f3d0901d488c8559281cfd4d2bb7b891b"
+  version "2.7.0"
+  sha256 "8c1bc1363e01df5b06f45019da934752f5f29e8603cc843bd38e59bdff121bf7"
 
   url "https://github.com/kingToolbox/WindTerm/releases/download/#{version.csv.second || version.csv.first}/WindTerm_#{version.csv.first}_Mac_Portable_x86_64.dmg"
   name "WindTerm"
@@ -32,8 +32,10 @@ cask "windterm" do
     end
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "WindTerm.app"
 

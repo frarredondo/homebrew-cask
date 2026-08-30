@@ -1,8 +1,8 @@
 cask "lyx" do
-  version "2.4.3"
-  sha256 "3e9d84622165e519cee8f4d6f4d0d58be4edc8daf1d81eda1c1b6b3adde9ab4b"
+  version "2.5.2,6"
+  sha256 "329a4f45a04f2585eac7b44722f068fe24722481dcc8521dc284c02161fb2855"
 
-  url "https://ftp.lip6.fr/pub/lyx/bin/#{version.major_minor_patch}/LyX-#{version}+qt5-x86_64-arm64-cocoa.dmg",
+  url "https://ftp.lip6.fr/pub/lyx/bin/#{version.csv.first.major_minor_patch}/LyX-#{version.csv.first}+qt#{version.csv.second}-x86_64-arm64-cocoa.dmg",
       verified: "ftp.lip6.fr/pub/lyx/bin/"
   name "LyX"
   desc "GUI document processor based on the LaTeX typesetting system"
@@ -10,10 +10,15 @@ cask "lyx" do
 
   livecheck do
     url "https://www.lyx.org/Download"
-    regex(/LyX[._-]v?(\d+(?:\.\d+)+)\+qt5/i)
+    regex(/LyX[._-]v?(\d+(?:\.\d+)+)\+qt(\d+)/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    end
   end
 
-  depends_on macos: ">= :mojave"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :monterey
 
   app "LyX.app"
   binary "#{appdir}/LyX.app/Contents/MacOS/inkscape", target: "lyx-inkscape"
@@ -23,6 +28,8 @@ cask "lyx" do
   binary "#{appdir}/LyX.app/Contents/MacOS/lyxeditor"
   binary "#{appdir}/LyX.app/Contents/MacOS/maxima", target: "lyx-maxima"
   binary "#{appdir}/LyX.app/Contents/MacOS/tex2lyx"
+
+  uninstall quit: "org.lyx.lyx"
 
   zap trash: [
     "~/Library/Application Support/LyX-#{version.major_minor}",

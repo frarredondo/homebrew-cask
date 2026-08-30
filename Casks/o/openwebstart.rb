@@ -1,9 +1,9 @@
 cask "openwebstart" do
   arch arm: "aarch64", intel: "x64"
 
-  version "1.11.1"
-  sha256 arm:   "4feca83691a6fc480067c8b0b5d58b3d6aa66a6a19436a232672cf6655fd5c36",
-         intel: "38beeb59d1c9033952852015ad4d429a1bcefe3ca36879fbf75f80a624cf0faf"
+  version "1.14.0"
+  sha256 arm:   "f085f2fce8099119ac15b9db92b8fd6d07ef1e13062a3b2db299429f82c2d2b8",
+         intel: "9554f92784641f8063611113874b6d446b0ba138130e2c43e8b7d86df1b9ce40"
 
   url "https://github.com/karakun/OpenWebStart/releases/download/v#{version}/OpenWebStart_macos-#{arch}_#{version.dots_to_underscores}.dmg",
       verified: "github.com/karakun/OpenWebStart/"
@@ -16,6 +16,8 @@ cask "openwebstart" do
     strategy :github_latest
   end
 
+  depends_on :macos
+
   installer script: {
     executable:   "#{staged_path}/OpenWebStart Installer.app/Contents/MacOS/JavaApplicationStub",
     args:         ["-q"],
@@ -23,7 +25,7 @@ cask "openwebstart" do
     print_stderr: false,
   }
 
-  uninstall_preflight do
+  uninstall_preflight_steps do
     set_ownership "/Applications/OpenWebStart"
   end
 

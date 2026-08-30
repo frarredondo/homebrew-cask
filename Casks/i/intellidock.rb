@@ -12,6 +12,9 @@ cask "intellidock" do
     strategy :sparkle
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "IntelliDock.app"
 
   zap trash: "~/Library/Preferences/app.mightymac.IntelliDock.plist"

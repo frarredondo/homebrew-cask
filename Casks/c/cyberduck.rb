@@ -1,6 +1,6 @@
 cask "cyberduck" do
-  version "9.1.3,42945"
-  sha256 "62c658bd1863e0147eafe1c265341df16f1e913706c2a7148ea5c30268a298a4"
+  version "9.5.4,45528"
+  sha256 "9398777ad01bfac7228db3990aed1c834437a599664e0f3e27a68feb53cbcebf"
 
   url "https://update.cyberduck.io/Cyberduck-#{version.csv.first}.#{version.csv.second}.zip"
   name "Cyberduck"
@@ -13,9 +13,11 @@ cask "cyberduck" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Cyberduck.app"
+
+  uninstall quit: "ch.sudo.cyberduck"
 
   zap trash: [
     "~/Library/Application Support/Cyberduck",

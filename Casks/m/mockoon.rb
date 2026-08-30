@@ -1,9 +1,9 @@
 cask "mockoon" do
   arch arm: "arm64", intel: "x64"
 
-  version "9.1.0"
-  sha256 arm:   "98c3f6a6bade4a5ae9d3f1aa7eac9d0bf48fc07f7fbdb550529c1af3400bda5d",
-         intel: "7bf944ee1a28f101ad530d7d90d35538e222a1ac536f0bdc580a43b5ca44092b"
+  version "9.8.0"
+  sha256 arm:   "99c0a347b5e8c39b6f2c3059b7d4fd2b2a012af90f36ee08fbfbd65417c64d2b",
+         intel: "4964ea309090b39204d2264bbd5e514ab4d23e5db4b708493810dd17d11a061e"
 
   url "https://github.com/mockoon/mockoon/releases/download/v#{version}/mockoon.setup.#{version}.#{arch}.dmg",
       verified: "github.com/mockoon/mockoon/"
@@ -12,12 +12,14 @@ cask "mockoon" do
   homepage "https://mockoon.com/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://api.mockoon.com/releases/desktop/stable.json"
+    strategy :json do |json|
+      json["tag"]
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Mockoon.app"
 

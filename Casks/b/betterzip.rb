@@ -1,9 +1,8 @@
 cask "betterzip" do
-  version "5.3.4"
-  sha256 "ba4b3e468d93299ffc71f86543071cc34ab7b5943c20789c43bc8c50b1472c9b"
+  version "6.0.5"
+  sha256 "79ebb89f9e7d1424feba04e6fa0e2351c25bce4f45759463900232f91652abea"
 
-  url "https://macitbetter.s3.amazonaws.com/BetterZip-#{version}.zip",
-      verified: "macitbetter.s3.amazonaws.com/"
+  url "https://macitbetter.com/dl/BetterZip-#{version}.zip"
   name "BetterZip"
   desc "Utility to create and modify archives"
   homepage "https://macitbetter.com/"
@@ -14,12 +13,19 @@ cask "betterzip" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :ventura
 
   app "BetterZip.app"
+  binary "#{appdir}/BetterZip.app/Contents/Resources/betterzip"
+
+  uninstall quit: "com.macitbetter.betterzip"
 
   zap trash: [
+    "~/Library/Application Scripts/79RR9LPM2N.group.com.macitbetter.betterzip",
+    "~/Library/Application Scripts/79RR9LPM2N.group.com.macitbetter.betterzip-setapp",
+    "~/Library/Application Scripts/com.macitbetter.betterzip.Compress-with-BetterZip",
     "~/Library/Application Scripts/com.macitbetter.betterzip.findersyncextension",
+    "~/Library/Application Scripts/com.macitbetter.betterzip.Quick-Look-Extension",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.macitbetter.betterzip.sfl*",
     "~/Library/Application Support/com.macitbetter.betterzip",
     "~/Library/Caches/com.apple.helpd/Generated/com.macitbetter.betterzip.help*",
@@ -29,6 +35,7 @@ cask "betterzip" do
     "~/Library/Containers/com.macitbetter.betterzip.Quick-Look-Extension",
     "~/Library/Group Containers/79RR9LPM2N.group.com.macitbetter.betterzip",
     "~/Library/Group Containers/79RR9LPM2N.group.com.macitbetter.betterzip-setapp",
+    "~/Library/HTTPStorages/com.macitbetter.betterzip",
     "~/Library/Preferences/com.macitbetter.betterzip.plist",
     "~/Library/Saved Application State/com.macitbetter.betterzip.savedState",
   ]

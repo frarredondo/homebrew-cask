@@ -8,7 +8,9 @@ cask "cuda-z" do
   homepage "https://cuda-z.sourceforge.net/"
 
   deprecate! date: "2024-09-01", because: :unmaintained
+  disable! date: "2025-09-02", because: :unmaintained
 
+  depends_on :macos
   depends_on arch: :x86_64
 
   app "CUDA-Z.app"

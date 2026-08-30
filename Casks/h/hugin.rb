@@ -9,6 +9,9 @@ cask "hugin" do
   homepage "https://hugin.sourceforge.io/"
 
   deprecate! date: "2024-11-10", because: :unmaintained
+  disable! date: "2025-11-10", because: :unmaintained
+
+  depends_on :macos
 
   suite "Hugin"
 

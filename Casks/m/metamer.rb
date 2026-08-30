@@ -1,9 +1,8 @@
 cask "metamer" do
-  version "1.5,2023.11"
-  sha256 "bd158fd3afe0837a5a312858be50ec285f417945c04131d8570fe55cf22112f6"
+  version "1.6,2025.07"
+  sha256 "ff4be4887d56764a4257f79be190217dcf5bdf556cca3e627e9757d76fab020e"
 
-  url "https://eclecticlightdotcom.files.wordpress.com/#{version.csv.second.major}/#{version.csv.second.minor}/metamer#{version.csv.first.no_dots}.zip",
-      verified: "eclecticlightdotcom.files.wordpress.com/"
+  url "https://eclecticlight.co/wp-content/uploads/#{version.csv.second.major}/#{version.csv.second.minor}/metamer#{version.csv.first.no_dots}.zip"
   name "Metamer"
   desc "Accessible metadata editor for 16 Spotlight extended attributes"
   homepage "https://eclecticlight.co/xattred-sandstrip-xattr-tools/"
@@ -24,7 +23,7 @@ cask "metamer" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "metamer#{version.csv.first.no_dots}/Metamer.app"
 

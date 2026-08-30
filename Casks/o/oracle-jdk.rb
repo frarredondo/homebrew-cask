@@ -1,9 +1,9 @@
 cask "oracle-jdk" do
   arch arm: "aarch64", intel: "x64"
 
-  version "23.0.2"
-  sha256 arm:   "1c63d9d1f19c444845fd2e71c0b16d53b36d627584002fb43979fdeaca3fd33c",
-         intel: "5afa5408ec83310c1407c0d9c65b474f65e56447eece4d1b1b29c36b95ee5a29"
+  version "26.0.2.1"
+  sha256 arm:   "694d2e9eb30f7612acca4f82d13c008782dd936569e2cc58c2f73cfd46d0695c",
+         intel: "37e8f23640ed492611135aebef6a52ab25ae2c6d5d2ba07119554c1ad6e24051"
 
   url "https://download.oracle.com/java/#{version.major}/archive/jdk-#{version}_macos-#{arch}_bin.dmg"
   name "Oracle Java Standard Edition Development Kit"
@@ -11,11 +11,13 @@ cask "oracle-jdk" do
   homepage "https://www.oracle.com/java/technologies/downloads/"
 
   livecheck do
-    url "https://www.oracle.com/java/technologies/javase/#{version.major}u-relnotes.html"
-    regex(/<li>\s*JDK\s*v?(\d+(?:\.\d+)*)/i)
+    url "https://java.oraclecloud.com/currentJavaReleases"
+    strategy :json do |json|
+      json["items"]&.filter_map { |item| item["releaseVersion"] }
+    end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   pkg "JDK #{version}.pkg"
 

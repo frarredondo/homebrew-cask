@@ -1,6 +1,6 @@
 cask "nessus" do
-  version "10.8.3"
-  sha256 "6502852b546de17ced3cdd9cd670c86c621e452bca332d6f117fd12ee42ca806"
+  version "10.12.4"
+  sha256 "fb37e624e4e3a8cadceb8f90cb472b1c928e4658212ddddf878ade281ac211fa"
 
   url "https://www.tenable.com/downloads/api/v2/pages/nessus/files/Nessus-#{version}.dmg"
   name "Tenable Nessus"
@@ -12,7 +12,9 @@ cask "nessus" do
     regex(/Nessus[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  pkg ".Nessus.pkg"
+  depends_on :macos
+
+  pkg "Install Nessus.pkg"
   binary "/Library/Nessus/run/bin/nasl"
   binary "/Library/Nessus/run/bin/ndbg"
   binary "/Library/Nessus/run/sbin/nessuscli", target: "#{HOMEBREW_PREFIX}/sbin/nessuscli"

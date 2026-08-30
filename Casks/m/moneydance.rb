@@ -15,7 +15,7 @@ cask "moneydance" do
     end
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "Moneydance.app"
 

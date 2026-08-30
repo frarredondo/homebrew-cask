@@ -1,6 +1,6 @@
 cask "cleanclip" do
-  version "2.4.0"
-  sha256 "ecd1f36d8d6c98a4a8e110ad61f3ed5313e6122f297c7fe33048ad81800ea010"
+  version "2.4.7"
+  sha256 "a5e4d694dbd97a1b5371e88bef148dc4e31311bf1f05fdda7693285bdafb088b"
 
   url "https://cleanclip.cc/releases/download/v#{version}/CleanClip.dmg"
   name "CleanClip"
@@ -13,7 +13,7 @@ cask "cleanclip" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "CleanClip.app"
 

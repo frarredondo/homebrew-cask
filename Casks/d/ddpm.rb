@@ -1,20 +1,22 @@
 cask "ddpm" do
-  version "2.0.0.0015"
-  sha256 "454f6705e666cc626a16c040da41e43e26a861532206894bdf658bea6ac9d27b"
+  version "2.3.0.0023"
+  sha256 "f48ee7ac871c843d4135df7503a25d75e74ed20e319b2771f3a000e215987ac0"
 
-  url "https://www.delldisplaymanagermac.com/DDPM/DDPMv#{version}.zip",
-      verified: "delldisplaymanagermac.com/"
+  url "https://clientperipherals.dell.com/DDPM/Mac/Application/DDPMv#{version}.zip",
+      user_agent: :browser
   name "DDPM"
   name "Dell Display and Peripheral Manager"
   desc "Monitors and peripherals manager"
   homepage "https://dell.com/"
 
   livecheck do
-    url "https://www.delldisplaymanagermac.com/DDPM/ddpm.json"
+    url "https://clientperipherals.dell.com/DDPM/Mac/Application/ddpm.json"
     strategy :json do |json|
-      json.dig("versionTable", "*", "originVersion")
+      json["versionTable"].map { |_, entry| entry["originVersion"] }
     end
   end
+
+  depends_on :macos
 
   pkg "DDPM_Installer.pkg"
   binary "/Applications/DDPM/DDPM.app/Contents/MacOS/DDPM"

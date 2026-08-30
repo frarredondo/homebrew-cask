@@ -1,8 +1,8 @@
 cask "font-ubuntu-sans-nerd-font" do
-  version "3.3.0"
-  sha256 "65d74bd6d3b5d4447fb6abe8da009fcc133a888a29b27be46baec98872f5dee9"
+  version "3.5.1"
+  sha256 "abcbf48bb68e2dd09d43dc0ea04f6878cc8ee46334a9f9ce52b51e06f31aa0d0"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/UbuntuSans.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/UbuntuSans.tar.xz"
   name "UbuntuSans Nerd Font families (Ubuntu Sans)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-ubuntu-sans-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "UbuntuSansMonoNerdFont-Bold.ttf"
   font "UbuntuSansMonoNerdFont-BoldItalic.ttf"

@@ -1,5 +1,5 @@
 cask "box-tools" do
-  version "4.28.1"
+  version "4.32"
   sha256 :no_check
 
   url "https://e3.boxcdn.net/box-installers/boxedit/mac/currentrelease/BoxToolsInstaller.dmg",
@@ -18,7 +18,7 @@ cask "box-tools" do
     end
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on macos: :ventura
 
   apps = [
     "Device Trust",
@@ -39,8 +39,11 @@ cask "box-tools" do
   zap trash: "~/Library/Application Support/Box/Box Edit",
       rmdir: "~/Library/Application Support/Box"
 
-  caveats <<~EOS
-    Box Edit currently only works with Safari and Firefox.
-    Restart your browser to load the plugin.
-  EOS
+  caveats do
+    requires_rosetta
+    <<~EOS
+      Box Edit currently only works with Safari and Firefox.
+      Restart your browser to load the plugin.
+    EOS
+  end
 end

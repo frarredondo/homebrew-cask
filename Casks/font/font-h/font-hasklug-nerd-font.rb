@@ -1,8 +1,8 @@
 cask "font-hasklug-nerd-font" do
-  version "3.3.0"
-  sha256 "ad81a279d278ed7dc93c97e0e327721c9e742137dcec6a5a1fd2ade6f3fcdefc"
+  version "3.5.1"
+  sha256 "25f73bb44cf786939f6fe13914ce220ac0d8a1ffde7fc7ee87090854c0f3d83c"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Hasklig.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Hasklig.tar.xz"
   name "Hasklug Nerd Font (Hasklig)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-hasklug-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "HasklugNerdFont-Black.otf"
   font "HasklugNerdFont-BlackItalic.otf"

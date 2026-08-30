@@ -11,7 +11,14 @@ cask "gitlight" do
   desc "Desktop notifications for GitHub & GitLab"
   homepage "https://gitlight.app/"
 
-  depends_on macos: ">= :high_sierra"
+  livecheck do
+    url "https://gitlight.app/version/darwin/0.0.0?arch=#{arch}"
+    strategy :json do |json|
+      json["version"]
+    end
+  end
+
+  depends_on :macos
 
   app "GitLight.app"
 

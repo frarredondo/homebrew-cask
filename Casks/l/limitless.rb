@@ -1,5 +1,5 @@
 cask "limitless" do
-  version "1.3048.1"
+  version "2.961.1"
   sha256 :no_check
 
   url "https://download.limitless.ai/Limitless.dmg"
@@ -7,15 +7,10 @@ cask "limitless" do
   desc "Personal AI-powered transcription and notetaking service"
   homepage "https://www.limitless.ai/"
 
-  livecheck do
-    url "https://storage.googleapis.com/limitless-data/builds/main/manifest.json"
-    strategy :json do |json|
-      json["version"]
-    end
-  end
+  disable! date: "2026-06-21", because: :discontinued
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Limitless.app"
 

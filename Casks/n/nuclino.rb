@@ -13,7 +13,7 @@ cask "nuclino" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Nuclino.app"
 

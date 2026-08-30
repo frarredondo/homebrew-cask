@@ -1,8 +1,8 @@
 cask "font-dejavu-sans-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "ffe13142bd4d3487b7a5c8a3df451e13cbe7287b7e76d63a7bef3c6a001106c1"
+  version "3.5.1"
+  sha256 "9d3f2d60faa790b101903c2984b89c11397fc63b9ce43f2dcd25ffed4fb44e5f"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/DejaVuSansMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/DejaVuSansMono.tar.xz"
   name "DejaVuSansM Nerd Font (DejaVu Sans Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-dejavu-sans-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "DejaVuSansMNerdFont-Bold.ttf"
   font "DejaVuSansMNerdFont-BoldOblique.ttf"

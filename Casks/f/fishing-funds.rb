@@ -1,9 +1,9 @@
 cask "fishing-funds" do
   arch arm: "-arm64"
 
-  version "8.4.1"
-  sha256 arm:   "70cf867ee678f722f93539b32ff90afb6e504dd23c026dc4afd4c12730f60bb3",
-         intel: "a8d8f8753e29ada7bc44b6794ced500f4ae060de7bbfc0d0b2918b5b15dc7436"
+  version "8.8.0"
+  sha256 arm:   "b7e9061f3acac15edb3fe9d5c77b2c2ff82b62f5d3a17bcc616f55fe433c2bcf",
+         intel: "b7be8f123d1868169375e42faaf2c31447fb7ff0634305fd0d7410dd24bff085"
 
   url "https://github.com/1zilc/fishing-funds/releases/download/v#{version}/Fishing-Funds-#{version}#{arch}.dmg",
       verified: "github.com/1zilc/fishing-funds/"
@@ -11,7 +11,14 @@ cask "fishing-funds" do
   desc "Display real-time trends of Chinese funds in the menubar"
   homepage "https://ff.1zilc.top/"
 
-  depends_on macos: ">= :big_sur"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :monterey
 
   app "Fishing Funds.app"
 

@@ -1,6 +1,6 @@
 cask "wifi-explorer-pro" do
-  version "3.6.10"
-  sha256 "424d06bf686b85d1b098ad54557992ab24a1bfe39cef7f9e98bded284dff3f16"
+  version "3.10.3"
+  sha256 "8193dd3e58fcd6298d49494caf1b7a94ec38f64b82d2e89d5de2f774daa00189"
 
   url "https://www.intuitibits.com/downloads/WiFiExplorerPro_#{version}.pkg"
   name "WiFi Explorer Pro"
@@ -12,7 +12,8 @@ cask "wifi-explorer-pro" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :mojave"
+  auto_updates true
+  depends_on macos: :ventura
 
   pkg "WiFiExplorerPro_#{version}.pkg"
 

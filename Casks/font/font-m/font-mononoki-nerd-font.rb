@@ -1,8 +1,8 @@
 cask "font-mononoki-nerd-font" do
-  version "3.3.0"
-  sha256 "b7f2419d6c83b68699ef7adc80d64fc6e384ca563bac0f0b6527deda55879d8f"
+  version "3.5.1"
+  sha256 "84cf96bf81645f97eb11a410e6febad864784a0a254bba4a348d6ff9665a0114"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Mononoki.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Mononoki.tar.xz"
   name "Mononoki Nerd Font (Mononoki)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-mononoki-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "MononokiNerdFont-Bold.ttf"
   font "MononokiNerdFont-BoldItalic.ttf"

@@ -8,6 +8,9 @@ cask "fake" do
   homepage "https://fakeapp.com/"
 
   deprecate! date: "2024-10-10", because: :unmaintained
+  disable! date: "2025-10-11", because: :unmaintained
+
+  depends_on :macos
 
   app "Fake.app"
 

@@ -1,6 +1,6 @@
 cask "xmplify" do
-  version "1.11.7"
-  sha256 "74d04e7d1f77af262497c5d3ead4636f0103dcb8157cbdc1dd23074c7c1d40bf"
+  version "1.11.11"
+  sha256 "ed2bbb1f77bf83fd64f209ad487495cb03c05d7f61512e40e2e6b98dc93910ee"
 
   url "https://xmplifyapp.com/releases/Xmplify-#{version}.dmg"
   name "Xmplify"
@@ -12,7 +12,7 @@ cask "xmplify" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Xmplify.app"
 

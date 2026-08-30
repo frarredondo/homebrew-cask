@@ -10,12 +10,17 @@ cask "ankerwork" do
   desc "Webcam & audio device software"
   homepage "https://us.ankerwork.com/pages/download-software"
 
+  # The homepage can return a 429 (Too many requests) response based on IP
+  # address when fetched outside of a browser. This happens in the autobump
+  # and CI environments, so we have to skip it in those instances for now.
   livecheck do
     url :homepage
     regex(/For\s+Mac.*?>\s*V?(\d+(?:\.\d+)+)\s*</im)
   end
 
-  depends_on macos: ">= :mojave"
+  no_autobump! because: "Livecheck is unreachable in autobump environment"
+
+  depends_on :macos
 
   app "AnkerWork.app"
 

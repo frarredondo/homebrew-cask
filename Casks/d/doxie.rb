@@ -1,6 +1,6 @@
 cask "doxie" do
-  version "3.5"
-  sha256 "ac8a82d7332c7c516427c453f576dbc09a7af5ea95eff8f693e3036589af3c58"
+  version "3.5.1"
+  sha256 "f461a68ef142991d4f02db81992e3e9e8fe2896583d4d35c035df708190f2b78"
 
   url "https://download.getdoxie.com/Doxie-#{version}.dmg"
   name "Doxie"
@@ -11,6 +11,8 @@ cask "doxie" do
     url "https://r.getdoxie.com/app/download_mac/"
     strategy :header_match
   end
+
+  depends_on :macos
 
   app "Doxie.app"
 

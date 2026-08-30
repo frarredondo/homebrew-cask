@@ -1,6 +1,6 @@
 cask "prism" do
-  version "10.4.1"
-  sha256 "55bba7224263c8fbcabadb6a5b157c36683453bc98a44229f34efef926e19852"
+  version "11.1.0"
+  sha256 "3a3e6700325df42937fe560b473d02bc881f4878b3fad11785004374870012f5"
 
   url "https://cdn.graphpad.com/downloads/prism/#{version.major}/#{version}/InstallPrism#{version.major}.dmg"
   name "GraphPad Prism"
@@ -16,9 +16,11 @@ cask "prism" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: :monterey
 
   app "Prism #{version.major}.app"
+
+  uninstall quit: "com.GraphPad.Prism"
 
   zap delete: [
         "/Library/Application Support/GraphPad",

@@ -1,8 +1,8 @@
 cask "font-recursive-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "a052aa4842a1719c6f202696f8096212b06f00e3a89138aae6960e7e9514ee07"
+  version "3.5.1"
+  sha256 "fb1e116c950b021c42235345a23380b4516b8bb318c57ab0085bdb33068feb56"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Recursive.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Recursive.tar.xz"
   name "RecMono Nerd Font families (Recursive Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-recursive-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "RecMonoCasualNerdFont-Bold.ttf"
   font "RecMonoCasualNerdFont-BoldItalic.ttf"

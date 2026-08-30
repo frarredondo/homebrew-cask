@@ -1,9 +1,9 @@
 cask "lidarr" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.9.6.4552"
-  sha256 arm:   "1df5907b8d7c9b3876f3800a53608f02d2fb4dc146b4460fa09a2acb99d8cd8e",
-         intel: "775f3b658653b25a0b7d87fb559753925f4cc7dbcb470ab6e65f42f2415da688"
+  version "3.1.0.4875"
+  sha256 arm:   "60236378eb5645fc217e2dfa6303558f1a2db8b5672c6332fd9ae30966ccbd26",
+         intel: "8450993360e485fc083204a84726fb002b6dfac54c29d583f8d4a22c3a59cf30"
 
   url "https://github.com/lidarr/Lidarr/releases/download/v#{version}/Lidarr.master.#{version}.osx-app-core-#{arch}.zip",
       verified: "github.com/lidarr/Lidarr/"
@@ -12,13 +12,18 @@ cask "lidarr" do
   homepage "https://lidarr.audio/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://lidarr.servarr.com/v1/update/master/changes?os=osx&arch=#{arch}"
+    strategy :json do |json|
+      json.map { |item| item["version"] }
+    end
   end
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  auto_updates true
+  depends_on :macos
 
   app "Lidarr.app"
 
-  zap trash: "~/.config/Lidarr/"
+  zap trash: "~/.config/Lidarr"
 end

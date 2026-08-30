@@ -1,6 +1,6 @@
 cask "insomnia" do
-  version "10.3.1"
-  sha256 "c6f09a52efcbf84e9b569995deddbe3620049f6888f5f060630b000ee95ea7e3"
+  version "13.2.0"
+  sha256 "f0b4535e55af44c212b6e601ae5919d0fa8cdbd82c3b52c10e85a29f4f621806"
 
   url "https://github.com/Kong/insomnia/releases/download/core%40#{version}/Insomnia.Core-#{version}.dmg",
       verified: "github.com/Kong/insomnia/"
@@ -8,8 +8,13 @@ cask "insomnia" do
   desc "HTTP and GraphQL Client"
   homepage "https://insomnia.rest/"
 
+  # The upstream server only returns a JSON response if the provided version is
+  # lower than the newest version. This uses a X.0.0 version in the `url` to
+  # work around it but this won't work for a new major version (e.g., 1.0.0)
+  # where the provided version and newest version are equal, so this uses the
+  # previous major for a new major release.
   livecheck do
-    url "https://updates.insomnia.rest/builds/check/mac?v=#{version.major}.0.0&app=com.insomnia.app&channel=stable"
+    url "https://updates.insomnia.rest/builds/check/mac?v=#{version.end_with?(".0.0") ? (version.major.to_i - 1) : version.major}.0.0&app=com.insomnia.app&channel=stable"
     strategy :json do |json|
       json["name"]
     end
@@ -17,7 +22,7 @@ cask "insomnia" do
 
   auto_updates true
   conflicts_with cask: "insomnia@alpha"
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Insomnia.app"
 

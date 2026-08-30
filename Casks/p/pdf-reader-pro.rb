@@ -1,21 +1,25 @@
 cask "pdf-reader-pro" do
-  version "4.7.8"
-  sha256 "719c6e22c2fef7697e28c223c7120f72674228a00199afff7d92925756b35c4f"
+  arch arm: "Apple", intel: "Intel"
 
-  url "https://www.pdfreaderpro.com/downloads/PDFReaderPro_v#{version.major_minor_patch}.dmg"
+  version "5.3.0"
+  sha256 arm:   "91db221c01cad0b5d0f599f6bff713d96a6adfda7f17de2740580b84310f6f12",
+         intel: "5c901e1b6e45c291fd2800b6ca347ec2d98274d4183a7d642d51fc262e6330b6"
+
+  url "https://file.pdfreaderpro.com/download/PDFReaderPro_#{arch}_v#{version.major_minor_patch}.dmg"
   name "PDF Reader Pro"
   desc "Read, annotate, edit, convert, create, OCR, fill forms and sign PDFs"
   homepage "https://www.pdfreaderpro.com/"
 
   livecheck do
     url "https://www.pdfreaderpro.com/downloads/pdfreaderprocast.xml"
-    regex(/PDFReaderPro[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    regex(/PDFReaderPro[._-]intel[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
     strategy :sparkle do |items, regex|
       items.map { |item| item.url[regex, 1] }
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on macos: :big_sur
 
   app "PDF Reader Pro.app"
 

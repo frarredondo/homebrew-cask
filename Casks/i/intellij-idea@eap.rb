@@ -1,9 +1,9 @@
 cask "intellij-idea@eap" do
   arch arm: "-aarch64"
 
-  version "2025.1,251.23774.16"
-  sha256 arm:   "3c4a552a4f7c6bc5ab9056b3b00bbb920f3c3475a45cd0b948fd1e1cf0de337a",
-         intel: "62fd2adc6e72bf60f91a134f4dd7b946ae56cdbcbcf54b7620776374eb3bb003"
+  version "2026.2.2,262.10315.19"
+  sha256 arm:   "ebf36075449523dfbc73cf14335b5fed87ac79b358ad3216b14e57ad6f2f6d84",
+         intel: "25c8a04b4a52ed3ef916e3faad5b769e74e3d2e592bb092e5f815a01190986e0"
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.csv.second}#{arch}.dmg"
   name "IntelliJ IDEA EAP"
@@ -11,7 +11,7 @@ cask "intellij-idea@eap" do
   homepage "https://www.jetbrains.com/idea/nextversion"
 
   livecheck do
-    url "https://data.services.jetbrains.com/products/releases?code=IIU&release.type=eap"
+    url "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap"
     strategy :json do |json|
       json["IIU"]&.map do |release|
         version = release["version"]
@@ -25,19 +25,15 @@ cask "intellij-idea@eap" do
 
   auto_updates true
   conflicts_with cask: "intellij-idea"
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
-  app "IntelliJ IDEA #{version.csv.first} EAP.app"
-  binary "#{appdir}/IntelliJ IDEA #{version.csv.first} EAP.app/Contents/MacOS/idea"
+  # The application path is often inconsistent between version
+  rename "IntelliJ IDEA*.app", "IntelliJ IDEA.app"
 
-  uninstall_postflight do
-    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
-      if File.readable?(path) &&
-         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
-        File.delete(path)
-      end
-    end
-  end
+  app "IntelliJ IDEA.app"
+  binary "#{appdir}/IntelliJ IDEA.app/Contents/MacOS/idea"
+
+  uninstall quit: "com.jetbrains.intellij"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/IntelliJIdea#{version.csv.first}",

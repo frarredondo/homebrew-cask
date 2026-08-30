@@ -9,6 +9,9 @@ cask "clementine" do
   homepage "https://www.clementine-player.org/"
 
   deprecate! date: "2024-11-30", because: :discontinued
+  disable! date: "2025-12-01", because: :discontinued
+
+  depends_on :macos
 
   app "clementine.app"
 

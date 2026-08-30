@@ -1,22 +1,22 @@
 cask "splice" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "aarch64", intel: "amd64"
 
-  version "5.2.7"
-  sha256 :no_check
+  version "5.4.12"
+  sha256 arm:   "913e4f4b7d65bb3ee1393d9751b1f339750ca575e6c368b170a959902ceace86",
+         intel: "8d31d76880d1c8771b7e0ce0d53d862331e08366619806ef28239d4da5278cad"
 
-  url "https://desktop.splice.com/darwin/stable/#{arch}/Splice.app.zip"
+  url "https://desktop.splice.com/conveyor/stable/splice-#{version}-mac-#{arch}.zip"
   name "Splice"
-  desc "Cloud-based music creation and collaboration platform"
+  desc "Browse and preview sounds from Splice’s entire catalog"
   homepage "https://splice.com/"
 
   livecheck do
-    url "https://api.splice.com/v2/desktop/darwin/stable/latest?v=0.0.0"
-    strategy :json do |json|
-      json["name"]
-    end
+    url "https://desktop.splice.com/conveyor/stable/appcast-#{arch}.rss"
+    strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: :monterey
 
   app "Splice.app"
 

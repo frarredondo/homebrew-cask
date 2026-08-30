@@ -13,7 +13,7 @@ cask "remotehamradio" do
     regex(/href=.*?RemoteHamRadio[._-]v?(\d+(?:\.\d+)+)[._-]universal[._-]mac\.zip/i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "RemoteHamRadio.app"
 

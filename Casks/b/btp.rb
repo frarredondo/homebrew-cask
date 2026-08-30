@@ -1,11 +1,14 @@
 cask "btp" do
   arch arm: "arm64", intel: "amd64"
+  os macos: "darwin", linux: "linux"
 
-  version "2.77.1"
-  sha256 arm:   "b67df627194d48269a55f0867275277c5a3e32ea668cdb791a5d57e519bbbc65",
-         intel: "91d80570bed19e7107410e127e2f721efa989d14a5c1c881333164bc7f6c93b4"
+  version "2.116.2"
+  sha256 arm:          "2a76cc51f6e7e7f9f80e50fd9c914ee46e1475426eae678d93449f50accf11ce",
+         intel:        "51fb4de1dc639064c399db0bb8911dd73f075fdc8b66e4fcdace0d8694056f0c",
+         arm64_linux:  "43c9b76badc13b4a01dc01a91f96d5858b31cc356477970d847f22940ffd58f9",
+         x86_64_linux: "9cd22d6241636d3a57174980e8ccb06c84a320a0bd36d4007f4e68e5203a59fb"
 
-  url "https://tools.hana.ondemand.com/additional/btp-cli-darwin-#{arch}-#{version}.tar.gz",
+  url "https://tools.hana.ondemand.com/additional/btp-cli-#{os}-#{arch}-#{version}.tar.gz",
       cookies: {
         "eula_3_2_agreed" => "tools.hana.ondemand.com/developer-license-3_2.txt",
       }
@@ -15,10 +18,13 @@ cask "btp" do
 
   livecheck do
     url :homepage
-    regex(/btp[._-]cli[._-]darwin[._-]#{arch}[._-]v?(\d+(?:\.\d+)+)\.t/i)
+    regex(/btp[._-]cli[._-]#{os}[._-]#{arch}[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
-  binary "darwin-#{arch}/btp", target: "btp"
+  binary "#{os}-#{arch}/btp"
+  generate_completions_from_executable "#{os}-#{arch}/btp",
+                                       shell_parameter_format: "--autocomplete=init:",
+                                       shells:                 [:bash, :zsh, :pwsh]
 
   # No zap stanza required
 

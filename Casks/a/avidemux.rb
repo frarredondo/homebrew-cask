@@ -7,7 +7,7 @@ cask "avidemux" do
         verified: "sourceforge.net/avidemux/"
 
     livecheck do
-      skip "Legacy version for Big Sur and earlier"
+      skip "Legacy version"
     end
   end
   on_monterey :or_newer do
@@ -21,6 +21,10 @@ cask "avidemux" do
   name "Avidemux"
   desc "Video editor"
   homepage "https://www.avidemux.org/"
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Avidemux_#{version}.app"
   binary "#{appdir}/Avidemux_#{version}.app/Contents/MacOS/avidemux_cli", target: "avidemux"

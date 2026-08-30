@@ -1,9 +1,9 @@
 cask "opensoundmeter" do
   arch arm: "arm", intel: "intel"
 
-  version "1.4.1"
-  sha256 arm:   "245f2c3f7b8d0075c6f20df9905b0a938f99ae60f31cc240d7e511fc7eed7182",
-         intel: "fd361e31639098771e825d79df4f720b29a77892ca8ee2242c8c88251fefdf6b"
+  version "1.5.2"
+  sha256 arm:   "ce076c369c45175d9841c69dbb1aebfebf4c85568c2dcf37f3d6ad7f804a2a9c",
+         intel: "9fba53e2530cca4b7c46d5ed5e576bcfff59e4a27d85d7d28b017ce71defe7d4"
 
   url "https://github.com/psmokotnin/osm/releases/download/v#{version}/OpenSoundMeter_#{arch}.dmg",
       verified: "github.com/psmokotnin/osm/"
@@ -16,7 +16,7 @@ cask "opensoundmeter" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "OpenSoundMeter.app"
 

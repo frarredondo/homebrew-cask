@@ -1,8 +1,8 @@
 cask "font-tinos-nerd-font" do
-  version "3.3.0"
-  sha256 "2039a92bde32b7614e82f9c6cff8b8ad579fc971ccaa6008865106d54cbc93d3"
+  version "3.5.1"
+  sha256 "70c5b9b6fac0c3bbb645b1470171023ddccd33ed70105ef41373f7af66f01129"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Tinos.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Tinos.tar.xz"
   name "Tinos Nerd Font (Tinos)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-tinos-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "TinosNerdFont-Bold.ttf"
   font "TinosNerdFont-BoldItalic.ttf"

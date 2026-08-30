@@ -1,9 +1,9 @@
 cask "figma@beta" do
   arch arm: "mac-arm", intel: "mac"
 
-  version "125.2.2"
-  sha256 arm:   "0ed37afc7c9d2017a4d267b87a2c8ae339efc286762b805c12b3c4f68e701692",
-         intel: "dec1b50ef93c560dced97373b60d129c467b6df74bda136fcf51595276986105"
+  version "126.9.1"
+  sha256 arm:   "cd168dc9c6aacae5eca110690e18f4174134fd44fbc8fae06db0ba576cf8a938",
+         intel: "e3e9ede76079fff7651cb084a209a1495cac56e84f8675824016fe0a0ecd2749"
 
   url "https://desktop.figma.com/#{arch}/beta/FigmaBeta-#{version}.zip"
   name "Figma Beta"
@@ -17,11 +17,14 @@ cask "figma@beta" do
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: :monterey
 
   app "Figma Beta.app"
 
+  uninstall quit: "com.figma.agent"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.figma.desktopbeta.sfl*",
     "~/Library/Caches/com.figma.agent",
     "~/Library/Preferences/com.figma.DesktopBeta.plist",
     "~/Library/Saved Application State/com.figma.DesktopBeta.savedState",

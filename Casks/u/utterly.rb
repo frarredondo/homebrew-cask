@@ -14,7 +14,7 @@ cask "utterly" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "Utterly-Elevate.pkg"
 

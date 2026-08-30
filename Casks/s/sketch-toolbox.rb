@@ -8,6 +8,9 @@ cask "sketch-toolbox" do
   homepage "http://sketchtoolbox.com/"
 
   deprecate! date: "2024-10-12", because: :discontinued
+  disable! date: "2025-10-12", because: :discontinued
+
+  depends_on :macos
 
   app "Sketch Toolbox.app"
 

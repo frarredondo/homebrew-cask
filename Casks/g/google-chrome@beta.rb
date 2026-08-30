@@ -1,5 +1,5 @@
 cask "google-chrome@beta" do
-  version "135.0.7049.3"
+  version "153.0.8010.12"
   sha256 :no_check
 
   url "https://dl.google.com/chrome/mac/universal/beta/googlechromebeta.dmg"
@@ -17,7 +17,7 @@ cask "google-chrome@beta" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "Google Chrome Beta.app"
 

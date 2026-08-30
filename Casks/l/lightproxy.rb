@@ -8,18 +8,14 @@ cask "lightproxy" do
   desc "Proxy & Debug tools based on whistle with Chrome Devtools UI"
   homepage "https://alibaba.github.io/lightproxy/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "LightProxy.app"
 
-  uninstall_postflight do
-    stdout, * = system_command "/usr/bin/security",
-                               args: ["find-certificate", "-a", "-c", "LightProxy", "-Z"],
-                               sudo: true
-    hashes = stdout.lines.grep(/^SHA-256 hash:/) { |l| l.split(":").second.strip }
-    hashes.each do |h|
-      system_command "/usr/bin/security",
-                     args: ["delete-certificate", "-Z", h],
-                     sudo: true
-    end
+  uninstall_postflight_steps do
+    delete_keychain_certificates "LightProxy"
   end
 
   caveats do

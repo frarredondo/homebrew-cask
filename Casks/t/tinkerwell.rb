@@ -1,9 +1,9 @@
 cask "tinkerwell" do
   arch arm: "-arm64"
 
-  version "4.21.5"
-  sha256 arm:   "eb4bcfd926de06e4dc3071561f2b781b94ad9ccc7fc0aa8393ef2ddfb19a4d5b",
-         intel: "eefc0531e426e387cf8a82e4f9538746e7e2caa639475691d1af0cedf0792263"
+  version "5.17.3"
+  sha256 arm:   "015f773bf9eaafec655ebd947a1144e920b9f058c97fad85923fc84a363556b6",
+         intel: "24d89388e0057589181d5ddf3186acd777263d98327d66a1bbfd69fe5475bb14"
 
   url "https://download.tinkerwell.app/tinkerwell/Tinkerwell-#{version}#{arch}.dmg"
   name "Tinkerwell"
@@ -16,6 +16,7 @@ cask "tinkerwell" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Tinkerwell.app"
 

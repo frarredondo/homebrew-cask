@@ -8,52 +8,41 @@ cask "parallels@14" do
   homepage "https://www.parallels.com/products/desktop/"
 
   deprecate! date: "2024-09-11", because: :discontinued
+  disable! date: "2025-09-11", because: :discontinued
 
   auto_updates true
   conflicts_with cask: [
     "parallels",
-    "parallels@12",
-    "parallels@13",
     "parallels@15",
     "parallels@16",
     "parallels@17",
     "parallels@18",
     "parallels@19",
+    "parallels@20",
   ]
-  depends_on macos: [
-    :el_capitan,
-    :sierra,
-    :high_sierra,
-    :mojave,
-  ]
+  depends_on :macos
   # This .dmg cannot be extracted normally
   # Original discussion: https://github.com/Homebrew/homebrew-cask/pull/67202
   container type: :naked
 
-  preflight do
-    system_command "/usr/bin/hdiutil",
-                   args: ["attach", "-nobrowse", "#{staged_path}/ParallelsDesktop-#{version}.dmg"]
-    system_command "/Volumes/Parallels Desktop #{version.major}/Parallels Desktop.app/Contents/MacOS/inittool",
-                   args: ["install", "-t", "#{appdir}/Parallels Desktop.app", "-s"],
-                   sudo: true
-    system_command "/usr/bin/hdiutil",
-                   args: ["detach", "/Volumes/Parallels Desktop #{version.major}"]
+  preflight_steps do
+    run "/usr/bin/hdiutil", args: ["attach", "-nobrowse", "{{staged_path}}/ParallelsDesktop-{{version}}.dmg"]
+    run "/Volumes/Parallels Desktop {{version.major}}/Parallels Desktop.app/Contents/MacOS/inittool",
+        args: ["install", "-t", "{{appdir}}/Parallels Desktop.app", "-s"], sudo: true
+    run "/usr/bin/hdiutil", args: ["detach", "/Volumes/Parallels Desktop {{version.major}}"]
   end
 
-  postflight do
+  postflight_steps do
     # Unhide the application
-    system_command "/usr/bin/chflags",
-                   args: ["nohidden", "#{appdir}/Parallels Desktop.app"],
-                   sudo: true
+    run "/usr/bin/chflags", args: ["nohidden", "{{appdir}}/Parallels Desktop.app"], sudo: true
 
     # Run the initialization script
-    system_command "#{appdir}/Parallels Desktop.app/Contents/MacOS/inittool",
-                   args: ["init", "-b", "#{appdir}/Parallels Desktop.app"],
-                   sudo: true
+    run "Parallels Desktop.app/Contents/MacOS/inittool",
+        args: ["init", "-b", "{{appdir}}/Parallels Desktop.app"], base: :appdir, sudo: true
   end
 
-  uninstall_preflight do
-    set_ownership "#{appdir}/Parallels Desktop.app"
+  uninstall_preflight_steps do
+    set_ownership "Parallels Desktop.app", base: :appdir
   end
 
   uninstall delete: [

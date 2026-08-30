@@ -16,7 +16,7 @@ cask "sonic-lineup" do
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Sonic Lineup.app"
 

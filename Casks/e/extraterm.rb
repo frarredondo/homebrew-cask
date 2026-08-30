@@ -1,10 +1,10 @@
 cask "extraterm" do
-  version "0.81.0"
-  sha256 "f6d8d5dccfebe35e9f4a8d0f58f44a9654dcb717b282828b7112c043b66daab0"
+  version "0.81.4"
+  sha256 "214bd9bb54fcb8c8cd97c8ea401898adac1a205b5fba74b406178757dbeae814"
 
   url "https://github.com/sedwards2009/extraterm/releases/download/v#{version}/ExtratermQt_#{version}.dmg",
       verified: "github.com/sedwards2009/extraterm/"
-  name "extraterm"
+  name "Extraterm"
   desc "Swiss army chainsaw of terminal emulators"
   homepage "https://extraterm.org/"
 
@@ -13,7 +13,9 @@ cask "extraterm" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :catalina"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "ExtratermQt.app"
 

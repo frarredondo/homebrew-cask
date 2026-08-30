@@ -1,6 +1,6 @@
 cask "mi" do
-  version "3.8.6"
-  sha256 "0d088aea998c74ac59be4e1ace7439161aeeffd363608379d8ad9e286db7b87c"
+  version "3.9.5"
+  sha256 "5175d26e926ee286a0c117289b409e5388c243099812831bdd1fb678f04467b9"
 
   url "https://www.mimikaki.net/download/mi#{version}.dmg"
   name "mi"
@@ -13,7 +13,7 @@ cask "mi" do
   end
 
   conflicts_with cask: "mi@beta"
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :big_sur
 
   app "mi.app"
 

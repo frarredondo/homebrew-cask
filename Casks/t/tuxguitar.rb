@@ -1,6 +1,6 @@
 cask "tuxguitar" do
-  version "1.6.6"
-  sha256 "87304ed1608495652645ec29d86bad56946618545575a25d87299bca39c9bead"
+  version "2.1.0"
+  sha256 "ae4590df0965276a271eb3ab51bf0fb755c5e92c1732f83d8bb2ee7ba7fb5abc"
 
   url "https://github.com/helge17/tuxguitar/releases/download/#{version}/tuxguitar-#{version}-macosx-swt-cocoa-x86_64.app.tar.gz",
       verified: "github.com/helge17/tuxguitar/"
@@ -13,7 +13,13 @@ cask "tuxguitar" do
     strategy :github_latest
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "tuxguitar-#{version}-macosx-swt-cocoa-x86_64.app"
+
+  uninstall quit: "app.tuxguitar"
 
   zap trash: "~/Library/Application Support/tuxguitar"
 end

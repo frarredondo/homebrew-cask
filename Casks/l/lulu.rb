@@ -1,6 +1,6 @@
 cask "lulu" do
-  version "3.1.2"
-  sha256 "b19ee034c4aadf44ad7303deb6d1e85058d3198b446312177ce19074048b8882"
+  version "4.5.1"
+  sha256 "98f4d3427f4c6fccf9680fed22879be90a5ae81e80eb8616c1d758755b6bb624"
 
   url "https://github.com/objective-see/LuLu/releases/download/v#{version}/LuLu_#{version}.dmg",
       verified: "github.com/objective-see/LuLu/"
@@ -13,12 +13,11 @@ cask "lulu" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "LuLu.app"
 
-  # Lulu's uninstaller removes all preference files breaking brew upgrade
-
+  # Lulu's uninstaller removes all preference files which breaks `brew upgrade`
   zap trash: [
     "~/Library/Caches/com.objective-see.lulu",
     "~/Library/Caches/com.objective-see.lulu.helper",

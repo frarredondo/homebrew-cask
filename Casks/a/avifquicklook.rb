@@ -7,6 +7,10 @@ cask "avifquicklook" do
   desc "Quick Look Plugin for AVIF images"
   homepage "https://github.com/dreampiggy/AVIFQuickLook"
 
+  deprecate! date: "2025-09-22", because: :no_longer_meets_criteria
+
+  depends_on :macos
+
   qlplugin "AVIFQuickLook.qlgenerator"
 
   # No zap stanza required

@@ -2,9 +2,9 @@ cask "krisp" do
   arch arm: "arm64", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "arm", intel: "64"
 
-  version "2.55.8"
-  sha256 arm:   "dea94a4e3d958673c3c9ae67c6609daa6a3282deb7901d30db4f35eba275f78e",
-         intel: "cc867618d2aa7ec8894ea47ecdf3318984fde95b6c54848738564d2df8e13bd2"
+  version "3.16.6"
+  sha256 arm:   "f745ac32d42403cfae91396741ace086580adae7433ed24f7735ea1b262f1848",
+         intel: "6830bf7e5eb5749c1a3d1292c517a1a9d44000b8fdadcf904745d77eb22d1b6d"
 
   url "https://cdn.krisp.ai/mp/mn/#{version.major_minor}/mac/Krisp_#{version}_#{arch}.pkg"
   name "Krisp"
@@ -18,9 +18,9 @@ cask "krisp" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
-  pkg "krisp_#{version}_#{arch}.pkg"
+  pkg "Krisp_#{version}_#{arch}.pkg"
 
   uninstall launchctl: [
               "ai.krisp.krispMac*",
@@ -33,10 +33,13 @@ cask "krisp" do
   zap trash: [
     "~/Library/Application Scripts/ai.krisp.krispMac.LaunchHelper",
     "~/Library/Application Support/ai.krisp.krispMac",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/ai.krisp.krispmac.sfl*",
+    "~/Library/Application Support/krisp",
     "~/Library/Caches/ai.krisp.krispMac",
     "~/Library/Containers/ai.krisp.krispMac.LaunchHelper",
     "~/Library/HTTPStorages/ai.krisp.krispMac.*",
     "~/Library/LaunchAgents/ai.krisp.krispMac.cameraAssistant.plist",
+    "~/Library/LaunchAgents/krisp.plist",
     "~/Library/Preferences/ai.krisp.krispMac.plist",
   ]
 end

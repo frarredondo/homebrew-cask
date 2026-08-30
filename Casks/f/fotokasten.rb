@@ -1,6 +1,6 @@
 cask "fotokasten" do
-  version "4.33.3,250210.1048"
-  sha256 "bb6908fbdd44fbf14728ce028efceb91ff7db162d9b2930a0c6932f7af199158"
+  version "4.49.0,251028.1453"
+  sha256 "c76b6736fc6a84bb6b71c0e81415031d09095172e82b9df0df81d280bab26ec5"
 
   url "https://downloads.poi.de/fotokasten/pgx-mac/de_DE/fotokasten_22153088_de_DE_#{version.csv.first}-#{version.csv.second}.dmg",
       verified: "downloads.poi.de/fotokasten/"
@@ -13,15 +13,19 @@ cask "fotokasten" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :mojave"
+  auto_updates true
+  depends_on :macos
 
   app "Fotokasten.app"
 
   zap trash: [
     "~/Library/Application Support/de.designer.fotokasten.osx",
     "~/Library/Caches/de.designer.fotokasten.osx",
+    "~/Library/HTTPStorages/de.designer.fotokasten.osx",
+    "~/Library/HTTPStorages/de.designer.fotokasten.osx.binarycookies",
     "~/Library/Logs/fotokasten",
     "~/Library/Preferences/de.designer.fotokasten.osx.plist",
+    "~/Library/Saved Application State/de.designer.fotokasten.osx.savedState",
     "~/Library/WebKit/de.designer.fotokasten.osx",
   ]
 

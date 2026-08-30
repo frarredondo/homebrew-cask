@@ -1,5 +1,5 @@
 cask "fission" do
-  version "2.8.8"
+  version "2.9.5"
   sha256 :no_check
 
   url "https://cdn.rogueamoeba.com/fission/download/Fission.zip"
@@ -8,12 +8,12 @@ cask "fission" do
   homepage "https://rogueamoeba.com/fission/"
 
   livecheck do
-    url "https://rogueamoeba.net/ping/versionCheck.cgi?format=sparkle&system=#{MacOS.full_version.to_s.delete(".")}&bundleid=com.rogueamoeba.fission&platform=osx&version=#{version.no_dots}8000"
+    url "https://rogueamoeba.net/ping/versionCheck.cgi?format=sparkle&system=999&bundleid=com.rogueamoeba.fission&platform=osx&version=#{version.no_dots}8000"
     strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   app "Fission.app"
 
@@ -21,7 +21,7 @@ cask "fission" do
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.rogueamoeba.fission.sfl*",
-    "~/Library/Application Support/Fission/",
+    "~/Library/Application Support/Fission",
     "~/Library/Caches/com.rogueamoeba.Fission",
     "~/Library/HTTPStorages/com.rogueamoeba.Fission",
     "~/Library/Preferences/com.rogueamoeba.Fission.plist",

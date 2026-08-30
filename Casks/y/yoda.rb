@@ -8,6 +8,9 @@ cask "yoda" do
   homepage "https://github.com/whoisandy/yoda"
 
   deprecate! date: "2024-09-01", because: :unmaintained
+  disable! date: "2025-09-02", because: :unmaintained
+
+  depends_on :macos
 
   app "Yoda.app"
 

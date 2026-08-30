@@ -1,19 +1,23 @@
 cask "inkstitch" do
-  version "3.1.0"
+  version "3.3.0"
 
-  on_big_sur :or_older do
-    sha256 "e7b789873d828bac53a632a3acee59791bb971a31e4ec57ae5f49a272c8ccbe9"
+  on_monterey :or_older do
+    sha256 "0e4a39a7dfc62b8ec84b110dc3a9ccceff52fa1b92940e19d34dd04e16dcfca4"
 
-    url "https://github.com/inkstitch/inkstitch/releases/download/v#{version}/inkstitch-v#{version}-high-sierra-catalina-osx-x86_64.pkg",
+    url "https://github.com/inkstitch/inkstitch/releases/download/v#{version}/inkstitch-#{version}-old-osx-x86_64.pkg",
         verified: "github.com/inkstitch/inkstitch/"
 
-    pkg "inkstitch-v#{version}-high-sierra-catalina-osx-x86_64.pkg"
+    pkg "inkstitch-v#{version}-old-osx-x86_64.pkg"
+
+    caveats do
+      requires_rosetta
+    end
   end
-  on_monterey :or_newer do
+  on_ventura :or_newer do
     arch arm: "arm64", intel: "x86_64"
 
-    sha256 arm:   "2c8c85285373245dca11fb1d2e516839b3c5ef0a795bbf93a79f01e4d37e5ef3",
-           intel: "08f8d593e0776860cb6721d235a3da3e2cb4559dab0c300964705d66cf26c9a8"
+    sha256 arm:   "eb48bbed6b58438427accc5adc079f41d4ad3a82a3ebeeb04af93f204a529b2f",
+           intel: "756485679c1de66d9052571200695a7e247829ef8bef99bf2e336afdd2c93b57"
 
     url "https://github.com/inkstitch/inkstitch/releases/download/v#{version}/inkstitch-v#{version}-osx-#{arch}.pkg",
         verified: "github.com/inkstitch/inkstitch/"
@@ -30,13 +34,12 @@ cask "inkstitch" do
     strategy :github_latest
   end
 
+  depends_on :macos
   depends_on cask: "inkscape"
-  depends_on macos: ">= :high_sierra"
 
-  preflight do
+  preflight_steps do
     # This needs to exist, otherwise the installer gets stuck at a prompt asking the user to run Inkscape first.
-    inkscape_extensions = Pathname("~/Library/Application Support/org.inkscape.Inkscape/config/inkscape").expand_path
-    inkscape_extensions.mkpath
+    mkdir_p "Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions", base: :home
   end
 
   uninstall pkgutil: "org.inkstitch.installer",

@@ -9,6 +9,9 @@ cask "diashapes" do
   homepage "http://dia-installer.de/shapes/index.html"
 
   deprecate! date: "2024-09-09", because: :unmaintained
+  disable! date: "2025-09-09", because: :unmaintained
+
+  depends_on :macos
 
   app "Diashapes.app"
 

@@ -1,9 +1,9 @@
 cask "soapui" do
   arch arm: "arm64", intel: "x64"
 
-  version "5.8.0"
-  sha256 arm:   "2119fe26d55a4b7e1380b2caadbe301e489e8475a45429d47fb1409712edc6fd",
-         intel: "076a5322d5a8f56d814b55d51115b1520221e8206b5f54beb1e0338230a48b22"
+  version "5.9.1"
+  sha256 arm:   "8fd400d40bebfa0260d2f7a8ccead22742a08b6c0b33ef321def7b2f19022969",
+         intel: "1c95a58c88151b20adb7fc76cfbe22f3a429d2306cd7e20496a5dce7e5b16eec"
 
   url "https://dl.eviware.com/soapuios/#{version}/SoapUI-#{arch}-#{version}.dmg",
       verified: "dl.eviware.com/soapuios/"
@@ -15,6 +15,8 @@ cask "soapui" do
     url "https://www.soapui.org/downloads/latest-release/"
     regex(%r{href=.*?/SoapUI[._-]#{arch}[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
+
+  depends_on :macos
 
   installer script: {
     executable: "SoapUI #{version} Installer.app/Contents/MacOS/JavaApplicationStub",

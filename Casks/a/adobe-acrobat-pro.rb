@@ -1,5 +1,5 @@
 cask "adobe-acrobat-pro" do
-  version "25.001.20428"
+  version "26.002.21869"
   sha256 :no_check
 
   url "https://trials.adobe.com/AdobeProducts/APRO/Acrobat_HelpX/osx10/Acrobat_DC_Web_WWMUI.dmg",
@@ -15,6 +15,7 @@ cask "adobe-acrobat-pro" do
   end
 
   auto_updates true
+  depends_on macos: :ventura
 
   pkg "Acrobat/Acrobat DC Installer.pkg"
 
@@ -27,6 +28,7 @@ cask "adobe-acrobat-pro" do
               "com.adobe.ARMDC.SMJobBlessHelper",
               "com.adobe.ARMDCHelper.cc24aef4a1b90ed56a725c38014c95072f92651fb65e1bf9c8e43c37a23d420d",
             ],
+            quit:      ["com.adobe.Acrobat.Pro", "com.adobe.distiller"],
             pkgutil:   [
               "com.adobe.acrobat.DC.*",
               "com.adobe.AcroServicesUpdater",
@@ -36,12 +38,12 @@ cask "adobe-acrobat-pro" do
             delete:    "/Applications/Adobe Acrobat DC/"
 
   zap trash: [
-    "~/Library/Application Support/Adobe/Acrobat/",
+    "~/Library/Application Support/Adobe/Acrobat",
     "~/Library/Caches/Acrobat",
     "~/Library/Caches/com.adobe.Acrobat.Pro",
     "~/Library/HTTPStorages/com.adobe.Acrobat.Pro",
     "~/Library/HTTPStorages/com.adobe.Acrobat.Pro.binarycookies",
-    "~/Library/Preferences/Adobe/Acrobat/",
+    "~/Library/Preferences/Adobe/Acrobat",
     "~/Library/Preferences/com.adobe.Acrobat.Pro.plist",
     "~/Library/Saved Application State/com.adobe.Acrobat.Pro.savedState",
     "~/Library/WebKit/com.adobe.Acrobat.Pro",

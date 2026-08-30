@@ -2,13 +2,14 @@ cask "vlc@nightly" do
   arch arm: "arm64", intel: "x86_64"
   livecheck_arch = on_arch_conditional arm: "arm64", intel: "intel64"
 
+  sha256 arm:   "651ce20b971c267a8c397986794ca0ed371ae4076817c14211d9252705ce88f3",
+         intel: "a79545ebe0611dff340af984406c2067b3f6b0ea696c880dacffbe4ab2fd0fba"
+
   on_arm do
-    version "4.0.0,20250305-0414,a60ff650"
-    sha256 "98d0910a10a704e0334c6fe839b75217b148317217a70a2bb66484c213990b5a"
+    version "4.0.0,20260829-0413,75a00c37"
   end
   on_intel do
-    version "4.0.0,20250305-0411,a60ff650"
-    sha256 "2cddbf3c7342ce20fd3db2e18895927cac29f11246af87b673959a23daf7463e"
+    version "4.0.0,20260829-0415,75a00c37"
   end
 
   url "https://artifacts.videolan.org/vlc/nightly-macos-#{arch}/#{version.csv.second}/vlc-#{version.csv.first}-dev-#{livecheck_arch}-#{version.csv.third}.dmg"
@@ -39,19 +40,14 @@ cask "vlc@nightly" do
     end
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   conflicts_with cask: "vlc"
+  depends_on :macos
 
   app "VLC.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/vlc.wrapper.sh"
-  binary shimscript, target: "vlc"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/VLC.app/Contents/MacOS/VLC' "$@"
-    EOS
-  end
+  command_wrapper "vlc",
+                  executable: "#{appdir}/VLC.app/Contents/MacOS/VLC"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.videolan.vlc.sfl*",

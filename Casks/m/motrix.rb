@@ -16,7 +16,8 @@ cask "motrix" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
+  conflicts_with cask: "motrix@beta"
+  depends_on :macos
 
   app "Motrix.app"
 

@@ -8,6 +8,10 @@ cask "moebius" do
   desc "ANSI editor"
   homepage "https://blocktronics.github.io/moebius/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "Moebius.app"
 
   zap trash: [

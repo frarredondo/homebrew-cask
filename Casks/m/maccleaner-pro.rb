@@ -1,26 +1,30 @@
 cask "maccleaner-pro" do
-  version "2.9.2"
-  sha256 :no_check
+  version "4.0.4,606"
+  sha256 "0e8b09295aaa03415b199e41236813327cd298e7abaf48b9b052e9182e18c9c8"
 
-  url "https://nektony.com/download/mac-cleaner-pro/dmg/mac-cleaner-pro.dmg"
+  url "https://nektony.com/download/mac-cleaner-pro/dmg/mac-cleaner-pro.dmg?build=#{version.csv.second}"
   name "Nektony MacCleaner Pro"
   desc "Delete junk, unnecessary files and folders, and speed up your computer"
   homepage "https://nektony.com/mac-cleaner-pro"
 
   livecheck do
-    url "https://download.nektony.com/pro-support/mac-cleaner-pro/update/update.xml"
-    strategy :sparkle, &:short_version
+    url "https://download.nektony.com/pro-support/v3/mac-cleaner-pro/update/update.xml"
+    strategy :sparkle
   end
 
-  depends_on macos: ">= :el_capitan"
+  auto_updates true
+  depends_on macos: :big_sur
 
-  app "MacCleaner 3 Pro"
+  suite "MacCleaner #{version.major} Pro"
 
   zap trash: [
-    "~/Library/Application Scripts/com.nektony.MacCleaner-PRO-SII",
-    "~/Library/Application Support/com.nektony.MacCleaner-PRO-SII",
-    "~/Library/Caches/com.nektony.MacCleaner-PRO-SII",
+    "~/Library/Application Scripts/com.nektony.MacCleaner-PRO-SII*",
+    "~/Library/Application Support/com.nektony.MacCleaner-PRO-SII*",
+    "~/Library/Caches/com.nektony.MacCleaner-PRO-SII*",
     "~/Library/Cookies/com.nektony.MacCleaner-PRO-SII.binarycookies",
-    "~/Library/Preferences/com.nektony.MacCleaner-PRO-SII.plist",
+    "~/Library/Group Containers/*.com.nektony.MacCleaner-PRO-SII*",
+    "~/Library/HTTPStorages/com.nektony.MacCleaner-PRO-SII*",
+    "~/Library/Preferences/*.com.nektony.MacCleaner-PRO*.plist",
+    "~/Library/Saved Application State/com.nektony.MacCleaner-PRO-SII*.savedState",
   ]
 end

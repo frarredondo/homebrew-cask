@@ -1,9 +1,9 @@
 cask "local" do
   arch arm: "-arm64"
 
-  version "9.2.2,6771"
-  sha256  arm:   "494b843838ddc38b397ab4bb5c6139edaec354c24041918195c8124dc88b5a36",
-          intel: "c357e3e6637c3fcd048fae4f52facdbc690e0b3bcdb358327dfc90bb4fa31b7f"
+  version "10.1.2,7004"
+  sha256 arm:   "9507b0cf27637dedb65b5750f76da20c3a7723ebf91030c779e9211779af001c",
+         intel: "80c6f1dcd52051279b8ca1c30495113cf1999bd6004b626b64db7ab2873172d1"
 
   url "https://cdn.localwp.com/releases-stable/#{version.csv.first}+#{version.csv.second}/local-#{version.csv.first}-mac#{arch}.dmg"
   name "Local"
@@ -22,7 +22,7 @@ cask "local" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Local.app"
 

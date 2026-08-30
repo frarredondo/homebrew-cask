@@ -1,9 +1,9 @@
 cask "losslesscut" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.64.0"
-  sha256 arm:   "fcce7269f6500ea0a80f31e98d9042f3409c2fd28c3b9970bf209cab5f5c6918",
-         intel: "04ed8aa1801ebdb54bd048b1d649ef68f541916b9c608f3d564b9e5984537176"
+  version "3.69.0"
+  sha256 arm:   "c7801b482df3be0384acc8171d5a7d16cce70d1588871e344b155aaca39fa58b",
+         intel: "ab828d1a652c895661b15b682d81106562e0f11fabcb8c2d1e4bf2c4fdddf64a"
 
   url "https://github.com/mifi/lossless-cut/releases/download/v#{version}/LosslessCut-mac-#{arch}.dmg"
   name "LosslessCut"
@@ -15,7 +15,7 @@ cask "losslesscut" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "LosslessCut.app"
 

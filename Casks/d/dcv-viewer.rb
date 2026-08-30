@@ -1,9 +1,9 @@
 cask "dcv-viewer" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2024.0.7209"
-  sha256 arm:   "29a4efb592aaf07f2e6d09de0cf2dbafb11ab0beb6522bc09a0b5e6e303a9ddb",
-         intel: "df49ab8eb10b397048ea5ec8cc031bbf7d678a2dbe4c4dac7d7bfe0e386639f9"
+  version "2025.0.8846"
+  sha256 arm:   "0f7e0d840b87f2f465e57923906c7926fdcd427b557ffb113670cefbb924bf81",
+         intel: "22a715f3641873e7f6eb036d582d8c7425fd676d2aef815ccac60ddf9de682b6"
 
   url "https://d1uj6qtbmh3dt5.cloudfront.net/#{version.major_minor}/Clients/nice-dcv-viewer-#{version}.#{arch}.dmg",
       verified: "d1uj6qtbmh3dt5.cloudfront.net/"
@@ -16,7 +16,7 @@ cask "dcv-viewer" do
     regex(%r{href=.*?/nice-dcv-viewer[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg}i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "DCV Viewer.app"
 

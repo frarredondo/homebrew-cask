@@ -1,6 +1,6 @@
 cask "zoc" do
-  version "8.10.1"
-  sha256 "2248a6984b619cb660b9362d556169f470b57495fb4a40fbef45b629b032c624"
+  version "9.04.1"
+  sha256 "82db38ed131889670f35a327c4641e02b7097652e47fc42608cd3c0a3806b080"
 
   url "https://www.emtec.com/downloads/zoc/zoc#{version.no_dots}.dmg"
   name "ZOC"
@@ -12,7 +12,11 @@ cask "zoc" do
     regex(/\*\s*VERSION\s*(\d+(?:\.\d+)+)/i)
   end
 
+  depends_on :macos
+
   app "zoc#{version.major}.app"
+
+  uninstall quit: "com.emtec.zoc#{version.major}"
 
   zap trash: [
     "~/Library/Application Support/ZOC#{version.major} Files",

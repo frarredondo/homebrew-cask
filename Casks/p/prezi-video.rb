@@ -1,6 +1,6 @@
 cask "prezi-video" do
-  version "2.30.0"
-  sha256 "d509fb18591e41ba001e08ea5b6da4f9af41658deafae767ce1ea7d562520b88"
+  version "2.35.0"
+  sha256 "aac8f4fd53e76f084383d22599982a95bf70a5a97e8cf8b98257251f66d4b406"
 
   url "https://desktopassets.prezi.com/mac/prezi-video/releases/Prezi_Video_#{version}.zip"
   name "Prezi Video"
@@ -13,7 +13,7 @@ cask "prezi-video" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "Prezi_Video.pkg"
 

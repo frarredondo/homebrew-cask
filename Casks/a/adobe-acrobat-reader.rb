@@ -1,6 +1,6 @@
 cask "adobe-acrobat-reader" do
-  version "24.005.20414"
-  sha256 "ea75effb729bd2fd3690e1b8cf93c852998474a6fb2100372337df2765e05880"
+  version "26.001.21662"
+  sha256 "21821609bea4210e54b1844a1129cdafccea21f6d6d3d0797808f92e357d5705"
 
   url "https://ardownload2.adobe.com/pub/adobe/reader/mac/AcrobatDC/#{version.no_dots}/AcroRdrDC_#{version.no_dots}_MUI.dmg"
   name "Adobe Acrobat Reader"
@@ -15,6 +15,7 @@ cask "adobe-acrobat-reader" do
   end
 
   auto_updates true
+  depends_on macos: :ventura
 
   pkg "AcroRdrDC_#{version.no_dots}_MUI.pkg"
 
@@ -39,6 +40,8 @@ cask "adobe-acrobat-reader" do
             ]
 
   zap trash: [
+    "~/Library/Application Support/Adobe/Acrobat",
+    "~/Library/Application Support/Adobe/AcroCef",
     "~/Library/Caches/com.adobe.Reader",
     "~/Library/HTTPStorages/com.adobe.Reader",
     "~/Library/HTTPStorages/com.adobe.Reader.binarycookies",

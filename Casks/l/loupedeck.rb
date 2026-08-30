@@ -1,9 +1,8 @@
 cask "loupedeck" do
-  version "5.9.1.19365"
-  sha256 "cf0357880332e537827b328716345b9c6dff0537a189f3181f6ff8565aef2db7"
+  version "6.4.1.364"
+  sha256 "8d31e7b72e06b7cb03a5574793c35df04653b56212fdf02b9c2f6d23c61223a6"
 
-  url "https://5145542.fs1.hubspotusercontent-na1.net/hubfs/5145542/Knowledge%20Base/LD%20Software%20Downloads/#{version.major_minor_patch.chomp(".0")}/LoupedeckInstaller_#{version}.dmg",
-      verified: "5145542.fs1.hubspotusercontent-na1.net/hubfs/5145542/"
+  url "https://support.loupedeck.com/hubfs/Knowledge%20Base/LD%20Software%20Downloads/#{version.major_minor_patch.chomp(".0")}/LoupedeckInstaller_#{version}.dmg"
   name "Loupdeck"
   desc "Software for Loupedeck consoles"
   homepage "https://loupedeck.com/"
@@ -13,9 +12,16 @@ cask "loupedeck" do
     regex(/href=.*?LoupedeckInstaller(?:[._\s-]|%20)+v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
-  pkg "LoupedeckInstaller.pkg"
+  # The bundled child pkg's postinstall runs `pkill -f Loupedeck`,
+  # which would also kill the parent `installer` process because its
+  # argv contains "LoupedeckInstaller.pkg". Rename the pkg to a name
+  # without "Loupedeck" so the (case-sensitive) regex does not match
+  # the parent installer.
+  rename "LoupedeckInstaller.pkg", "Installer.pkg"
+
+  pkg "Installer.pkg"
 
   uninstall launchctl: "com.loupedeck.loupedeck2.launch",
             quit:      [

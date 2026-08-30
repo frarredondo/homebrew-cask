@@ -12,7 +12,7 @@ cask "reflector@2" do
     strategy :sparkle, &:short_version
   end
 
-  deprecate! date: "2025-05-01", because: :unsigned
+  depends_on :macos
 
   app "Reflector #{version.major}.app"
 
@@ -21,4 +21,8 @@ cask "reflector@2" do
     "~/Library/Caches/com.squirrels.Reflector-#{version.major}",
     "~/Library/Preferences/com.squirrels.Reflector-#{version.major}.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

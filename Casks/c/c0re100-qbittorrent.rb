@@ -1,6 +1,6 @@
 cask "c0re100-qbittorrent" do
-  version "5.0.4.10"
-  sha256 "f0c9090238b361a5720e64061471d8a4ed0b0c1b9eecf063d4d8e6635120f3b9"
+  version "5.2.3.10"
+  sha256 "bff0dce3571ffd8ead2c55adcb44baec40a696f8fec7e422ff7908b98bd624ea"
 
   url "https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-#{version}/qBittorrent-Enhanced-Edition-release-#{version}-macOS-universal.dmg"
   name "qBittorrent Enhanced Edition"
@@ -12,10 +12,12 @@ cask "c0re100-qbittorrent" do
     regex(/^release[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
-  conflicts_with cask: "qbittorrent"
-  depends_on macos: ">= :monterey"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-  app "qbittorrent.app"
+  conflicts_with cask: "qbittorrent"
+  depends_on macos: :ventura
+
+  app "qBittorrent.app"
 
   zap trash: [
     "~/.config/qBittorrent",

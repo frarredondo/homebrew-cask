@@ -1,22 +1,30 @@
 cask "wechat" do
-  version "3.8.10.17"
-  sha256 :no_check
+  version "4.1.13.11,269579"
+  sha256 "8ac5734e173fb457c915a9fd56d8c360ca284328d765219feafb3ba7e767a09e"
 
-  url "https://dldir1.qq.com/weixin/mac/WeChatMac.dmg"
+  url "https://dldir1.qq.com/weixin/Universal/Mac/xWeChatMac_universal_#{version.csv.first}_#{version.csv.second}.dmg"
   name "WeChat for Mac"
   name "微信 Mac 版"
   desc "Free messaging and calling application"
   homepage "https://mac.weixin.qq.com/"
 
-  # This appcast is slower to update than the submissions we get. See:
-  #   https://github.com/Homebrew/homebrew-cask/pull/90907#issuecomment-710107547
+  # Some items in the Sparkle feed may not have a url, so it's necessary to
+  # work with all of the items in the feed (not just the newest one).
   livecheck do
     url "https://dldir1.qq.com/weixin/mac/mac-release.xml"
-    strategy :sparkle, &:short_version
+    regex(/xWeChatMac[._-]universal[._-]v?(\d+(?:\.\d+)+)[._-](\d+)\.dmg/i)
+    strategy :sparkle do |items, regex|
+      items.map do |item|
+        match = item.url.match(regex)
+        next if match.blank?
+
+        "#{match[1]},#{match[2]}"
+      end
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :monterey
 
   app "WeChat.app"
 
@@ -25,6 +33,7 @@ cask "wechat" do
   zap trash: [
     "~/Library/Application Scripts/$(TeamIdentifierPrefix)com.tencent.xinWeChat",
     "~/Library/Application Scripts/$(TeamIdentifierPrefix)com.tencent.xinWeChat.IPCHelper",
+    "~/Library/Application Scripts/5A4RE8SF68.com.tencent.xinWeChat",
     "~/Library/Application Scripts/com.tencent.xinWeChat",
     "~/Library/Application Scripts/com.tencent.xinWeChat.MiniProgram",
     "~/Library/Application Scripts/com.tencent.xinWeChat.WeChatMacShare",
@@ -35,6 +44,7 @@ cask "wechat" do
     "~/Library/Containers/com.tencent.xinWeChat.WeChatMacShare",
     "~/Library/Cookies/com.tencent.xinWeChat.binarycookies",
     "~/Library/Group Containers/$(TeamIdentifierPrefix)com.tencent.xinWeChat",
+    "~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat",
     "~/Library/Preferences/com.tencent.xinWeChat.plist",
     "~/Library/Saved Application State/com.tencent.xinWeChat.savedState",
   ]

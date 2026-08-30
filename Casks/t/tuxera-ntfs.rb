@@ -1,8 +1,8 @@
 cask "tuxera-ntfs" do
-  version "2024"
+  version "26.2"
   sha256 :no_check # required as upstream package is updated in-place
 
-  url "https://tuxera.com/mac/tuxerantfs_#{version}.dmg"
+  url "https://download.tuxera.com/mac/tuxerantfs_#{version}.dmg"
   name "Tuxera NTFS"
   desc "File system and storage management software"
   homepage "https://ntfsformac.tuxera.com/"
@@ -13,6 +13,7 @@ cask "tuxera-ntfs" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg ".packages/Flat/Install Tuxera NTFS.mpkg"
 

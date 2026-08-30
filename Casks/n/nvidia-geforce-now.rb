@@ -1,5 +1,5 @@
 cask "nvidia-geforce-now" do
-  version "2.0.71.166"
+  version "2.0.87.134"
   sha256 :no_check
 
   url "https://download.nvidia.com/gfnpc/GeForceNOW-release.dmg"
@@ -14,16 +14,30 @@ cask "nvidia-geforce-now" do
     end
   end
 
-  depends_on macos: ">= :el_capitan"
+  auto_updates true
+  depends_on :macos
 
-  # Renamed for consistency: app name is different in the Finder and in a shell.
-  app "GeForceNOW.app", target: "NVIDIA GeForce NOW.app"
+  app "GeForceNOW.app"
+
+  uninstall signal: ["QUIT", "com.nvidia.nvcontainer"]
 
   zap trash: [
-    "~/Library/Application Support/NVIDIA/GeForceNOW",
-    "~/Library/HTTPStorages/com.nvidia.gfnpc.mall",
-    "~/Library/Preferences/com.nvidia.gfnpc.mall.helper.plist",
-    "~/Library/Preferences/com.nvidia.gfnpc.mall.helper.renderer.plist",
-    "~/Library/Saved Application State/com.nvidia.gfnpc.mall.savedState",
-  ]
+        "~/Library/Application Support/CrashReporter/GeForceNOWContainer_*.plist",
+        "~/Library/Application Support/NVIDIA Corporation/MessageBus_GFN_session*.conf",
+        "~/Library/Application Support/NVIDIA/GeForceNOW",
+        "~/Library/Caches/com.apple.nsurlsessiond/Downloads/com.nvidia.gfnpc.mall",
+        "~/Library/Caches/com.nvidia.nvcontainer",
+        "~/Library/Caches/NVIDIA/GeForceNOW",
+        "~/Library/HTTPStorages/com.nvidia.gfnpc.mall",
+        "~/Library/Logs/DiagnosticReports/GeForceNOWContainer*.crash",
+        "~/Library/Preferences/com.nvidia.gfnpc.mall.helper.plist",
+        "~/Library/Preferences/com.nvidia.gfnpc.mall.helper.renderer.plist",
+        "~/Library/Preferences/com.nvidia.nvcontainer.plist",
+        "~/Library/Saved Application State/com.nvidia.gfnpc.mall.savedState",
+      ],
+      rmdir: [
+        "~/Library/Application Support/NVIDIA",
+        "~/Library/Caches/NVIDIA",
+        "~/Movies/NVIDIA",
+      ]
 end

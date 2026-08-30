@@ -1,6 +1,6 @@
 cask "website-audit" do
-  version "1.2.5"
-  sha256 "6246295baf27c8dbb3f7dc873d7de6068917c8dabd487e4c31b4332e600179ee"
+  version "2.0.1"
+  sha256 "f37e12a7cd7a91e32a368ad55c5ab7015a46927278fc626410892eede0a3f051"
 
   url "https://code.europa.eu/api/v4/projects/615/packages/generic/wat/#{version}/website-audit-#{version}-universal.dmg"
   name "Website Audit"
@@ -8,10 +8,13 @@ cask "website-audit" do
   homepage "https://code.europa.eu/edpb/website-auditing-tool"
 
   livecheck do
-    url "https://code.europa.eu/edpb/website-auditing-tool.git"
+    url "https://code.europa.eu/api/v4/projects/615/packages/"
+    strategy :json do |json|
+      json.map { |item| item["version"] }
+    end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "website-audit.app"
 

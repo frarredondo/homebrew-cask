@@ -1,8 +1,11 @@
 cask "visualboyadvance-m" do
-  version "2.1.11"
-  sha256 "fbb90afdb6aae1f67ea1aab1e5eca2e0098a76d2f9cb8127b1263555e8d6523b"
+  arch arm: "ARM64", intel: "x86_64"
 
-  url "https://github.com/visualboyadvance-m/visualboyadvance-m/releases/download/v#{version}/visualboyadvance-m-Mac-x86_64.zip",
+  version "2.2.3"
+  sha256 arm:   "8356a49d20e5d56e8e014ec537e2335e8c1904b8b22eb982d7190cf8d2d7973a",
+         intel: "e8e39a82c1d6555bd21dd48955d09ccbf4ffd42c793bf67a702cafffbf18fd1f"
+
+  url "https://github.com/visualboyadvance-m/visualboyadvance-m/releases/download/v#{version}/visualboyadvance-m-Mac-#{arch}.zip",
       verified: "github.com/visualboyadvance-m/visualboyadvance-m/"
   name "Visual Boy Advance - M"
   desc "Game Boy Advance emulator"
@@ -13,14 +16,12 @@ cask "visualboyadvance-m" do
     strategy :github_latest
   end
 
+  depends_on macos: :big_sur
+
   app "visualboyadvance-m.app"
 
   zap trash: [
     "~/Library/Application Support/visualboyadvance-m",
     "~/Library/Preferences/visualboyadvance-m.plist",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

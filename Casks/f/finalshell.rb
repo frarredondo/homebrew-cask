@@ -1,7 +1,7 @@
 cask "finalshell" do
   arch arm: "arm64", intel: "x64"
 
-  version "4.5.12"
+  version "4.6.3"
   sha256 :no_check
 
   url "https://dl.hostbuf.com/finalshell3/finalshell_macos_#{arch}.pkg"
@@ -14,7 +14,9 @@ cask "finalshell" do
     regex(/版本号?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :el_capitan"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   pkg "finalshell_macos_#{arch}.pkg"
 

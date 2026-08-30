@@ -1,6 +1,6 @@
 cask "chatterino" do
-  version "2.5.2"
-  sha256 "64d5b796dbae6ef73b7e9420df5cde01547308172a6f9f62301d879c305a674a"
+  version "2.5.5"
+  sha256 "eb2b4f48f1a96ad362c21bec6bec9ab02c662c652c963b8884dcad171ddad000"
 
   url "https://chatterino.fra1.digitaloceanspaces.com/bin/#{version}/Chatterino.dmg",
       verified: "chatterino.fra1.digitaloceanspaces.com/"
@@ -14,6 +14,8 @@ cask "chatterino" do
       json["version"]
     end
   end
+
+  depends_on macos: :big_sur
 
   app "chatterino.app"
 

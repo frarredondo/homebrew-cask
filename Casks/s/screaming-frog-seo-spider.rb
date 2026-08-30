@@ -1,9 +1,9 @@
 cask "screaming-frog-seo-spider" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "21.4"
-  sha256 arm:   "35bf066bdce2b94b180b33ea84f1e7e7e024b66e43104edc4a2a46c0deca3e1c",
-         intel: "879560fcd858e1ccc2d687cccf6209a5536455c506b09c00c0b21d0a843f5bff"
+  version "24.3"
+  sha256 arm:   "6487d07b0f16782a85f8080cfbef56a59df8dec9372940f2504b0d95df32fc7b",
+         intel: "0f70c9fccb92edfc4378e66f90dad3078c177ebe239cf7564dab57553a3f2fad"
 
   url "https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-#{version}-#{arch}.dmg"
   name "Screaming Frog SEO Spider"
@@ -11,16 +11,16 @@ cask "screaming-frog-seo-spider" do
   homepage "https://www.screamingfrog.co.uk/seo-spider/"
 
   livecheck do
-    url :homepage
-    regex(%r{href=.*?/ScreamingFrogSEOSpider[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg}i)
+    url "https://download.screamingfrog.co.uk/products/seo-spider/getlatestversion.php"
+    regex(/(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Screaming Frog SEO Spider.app"
 
   zap trash: [
     "~/.ScreamingFrogSEOSpider",
-    "~/Library/Application Support/uk.co.screamingfrog.seospider.ui.b/",
+    "~/Library/Application Support/uk.co.screamingfrog.seospider.ui.b",
   ]
 end

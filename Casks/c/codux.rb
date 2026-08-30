@@ -11,12 +11,9 @@ cask "codux" do
   desc "React IDE built to visually edit component styling and layouts"
   homepage "https://www.codux.com/"
 
-  livecheck do
-    url "https://www.codux.com/download"
-    regex(/href=.*?Codux[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
-  end
+  deprecate! date: "2025-10-25", because: :unmaintained
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Codux.app"
 

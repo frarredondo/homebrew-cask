@@ -7,7 +7,9 @@ cask "dteoh-devdocs" do
   desc "API documentation viewer"
   homepage "https://github.com/dteoh/devdocs-macos/"
 
-  depends_on macos: ">= :big_sur"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :big_sur
 
   app "DevDocs.app"
 

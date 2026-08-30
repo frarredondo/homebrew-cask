@@ -12,6 +12,10 @@ cask "camed" do
     regex(%r{url=.*?/CAM%20Editor/Releases/v?(\d+(?:\.\d+)+)/}i)
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "CAMEd-#{version}/CAMed.app"
 
   caveats do

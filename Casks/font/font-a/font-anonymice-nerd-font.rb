@@ -1,8 +1,8 @@
 cask "font-anonymice-nerd-font" do
-  version "3.3.0"
-  sha256 "7b9fdda66eddc03b6effd75db3bae42a81009918248e4aaca657e5340d5faac0"
+  version "3.5.1"
+  sha256 "f84f067b4de991a14afdbd498e106239c429a553a27e76a364048638f2e1de70"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/AnonymousPro.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/AnonymousPro.tar.xz"
   name "AnonymicePro Nerd Font (Anonymous Pro)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-anonymice-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "AnonymiceProNerdFont-Bold.ttf"
   font "AnonymiceProNerdFont-BoldItalic.ttf"

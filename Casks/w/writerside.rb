@@ -10,21 +10,12 @@ cask "writerside" do
   desc "Technical writing environment"
   homepage "https://www.jetbrains.com/writerside/"
 
-  livecheck do
-    url "https://data.services.jetbrains.com/products/releases?code=WRS&latest=true&type=eap"
-    strategy :json do |json|
-      json["WRS"]&.map do |release|
-        version = release["version"]
-        build = release["build"]
-        next if version.blank? || build.blank?
-
-        "#{version},#{build}"
-      end
-    end
-  end
+  # https://blog.jetbrains.com/writerside/2025/03/sunsetting-writerside-ide/
+  deprecate! date: "2025-08-16", because: :discontinued
+  disable! date: "2026-08-20", because: :discontinued
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Writerside #{version.before_comma} EAP.app", target: "Writerside.app"
   binary "#{appdir}/Writerside.app/Contents/MacOS/writerside"

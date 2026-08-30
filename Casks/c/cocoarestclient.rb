@@ -8,7 +8,13 @@ cask "cocoarestclient" do
   desc "App for testing HTTP/REST endpoints"
   homepage "https://mmattozzi.github.io/cocoa-rest-client/"
 
-  depends_on macos: ">= :mojave"
+  livecheck do
+    url "https://mmattozzi.github.io/cocoa-rest-client/appcast.xml"
+    strategy :sparkle, &:short_version
+  end
+
+  auto_updates true
+  depends_on :macos
 
   app "CocoaRestClient.app"
 

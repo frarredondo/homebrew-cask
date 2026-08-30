@@ -1,5 +1,5 @@
 cask "actual-odbc-pack" do
-  version "1.0.23"
+  version "1.0.25"
   sha256 :no_check
 
   url "https://actualtechnologies.cachefly.net/Actual_ODBC_Pack.dmg",
@@ -16,6 +16,7 @@ cask "actual-odbc-pack" do
   end
 
   conflicts_with cask: "odbc-manager"
+  depends_on :macos
 
   pkg "Actual ODBC Pack.pkg"
 

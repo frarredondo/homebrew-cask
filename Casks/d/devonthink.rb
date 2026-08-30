@@ -1,33 +1,41 @@
 cask "devonthink" do
-  on_catalina :or_older do
-    version "3.9.6"
-    sha256 "e272af94a61619adaf729de336e1ef24465a5e6ff27ed6ae8cb11d28ca35638a"
+  on_monterey :or_older do
+    version "3.9.16"
+    sha256 "9ace25ae408d9413e5b0424eb560b2e3e50c2e485665490fb758efe23ee7c95e"
+
+    url "https://download.devontechnologies.com/download/devonthink/#{version}/DEVONthink_#{version.major}.app.zip"
 
     livecheck do
       skip "Legacy version"
     end
-  end
-  on_big_sur :or_newer do
-    version "3.9.8"
-    sha256 "c56169fa98b72c2f043f6c2ca55c996a8fddc539e0df2b351ea45714e2427c1e"
 
+    app "DEVONthink #{version.major}.app"
+  end
+  on_ventura :or_newer do
+    version "4.4"
+    sha256 "9ace25ae408d9413e5b0424eb560b2e3e50c2e485665490fb758efe23ee7c95e"
+
+    url "https://download.devontechnologies.com/download/devonthink/#{version}/DEVONthink.app.zip"
+
+    # The appcast may include unstable versions where upstream doesn't specify a
+    # separate channel, so we have to identify stable versions using a regex.
     livecheck do
       url "https://api.devontechnologies.com/1/apps/sparkle/sparkle.php?id=300900000"
-      strategy :sparkle do |items|
-        items.map(&:version)
+      regex(/^v?(\d+(?:\.\d+)+)$/i)
+      strategy :sparkle do |items, regex|
+        items.map { |item| item.version[regex, 1] }
       end
     end
+
+    app "DEVONthink.app"
   end
 
-  url "https://download.devontechnologies.com/download/devonthink/#{version}/DEVONthink_#{version.major}.app.zip"
   name "DEVONthink"
   desc "Collect, organise, edit and annotate documents"
   homepage "https://www.devontechnologies.com/apps/devonthink"
 
   auto_updates true
-  depends_on macos: ">= :mojave"
-
-  app "DEVONthink #{version.major}.app"
+  depends_on :macos
 
   zap trash: [
     "~/Library/Application Scripts/com.devon-technologies.*",

@@ -1,6 +1,6 @@
 cask "citrix-workspace" do
-  version "24.11.10.22"
-  sha256 "af5e96fa5b5e6ef247a85fdccc88982f44790590439f5b849cb6092422bf9653"
+  version "26.07.0.76"
+  sha256 "cdbfd5e4f1e9b38ce88f71907908eebcc53dc643b336117db43e0450201be826"
 
   url "https://downloadplugins.citrix.com/ReceiverUpdates/Prod/Receiver/Mac/CitrixWorkspaceAppUniversal#{version}.pkg"
   name "Citrix Workspace"
@@ -16,18 +16,28 @@ cask "citrix-workspace" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "CitrixWorkspaceAppUniversal#{version}.pkg"
+
+  uninstall_preflight_steps do
+    remove "/Library/Citrix Workspace/CitrixWorkspaceInstaller/Applications/Citrix Workspace.app",
+           symlink_target_contains: "/Applications/Citrix Workspace.app", sudo: true
+  end
 
   uninstall launchctl: [
               "com.citrix.AuthManager_Mac",
               "com.citrix.ctxusbd",
               "com.citrix.CtxWorkspaceHelperDaemon",
               "com.citrix.ctxworkspaceupdater",
+              "com.citrix.devicetrust.launchagent",
+              "com.citrix.PluginBroker",
               "com.citrix.ReceiverHelper",
+              "com.citrix.ReceiverUninstallHelper",
+              "com.citrix.ReceiverUpdaterHelper",
               "com.citrix.safariadapter",
               "com.citrix.ServiceRecords",
+              "com.citrix.UninstallMonitor",
             ],
             quit:      [
               "Citrix.ServiceRecords",
@@ -37,13 +47,21 @@ cask "citrix-workspace" do
             ],
             pkgutil:   [
               "com.citrix.common",
+              "com.citrix.devicetrust.client",
+              "com.citrix.devicetrust.client.ica",
               "com.citrix.enterprisebrowserinstaller",
               "com.citrix.ICAClient",
               "com.citrix.ICAClientcwa",
               "com.citrix.ICAClienthdx",
+              "com.citrix.receiver.bcr",
+            ],
+            delete:    [
+              "/Applications/Citrix Workspace.app",
+              "/Library/Citrix Workspace",
             ]
 
   zap trash: [
+    "/Library/Logs/Citrix Workspace",
     "~/Library/Application Support/Citrix Receiver",
     "~/Library/Application Support/Citrix Workspace",
     "~/Library/Application Support/Citrix",

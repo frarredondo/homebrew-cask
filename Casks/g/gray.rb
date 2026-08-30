@@ -7,7 +7,7 @@ cask "gray" do
   desc "Tool to set light or dark appearance on a per-app basis"
   homepage "https://github.com/zenangst/Gray"
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Gray.app"
 

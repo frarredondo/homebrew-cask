@@ -1,14 +1,31 @@
 cask "lemonlime" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "0.3.5"
-  sha256 arm:   "ba44fd655b53a2827034e2ddefb60648adbe0cfe390a8163552140e74a2656b5",
-         intel: "500103bc88198b7ad875069d8030d30c5c677cd773196c237f2dc068cc6db038"
+  version "0.3.6.2,6.9.3"
+  sha256 arm:   "165c2f8268041f473c035493c3e5403c01e82ce22eb38fcfa3befa0017944ca1",
+         intel: "4eeb11cf7c7a039959e5e30bf4f2a97522ed0ca70eceb2d4296039903f52059d"
 
-  url "https://github.com/Project-LemonLime/Project_LemonLime/releases/download/#{version}/lemon-Qt6.7.2-Release-#{arch}.dmg"
+  url "https://github.com/Project-LemonLime/Project_LemonLime/releases/download/#{version.csv.first}/lemon-Qt#{version.csv.second}-Release-#{arch}.dmg"
   name "lemonlime"
   desc "Tiny judging environment for OI contest based on Lemon + LemonPlus"
   homepage "https://github.com/Project-LemonLime/Project_LemonLime"
+
+  livecheck do
+    url :url
+    regex(%r{/v?(\d+(?:\.\d+)+[a-z]?)/lemon(?:[._-]Qt(\d+(?:\.\d+)+))?(?:[._-]Release)?(?:[._-]#{arch})?\.dmg$}i)
+    strategy :github_latest do |json, regex|
+      json["assets"]&.map do |asset|
+        match = asset["browser_download_url"]&.match(regex)
+        next if match.blank?
+
+        match[2] ? "#{match[1]},#{match[2]}" : match[1]
+      end
+    end
+  end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "lemon.app"
 

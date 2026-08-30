@@ -1,5 +1,5 @@
 cask "paragon-ntfs" do
-  version "17.0.243"
+  version "17.0.488"
   sha256 :no_check # required as upstream package is updated in-place
 
   url "https://dl.paragon-software.com/demo/ntfsmac#{version.major}_trial.dmg"
@@ -15,7 +15,7 @@ cask "paragon-ntfs" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   installer manual: "FSInstaller.app"
 

@@ -1,6 +1,6 @@
 cask "vimr" do
-  version "0.51.1,20250215.143933"
-  sha256 "5fd9bc76f384e42fc5681ce96626f82f23a2cfe3a3ca07f611153947d546361e"
+  version "0.66.0,20260827.194249"
+  sha256 "afb4533be5db5f9aa051ec2810bd748ec46fa595915c0cd1da69a8643c0f9eb1"
 
   url "https://github.com/qvacua/vimr/releases/download/v#{version.csv.first}-#{version.csv.second}/VimR-v#{version.csv.first}.tar.bz2"
   name "VimR"
@@ -8,18 +8,14 @@ cask "vimr" do
   homepage "https://github.com/qvacua/vimr"
 
   livecheck do
-    url :url
-    regex(/^v?(\d+(?:\.\d+)+)[._-](\d+(?:\.\d+)+)$/i)
-    strategy :github_latest do |json, regex|
-      match = json["tag_name"]&.match(regex)
-      next if match.blank?
-
-      "#{match[1]},#{match[2]}"
+    url "https://raw.githubusercontent.com/qvacua/vimr/refs/heads/master/appcast.xml"
+    strategy :sparkle do |item|
+      item.nice_version.delete_prefix("v")
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :sonoma
 
   app "VimR.app"
   binary "#{appdir}/VimR.app/Contents/Resources/vimr"

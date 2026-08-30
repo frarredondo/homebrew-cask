@@ -1,6 +1,6 @@
 cask "powerpanel" do
-  version "2.6.1"
-  sha256 "2208c48df9b1c893a66de7b1652e1ff30ca1728948860db9fcf919c7d066fed4"
+  version "2.7.1.1"
+  sha256 "80eac84952c6512836076f1929996b0f5b9d0b0743d9948198865e663981130a"
 
   url "https://dl4jz3rbrsfum.cloudfront.net/software/PPP_Mac_v#{version}.pkg",
       verified: "dl4jz3rbrsfum.cloudfront.net/"
@@ -13,7 +13,7 @@ cask "powerpanel" do
     regex(/href=.*?PPP[._-]Mac[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   pkg "PPP_Mac_v#{version}.pkg"
 

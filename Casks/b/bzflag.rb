@@ -1,6 +1,6 @@
 cask "bzflag" do
-  version "2.4.28"
-  sha256 "f6d1b39a9262bd1338570cad1260d84b8e3bc4009026b4230219a46a718998b0"
+  version "2.4.30"
+  sha256 "4a63f7ef575bb8e3e6507d8f999cbd43e9ccb92fcf4ebfb877d3c9ccb4bbc2b2"
 
   url "https://download.bzflag.org/bzflag/macos/#{version}/BZFlag-#{version}-macOS.zip"
   name "BZFlag"
@@ -12,7 +12,7 @@ cask "bzflag" do
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "BZFlag-#{version}.app"
 

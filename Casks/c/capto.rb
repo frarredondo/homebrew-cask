@@ -1,5 +1,5 @@
 cask "capto" do
-  version "2.1.2,1002.1.2013"
+  version "2.1.6,1002.1.6007"
   sha256 :no_check
 
   url "https://d3l6g06uqih57x.cloudfront.net/Captomac/webstore/Capto.dmg",
@@ -13,7 +13,7 @@ cask "capto" do
     strategy :extract_plist
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Capto.app"
 

@@ -1,9 +1,9 @@
 cask "salt" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "3007.1"
-  sha256 arm:   "968b7701a470f5786474dea4489f96b546e7b6340ba734695b7899aa6edf14a2",
-         intel: "865d2d3792659ddbd48940b0e031a3e9652a85977cf0a2ef3a5ec00e34eb66cb"
+  version "3008.2"
+  sha256 arm:   "9a227cd679b5ec276957e558bb0f87a014ee2b84bc72c70810494a7b8b73defa",
+         intel: "50affec75bc4036cc5d5424e49fee2d11b7daa4778afdabc58cd2b9cc3421b40"
 
   url "https://packages.broadcom.com/artifactory/saltproject-generic/macos/#{version}/salt-#{version}-py3-#{arch}.pkg",
       verified: "packages.broadcom.com/artifactory/saltproject-generic/"
@@ -16,6 +16,8 @@ cask "salt" do
     regex(/salt[._-]v?(\d+(?:\.\d+)+)-py3-#{arch}\.pkg/i)
   end
 
+  depends_on :macos
+
   pkg "salt-#{version}-py3-#{arch}.pkg"
 
   uninstall launchctl: [
@@ -27,15 +29,4 @@ cask "salt" do
             pkgutil:   "com.saltstack.salt"
 
   zap trash: "/etc/salt"
-
-  def caveats
-    <<~CAVEATS
-      Included services:
-
-      sudo launchctl load -w /Library/LaunchDaemons/com.saltstack.salt.api.plist
-      sudo launchctl load -w /Library/LaunchDaemons/com.saltstack.salt.master.plist
-      sudo launchctl load -w /Library/LaunchDaemons/com.saltstack.salt.minion.plist
-      sudo launchctl load -w /Library/LaunchDaemons/com.saltstack.salt.syndic.plist
-    CAVEATS
-  end
 end

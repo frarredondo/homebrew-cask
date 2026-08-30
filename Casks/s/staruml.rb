@@ -1,9 +1,9 @@
 cask "staruml" do
   arch arm: "-arm64"
 
-  version "6.3.1"
-  sha256 arm:   "6e91fdafb42877f670af06d57b07e2efe2fb3f07185be3e247ea1e3fba81ed66",
-         intel: "613be3c55f6495e711e696284d1c1b44f8b012b9166e172ac5ef594128a8148d"
+  version "6.3.4"
+  sha256 arm:   "91df4902c0923f6f41f24325584435f87297c42cf61ecca01c45eea0e31eac24",
+         intel: "7d48dce6de47a3795b19e81531aa7638ae6e0308d99f979b2b838de6ef50601a"
 
   url "https://files.staruml.io/releases-v#{version.major}/StarUML-#{version}#{arch}.dmg"
   name "StarUML"
@@ -16,7 +16,7 @@ cask "staruml" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "StarUML.app"
 

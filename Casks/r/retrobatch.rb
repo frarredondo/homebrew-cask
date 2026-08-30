@@ -1,6 +1,6 @@
 cask "retrobatch" do
-  version "2.2.2"
-  sha256 "2740c26de5f958b69335a5ed8c217cf66d9261fb997cd859ed33ed84d76460dd"
+  version "2.4.1"
+  sha256 "36d18c815292156351a94d9a22b67c7e342156e9b7411d019e0b4c401dc82de5"
 
   url "https://flyingmeat.com/download/Retrobatch-#{version}.zip"
   name "Retrobatch"
@@ -13,7 +13,7 @@ cask "retrobatch" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Retrobatch.app"
 

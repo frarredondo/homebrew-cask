@@ -1,13 +1,15 @@
 cask "scribus" do
   arch arm: "-arm64"
 
+  version "1.6.6"
+  sha256 arm:   "0666a15e843575dea51233f874f2a840c73dc1cc5cbdf676fcff2e8978a71815",
+         intel: "69cc1b918747882395d984f0d0a3c06e965d06368299952e645b31925e284a99"
+
   on_arm do
-    version "1.6.3,1.6.3_1"
-    sha256 "7b046918ad07cf11582436eb064d53b15ca41e5c0e003d4f73107e959d975586"
+    depends_on macos: :big_sur
   end
   on_intel do
-    version "1.6.3"
-    sha256 "7fc542f8d36b8f8e4ffc345f32e1b34be510fba1cda5d34cddf8876f1b6d7489"
+    depends_on macos: :monterey
   end
 
   url "https://downloads.sourceforge.net/scribus/scribus/#{version.csv.first}/scribus-#{version.csv.second || version.csv.first}#{arch}.dmg",
@@ -28,6 +30,8 @@ cask "scribus" do
       "#{match[1]},#{match[2]}"
     end
   end
+
+  depends_on :macos
 
   app "Scribus.app"
 

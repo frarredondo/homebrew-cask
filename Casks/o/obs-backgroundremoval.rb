@@ -8,12 +8,11 @@ cask "obs-backgroundremoval" do
   desc "Virtual Green-screen and Low-Light Enhancement OBS Plugin"
   homepage "https://obsproject.com/forum/resources/background-removal-virtual-green-screen-low-light-enhance.1260"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  # Reference: https://github.com/Homebrew/homebrew-cask/pull/235792
+  disable! date: "2026-11-13", because: "the package is not compatible with Homebrew's installation parameters"
 
   auto_updates true
+  depends_on :macos
 
   pkg "obs-backgroundremoval-#{version}-macos-universal.pkg"
 

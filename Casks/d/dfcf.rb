@@ -1,5 +1,5 @@
 cask "dfcf" do
-  version "3.7.8"
+  version "3.8.2"
   sha256 :no_check
 
   url "https://swdlcdn.eastmoney.com/Mac/Macdownload/dfcf.dmg"
@@ -8,12 +8,9 @@ cask "dfcf" do
   desc "Stock trading platform"
   homepage "https://emdesk.eastmoney.com/pc_activity/AHome/Index"
 
-  livecheck do
-    url :url
-    strategy :extract_plist do |item|
-      item["com.emmac.mac"]&.short_version
-    end
-  end
+  disable! date: "2025-11-24", because: :discontinued
+
+  depends_on :macos
 
   app "东方财富.app"
 

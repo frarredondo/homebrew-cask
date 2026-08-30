@@ -7,7 +7,7 @@ cask "notunes" do
   desc "Simple application that will prevent iTunes or Apple Music from launching"
   homepage "https://github.com/tombonez/noTunes"
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "noTunes.app"
 

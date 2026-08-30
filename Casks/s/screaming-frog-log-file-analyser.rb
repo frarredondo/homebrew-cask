@@ -1,21 +1,22 @@
 cask "screaming-frog-log-file-analyser" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "6.3"
-  sha256 arm:   "1209f758cf85434f85a846092b0285b59bda61013629222fb0c94bfed53746e5",
-         intel: "59d7ea1ad122f1d91d0518e060db2220db616db4c0d89b6a34e3ebfff0e76a0e"
+  version "7.1"
+  sha256 arm:   "911b40730adc5450f0c360def36df9cf9b896b014d23308524838b2f840fb883",
+         intel: "9e3d82746769bab0243b0c9616a5338074ef59e7d4aabd6f52c72323c5682a7a"
 
   url "https://download.screamingfrog.co.uk/products/log-file-analyser/ScreamingFrogLogFileAnalyser-#{version}-#{arch}.dmg"
   name "Screaming Frog Log File Analyser"
   desc "SEO log audit tool"
   homepage "https://www.screamingfrog.co.uk/log-file-analyser/"
 
+  # The homepage links to the latest dmg files but Cloudflare protections
+  # prevent us from fetching it, so it must be checked manually.
   livecheck do
-    url :homepage
-    regex(%r{href=.*?/ScreamingFrogLogFileAnalyser[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg}i)
+    skip "Cannot be fetched due to Cloudflare protections"
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Screaming Frog Log File Analyser.app"
 

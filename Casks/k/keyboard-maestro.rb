@@ -1,6 +1,6 @@
 cask "keyboard-maestro" do
-  version "11.0.3,1103"
-  sha256 "51fa2ca7a6318ea2a2af3072d458f482e8eeeee05ae1d99293760ce616acf0bc"
+  version "11.1.1,1111"
+  sha256 "0b9ccdbce9e6f81159041e0369bf571ce411a96eb21c20dfce9cf23af3dbe172"
 
   url "https://files.stairways.com/keyboardmaestro-#{version.csv.second}.zip",
       verified: "stairways.com/"
@@ -20,7 +20,7 @@ cask "keyboard-maestro" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Keyboard Maestro.app"
 

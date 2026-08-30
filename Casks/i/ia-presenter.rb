@@ -1,6 +1,6 @@
 cask "ia-presenter" do
-  version "1.4.0,14004"
-  sha256 "b7cc5e7afa56098085844e0ebca7e751f97bc867a89ca86c268c3ea1816cbc28"
+  version "2.0.2,20026"
+  sha256 "1e324b88018df8faee28bf2463d98b8cc0ec9136233a915e12c92f9fcbf545a9"
 
   url "https://files.ia.net/presenter/release/iA-Presenter-#{version.csv.first}-#{version.csv.second}.zip"
   name "iA Presenter"
@@ -8,12 +8,12 @@ cask "ia-presenter" do
   homepage "https://ia.net/presenter"
 
   livecheck do
-    url "https://iapresenter.s3.amazonaws.com/release/updates.xml"
+    url "https://files.ia.net/presenter/release/updates.xml"
     strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "iA Presenter.app"
 

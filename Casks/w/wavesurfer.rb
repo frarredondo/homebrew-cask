@@ -12,6 +12,10 @@ cask "wavesurfer" do
     regex(%r{url=.*?/wavesurfer[._-]v?(\d+(?:\.\d+)+(?:p\d+(?:\.\d+)*)?)[^"' ]*?\.dmg}i)
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "WaveSurfer.app"
 
   caveats do

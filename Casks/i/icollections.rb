@@ -1,5 +1,5 @@
 cask "icollections" do
-  version "8.7.2"
+  version "9.7.8"
   sha256 :no_check
 
   url "https://naarakstudio.com/download/iCollections.dmg"
@@ -14,7 +14,7 @@ cask "icollections" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "iCollections.app"
 

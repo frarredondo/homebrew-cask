@@ -12,7 +12,8 @@ cask "anydo" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on :macos
 
   app "Anydo.app"
 

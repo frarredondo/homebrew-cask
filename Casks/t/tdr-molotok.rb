@@ -1,6 +1,6 @@
 cask "tdr-molotok" do
-  version "1.0.6"
-  sha256 "4a6ce0f037b1fb6b6e6ee4786a502ac838c01c16d738ef46bd8bd810b6a81de6"
+  version "1.0.7"
+  sha256 "29b65ea823f5b34f5d0e2d1e556b7f92a9889d07bf6fa20dbb40207ca50c288f"
 
   url "https://www.tokyodawn.net/labs/Molotok/#{version}/TDR%20Molotok.zip"
   name "TDR Molotok"
@@ -11,6 +11,8 @@ cask "tdr-molotok" do
     url :homepage
     regex(%r{href=.*?Molotok/v?(\d+(?:\.\d+)+)/TDR(%20|\s)Molotok\.zip}i)
   end
+
+  depends_on :macos
 
   pkg "TDR Molotok.pkg"
 

@@ -8,7 +8,10 @@ cask "surge-synthesizer" do
   desc "Hybrid synthesiser"
   homepage "https://surge-synthesizer.github.io/"
 
-  deprecate! date: "2025-03-02", because: :discontinued, replacement: "surge-xt"
+  deprecate! date: "2025-03-02", because: :discontinued, replacement_cask: "surge-xt"
+  disable! date: "2026-03-02", because: :discontinued, replacement_cask: "surge-xt"
+
+  depends_on :macos
 
   pkg "Surge-#{version}-Setup.pkg"
 

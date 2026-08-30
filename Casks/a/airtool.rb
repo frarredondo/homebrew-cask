@@ -1,6 +1,6 @@
 cask "airtool" do
-  version "2.6"
-  sha256 "af24e20018d460181e6b52b3e42e649b8edd426b3538378dfbe1c4b9d13a27c5"
+  version "2.7.8"
+  sha256 "a342283ff58fba03df86e0adcf5e074fae413e890a707a2c44694c53909b85ce"
 
   url "https://www.intuitibits.com/downloads/Airtool_#{version}.pkg"
   name "Airtool"
@@ -13,12 +13,12 @@ cask "airtool" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: :ventura
 
   pkg "Airtool_#{version}.pkg"
 
-  uninstall_preflight do
-    set_ownership "/Library/Application Support/Airtool #{version.major}"
+  uninstall_preflight_steps do
+    set_ownership "/Library/Application Support/Airtool {{version.major}}"
   end
 
   uninstall launchctl:  "com.intuitibits.airtool#{version.major}.airtool-bpf",

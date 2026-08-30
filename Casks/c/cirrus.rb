@@ -1,9 +1,8 @@
 cask "cirrus" do
-  version "1.15,2024.09"
-  sha256 "0c62650f938de2fd626f692d0746291ac3876b1a4485546991fb4351efb0c860"
+  version "1.16,2025.06"
+  sha256 "bcdeeaaf734fa9359336f65033d81a51bf405a91b431fe7f33d7626d1ad46ccf"
 
-  url "https://eclecticlightdotcom.files.wordpress.com/#{version.csv.second.major}/#{version.csv.second.minor}/cirrus#{version.csv.first.no_dots}.zip",
-      verified: "eclecticlightdotcom.files.wordpress.com/"
+  url "https://eclecticlight.co/wp-content/uploads/#{version.csv.second.major}/#{version.csv.second.minor}/cirrus#{version.csv.first.no_dots}.zip"
   name "Cirrus"
   desc "Inspector for iCloud Drive folders"
   homepage "https://eclecticlight.co/cirrus-bailiff/"
@@ -24,7 +23,7 @@ cask "cirrus" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "cirrus#{version.csv.first.major}#{version.csv.first.minor}/Cirrus.app"
 

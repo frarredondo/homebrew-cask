@@ -1,7 +1,7 @@
 cask "sublime-text@dev" do
   # NOTE: The first digit of the build number is the major version.
-  version "4195"
-  sha256 "28af541db60185b2a32b88291f3305ecfea1bcdc20ee35d1b37bf893a8be65df"
+  version "4207"
+  sha256 "f97e5d7b5648d78d72a2bca506beae3ca86db5018184fa0f9410703dbc3fbe69"
 
   url "https://download.sublimetext.com/sublime_text_build_#{version}_mac.zip"
   name "Sublime Text"
@@ -17,6 +17,7 @@ cask "sublime-text@dev" do
 
   auto_updates true
   conflicts_with cask: "sublime-text"
+  depends_on :macos
 
   app "Sublime Text.app"
   binary "#{appdir}/Sublime Text.app/Contents/SharedSupport/bin/subl"

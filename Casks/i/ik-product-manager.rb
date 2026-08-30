@@ -1,6 +1,6 @@
 cask "ik-product-manager" do
-  version "1.1.7"
-  sha256 "f6da9e2be46797bc0557617f7a6737e3e2d724aa4dc906c24ac6ca4d70beeac4"
+  version "1.1.12"
+  sha256 "0229514dc0b64ae8dceadc02f06438d1c999a3c1185145d166e81d66fc69f7a6"
 
   url "https://g1.ikmultimedia.com/plugins/ProductManager/ik_product_manager_#{version}.dmg",
       referer:    "https://www.ikmultimedia.com/",
@@ -13,6 +13,8 @@ cask "ik-product-manager" do
     url :homepage
     regex(/href=.*?ik[._-]product[._-]manager[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
+
+  depends_on :macos
 
   pkg "Install IK Product Manager (v#{version}).pkg"
 

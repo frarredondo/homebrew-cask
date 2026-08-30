@@ -1,9 +1,9 @@
 cask "dataspell" do
   arch arm: "-aarch64"
 
-  version "2024.3.2,243.25659.44"
-  sha256 arm:   "172a8641249784afe4f73359adb1419c2eb8b00bddfa4182bf691e44b3c4baa4",
-         intel: "474c8a04a699cd1538b9c1c882d0215a79932ed45baf8f0f3ec3be09e8ec9a1f"
+  version "2026.1.3,261.26222.84"
+  sha256 arm:   "105919466b6fb1d241f103f8867ea652b493c8d0482bb514927e0dde6d231ad6",
+         intel: "683f80483ed69333226f94e287c331b59cdbb6a4c10567126eeefbde51ad70a9"
 
   url "https://download.jetbrains.com/python/dataspell-#{version.csv.first}#{arch}.dmg"
   name "DataSpell"
@@ -23,11 +23,16 @@ cask "dataspell" do
     end
   end
 
+  # see https://blog.jetbrains.com/dataspell/2026/05/the-upcoming-sunset-of-dataspell/
+  deprecate! date: "2026-06-02", because: :discontinued, replacement_cask: "pycharm"
+  disable! date: "2026-09-01", because: :discontinued, replacement_cask: "pycharm"
+
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "DataSpell.app"
-  binary "#{appdir}/DataSpell.app/Contents/MacOS/dataspell"
+  command_wrapper "dataspell",
+                  executable: "#{appdir}/DataSpell.app/Contents/MacOS/dataspell"
 
   zap trash: [
     "~/Library/Application Support/DataSpell*",

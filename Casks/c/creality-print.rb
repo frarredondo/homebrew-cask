@@ -1,9 +1,9 @@
 cask "creality-print" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "6.0.4.1793"
-  sha256 arm:   "61c3d5508db1548515ba57c0bb049dc7d2295aec377c473fb9ec7de593ee8e08",
-         intel: "8ede800ba13104e9e68134f1a7f482f3bc7beed6fff8f9f3a37df5def214ed50"
+  version "7.2.1.5476"
+  sha256 arm:   "6fe5eb238a2d73e9bcb524d77d6fb84e32da4c5c957a150b97ffae614c2b0713",
+         intel: "5b89736e41bf1917708a4bb6ba7a62a6f3b3c77dc6f076f9e36386cbd85173ba"
 
   url "https://github.com/CrealityOfficial/CrealityPrint/releases/download/v#{version.major_minor_patch}/CrealityPrint-#{version}-macx-#{arch}-Release.dmg",
       verified: "github.com/CrealityOfficial/CrealityPrint/"
@@ -12,11 +12,19 @@ cask "creality-print" do
   homepage "https://www.creality.com/pages/download-software"
 
   livecheck do
-    url :homepage
-    regex(/href=.*?Creality[._-]?Print[._-]v?(\d+(?:\.\d+)+)[._-]macx[._-]#{arch}[._-]Release\.dmg/i)
+    url :url
+    regex(/^Creality[._-]?Print[._-]v?(\d+(?:\.\d+)+)[._-]macx[._-]#{arch}[._-]Release\.dmg$/i)
+    strategy :github_latest do |json, regex|
+      json["assets"]&.map do |asset|
+        match = asset["name"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :big_sur
 
   app "Creality Print.app"
 

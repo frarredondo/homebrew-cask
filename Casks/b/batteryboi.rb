@@ -9,8 +9,9 @@ cask "batteryboi" do
   homepage "https://batteryboi.ovatar.io/"
 
   deprecate! date: "2024-10-04", because: :unmaintained
+  disable! date: "2025-10-04", because: :unmaintained
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "BatteryBoi.app"
 

@@ -8,14 +8,14 @@ cask "osxfuse" do
   desc "File system integration"
   homepage "https://osxfuse.github.io/"
 
-  livecheck do
-    url :url
-    regex(/^osxfuse[._-]v?(\d+(?:\.\d+)+)$/i)
-  end
+  deprecate! date: "2025-03-28", because: :discontinued, replacement_cask: "macfuse"
+  disable! date: "2026-03-28", because: :discontinued, replacement_cask: "macfuse"
+
+  depends_on :macos
 
   pkg "Extras/FUSE for macOS #{version}.pkg"
 
-  postflight do
+  postflight_steps do
     set_ownership ["/usr/local/include", "/usr/local/lib"]
   end
 
@@ -30,12 +30,5 @@ cask "osxfuse" do
 
   caveats do
     reboot
-    <<~EOS
-      `#{token}` has been succeeded by `macfuse` as of version 4.0.0.
-
-      To update to a newer version, do:
-        brew uninstall #{token}
-        brew install macfuse
-    EOS
   end
 end

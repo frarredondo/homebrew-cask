@@ -7,7 +7,7 @@ cask "colorpicker-materialdesign" do
   desc "Colour picker"
   homepage "https://github.com/CodeCatalyst/MaterialDesignColorPicker"
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   colorpicker "MaterialDesignColorPicker.colorPicker"
 

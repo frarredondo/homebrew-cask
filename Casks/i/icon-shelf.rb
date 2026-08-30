@@ -12,7 +12,7 @@ cask "icon-shelf" do
   homepage "https://icon-shelf.github.io/"
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Icon Shelf.app"
 

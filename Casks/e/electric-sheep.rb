@@ -9,6 +9,9 @@ cask "electric-sheep" do
   homepage "https://gold.electricsheep.org/"
 
   deprecate! date: "2025-03-02", because: :unmaintained
+  disable! date: "2026-03-02", because: :unmaintained
+
+  depends_on :macos
 
   pkg "Electric Sheep.pkg"
 

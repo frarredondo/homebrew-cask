@@ -1,9 +1,9 @@
 cask "dash-dash" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "22.1.1"
-  sha256 arm:   "74a270b2e8339436f7cf86675d6b94dc82f4bc8dcb2c3dad072549d667813d35",
-         intel: "f4e22b05bbbac85b0b6d9d7656ffc99be8e88d983a06e6d8494edadcfd3bb0fc"
+  version "23.1.8"
+  sha256 arm:   "7655928b3b9d8db99c91937a0213ff67e55cb726d9b2a73c5eaaa3613133db76",
+         intel: "2af95a7a4d33d2f2fafb4b0af9f947935aa8dc0b5e34048c7998e65e43601f18"
 
   url "https://github.com/dashpay/dash/releases/download/v#{version}/dashcore-#{version}-#{arch}-apple-darwin.zip",
       verified: "github.com/dashpay/dash/"
@@ -16,12 +16,12 @@ cask "dash-dash" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Dash-Qt.app"
 
-  preflight do
-    set_permissions "#{staged_path}/Dash-Qt.app", "0755"
+  preflight_steps do
+    set_permissions "Dash-Qt.app", "0755"
   end
 
   zap trash: [

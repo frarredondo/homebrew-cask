@@ -12,11 +12,15 @@ cask "macdive" do
     strategy :sparkle
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "MacDive.app"
 
   zap trash: [
     "~/Library/Application Support/MacDive",
-    "~/Library/Preferences/com.mintsoftware.MacDive2.plist",
-    "~/Library/Saved Application State/com.mintsoftware.MacDive2.savedState",
+    "~/Library/HTTPStorages/com.mintsoftware.MacDive#{version.major}",
+    "~/Library/Preferences/com.mintsoftware.MacDive#{version.major}.plist",
+    "~/Library/Saved Application State/com.mintsoftware.MacDive#{version.major}.savedState",
   ]
 end

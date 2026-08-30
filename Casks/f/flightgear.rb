@@ -1,25 +1,23 @@
 cask "flightgear" do
-  version "2024.1.1,9261456144"
-  sha256 "def74a0db27616a0db193e38ca6d33eea6201453e8114cdf760fbe76d74d8451"
+  version "2024.1.7"
+  sha256 "302e9e068342eed1aac6808b2966b5b0e70fa40cef4bb92bddfef709d098d6fc"
 
-  url "https://gitlab.com/flightgear/fgmeta/-/jobs/#{version.csv.second}/artifacts/raw/output/FlightGear-#{version.csv.first}.dmg",
-      verified: "gitlab.com/flightgear/"
+  url "https://mirrors.ibiblio.org/flightgear/ftp/release-#{version.major_minor}/flightgear-#{version}-macos-universal.dmg",
+      verified: "mirrors.ibiblio.org/flightgear/"
   name "FlightGear"
   desc "Flight simulator"
   homepage "https://www.flightgear.org/"
 
   livecheck do
     url "https://www.flightgear.org/download/"
-    regex(%r{href=.*?/jobs/(\d+)/artifacts/raw/output/FlightGear[._-]?v?(\d+(?:\.\d+)+)\.dmg}i)
-    strategy :page_match do |page, regex|
-      match = page.match(regex)
-      next if match.blank?
-
-      "#{match[2]},#{match[1]}"
-    end
+    regex(/href=.*?flightgear[._-]?v?(\d+(?:\.\d+)+)(?:[._-]macos)?(?:[._-]universal)?\.dmg/i)
   end
 
+  depends_on :macos
+
   app "FlightGear.app"
+
+  uninstall quit: "org.flightgear.mac"
 
   zap trash: "~/Library/Application Support/FlightGear"
 end

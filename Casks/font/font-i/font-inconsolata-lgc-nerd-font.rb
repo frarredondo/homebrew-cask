@@ -1,8 +1,8 @@
 cask "font-inconsolata-lgc-nerd-font" do
-  version "3.3.0"
-  sha256 "12c30458e9d6fe14b6fe8f86a21af5709a217262288b1e7a1050cc2de534a134"
+  version "3.5.1"
+  sha256 "a44973ed4ae5989d07a61783febfe9ea558b14f19f9484b74f2f9f20f597b4e3"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/InconsolataLGC.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/InconsolataLGC.tar.xz"
   name "Inconsolata LGC Nerd Font (Inconsolata LGC)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-inconsolata-lgc-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "InconsolataLGCNerdFont-Bold.ttf"
   font "InconsolataLGCNerdFont-BoldItalic.ttf"

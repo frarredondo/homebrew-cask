@@ -1,5 +1,5 @@
 cask "automounterhelper" do
-  version "1.6.0"
+  version "1.9.0"
   sha256 :no_check
 
   url "https://pixeleyes.co.nz/automounter/helper/AutoMounterHelper.dmg"
@@ -12,9 +12,12 @@ cask "automounterhelper" do
     regex(/Version:\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
-  app "AutoMounterHelper.app"
+  installer manual: "AutoMounterHelper.app"
+
+  uninstall launchctl: "nz.co.pixeleyes.AutoMounterHelper",
+            trash:     "~/Library/AutoMounterHelper"
 
   # No zap stanza required
 end

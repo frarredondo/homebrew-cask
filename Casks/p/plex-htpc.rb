@@ -1,6 +1,6 @@
 cask "plex-htpc" do
-  version "1.70.1.303,5bbf114f"
-  sha256 "bdc11aec7051e09747419d71a529698b8adfd62f546aeedef93c165d58938bed"
+  version "1.71.1.346,f62ce923"
+  sha256 "98d7fe76c010945f261ae5ad0f83253973aad834d743fe9d6135f7ae6db165da"
 
   url "https://downloads.plex.tv/htpc/#{version.csv.first}-#{version.csv.second}/macos/PlexHTPC-#{version.csv.first}-#{version.csv.second}-universal.zip"
   name "Plex HTPC"
@@ -15,7 +15,7 @@ cask "plex-htpc" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Plex HTPC.app"
 

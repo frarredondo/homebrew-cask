@@ -1,18 +1,18 @@
 cask "zulip" do
   arch arm: "arm64", intel: "x64"
 
-  version "5.11.1"
-  sha256 arm:   "d2c0462361ab1f8a0f8d0337d2ad1c24d6c0ff24cf85b476f7867a32843a6edf",
-         intel: "2f838840d21376c5f7afc20830c02622ed75d70270846bb3c5ac147b78af3d49"
+  version "5.12.4"
+  sha256 arm:   "619cce44e8305766db464c8352f15c2ba4d7bb192fac52c30d6dd1d6d199eed6",
+         intel: "27d5c08aeea4513a168a51d0f24996138f3a7d80b0a353c85828f0f4f77f4e35"
 
   url "https://github.com/zulip/zulip-desktop/releases/download/v#{version}/Zulip-#{version}-#{arch}.dmg",
       verified: "github.com/zulip/zulip-desktop/"
   name "Zulip"
   desc "Desktop client for the Zulip team chat platform"
-  homepage "https://zulipchat.com/apps/"
+  homepage "https://zulip.com/"
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Zulip.app"
 

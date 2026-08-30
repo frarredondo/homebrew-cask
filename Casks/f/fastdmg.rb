@@ -1,6 +1,6 @@
 cask "fastdmg" do
-  version "1.0.2"
-  sha256 "405c99ee251ebe1a5f3e4cbec8b84e6211ee8b89e5abf0f50b7b2cee9567062a"
+  version "1.0.3"
+  sha256 "71d0854f7ed483b7e5b9bdad84e93377a617a1b3eff0d52a54fc79149e4f48ae"
 
   url "https://sveinbjorn.org/files/software/fastdmg/FastDMG-#{version}.zip"
   name "FastDMG"
@@ -12,7 +12,7 @@ cask "fastdmg" do
     regex(/href=.*?FastDMG[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "FastDMG.app"
 

@@ -1,9 +1,9 @@
 cask "miniforge" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "24.11.3-0"
-  sha256 arm:   "dbead9822b1932ecc1b3238311a843400462b38e302bbd067ef373aa39dedd4f",
-         intel: "1f8e16f2f8e7538c2ef1d08cbb8f2feadc75907e31dbcde75a10ca788fc03abb"
+  version "26.5.3-0"
+  sha256 arm:   "0d765919d3ccfd1f89147aa1cf8133bfc55b3a3c13f5bacdcc091c33132fddd2",
+         intel: "0266a7bfeb12165286133145717bef0d88070f1b76710beb6a62fec4e88371a1"
 
   url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Miniforge3-#{version}-MacOSX-#{arch}.sh"
   name "miniforge"
@@ -17,10 +17,8 @@ cask "miniforge" do
   end
 
   auto_updates true
-  conflicts_with cask: [
-    "mambaforge",
-    "miniconda",
-  ]
+  conflicts_with cask: "miniconda"
+  depends_on :macos
   container type: :naked
 
   installer script: {
@@ -30,9 +28,23 @@ cask "miniforge" do
   binary "#{caskroom_path}/base/condabin/conda"
   binary "#{caskroom_path}/base/condabin/mamba"
 
+  postflight_steps do
+    if_path_exists "{{temp}}/{{token}}-envs" do
+      remove "base/envs", base: :caskroom_path, recursive: true
+      move "{{temp}}/{{token}}-envs", "base/envs", target_base: :caskroom_path
+    end
+  end
+
+  uninstall_preflight_steps do
+    if_path_exists "{{caskroom_path}}/base/envs" do
+      move "base/envs", "{{temp}}/{{token}}-envs", source_base: :caskroom_path
+    end
+  end
+
   uninstall delete: "#{caskroom_path}/base"
 
   zap trash: [
+    "#{HOMEBREW_TEMP}/#{token}-envs",
     "~/.conda",
     "~/.condarc",
   ]

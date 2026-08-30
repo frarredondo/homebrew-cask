@@ -1,6 +1,6 @@
 cask "granola" do
-  version "5.273.0"
-  sha256 "31b4b0a60ca327d8fd2da2d9709c8ea607620dbd714166f72e79776598dfb37c"
+  version "7.515.1"
+  sha256 "1309adae84af87cd5b2c91e9cb56f51b555f103b8aff740ddbf89ec3f0c553be"
 
   url "https://dr2v7l5emb758.cloudfront.net/#{version}/Granola-#{version}-mac-universal.dmg",
       verified: "dr2v7l5emb758.cloudfront.net/"
@@ -9,16 +9,19 @@ cask "granola" do
   homepage "https://www.granola.ai/"
 
   livecheck do
-    url "https://go.granola.so/download"
-    strategy :header_match
+    url "https://api.granola.ai/v1/check-for-update/latest-mac.yml"
+    strategy :electron_builder
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Granola.app"
 
+  uninstall quit: "com.granola.app"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.granola.app.sfl*",
     "~/Library/Application Support/Granola",
     "~/Library/Caches/com.granola.app",
     "~/Library/HTTPStorages/com.granola.app",

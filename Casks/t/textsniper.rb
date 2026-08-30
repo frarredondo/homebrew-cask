@@ -1,6 +1,6 @@
 cask "textsniper" do
-  version "1.11"
-  sha256 "421d1c615bc920943c73e6e4d61f99c08737cb5e477fe1d75598ad447ba86e2a"
+  version "1.12.1"
+  sha256 "1169237a1fd8bb1055c9e6bc62a098d2e6f5ee218dfcca963e2eb99e34ef48fe"
 
   url "https://s3.amazonaws.com/textsniper.app/Gumroad/TextSniper#{version}.dmg",
       verified: "s3.amazonaws.com/textsniper.app/Gumroad/"
@@ -14,13 +14,13 @@ cask "textsniper" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "TextSniper.app"
 
-  uninstall  launchctl: "com.valerijs.boguckis.gumroad.TextSniper-LaunchAtLoginHelper",
-             quit:      "com.valerijs.boguckis.gumroad.TextSniper",
-             delete:    "/Applications/TextSniper.app"
+  uninstall launchctl: "com.valerijs.boguckis.gumroad.TextSniper-LaunchAtLoginHelper",
+            quit:      "com.valerijs.boguckis.gumroad.TextSniper",
+            delete:    "/Applications/TextSniper.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.valerijs.boguckis.gumroad.TextSniper-LaunchAtLoginHelper",

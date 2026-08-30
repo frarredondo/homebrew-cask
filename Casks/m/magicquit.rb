@@ -12,9 +12,9 @@ cask "magicquit" do
     regex(/href=.*?MagicQuit[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "MagicQuit.app"
 
-  # No zap stanza required
+  zap trash: "~/Library/Preferences/com.MagicQuit.plist"
 end

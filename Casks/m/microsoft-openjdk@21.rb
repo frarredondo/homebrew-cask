@@ -1,9 +1,9 @@
 cask "microsoft-openjdk@21" do
   arch arm: "aarch64", intel: "x64"
 
-  version "21.0.6"
-  sha256 arm:   "0b27b1f0ac144cab4c29d322b9fea05fabf4ac711d05d721735797f456771008",
-         intel: "847c375b22936d32f085fd58c3fa19e5bde830a0c48e831e1af65095584bf170"
+  version "21.0.12.1"
+  sha256 arm:   "7712089bcd82620e111bb5715b0dd9d8fc2cdb7faf926b8605b9583468f2c90d",
+         intel: "98d36f07edd54ccefdce76db1252b9df5c3bdfd2590d184e2453d3f60f0fdfde"
 
   url "https://aka.ms/download-jdk/microsoft-jdk-#{version}-macos-#{arch}.pkg",
       verified: "aka.ms/download-jdk/"
@@ -13,10 +13,12 @@ cask "microsoft-openjdk@21" do
 
   livecheck do
     url "https://docs.microsoft.com/java/openjdk/download"
-    regex(%r{href=.*?/microsoft[._-]jdk[._-]v?(21(?:\.\d+)+)[._-]macOS[._-]#{arch}\.pkg}i)
+    regex(%r{href=.*?/microsoft[._-]jdk[._-]v?(21(?:\.\d+)+)[._-]macos[._-]#{arch}\.pkg}i)
   end
 
-  pkg "microsoft-jdk-#{version}-macOS-#{arch}.pkg"
+  depends_on :macos
+
+  pkg "microsoft-jdk-#{version}-macos-#{arch}.pkg"
 
   uninstall pkgutil: "com.microsoft.#{version.major}.jdk"
 

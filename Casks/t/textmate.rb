@@ -14,7 +14,7 @@ cask "textmate" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "TextMate.app"
   binary "#{appdir}/TextMate.app/Contents/MacOS/mate"

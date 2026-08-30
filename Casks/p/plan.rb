@@ -8,6 +8,9 @@ cask "plan" do
   homepage "https://getplan.co/login"
 
   deprecate! date: "2024-09-22", because: :unmaintained
+  disable! date: "2025-09-24", because: :unmaintained
+
+  depends_on :macos
 
   app "Plan.app"
 

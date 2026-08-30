@@ -1,6 +1,6 @@
 cask "tor-browser@alpha" do
-  version "14.5a3"
-  sha256 "99030ca7394b0544da15aed3c8d1f24e0292e03317dce3eee04b8d51bf9894f6"
+  version "16.0a10"
+  sha256 "096f2b4ce49952d8eb59e8f3b2cb16178386aea4336dfec6bab5673b187637ba"
 
   url "https://dist.torproject.org/torbrowser/#{version}/tor-browser-macos-#{version}.dmg"
   name "Tor Browser"
@@ -8,7 +8,7 @@ cask "tor-browser@alpha" do
   homepage "https://www.torproject.org/"
 
   livecheck do
-    url "https://aus1.torproject.org/torbrowser/update_3/alpha/downloads.json"
+    url "https://aus1.torproject.org/torbrowser/update_3/alpha/download-macos.json"
     strategy :json do |json|
       json["version"]
     end
@@ -16,7 +16,7 @@ cask "tor-browser@alpha" do
 
   auto_updates true
   conflicts_with cask: "tor-browser"
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Tor Browser Alpha.app"
 

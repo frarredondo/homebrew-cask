@@ -1,9 +1,9 @@
 cask "min" do
   arch arm: "arm64", intel: "x86"
 
-  version "1.34.1"
-  sha256 arm:   "5d80699b1ab4ea88289bb277ed605007fb784dbf6ef8229a729ca7e72e2b5426",
-         intel: "86cf5349ae6a13faa5b015077a630822f8a714bb19b94595794bdb09836e2af4"
+  version "1.35.7"
+  sha256 arm:   "326dddb576e2e0a496d49d4396ccaca839ff3fffea75197a5f7d97f774716cb1",
+         intel: "0e13a1335a251949bc99482a435d715522a7653c0df472c40e971c1aeaed721c"
 
   url "https://github.com/minbrowser/min/releases/download/v#{version}/min-v#{version}-mac-#{arch}.zip",
       verified: "github.com/minbrowser/min/"
@@ -18,8 +18,10 @@ cask "min" do
     end
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Min.app"
 

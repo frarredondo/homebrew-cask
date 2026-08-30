@@ -1,5 +1,5 @@
 cask "mylio" do
-  version "24.5.7799"
+  version "24.8.7901"
   sha256 :no_check
 
   url "https://myliodownloads.com/Mylio.dmg",
@@ -14,16 +14,18 @@ cask "mylio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Mylio.app"
+
+  uninstall launchctl: "mylollc.Mylio.LoginItem"
 
   zap trash: [
     "~/Library/Application Support/Mylio",
     "~/Library/Caches/mylollc.Mylio",
     "~/Library/HTTPStorages/mylollc.Mylio",
     "~/Library/Preferences/mylollc.Mylio.plist",
-    "~/Library/WebKit/mylollc.Mylio/",
+    "~/Library/WebKit/mylollc.Mylio",
     "~/Mylio",
   ]
 end

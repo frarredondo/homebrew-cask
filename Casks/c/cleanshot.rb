@@ -1,11 +1,11 @@
 cask "cleanshot" do
-  version "4.7.5"
-  sha256 "cb8639ee68637d7d2dc69355a5c24a6d432be2f5755c5b3c2630b93eee0105b2"
+  version "4.8.10"
+  sha256 "0f1b1cdda9a93908ced0341abb0d505adc55e51d145562013085b1e70f366d84"
 
   url "https://updates.getcleanshot.com/v3/CleanShot-X-#{version}.dmg"
   name "CleanShot"
   desc "Screen capturing tool"
-  homepage "https://getcleanshot.com/"
+  homepage "https://cleanshot.com/"
 
   livecheck do
     url "https://cleanshot.com/changelog"
@@ -13,7 +13,7 @@ cask "cleanshot" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "CleanShot X.app"
 

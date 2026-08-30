@@ -1,6 +1,6 @@
 cask "instantview" do
-  version "3.22,R0002"
-  sha256 "3dd817f730ab558b4d6ee38260a568f5c7a0086fd563b4177ad8af56c525b5b8"
+  version "3.24,R0004"
+  sha256 "968cd5ca428ad5e754425c3134acbf1b230a8ec41a5de47d5d5a1abbbd81c218"
 
   url "https://www.siliconmotion.com/downloads/macOS_InstantView_V#{version.csv.first}#{version.csv.second}.dmg"
   name "SiliconMotion InstantView"
@@ -15,7 +15,7 @@ cask "instantview" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "macOS InstantView.app"
 

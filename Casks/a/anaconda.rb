@@ -1,9 +1,18 @@
 cask "anaconda" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2024.10-1"
-  sha256 arm:   "f64ed797ce23ae1d07ead949bfb6ff630b9fa8269ca8aef8ea2efa82172ece47",
-         intel: "ad3eea1cc969e9dfd4d571fc266aae06ec119f651d7cb19c0dc187b73e2bfab1"
+  on_arm do
+    version "2026.07-1"
+    sha256 "6a9b63c645db4dbe293ffe9f168f7e380fe7a041fc863e67ee84db027425bce2"
+  end
+  on_intel do
+    version "2025.06-1"
+    sha256 "58139fe195337f3041259e3a611339ed3afa4d164cc9aa2a7e8e84c0673e3670"
+
+    # https://www.anaconda.com/blog/intel-mac-package-support-deprecation
+    deprecate! date: "2025-12-10", because: :discontinued
+    disable! date: "2026-12-10", because: :discontinued
+  end
 
   url "https://repo.anaconda.com/archive/Anaconda3-#{version}-MacOSX-#{arch}.sh"
   name "Anaconda Distribution"
@@ -12,10 +21,11 @@ cask "anaconda" do
 
   livecheck do
     url "https://repo.anaconda.com/archive/"
-    regex(/Anaconda3-(\d+(?:\.\d+)+[._-]*\d+)-MacOSX-#{arch}\.sh/i)
+    regex(/href=.*?Anaconda3[._-]v?(\d+(?:[.-]\d+)+)[._-]MacOSX?[._-]#{arch}\.sh/i)
   end
 
   auto_updates true
+  depends_on :macos
   container type: :naked
 
   installer script: {
@@ -24,8 +34,8 @@ cask "anaconda" do
     sudo:       true,
   }
 
-  postflight do
-    set_ownership "#{HOMEBREW_PREFIX}/anaconda3"
+  postflight_steps do
+    set_ownership "anaconda3", base: :homebrew_prefix
   end
 
   uninstall delete: [

@@ -1,6 +1,6 @@
 cask "lrtimelapse" do
-  version "7.3.0"
-  sha256 "1228ba2aef632265b514af0d177f5bbcaebd464bccd6aa6a2e4d9b8cd6186f27"
+  version "7.5.4"
+  sha256 "d0ecfc71d267c4ac427b576977f364f879ad1fd9a5fc31b8b943cb397527e3e2"
 
   url "https://lrtimelapse.com/files/lrtimelapse-#{version.major}-mac/?version=#{version}"
   name "LRTimelapse"
@@ -11,6 +11,8 @@ cask "lrtimelapse" do
     url "https://lrtimelapse.com/download/"
     regex(/LRTimelapse[._-]?v?(\d+(?:\.\d+)+)[._-]mac\.dmg/i)
   end
+
+  depends_on :macos
 
   pkg "LRTimelapse #{version} Installer.pkg"
 

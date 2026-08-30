@@ -8,10 +8,19 @@ cask "jpadilla-redis" do
   desc "App wrapper for Redis"
   homepage "https://jpadilla.github.io/redisapp/"
 
+  deprecate! date: "2025-04-15", because: :unmaintained
+  disable! date: "2026-04-16", because: :unmaintained
+
+  depends_on :macos
+
   app "Redis.app"
 
   zap trash: [
     "~/Library/Caches/io.blimp.Redis",
     "~/Library/Preferences/io.blimp.Redis.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

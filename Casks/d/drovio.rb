@@ -1,6 +1,6 @@
 cask "drovio" do
-  version "3.5.2"
-  sha256 "4182975333ba7451bb144bc4c91321339f199e4bd329c8292fb41ffa3901b8a2"
+  version "3.6.0"
+  sha256 "9107e90b80b3cacc0e2d9b14f7dc866cae568ad7588862ce3b91e96d4d7ebb3f"
 
   url "https://repository.drovio.com/stable/drovio/macos_universal/#{version.major}.x/#{version}/drovio.dmg"
   name "Drovio"
@@ -15,7 +15,7 @@ cask "drovio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: :ventura
 
   app "Drovio.app"
 

@@ -7,12 +7,10 @@ cask "couleurs" do
   desc "Grab and tweak the colours you see on your screen"
   homepage "https://couleursapp.com/"
 
-  livecheck do
-    url "https://couleursapp.com/updates/releases.xml"
-    strategy :sparkle, &:short_version
-  end
+  deprecate! date: "2025-03-31", because: :unmaintained
+  disable! date: "2026-04-01", because: :unmaintained
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Couleurs.app"
 

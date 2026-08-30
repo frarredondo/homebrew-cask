@@ -1,23 +1,22 @@
 cask "sqlcl" do
-  version "24.4.1.042.1221"
-  sha256 "207888581cfe5756aed4a43333902c94c91b14d0aaee38062c97886019304959"
+  version "26.2.1.222.1617"
+  sha256 "ff810954993927836b3049eb7c6404d3da72eb539b2a3f725504f72973672fa3"
 
   url "https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-#{version}.zip"
   name "sqlcl"
   desc "Oracle SQLcl is the modern command-line interface for the Oracle Database"
-  homepage "https://www.oracle.com/sqlcl"
+  homepage "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/"
 
   livecheck do
     url "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/"
-    regex(/p>Version.*?(\d+(?:\.\d+)+)/i)
+    regex(/href=.*?sqlcl[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  stage_only true
+  binary "sqlcl/bin/sql", target: "sqlcl"
 
   zap trash: "~/.sqlcl"
 
   caveats do
     depends_on_java "11+"
-    path_environment_variable "#{staged_path}/sqlcl/bin"
   end
 end

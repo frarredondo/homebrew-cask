@@ -1,6 +1,6 @@
 cask "worldpainter" do
-  version "2.23.2"
-  sha256 "69334dbea042ba09828e5f443d514d7d7e2d504647aa680e75b1a93da9a3fae8"
+  version "2.27.1"
+  sha256 "f2af630b5ee0e477b2357e00e5c25824cb32286764377abb49935b9f15557317"
 
   url "https://www.worldpainter.net/files/worldpainter_#{version}.tgz"
   name "WorldPainter"
@@ -12,9 +12,13 @@ cask "worldpainter" do
     regex(%r{href=.*?/files/worldpainter[._-]v?(\d+(?:\.\d+)+)\.t}i)
   end
 
-  depends_on macos: ">= :el_capitan"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "WorldPainter.app"
+
+  uninstall quit: "com.install4j.4144-4862-0472-7103.67"
 
   zap trash: "~/Library/Application Support/WorldPainter"
 end

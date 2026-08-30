@@ -1,6 +1,6 @@
 cask "hhkb" do
-  version "1.3.0"
-  sha256 "ad9bad341ebf6a189b907b0dd5ee68627d508664335ea75e0109964a25d268f9"
+  version "2.0.1"
+  sha256 "c0e57922fc972f1d8ab6f317d8f4e9cffc25f51b2aad1f78fbf187f968f1af5a"
 
   url "https://origin.pfultd.com/downloads/hhkb/mac/HHKBkeymapTool_#{version.no_dots}ma.dmg",
       verified: "origin.pfultd.com/downloads/hhkb/mac/"
@@ -13,7 +13,7 @@ cask "hhkb" do
     regex(%r{macOS\s*</td>.*?HHKBkeymapTool[._-]v?\d+(?:\.\d+)*[^.]*?\.dmg.*?>\s*v?(\d+(?:\.\d+)+)\s*<}im)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   pkg "HHKBkeymapTool_#{version.no_dots}ma.pkg"
 

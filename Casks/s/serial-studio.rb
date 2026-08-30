@@ -1,11 +1,8 @@
 cask "serial-studio" do
-  arch arm: "arm64", intel: "x86_64"
+  version "4.0.1"
+  sha256 "2dad21f5823e7d36fa628c334f54469b370a0e8b91d4f0a12e89c3fa9d5f9489"
 
-  version "3.0.6"
-  sha256 arm:   "86c36cd424ac22e0c01b6f02f4f94f99d27d96f9f5ced3da2ef6e303a64ef282",
-         intel: "00cf58d347c5bc71f89895df0a191543e65e32a79ce6847e466e67061399c576"
-
-  url "https://github.com/Serial-Studio/Serial-Studio/releases/download/v#{version}/Serial-Studio-#{version}-macOS-#{arch}.dmg",
+  url "https://github.com/Serial-Studio/Serial-Studio/releases/download/v#{version}/Serial-Studio-Pro-#{version}-macOS.dmg",
       verified: "github.com/Serial-Studio/Serial-Studio/"
   name "Serial Studio"
   desc "Data visualisation software for embedded devices and projects"
@@ -16,7 +13,9 @@ cask "serial-studio" do
     strategy :github_latest
   end
 
-  app "Serial Studio.app"
+  depends_on macos: :ventura
+
+  app "Serial Studio Pro.app"
 
   zap trash: [
     "~/Library/Caches/Alex Spataru/Serial-Studio",

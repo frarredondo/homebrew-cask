@@ -1,5 +1,5 @@
 cask "direqual" do
-  version "6.6.2.02"
+  version "7.7.0.15"
   sha256 :no_check
 
   url "https://naarakstudio.com/download/DirEqual.dmg"
@@ -17,14 +17,16 @@ cask "direqual" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "DirEqual.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.naarak.DirEqual",
+    "~/Library/Application Support/DirEqual",
     "~/Library/Caches/com.naarak.DirEqual",
     "~/Library/Containers/com.naarak.DirEqual",
+    "~/Library/HTTPStorages/com.naarak.DirEqual",
     "~/Library/Preferences/com.naarak.DirEqual.plist",
     "~/Library/WebKit/com.naarak.DirEqual",
   ]

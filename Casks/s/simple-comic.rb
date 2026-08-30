@@ -7,7 +7,7 @@ cask "simple-comic" do
   desc "Comic viewer/reader"
   homepage "https://github.com/MaddTheSane/Simple-Comic"
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Simple Comic.app"
 

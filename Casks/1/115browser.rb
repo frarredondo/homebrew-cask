@@ -1,9 +1,9 @@
 cask "115browser" do
   arch arm: "arm64", intel: "x64"
 
-  version "35.8.0.1"
-  sha256 arm:   "68fd808f1b71b03d29b023e6f026aabac4b06d02f95bebb7b02b9ab6109a02c0",
-         intel: "3e8456de90283b9eb585fc367cae90aa364e2d9f07404266ebf358e2322154ff"
+  version "36.0.1"
+  sha256 arm:   "3f44fb753709f950e61196f7df2195bb19b2f13f1758a777accaabeb041bf94f",
+         intel: "2f2138fe7f2971c1a8070d80511a3ffd5897964dffa8f0f412761d1c56886f43"
 
   url "https://down.115.com/client/mac/115br_v#{version}_#{arch}.dmg"
   name "115Browser"
@@ -19,7 +19,7 @@ cask "115browser" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "115Browser.app"
 

@@ -1,7 +1,7 @@
 cask "lightkey" do
-  on_monterey :or_older do
-    version "4.4.5"
-    sha256 "457df4bb2d2f21a52eec9b9b05830eb082014ce66fd79f91544a0838d54a3241"
+  on_sonoma :or_older do
+    version "5.3.3"
+    sha256 "656cd6fdbd9ec27c46f6862d483265b5240f5ce107bb6a660b23b6a7c8473d8b"
 
     # This check should only return legacy versions and the conditions may need
     # to be updated as the minimum system version of releases changes. If/when
@@ -12,17 +12,16 @@ cask "lightkey" do
       strategy :sparkle do |items|
         items.map do |item|
           next unless item.minimum_system_version
-          next if item.minimum_system_version < :big_sur ||
-                  item.minimum_system_version >= :ventura
+          next if item.minimum_system_version > :sonoma
 
           item.version
         end
       end
     end
   end
-  on_ventura :or_newer do
-    version "5.2.4"
-    sha256 "241d33c6d8b0f7ab3a89dafebc99c7057588928f57174390196409a17952baf1"
+  on_sequoia :or_newer do
+    version "6.0.1"
+    sha256 "cba1e474f18050147133f506ea0d91c4578975a931c843b31aa46db5d408326b"
 
     # Upstream also publishes legacy versions (with a lower minor version) in
     # the appcast, so the first `item` after sorting by `pubDate`/`version` may
@@ -42,7 +41,7 @@ cask "lightkey" do
   homepage "https://lightkeyapp.com/"
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   pkg "LightkeyInstaller.pkg"
 

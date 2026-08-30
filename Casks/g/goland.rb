@@ -1,9 +1,9 @@
 cask "goland" do
   arch arm: "-aarch64"
 
-  version "2024.3.4,243.25659.52"
-  sha256 arm:   "4c5e5f50b9209f673ed165c4c1fcb1bc88f4fd3ab2f4ad9740bc8855bb6f4e22",
-         intel: "d621d2130f2f4b602c69a1d62c68112fcea189405ce1d7f6cbd75c7584ccf96c"
+  version "2026.2.1.1,262.9437.286"
+  sha256 arm:   "eb5b20a31d97c494f28dcc43ae98b7eb9b777c9808d1cafdb4c48ef4fc45ce46",
+         intel: "8a4aeabd1c7a642d6b399d57ed9cc09ce1a57762b4ab2ec0e911dccad3082168"
 
   url "https://download.jetbrains.com/go/goland-#{version.csv.first}#{arch}.dmg"
   name "Goland"
@@ -24,10 +24,14 @@ cask "goland" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "GoLand.app"
-  binary "#{appdir}/GoLand.app/Contents/MacOS/goland"
+  command_wrapper "goland",
+                  executable: "/usr/bin/open",
+                  args:       ["-na", "GoLand.app", "--args"]
+
+  uninstall quit: "com.jetbrains.goland"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/GoLand",

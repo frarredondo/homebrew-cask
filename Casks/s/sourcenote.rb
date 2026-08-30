@@ -12,7 +12,8 @@ cask "sourcenote" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on :macos
 
   app "SourceNote.app"
 

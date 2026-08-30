@@ -8,6 +8,18 @@ cask "editaro" do
   desc "Text editor"
   homepage "https://editaro.com/"
 
+  livecheck do
+    url "https://hazel.editaro.com/update/mac/0.0.0"
+    strategy :json do |json|
+      json["name"]
+    end
+  end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  auto_updates true
+  depends_on :macos
+
   app "Editaro.app"
 
   zap trash: [

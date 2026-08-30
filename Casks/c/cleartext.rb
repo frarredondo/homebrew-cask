@@ -8,6 +8,9 @@ cask "cleartext" do
   homepage "https://github.com/mortenjust/cleartext-mac"
 
   deprecate! date: "2024-10-12", because: :discontinued
+  disable! date: "2025-10-12", because: :discontinued
+
+  depends_on :macos
 
   app "Cleartext.app"
 

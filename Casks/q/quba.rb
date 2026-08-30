@@ -1,6 +1,6 @@
 cask "quba" do
-  version "1.4.2"
-  sha256 "abbbdad83f404f40683e17e4b9bfd1150c46c85d76b856820e9498231b25a8c7"
+  version "1.5.1"
+  sha256 "7558b83c03847c872a80fe658eabcde17db2e1f02eab5a79c43141508fd85ba2"
 
   url "https://github.com/ZUGFeRD/quba-viewer/releases/download/v#{version}/Quba-#{version}-universal.dmg",
       verified: "github.com/ZUGFeRD/quba-viewer/"
@@ -13,8 +13,7 @@ cask "quba" do
     strategy :github_latest
   end
 
-  depends_on arch: :arm64
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Quba.app"
 

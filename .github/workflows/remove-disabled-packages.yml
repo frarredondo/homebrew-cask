@@ -3,6 +3,7 @@ name: Remove disabled packages
 on:
   push:
     branches:
+      - main
       - master
     paths:
       - .github/workflows/remove-disabled-packages.yml
@@ -29,38 +30,36 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
         with:
           core: false
           cask: true
-          test-bot: false
 
       - name: Configure Git user
         id: git-user-config
-        uses: Homebrew/actions/git-user-config@master
+        uses: Homebrew/actions/git-user-config@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
         with:
           username: BrewTestBot
 
       - name: Set up commit signing
-        uses: Homebrew/actions/setup-commit-signing@master
+        uses: Homebrew/actions/setup-commit-signing@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
         with:
-          ssh: true
           signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
 
       - name: Checkout removal branch
-        run: git checkout -b "$REMOVAL_BRANCH" origin/master
+        run: git checkout -b "$REMOVAL_BRANCH" origin/HEAD
         working-directory: ${{ steps.set-up-homebrew.outputs.repository-path }}
 
       - name: Remove disabled packages
         id: remove_disabled
-        uses: Homebrew/actions/remove-disabled-packages@master
+        uses: Homebrew/actions/remove-disabled-packages@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
         env:
           HOMEBREW_EVAL_ALL: 1
           HOMEBREW_NO_INSTALL_FROM_API: 1
 
       - name: Push commits
         if: fromJson(steps.remove_disabled.outputs.packages-removed)
-        uses: Homebrew/actions/git-try-push@master
+        uses: Homebrew/actions/git-try-push@a657b8b0cd35d0f65cce41fce9b24cf054b49869 # 2026.08.24.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           directory: ${{ steps.set-up-homebrew.outputs.repository-path }}
@@ -81,7 +80,6 @@ jobs:
             workflow.
         run: |
           gh pr create \
-            --base master \
             --body "$PR_BODY" \
             --head "$REMOVAL_BRANCH" \
             --title 'Remove disabled packages'

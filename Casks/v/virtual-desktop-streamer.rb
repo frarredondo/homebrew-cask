@@ -1,58 +1,36 @@
 cask "virtual-desktop-streamer" do
-  version "1.32.13"
-  sha256 "875e121756760de7ee058449379c4da7423cb30f260563d70c0ba1d85f5099b1"
+  version "1.34.22"
+  sha256 :no_check
 
-  url "https://github.com/guygodin/VirtualDesktop/releases/download/v#{version}/VirtualDesktop.Streamer.Setup.dmg",
-      verified: "github.com/guygodin/VirtualDesktop/"
+  url "https://files.vrdesktop.net/files/VirtualDesktop.Streamer.Setup.pkg"
   name "Virtual Desktop Streamer"
   desc "VR Virtual Desktop Streamer"
   homepage "https://www.vrdesktop.net/"
 
   livecheck do
     url :url
-    strategy :github_latest
+    strategy :extract_plist
   end
 
-  pkg "Virtual Desktop.pkg"
+  depends_on :macos
 
-  postflight do
-    # postinstall launches the app
-    retries ||= 3
-    ohai "The Virtual Desktop package postinstall script launches the Streamer app" if retries >= 3
-    ohai "Attempting to close the Streamer app to avoid unwanted user intervention" if retries >= 3
-    return unless system_command "/usr/bin/pkill", args: ["-f", "/Applications/Virtual Desktop Streamer.app"]
-  rescue RuntimeError
-    sleep 1
-    retry unless (retries -= 1).zero?
-    opoo "Unable to forcibly close Virtual Desktop Streamer"
-  end
+  pkg "VirtualDesktop.Streamer.Setup.pkg"
 
   uninstall launchctl: [
-              "com.VirtualDesktop.autoinstall",
-              "com.VirtualDesktop.launch",
-              "com.VirtualDesktop.uninstall",
+              "com.virtualdesktop.daemon",
+              "com.virtualdesktop.streamer",
             ],
-            quit:      "com.virtualDesktopInc.Mac.Streamer",
+            quit:      "com.virtualdesktop.streamer",
             pkgutil:   [
               "com.VirtualDesktop.AudioDriver",
-              "com.VirtualDesktop.Libs",
               "com.VirtualDesktop.MicDriver",
-              "com.VirtualDesktop.VirtualDesktop",
-              "com.VirtualDesktop.VirtualDesktopUpdater",
-            ],
-            delete:    [
-              "/Applications/Virtual Desktop Streamer.app",
-              "/Applications/Virtual Desktop Updater.app",
-              "/usr/local/bin/virtualdesktop/",
+              "com.virtualdesktop.streamer",
             ]
 
   zap trash: [
-    "/tmp/.vdready",
-    "/tmp/.vdrequestclean",
-    "/tmp/.vdupdatedetail",
-    "~/Library/Caches/com.virtualDesktopInc.Mac.Streamer",
-    "~/Library/HTTPStorages/com.virtualDesktopInc.Mac.Streamer",
-    "~/Library/Preferences/com.virtualDesktopInc.Mac.Streamer.plist",
-    "~/Library/Saved Application State/com.virtualDesktopInc.Mac.Streamer.savedState",
+    "/Library/LaunchAgents/com.virtualdesktop.streamer.plist",
+    "~/Library/Application Support/VirtualDesktop",
+    "~/Library/Caches/com.virtualdesktop.streamer",
+    "~/Library/Preferences/com.virtualdesktop.streamer.plist",
   ]
 end

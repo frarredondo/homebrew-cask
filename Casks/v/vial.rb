@@ -1,12 +1,16 @@
 cask "vial" do
-  version "0.7.1"
-  sha256 "ca26e97c22495236e7eda5549e10be61ea1dc79211be31899262a75460e038c8"
+  version "0.7.5"
+  sha256 "b628db11f8df012faafcceef7deb36b54821b507d4c970336f85a56c800e8876"
 
   url "https://github.com/vial-kb/vial-gui/releases/download/v#{version}/Vial-v#{version}.dmg",
       verified: "github.com/vial-kb/vial-gui/"
   name "Vial"
   desc "Configurator of compatible keyboards in real time"
   homepage "https://get.vial.today/"
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Vial.app"
 

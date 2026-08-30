@@ -1,21 +1,8 @@
 cask "reaper" do
-  version "7.34"
+  version "7.79"
+  sha256 "2493cea3cd6105d84bbf02710280d73ea8a119f06370152773483767fade8602"
 
-  on_mojave :or_older do
-    sha256 "56ad88f1cd2fd111baf87b8e44b6ec4e95a5057ab35984f76e278bce2229f1c5"
-
-    url "https://dlcf.reaper.fm/#{version.major}.x/reaper#{version.major_minor.no_dots}_x86_64.dmg"
-
-    caveats do
-      requires_rosetta
-    end
-  end
-  on_catalina :or_newer do
-    sha256 "6779bdab03451f86c7346d430f82db72becdf5bdacc3013bde2221e8d3d7d25e"
-
-    url "https://dlcf.reaper.fm/#{version.major}.x/reaper#{version.major_minor.no_dots}_universal.dmg"
-  end
-
+  url "https://dlcf.reaper.fm/#{version.major}.x/reaper#{version.major_minor.no_dots}_universal.dmg"
   name "REAPER"
   desc "Digital audio production application"
   homepage "https://www.reaper.fm/"
@@ -25,7 +12,11 @@ cask "reaper" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  depends_on :macos
+
   app "REAPER.app"
+
+  uninstall quit: "com.cockos.reaper"
 
   zap trash: [
     "~/Library/Application Support/REAPER",

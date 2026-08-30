@@ -15,7 +15,7 @@ cask "boop" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Boop.app"
 

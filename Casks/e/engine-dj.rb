@@ -1,22 +1,29 @@
 cask "engine-dj" do
-  version "4.2.1,a226e168a515b5dd,23da16a65b"
-  sha256 "96beea3e002970f81169751d14e2600b7d7c78134bd1ead23afabc6c1bea2739"
+  version "5.0.0,68214e98c667298c,12d16a34d4"
+  sha256 "fc53b91de204813ea0d9d1922bdd053f8b3922648e4fddf9770f6c836410fd76"
 
-  url "https://imb-cicd-public.s3.amazonaws.com/Engine/#{version.csv.first}/Release/#{version.csv.second}/Engine_DJ_#{version.csv.first}_#{version.csv.third}_Setup.dmg",
-      verified: "imb-cicd-public.s3.amazonaws.com/Engine/"
+  url "https://public.inmusiccdn.com/Engine/#{version.csv.first}/RELEASE/#{version.csv.second}/Engine_DJ_#{version.csv.first}_#{version.csv.third}_Setup.dmg",
+      verified: "public.inmusiccdn.com/Engine/"
   name "Engine DJ Desktop"
   desc "DJ software suite"
   homepage "https://enginedj.com/"
 
+  # The file name regex needs to be anchored to avoid matching the variant for
+  # SYSTEM ONE users, which uses the same file name format but has a different
+  # version.
   livecheck do
     url "https://enginedj.com/downloads"
-    regex(
-      %r{href=.*?/Engine/(\d+(?:\.\d+)+)/Release/(\w*)/Engine[._-]DJ[._-]\d+(?:\.\d+)+[._-](\w*?)[._-]Setup\.dmg}i,
-    )
+    regex(%r{
+      MacDownloadButton.+?
+      href=.*?/Engine/v?(\d+(?:\.\d+)+)/Release/(\h+)/
+      Engine[._-]DJ[._-]v?\d+(?:\.\d+)+[._-](\h+?)[._-]Setup\.dmg
+    }imx)
     strategy :page_match do |page, regex|
       page.scan(regex).map { |match| "#{match[0]},#{match[1]},#{match[2]}" }
     end
   end
+
+  depends_on macos: :monterey
 
   pkg "Engine DJ_#{version.csv.first}_Setup.pkg"
 

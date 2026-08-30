@@ -1,6 +1,6 @@
 cask "flycast" do
-  version "2.4"
-  sha256 "6606eaef7479bdd5edb161a73968ac982f6867ccf52b951ad01a4b8f49d6a782"
+  version "2.7"
+  sha256 "dbd59cb88f52a95ea4de90693bb4ac156530452d5457f2cc4f656fdfd242fc26"
 
   url "https://github.com/flyinghead/flycast/releases/download/v#{version}/flycast-macOS-#{version}.zip"
   name "Flycast"
@@ -12,12 +12,14 @@ cask "flycast" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Flycast.app"
 
   zap rmdir: [
-    "/Library/Application Support/Flycast/",
+    "/Library/Application Support/Flycast",
     "~/.flycast",
     "~/.reicast",
   ]

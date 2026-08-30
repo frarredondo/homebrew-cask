@@ -12,7 +12,7 @@ cask "cornerstone" do
     regex(/href=.*?Cornerstone[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "Cornerstone.app"
 

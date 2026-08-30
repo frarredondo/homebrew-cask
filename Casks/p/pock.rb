@@ -14,7 +14,7 @@ cask "pock" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Pock.app"
 

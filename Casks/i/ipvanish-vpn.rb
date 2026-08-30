@@ -1,6 +1,6 @@
 cask "ipvanish-vpn" do
-  version "4.7.0,129680"
-  sha256 "ba76800d044f2b21bf2e3d64d26b6168803c8e4a9e8be4380df0704214774a9a"
+  version "5.1.3,166526"
+  sha256 "fe25e7e8041868f069f197a34cfb9d7b722e56e2533e1dd1ca5ed68343e85689"
 
   url "https://www.ipvanish.com/software/osx/IPVanish_v#{version.csv.first}_#{version.csv.second}.zip"
   name "IPVanish"
@@ -8,12 +8,22 @@ cask "ipvanish-vpn" do
   homepage "https://www.ipvanish.com/"
 
   livecheck do
-    url "https://www.ipvanish.com/software/osx/updates_V#{version.major}.xml"
-    strategy :sparkle
+    url "https://www.ipvanish.com/software/osx/updates_V4.xml"
+    regex(/IPVanish[._-]v?(\d+(?:\.\d+)+)[._-](\d+)/i)
+    strategy :sparkle do |items, regex|
+      items.map do |item|
+        next if item.channel != "release"
+
+        match = item.url&.match(regex)
+        next if match.blank?
+
+        match.captures.join(",")
+      end
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "IPVanish VPN.app"
 

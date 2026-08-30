@@ -1,6 +1,6 @@
 cask "trainerroad" do
-  version "2025.8.0.367"
-  sha256 "9cbedef8a7cf7318cd16f35c5d7f202b9ca684ed0c7beced09dd090d99a745f4"
+  version "2026.29.2.468"
+  sha256 "49851b970827ce158b7cc7e2f8390e994ae5436cf44036be0eed7c4ef46d5b9a"
 
   url "https://trainrdtrcmn01un1softw01.blob.core.windows.net/installers/mac/v001/Production/TrainerRoad-#{version}.dmg",
       verified: "trainrdtrcmn01un1softw01.blob.core.windows.net/"
@@ -21,11 +21,15 @@ cask "trainerroad" do
     end
   end
 
-  depends_on macos: ">= :el_capitan"
+  depends_on :macos
 
   app "TrainerRoad.app"
 
-  zap trash: "~/Library/Application Support/TrainerRoad"
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.trainerroad.mac.sfl*",
+    "~/Library/Application Support/TrainerRoad",
+    "~/Library/Preferences/com.trainerroad.mac.plist",
+  ]
 
   caveats do
     requires_rosetta

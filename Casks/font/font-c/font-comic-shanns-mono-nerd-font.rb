@@ -1,8 +1,8 @@
 cask "font-comic-shanns-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "6076397b5b176c6e16423bea599e1a4f7b24932eeda9d253e68912fb14b6f767"
+  version "3.5.1"
+  sha256 "0ca2a0aac547d52a395551a19c2bed0d6ee9541feb06c90cbd48f314ec995045"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ComicShannsMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ComicShannsMono.tar.xz"
   name "ComicShannsMono Nerd Font (Comic Shanns Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-comic-shanns-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "ComicShannsMonoNerdFont-Bold.otf"
   font "ComicShannsMonoNerdFont-Regular.otf"

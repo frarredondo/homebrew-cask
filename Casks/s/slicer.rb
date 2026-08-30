@@ -1,6 +1,6 @@
 cask "slicer" do
-  version "5.8.1,67c52e9629825655577d0353"
-  sha256 "1df727ddfffe216c69ed277f8f3e3d5081ac83d73aa22eeec6285b68aa1e2a4c"
+  version "5.12.3,6a61a0b02eb3d967f032af6c"
+  sha256 "7904d7aa6aadc5ee5ea855ec7d28b33c24444daddd98684a8673a14f4c37d794"
 
   url "https://slicer-packages.kitware.com/api/v1/item/#{version.csv.second}/download",
       verified: "slicer-packages.kitware.com/"
@@ -20,6 +20,7 @@ cask "slicer" do
   end
 
   conflicts_with cask: "slicer@preview"
+  depends_on macos: :sonoma
 
   app "Slicer.app"
 

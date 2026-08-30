@@ -1,9 +1,9 @@
 cask "roblox" do
   arch arm: "arm64/"
 
-  version "0.662.0.6620538,edff3ebb0ca74edf"
-  sha256 arm:   "f3c46162b44837034760a04962e6e0b6a0749f54ffdf11c8b356c391242c849a",
-         intel: "85611e5fd5ca2f32de89012f0fff2e38460d1b8b87271e032036ec5c2f0201ff"
+  version "0.736.0.7361346,4c4fc877ca9b4c61"
+  sha256 arm:   "c676c975ddfd0a49b845baa82cd16a0fa8063c9bcd9b57967ab8b6543af4b23e",
+         intel: "053544b8534159c557a910b76b6bb9202e6a9c108829284713e24687cf0df4e7"
 
   url "https://setup.rbxcdn.com/mac/#{arch}version-#{version.csv.second}-RobloxPlayer.zip",
       verified: "setup.rbxcdn.com/"
@@ -23,16 +23,22 @@ cask "roblox" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   # The default installer installs the application as `Roblox.app` - so do the same for consistency
   app "RobloxPlayer.app", target: "Roblox.app"
 
-  uninstall quit: "com.roblox.RobloxPlayer"
+  uninstall quit: [
+    "com.roblox.RobloxPlayer",
+    "com.roblox.RobloxPlayer.MenuBar",
+  ]
 
   zap trash: [
+    "~/Library/HTTPStorages/com.roblox.RobloxPlayer.binarycookies",
+    "~/Library/Logs/Roblox",
     "~/Library/Preferences/com.Roblox.Roblox.plist",
     "~/Library/Preferences/com.roblox.RobloxPlayer.plist",
     "~/Library/Preferences/com.roblox.RobloxPlayerChannel.plist",
+    "~/Library/Roblox",
   ]
 end

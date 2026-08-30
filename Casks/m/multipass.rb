@@ -1,11 +1,11 @@
 cask "multipass" do
-  version "1.15.1"
-  sha256 "878dfb719a0f39e1481b32bdca43dabeac9b71904510a3601a9ac037e5514173"
+  version "1.16.3"
+  sha256 "7d6eab39614139884cfb5a4aeb68f9b25334356c142d5d4b1f74acdd76082c18"
 
   on_arm do
-    postflight do
-      File.symlink("/Library/Application Support/com.canonical.multipass/Resources/completions/bash/multipass",
-                   "#{HOMEBREW_PREFIX}/etc/bash_completion.d/multipass")
+    postflight_steps do
+      symlink "/Library/Application Support/com.canonical.multipass/Resources/completions/bash/multipass",
+              "{{HOMEBREW_PREFIX}}/etc/bash_completion.d/multipass", remove_on_uninstall: true
     end
   end
 
@@ -19,7 +19,7 @@ cask "multipass" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: :ventura
 
   pkg "multipass-#{version}+mac-Darwin.pkg"
 

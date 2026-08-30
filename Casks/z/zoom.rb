@@ -2,9 +2,9 @@ cask "zoom" do
   arch arm: "arm64/"
   livecheck_folder = on_arch_conditional arm: "?archType=arm64"
 
-  version "6.3.11.50104"
-  sha256 arm:   "459541ab64d070fb3ef30c77630c0849581a3efc52f213fddefc5b24ca44853d",
-         intel: "3b01d5a9065521095ab1e857e944c3d5f8356190c0b6f05949d3ead997b62530"
+  version "7.1.5.84650"
+  sha256 arm:   "49cf70af674176f3708b9d3b519f585424c442ccf744fd9659327967971c8279",
+         intel: "62f6b0a647084b4da6faec3a685dfcee12b9024c6a9b51b25c5133338a97a902"
 
   url "https://cdn.zoom.us/prod/#{version}/#{arch}zoomusInstallerFull.pkg"
   name "Zoom"
@@ -18,21 +18,25 @@ cask "zoom" do
 
   auto_updates true
   conflicts_with cask: "zoom-for-it-admins"
+  depends_on :macos
 
   pkg "zoomusInstallerFull.pkg"
 
-  postflight do
+  postflight_steps do
     # Description: Ensure console variant of postinstall is non-interactive.
     # This is because `open "$APP_PATH"&` is called from the postinstall
     # script of the package and we don't want any user intervention there.
-    retries ||= 3
-    ohai "The Zoom package postinstall script launches the Zoom app" if retries >= 3
-    ohai "Attempting to close zoom.us.app to avoid unwanted user intervention" if retries >= 3
-    return unless system_command "/usr/bin/pkill", args: ["-f", "/Applications/zoom.us.app"]
-  rescue RuntimeError
-    sleep 1
-    retry unless (retries -= 1).zero?
-    opoo "Unable to forcibly close zoom.us.app"
+    terminate_process(
+      "/Applications/zoom.us.app",
+      match:           :full,
+      attempts:        3,
+      must_succeed:    false,
+      notices:         [
+        "The Zoom package postinstall script launches the Zoom app",
+        "Attempting to close zoom.us.app to avoid unwanted user intervention",
+      ],
+      failure_message: "Unable to forcibly close zoom.us.app",
+    )
   end
 
   uninstall launchctl: [

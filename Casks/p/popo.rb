@@ -1,31 +1,38 @@
 cask "popo" do
-  version "4.17.0,1738934160442"
-  sha256 "ce1a803b84ba9df01b573d1d4d4ae1c8001d6be5b1ed9bb0136ec97a9e9aeec1"
+  arch arm: "arm", intel: "intel"
 
-  url "https://popo.netease.com/file/popomac/POPO-setup_prod_#{version.csv.second}.dmg"
+  on_arm do
+    version "4.34.2,1786109510145"
+    sha256 "e3ebf936bf99a2dc696f94119a87f367374b2c0fa3a958c467ca93c405edd78b"
+  end
+  on_intel do
+    version "4.34.2,1786111202193"
+    sha256 "4fcd6d73e804d90bde4d15dc3674bbdbdc8da594dd65c3081ca86fc9d920326b"
+  end
+
+  url "https://popo.netease.com/file/popomac/POPO-setup_#{version.csv.first}_#{arch}_prod_#{version.csv.second}.dmg"
   name "NetEase POPO"
   desc "Instant messaging platform"
   homepage "https://popo.netease.com/"
 
   livecheck do
     url "https://popo.netease.com/api/open/jsonp/check_version?device=4&callback=callback"
-    regex(/callback\((.+)\)/i)
+    regex(/POPO[._-]setup[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}[._-]prod[._-](\d+)\.dmg/i)
     strategy :page_match do |page, regex|
-      build_regex = /^.*?(\d+)\.dmg$/
+      json_regex = /callback\((.+)\)/i
 
-      match = page.match(regex)
+      match = page.match(json_regex)
       next if match.blank?
 
       json = Homebrew::Livecheck::Strategy::Json.parse_json(match[1])
-      version = json.dig("data", "version")
-      build = json.dig("data", "url")&.[](build_regex, 1)
-      next if version.blank? || build.blank?
+      match = json.dig("data", "#{arch}Url")&.match(regex)
+      next if match.blank?
 
-      "#{version},#{build}"
+      "#{match[1]},#{match[2]}"
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "popo_mac.app"
 

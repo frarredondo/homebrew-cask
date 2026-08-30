@@ -8,7 +8,9 @@ cask "lofi" do
   desc "Spotify player with WebGL visualisations"
   homepage "https://www.lofi.rocks/"
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "lofi.app"
 

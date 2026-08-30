@@ -1,5 +1,5 @@
 cask "vip-access" do
-  version "1.0.7"
+  version "1.0.8"
   sha256 :no_check
 
   url "https://storage.googleapis.com/sedvip-prd-idcenter-downloads/VIPAccessSecurityCode.dmg",
@@ -13,7 +13,7 @@ cask "vip-access" do
     regex(/VIP\s+Access\s+for\s+Mac\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   pkg "VIP Access.pkg"
 

@@ -1,11 +1,13 @@
 cask "rwts-pdfwriter" do
-  version "3.1a"
-  sha256 "ddf4801fec6aceb81e98f88799cfbc8ef2499c48643638210a629a0d5f9bf6c2"
+  version "3.1d"
+  sha256 "8cb22cd015699c014711c0d72f1e19f79b62610be93b03c60b421e7417c7de53"
 
   url "https://github.com/rodyager/RWTS-PDFwriter/releases/download/v#{version}/RWTS-PDFwriter.pkg"
   name "RWTS PDFwriter"
   desc "Print driver for printing documents directly to a pdf file"
   homepage "https://github.com/rodyager/RWTS-PDFwriter"
+
+  depends_on :macos
 
   pkg "RWTS-PDFwriter.pkg"
 

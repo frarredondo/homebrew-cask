@@ -1,9 +1,9 @@
 cask "mongodb-compass-isolated-edition" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.45.3"
-  sha256 arm:   "e90a8e36fca4bc4cc948ff420375548665c8ebba1534388321ae6587485d27ba",
-         intel: "4ce4c22d479dd7731ec28ba8f050edc28415c377008ba1fb737799758675b97b"
+  version "1.49.15"
+  sha256 arm:   "46fec4bc843dce749c796baa8bf849708972fede59bc33348e3adcc1680b9161",
+         intel: "602360a2564245d6a644d84cb2e2ea757ff7cba6d6016f8d13b90040e808f524"
 
   url "https://downloads.mongodb.com/compass/mongodb-compass-isolated-#{version}-darwin-#{arch}.dmg"
   name "MongoDB Compass Isolated"
@@ -23,12 +23,15 @@ cask "mongodb-compass-isolated-edition" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "MongoDB Compass Isolated Edition.app"
 
+  uninstall quit: "com.mongodb.compass.isolated"
+
   zap trash: [
     "~/.mongodb/compass",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mongodb.compass.isolated.sfl*",
     "~/Library/Application Support/MongoDB Compass Isolated Edition",
     "~/Library/Preferences/com.mongodb.compass.isolated.plist",
     "~/Library/Saved Application State/com.mongodb.compass.isolated.savedState",

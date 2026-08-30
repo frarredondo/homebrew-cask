@@ -1,9 +1,9 @@
 cask "digikam" do
   arch arm: "Qt6-MacOS-arm64", intel: "Qt5-MacOS-x86_64"
 
-  version "8.5.0"
-  sha256 arm:   "96f7a14870ae5ed962670354549273274f4cdd1699bf68bdcca486a6b10f71af",
-         intel: "fe990ab364205c10f70deea221a3d407e6e9ca2a4fde1c948d0cd432a92506da"
+  version "9.1.0"
+  sha256 arm:   "280fb7f8bd69f512946b1a5acc63a4f4fb66aed464afc2a03a3e4355150cc8ac",
+         intel: "d5edf0f8e498dad0e6748c3bdc9a55433bf8b43601d8467704f47cc995b3f4a2"
 
   url "https://download.kde.org/stable/digikam/#{version}/digiKam-#{version}-#{arch}.pkg",
       verified: "kde.org/stable/digikam/"
@@ -16,6 +16,10 @@ cask "digikam" do
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   pkg "digiKam-#{version}-#{arch}.pkg"
 
   uninstall pkgutil: [
@@ -23,8 +27,8 @@ cask "digikam" do
               "org.kde.digikam",
             ],
             delete:  [
-              "/Applications/digikam.app",
-              "/Applications/showfoto.app",
+              "/Applications/digiKam.org/digikam.app",
+              "/Applications/digiKam.org/showfoto.app",
             ]
 
   zap trash: [

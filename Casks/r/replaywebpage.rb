@@ -1,6 +1,6 @@
 cask "replaywebpage" do
-  version "2.3.3"
-  sha256 "261df0137d734b72ee232ef1a293585a4242f59c404dddb255d0763f989aff64"
+  version "2.5.2"
+  sha256 "0a6c3d0214e7d160e7cfe2080140bd694ef36bbfcc5aa2201d101a6ad81b6cb3"
 
   url "https://github.com/webrecorder/replayweb.page/releases/download/v#{version}/ReplayWeb.page-#{version}.dmg",
       verified: "github.com/webrecorder/replayweb.page/"
@@ -13,7 +13,7 @@ cask "replaywebpage" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "ReplayWeb.page.app"
 

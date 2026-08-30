@@ -1,8 +1,8 @@
 cask "font-ubuntu-nerd-font" do
-  version "3.3.0"
-  sha256 "aa64690dab5b4f5cb6f0223999d44ca30fa51d837d83fcd86eacec527ec4f598"
+  version "3.5.1"
+  sha256 "e84b2dbb9e6303e6ce45f0c80e6a083b31fda329fd0de0dd21fb8f851be141bd"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Ubuntu.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Ubuntu.tar.xz"
   name "Ubuntu Nerd Font (Ubuntu)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-ubuntu-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "UbuntuNerdFont-Bold.ttf"
   font "UbuntuNerdFont-BoldItalic.ttf"

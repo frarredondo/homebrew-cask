@@ -1,8 +1,8 @@
 cask "font-agave-nerd-font" do
-  version "3.3.0"
-  sha256 "42ec90ea46d0ffdae4051d42638f0bffaf4a75b4ab82a55b4484db48cd7dd85b"
+  version "3.5.1"
+  sha256 "0b29420ed47a4cc9bc2743d454ef17ea645ae31e6c348e86154d994b6ccc756e"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Agave.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Agave.tar.xz"
   name "Agave Nerd Font (Agave)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-agave-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "AgaveNerdFont-Bold.ttf"
   font "AgaveNerdFont-Regular.ttf"

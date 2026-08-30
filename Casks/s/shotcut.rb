@@ -1,8 +1,8 @@
 cask "shotcut" do
-  version "25.01.25"
-  sha256 "70e09514f09338558de1331077d766d79c299a3b3ad394e405d7a19e342ec8bb"
+  version "26.8.1"
+  sha256 "7bab10bd96fe3590bb3ba0461d21d3022681574b324bb1c21366d5432cac5657"
 
-  url "https://github.com/mltframework/shotcut/releases/download/v#{version.csv.first}/shotcut-macos-#{version.csv.second || version.csv.first.no_dots}.dmg",
+  url "https://github.com/mltframework/shotcut/releases/download/v#{version.csv.first}/shotcut-macos-#{version.csv.second || version.csv.first}.dmg",
       verified: "github.com/mltframework/shotcut/"
   name "Shotcut"
   desc "Video editor"
@@ -25,7 +25,7 @@ cask "shotcut" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Shotcut.app"
 

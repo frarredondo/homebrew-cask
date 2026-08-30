@@ -1,5 +1,5 @@
 cask "scapple" do
-  version "1.5"
+  version "1.5.4"
   sha256 :no_check
 
   url "https://scrivener.s3.amazonaws.com/Scapple.dmg",
@@ -13,7 +13,8 @@ cask "scapple" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on :macos
 
   app "Scapple.app"
 

@@ -1,8 +1,8 @@
 cask "font-ubuntu-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "5791ff219b14000821ff6e3dffcfaa9d29ca9b446c1fc53414d0684eadc8690f"
+  version "3.5.1"
+  sha256 "9c4d18e23e1ff809849fa0afec79ade67c58e22150c95ea373d22598c1ddea18"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/UbuntuMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/UbuntuMono.tar.xz"
   name "UbuntuMono Nerd Font (Ubuntu Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-ubuntu-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "UbuntuMonoNerdFont-Bold.ttf"
   font "UbuntuMonoNerdFont-BoldItalic.ttf"

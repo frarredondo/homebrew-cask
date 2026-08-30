@@ -4,7 +4,7 @@ cask "ace-link" do
 
   url "https://github.com/blaise-io/acelink/releases/download/#{version}/Ace.Link.#{version}.dmg"
   name "Ace Link"
-  desc "Menu bar app that allows playing Ace Stream video streams in the VLC player"
+  desc "Menu bar app for playing Ace Stream video streams in an external media player"
   homepage "https://github.com/blaise-io/acelink"
 
   livecheck do
@@ -12,11 +12,10 @@ cask "ace-link" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
-  depends_on cask: [
-    "vlc",
-    "docker",
-  ]
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+  depends_on cask: "docker"
 
   app "Ace Link.app"
 

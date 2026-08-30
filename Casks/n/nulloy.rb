@@ -13,13 +13,11 @@ cask "nulloy" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Nulloy.app"
 
   zap trash: "~/Library/Saved Application State/com.nulloy.savedState"
-
-  caveats do
-    requires_rosetta
-  end
 end

@@ -7,6 +7,10 @@ cask "qlfits" do
   desc "Quick Look plugin to view FITS files"
   homepage "https://github.com/onekiloparsec/QLFits"
 
+  deprecate! date: "2025-09-22", because: :no_longer_meets_criteria
+
+  depends_on :macos
+
   qlplugin "QLFits#{version.major}.qlgenerator"
 
   zap trash: "~/Library/Preferences/com.softtenebraslux.qlfitsgenerator.plist"

@@ -9,6 +9,9 @@ cask "ananas-analytics-desktop-edition" do
   homepage "https://ananasanalytics.com/"
 
   deprecate! date: "2025-02-22", because: :unmaintained
+  disable! date: "2026-02-22", because: :unmaintained
+
+  depends_on :macos
 
   app "Ananas Analytics Desktop Edition.app"
 

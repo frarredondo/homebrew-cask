@@ -12,7 +12,7 @@ cask "macwinzipper" do
     regex(%r{href=.*?/MacWinZipper[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "MacWinZipper.app"
 

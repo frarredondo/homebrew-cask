@@ -12,7 +12,7 @@ cask "ripcord" do
     regex(%r{/Ripcord_Mac_(\d+(?:\.\d+)*)\.zip}i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Ripcord.app"
 

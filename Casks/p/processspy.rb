@@ -1,6 +1,6 @@
 cask "processspy" do
-  version "1.6.4"
-  sha256 "84867efd2ef43da16957ce9a8e2825f166a51a94f58101d739564449d1a0a0db"
+  version "1.14.1"
+  sha256 "4a753b792767d7aed2fe9cab3d827df773bb5a5890f1b9f80ab0c112dad4c2c8"
 
   url "https://process-spy.app/archive/ProcessSpy_#{version}.dmg"
   name "ProcessSpy"
@@ -13,7 +13,7 @@ cask "processspy" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "ProcessSpy.app"
 

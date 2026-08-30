@@ -1,8 +1,8 @@
 cask "font-shure-tech-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "128fa7c0a7dcb711591862279beb5ab113ee84dd3b078da75d93bc8a1edacb26"
+  version "3.5.1"
+  sha256 "002de1c65aa0b1d61e71ff91ec3afc45a88cfeed26433796f00c8d264be66ffa"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ShareTechMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ShareTechMono.tar.xz"
   name "ShureTechMono Nerd Font (Share Tech Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-shure-tech-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "ShureTechMonoNerdFont-Regular.ttf"
   font "ShureTechMonoNerdFontMono-Regular.ttf"

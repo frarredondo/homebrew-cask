@@ -1,20 +1,18 @@
 cask "skype" do
-  version "8.137.0.425"
-  sha256 "0bc09a88c8f07fd1e05ef30aef95b825d33ace576b16108ff056c47049730314"
+  version "8.150.0.125"
+  sha256 "5f1180bf8c7b95b62cd5ccb03d81e2137cdf91fd18a73d865e4847702c6e329d"
 
   url "https://download.skype.com/s4l/download/mac/Skype-#{version}.dmg"
   name "Skype"
   desc "Video chat, voice call and instant messaging application"
   homepage "https://www.skype.com/"
 
-  livecheck do
-    url "https://get.skype.com/go/getskype-skypeformac"
-    strategy :header_match
-  end
+  deprecate! date: "2025-05-05", because: :discontinued
+  disable! date: "2026-05-09", because: :discontinued
 
   auto_updates true
   conflicts_with cask: "skype@preview"
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Skype.app"
 

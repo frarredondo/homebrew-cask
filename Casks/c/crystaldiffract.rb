@@ -1,5 +1,5 @@
 cask "crystaldiffract" do
-  version "7.1.1"
+  version "7.2.5"
   sha256 :no_check
 
   url "https://crystalmaker.com/downloads/crystaldiffract#{version.major}_mac.zip"
@@ -14,7 +14,7 @@ cask "crystaldiffract" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: :big_sur
 
   app "CrystalDiffract.app"
 

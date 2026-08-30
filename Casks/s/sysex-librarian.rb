@@ -12,7 +12,7 @@ cask "sysex-librarian" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "SysEx Librarian.app"
 

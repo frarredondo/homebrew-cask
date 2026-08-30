@@ -13,7 +13,8 @@ cask "iconchamp" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :big_sur"
+  auto_updates true
+  depends_on macos: :big_sur
 
   app "IconChamp.app"
 

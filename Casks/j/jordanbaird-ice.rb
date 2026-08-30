@@ -14,7 +14,8 @@ cask "jordanbaird-ice" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  conflicts_with cask: "jordanbaird-ice@beta"
+  depends_on macos: :sonoma
 
   app "Ice.app"
 

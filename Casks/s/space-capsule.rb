@@ -1,6 +1,6 @@
 cask "space-capsule" do
-  version "1.22"
-  sha256 "0181166032823d57630629fce27fb75970f9abee0f72d96c069b6ed1bc4380fc"
+  version "1.26"
+  sha256 "5b760e7728f2b3228c851f3858276b0200a8f0f27f2f6bd9ccbd06ffcd6d8fc4"
 
   url "https://spacecapsule.app/downloads/Space%20Capsule%20#{version}.dmg"
   name "Space Capsule"
@@ -13,7 +13,7 @@ cask "space-capsule" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Space Capsule.app"
 

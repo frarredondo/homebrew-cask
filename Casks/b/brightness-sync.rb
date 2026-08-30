@@ -7,7 +7,7 @@ cask "brightness-sync" do
   desc "Utility to synchronise the brightness of LG UltraFine display(s)"
   homepage "https://github.com/OCJvanDijk/Brightness-Sync"
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Brightness Sync.app"
 

@@ -1,9 +1,9 @@
 cask "1password@beta" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "8.10.68-12.BETA"
-  sha256 arm:   "504ae9de97125f3fc2e6cdc9ada2e804df3db4bf208602775cba60ecab54f127",
-         intel: "5ef7e546aa94239f5e92e4a2417c800b34bde1522b97cc098de9a2d310339d95"
+  version "8.12.36-32.BETA"
+  sha256 arm:   "a9ce666435cfd274039f9ccef3ece8190d0636134d726f194679a5fcb4c57b48",
+         intel: "6611dc3a80c682520482f5955c00c70d195575e5a041446035470ef662f4d6e0"
 
   url "https://downloads.1password.com/mac/1Password-#{version}-#{arch}.zip"
   name "1Password"
@@ -11,8 +11,10 @@ cask "1password@beta" do
   homepage "https://1password.com/"
 
   livecheck do
-    url "https://app-updates.agilebits.com/product_history/OPM#{version.major}"
-    regex(%r{href=.*?/1Password[._-]?v?(\d+(?:[.-]\d+)*(?:[._-]BETA))[._-]?\$ARCH\.zip}i)
+    url "https://app-updates.agilebits.com/check/2/99/#{arch}/OPM#{version.major}/en/0/A1/Y"
+    strategy :json do |json|
+      json["version"]
+    end
   end
 
   auto_updates true
@@ -20,9 +22,15 @@ cask "1password@beta" do
     "1password",
     "1password@nightly",
   ]
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "1Password.app"
+
+  uninstall launchctl: [
+              "2BUA8C4S2C.com.1password.browser-helper",
+              "com.1password.1password-launcher",
+            ],
+            quit:      "com.1password.1password"
 
   zap trash: [
     "~/Library/Application Scripts/2BUA8C4S2C.com.1password*",

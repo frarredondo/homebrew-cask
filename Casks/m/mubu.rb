@@ -1,12 +1,11 @@
 cask "mubu" do
   arch arm: "-arm64"
 
-  version "4.1.4"
-  sha256 arm:   "b56ec1f61bffaee2a9e489337ceeabea127af0be2d215186440b430c916d846a",
-         intel: "f32ca13ee158e2aa1a8eb902a58459d131a51c82fdda98d5025630c49e71424f"
+  version "5.7.3"
+  sha256 arm:   "9b38cdc1f5221d804a4d86cb0dd0ac90401c774a1ca54bcac25d2d3d1605a475",
+         intel: "11e147ddada115331509b9dd72bc702122a94f2308a734056b2f33592793565e"
 
-  url "https://mubu-assets.tos-cn-shanghai.volces.com/client/Mubu-#{version}#{arch}.dmg",
-      verified: "mubu-assets.tos-cn-shanghai.volces.com/client/"
+  url "https://assets.mubu.com/client/#{version}/Mubu-#{version}#{arch}.dmg"
   name "Mubu"
   desc "Outline note taking and management app"
   homepage "https://mubu.com/"
@@ -19,6 +18,7 @@ cask "mubu" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "幕布.app"
 

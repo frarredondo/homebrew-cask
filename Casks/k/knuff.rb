@@ -7,7 +7,15 @@ cask "knuff" do
   desc "Debug application for Apple Push Notification Service (APNs)"
   homepage "https://github.com/KnuffApp/Knuff"
 
-  depends_on macos: ">= :sierra"
+  livecheck do
+    url "https://knuffapp.github.io/sparkle.xml"
+    strategy :sparkle, &:short_version
+  end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  auto_updates true
+  depends_on :macos
 
   app "Knuff.app"
 

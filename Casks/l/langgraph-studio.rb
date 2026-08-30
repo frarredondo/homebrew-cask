@@ -1,6 +1,6 @@
 cask "langgraph-studio" do
-  version "0.0.36"
-  sha256 "62589c3c3d92dfd9efe10ba557c35df2ab9a67b2d6f992a414c18f917e51abcd"
+  version "0.0.37"
+  sha256 "3686a8164d001f371bfbd019024cbef0f2a8945e8fdca7467836cd5fc8882959"
 
   url "https://github.com/langchain-ai/langgraph-studio/releases/download/v#{version}/LangGraph-Studio-#{version}-universal.dmg",
       verified: "github.com/langchain-ai/langgraph-studio/"
@@ -8,12 +8,10 @@ cask "langgraph-studio" do
   desc "Desktop app for prototyping and debugging LangGraph applications locally"
   homepage "https://studio.langchain.com/"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  deprecate! date: "2025-08-30", because: :discontinued
+  disable! date: "2026-08-30", because: :discontinued
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "LangGraph Studio.app"
 

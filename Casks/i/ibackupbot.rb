@@ -8,6 +8,9 @@ cask "ibackupbot" do
   homepage "https://www.icopybot.com/itunes-backup-manager.htm"
 
   deprecate! date: "2024-09-30", because: :unmaintained
+  disable! date: "2025-10-01", because: :unmaintained
+
+  depends_on :macos
 
   app "iBackupBot.app"
 

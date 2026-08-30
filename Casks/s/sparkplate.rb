@@ -7,7 +7,7 @@ cask "sparkplate" do
   desc "Features a test page for resolving human readable domains to crypto addresses"
   homepage "https://github.com/GreenfireInc/Sparkplate.Vue"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Sparkplate.app"
 

@@ -1,6 +1,6 @@
 cask "samsung-magician" do
-  version "8.2.0.880"
-  sha256 "09fa6961389e27668d5d387920d753a33ae17b0ccce85462069acfb79a5c0420"
+  version "9.0.1.950"
+  sha256 "26c40063b1c30220dbd28e2d54db483521b43ad117471a6e013736a0715b810c"
 
   url "https://download.semiconductor.samsung.com/resources/software-resources/Samsung_Magician_Installer_Official_#{version}.pkg"
   name "Samsung Magician Software"
@@ -13,6 +13,7 @@ cask "samsung-magician" do
   end
 
   auto_updates true
+  depends_on :macos
 
   installer manual: "Samsung_Magician_Installer_Official_#{version}.pkg"
 

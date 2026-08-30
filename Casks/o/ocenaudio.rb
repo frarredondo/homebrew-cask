@@ -1,22 +1,8 @@
 cask "ocenaudio" do
-  version "3.14.10"
+  version "3.20.5"
   sha256 :no_check
 
-  on_arm do
-    url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal.dmg"
-  end
-  on_intel do
-    on_high_sierra :or_older do
-      url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_sierra.dmg"
-    end
-    on_mojave do
-      url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_mojave.dmg"
-    end
-    on_catalina :or_newer do
-      url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal.dmg"
-    end
-  end
-
+  url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal.dmg"
   name "ocenaudio"
   desc "Audio editor"
   homepage "https://www.ocenaudio.com/en"
@@ -26,7 +12,7 @@ cask "ocenaudio" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: :sonoma
 
   app "ocenaudio.app"
 

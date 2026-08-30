@@ -1,6 +1,6 @@
 cask "charles" do
-  version "4.6.7"
-  sha256 "ba16148c7a6b3723488cc95968d96fba1de0807ad8e47467a2b5ac3ad13ff22b"
+  version "5.2.1"
+  sha256 "d233395a7fbb487f0fe20ddff16e02a65990add20d5aa9ce1e87a8f9ff0fe0d5"
 
   url "https://www.charlesproxy.com/assets/release/#{version}/charles-proxy-#{version}.dmg"
   name "Charles"
@@ -8,22 +8,17 @@ cask "charles" do
   homepage "https://www.charlesproxy.com/"
 
   livecheck do
-    url "https://www.charlesproxy.com/latest.do"
+    url "https://www.charlesproxy.com/latest.do", post_json: {}
     regex(/v?(\d+(?:\.\d+)+)/i)
   end
 
+  conflicts_with cask: "charles@4"
+  depends_on :macos
+
   app "Charles.app"
 
-  uninstall_postflight do
-    stdout, * = system_command "/usr/bin/security",
-                               args: ["find-certificate", "-a", "-c", "Charles", "-Z"],
-                               sudo: true
-    hashes = stdout.lines.grep(/^SHA-256 hash:/) { |l| l.split(":").second.strip }
-    hashes.each do |h|
-      system_command "/usr/bin/security",
-                     args: ["delete-certificate", "-Z", h],
-                     sudo: true
-    end
+  uninstall_postflight_steps do
+    delete_keychain_certificates "Charles"
   end
 
   uninstall launchctl: "com.xk72.Charles.ProxyHelper",
@@ -36,8 +31,4 @@ cask "charles" do
     "~/Library/Preferences/com.xk72.Charles.plist",
     "~/Library/Saved Application State/com.xk72.Charles.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

@@ -1,8 +1,8 @@
 cask "font-roboto-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "c8b6343228f7474b3257f16355bee0064d28ae285ffd634141295d8fc56765aa"
+  version "3.5.1"
+  sha256 "61f53438b240a00c87c92dc2c372db0bbb264473b36a8144ea62babf787f8383"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/RobotoMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/RobotoMono.tar.xz"
   name "RobotoMono Nerd Font (Roboto Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-roboto-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "RobotoMonoNerdFont-Bold.ttf"
   font "RobotoMonoNerdFont-BoldItalic.ttf"

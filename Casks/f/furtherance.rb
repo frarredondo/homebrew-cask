@@ -1,6 +1,6 @@
 cask "furtherance" do
-  version "25.1.2"
-  sha256 "37e47729facd31624cb84f91df1e34673f1597936a4f6c75a4472ff3acd6a372"
+  version "26.7.0"
+  sha256 "8b57438402f37bc648f34eb62c95efac42d67fc3121ae914a6d3f6a7b34071c2"
 
   url "https://github.com/unobserved-io/Furtherance/releases/download/#{version}/furtherance-#{version}.dmg",
       verified: "github.com/unobserved-io/Furtherance/"
@@ -13,7 +13,7 @@ cask "furtherance" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: :big_sur
 
   app "Furtherance.app"
 

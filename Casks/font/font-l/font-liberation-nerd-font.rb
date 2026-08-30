@@ -1,8 +1,8 @@
 cask "font-liberation-nerd-font" do
-  version "3.3.0"
-  sha256 "3736516ede5c93c787379f56fc2d0b621acaef140d57de935b2ecbc749e4e9d7"
+  version "3.5.1"
+  sha256 "1106e496fb06fdc9bfc472c51191b5336cb56250952593f806486196efb71a66"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/LiberationMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/LiberationMono.tar.xz"
   name "Literation Nerd Font families (Liberation Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-liberation-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "LiterationMonoNerdFont-Bold.ttf"
   font "LiterationMonoNerdFont-BoldItalic.ttf"

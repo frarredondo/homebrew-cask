@@ -1,34 +1,30 @@
 cask "qgis" do
-  version "3.42.0,20250224_001046"
-  sha256 "3ae7b99140d14c55a9b9d941e281472e42ec60feef07e4e5e15fe368c52475fe"
+  version "4.2.1"
+  sha256 "97faf2dcf2629f9bfadd340d62786042890347a7a9f16df185428541b1810523"
 
-  url "https://download.qgis.org/downloads/macos/pr/qgis_pr_final-#{version.csv.first.dots_to_underscores}_#{version.csv.second}.dmg"
+  url "https://download.qgis.org/downloads/macos/pr/qgis_pr_final-#{version.dots_to_underscores.csv.join("_")}.dmg"
   name "QGIS"
   desc "Geographic Information System"
   homepage "https://www.qgis.org/"
 
   livecheck do
-    url "https://download.qgis.org/downloads/macos/qgis-macos-pr.sha256sum"
-    regex(/qgis_pr_final[._-]v?(\d+(?:_\d+)+)[._-](\d+_\d+)\.dmg/i)
+    url "https://www.qgis.org/downloads-list/#macos/pr"
+    regex(/qgis[._-]pr[._-]final[._-]v?(\d+(?:[._]\d+)+?)(?:[._-](\d{6,8}(?:[._-]\d+)?))?\.dmg/i)
     strategy :page_match do |page, regex|
-      match = page.match(regex)
-      next if match.blank?
-
-      "#{match[1].tr("_", ".")},#{match[2]}"
+      page.scan(regex).map do |match|
+        match[0] = match[0].tr("_", ".")
+        match.compact.join(",")
+      end
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :big_sur
 
-  app "QGIS.app"
+  app "QGIS-final-#{version.dots_to_underscores}.app"
 
   zap trash: [
     "~/Library/Application Support/QGIS",
     "~/Library/Caches/QGIS",
     "~/Library/Saved Application State/org.qgis.qgis*.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

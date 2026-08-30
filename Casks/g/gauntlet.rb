@@ -1,11 +1,15 @@
 cask "gauntlet" do
-  version "16"
-  sha256 "7e06ae53a2ee3b6da92daa96a82a171e6faa616a8fe521f90d125f300be368ec"
+  version "21"
+  sha256 "70468c9494941289f9db162f21fd85f0df98bc8ea30bb567deb068ef06c1e0b1"
 
   url "https://github.com/project-gauntlet/gauntlet/releases/download/v#{version}/gauntlet-universal-macos.dmg"
   name "Gauntlet"
   desc "Open-source cross-platform application launcher"
   homepage "https://github.com/project-gauntlet/gauntlet"
+
+  deprecate! date: "2025-11-20", because: :unmaintained
+
+  depends_on macos: :big_sur
 
   app "Gauntlet.app"
 

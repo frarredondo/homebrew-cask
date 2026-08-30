@@ -1,6 +1,6 @@
 cask "planet" do
-  version "0.20.2"
-  sha256 "98988af2d9bbf7e8e5e6912ed0a0b80a11eaa3504a603d27aa933ef8d9c2e887"
+  version "0.22.3"
+  sha256 "3edb27834d250748f1b819601310bdf33e61729066d05182a88c85ce9570a4b6"
 
   url "https://github.com/Planetable/Planet/releases/download/release-#{version}/Planet.zip",
       verified: "github.com/Planetable/Planet/"
@@ -14,7 +14,7 @@ cask "planet" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Planet.app"
 

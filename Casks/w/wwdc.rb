@@ -9,20 +9,12 @@ cask "wwdc" do
   homepage "https://wwdc.io/"
 
   livecheck do
-    url :url
-    regex(/^WWDC[._-]v?(\d+(?:[.-]\d+)+)\.dmg$/i)
-    strategy :github_latest do |json, regex|
-      json["assets"]&.map do |asset|
-        match = asset["name"]&.match(regex)
-        next if match.blank?
-
-        match[1].tr("-", ",")
-      end
-    end
+    url "https://github.com/insidegui/WWDC/raw/master/Releases/appcast_v5.xml"
+    strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "WWDC.app"
 

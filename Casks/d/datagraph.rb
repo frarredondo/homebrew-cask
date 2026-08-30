@@ -1,5 +1,5 @@
 cask "datagraph" do
-  version "5.4"
+  version "5.5"
   sha256 :no_check
 
   url "https://www.visualdatatools.com/DataGraph/DataGraph.dmg"
@@ -8,11 +8,14 @@ cask "datagraph" do
   homepage "https://www.visualdatatools.com/DataGraph/"
 
   livecheck do
-    url "https://www.visualdatatools.com/DataGraph/Download/"
-    regex(/Version\s+v?(\d+(?:\.\d+)+)/i)
+    url "https://community.visualdatatools.com/datagraph/versions/"
+    regex(/href=["']?[^"' >]*?(?:datagraph|version)[._-]v?(\d+(?:[.-]\d+)+)/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| match[0].tr("-", ".") }
+    end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "DataGraph.app"
 

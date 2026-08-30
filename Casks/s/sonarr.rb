@@ -1,9 +1,9 @@
 cask "sonarr" do
   arch arm: "arm64", intel: "x64"
 
-  version "4.0.13.2932"
-  sha256 arm:   "1d0c0b551076a77a1673dd304fb7232e29a2ffd189b47bd06f4a7de469a78ea8",
-         intel: "124e60fe60c67618e64b3d55d96c3882b371cd1bb27474f2c339b516046875e1"
+  version "4.0.19.2979"
+  sha256 arm:   "fbc2acc3984f12e1bae95f07ad7424425b5f1058fc02f8bb79e709638d2c5c94",
+         intel: "ef3025f57f1f2451a393e28871bb67abce057f132d84c2ce174af3656bd7670b"
 
   url "https://github.com/Sonarr/Sonarr/releases/download/v#{version}/Sonarr.main.#{version}.osx-#{arch}-app.zip",
       verified: "github.com/Sonarr/Sonarr/"
@@ -16,9 +16,11 @@ cask "sonarr" do
     strategy :github_latest
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
   conflicts_with cask: "sonarr@beta"
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Sonarr.app"
 

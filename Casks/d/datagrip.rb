@@ -1,9 +1,9 @@
 cask "datagrip" do
   arch arm: "-aarch64"
 
-  version "2024.3.5,243.24978.79"
-  sha256 arm:   "1ba33de8b5595a7ab3ab683ed21200c6c884c7c9299a9dfe4414ae29b219dc09",
-         intel: "224a58410ef3e067b0c848607d34f5ac180e76ef95ebd1a9f7a34202d36ea278"
+  version "2026.2.4,262.10315.24"
+  sha256 arm:   "9376c602f08619fb30a3d2c292609b6aa73c653ab771d7e3d93ef7f9e573c56f",
+         intel: "03c66fcf24f41ec70f74dc0472c9bb5f03e92b02b80352b035bc30aa8f7c6e6b"
 
   url "https://download.jetbrains.com/datagrip/datagrip-#{version.csv.first}#{arch}.dmg"
   name "DataGrip"
@@ -24,10 +24,11 @@ cask "datagrip" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "DataGrip.app"
-  binary "#{appdir}/DataGrip.app/Contents/MacOS/datagrip"
+  command_wrapper "datagrip",
+                  executable: "#{appdir}/DataGrip.app/Contents/MacOS/datagrip"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/DataGrip*",

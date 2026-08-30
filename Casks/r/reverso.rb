@@ -1,6 +1,6 @@
 cask "reverso" do
-  version "2.14.0,597"
-  sha256 "1fd9c6ead733b3c6a6798f4ae569aae51a222aa74cc3235a0dcb4fe759a896c8"
+  version "2.16.1,669"
+  sha256 "4412378fe20249463ee855fdbc3f86ec3cf3dd0f3c182dcd623f317395d9bdee"
 
   url "https://cdn.reverso.net/download/reverso/desktop/macos/distrib/Reverso_#{version.csv.first}.#{version.csv.second}.zip"
   name "Reverso"
@@ -13,7 +13,7 @@ cask "reverso" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Reverso.app"
 

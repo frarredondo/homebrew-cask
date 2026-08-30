@@ -1,5 +1,5 @@
 cask "kext-updater" do
-  version "5.0.3"
+  version "5.0.5"
   sha256 :no_check
 
   url "https://update.kextupdater.de/kextupdater/kextupdaterng.zip"
@@ -12,7 +12,9 @@ cask "kext-updater" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Kext Updater.app"
 

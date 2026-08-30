@@ -1,6 +1,6 @@
 cask "filemaker-pro" do
-  version "21.1.1.41"
-  sha256 "c31e8095382dfd01006e3cd7e9f2a0c511c1766512e99341f8104213687279ba"
+  version "26.0.2.212"
+  sha256 "f534d928a08c688042b7ff7c26c2ef6bf8997dfddcf75eb1ed762c12ba6ce23e"
 
   url "https://downloads.claris.com/esd/fmp_#{version}.dmg"
   name "FileMaker Pro"
@@ -13,9 +13,11 @@ cask "filemaker-pro" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "FileMaker Pro.app"
+
+  uninstall quit: "com.filemaker.client.pro12"
 
   zap trash: [
     "/Users/Shared/FileMaker",

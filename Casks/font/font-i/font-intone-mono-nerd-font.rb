@@ -1,8 +1,8 @@
 cask "font-intone-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "0a935653d90610769e79590343efdec7111531efaa9aabca18262e56046958ce"
+  version "3.5.1"
+  sha256 "792614cd446b3044e8043abab487cc604233b307a49ee61460b57bdc97b90f39"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/IntelOneMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/IntelOneMono.tar.xz"
   name "IntoneMono Nerd Font (Intel One Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-intone-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "IntoneMonoNerdFont-Bold.ttf"
   font "IntoneMonoNerdFont-BoldItalic.ttf"

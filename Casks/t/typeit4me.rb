@@ -13,7 +13,7 @@ cask "typeit4me" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "TypeIt4Me.app"
 

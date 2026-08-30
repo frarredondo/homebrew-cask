@@ -1,9 +1,9 @@
 cask "dropbox@beta" do
   arch arm: "&arch=arm64"
 
-  version "219.3.4428"
-  sha256 arm:   "2c9b2113d4528d812ad3d2bf1b13cffaa8f647ce2cc6a4daa9170cf9b1b70054",
-         intel: "0079f0e4e2116b23add5c09ec285217947c3af6b5126ad5df5b60b286f1491bb"
+  version "268.3.4087"
+  sha256 arm:   "033d2f8d5613686b47a88e8d9a3605be8c3f3ca09ec43ad1600445a2e1904302",
+         intel: "11878f6acb32c7f84cfff4baf20d7fc6714934579d38ce1baa9d567976e603b0"
 
   url "https://www.dropbox.com/download?build=#{version}&plat=mac&rtoken=&type=full#{arch}",
       verified: "dropbox.com/"
@@ -18,11 +18,16 @@ cask "dropbox@beta" do
 
   auto_updates true
   conflicts_with cask: "dropbox"
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Dropbox.app"
 
-  uninstall launchctl: "com.dropbox.DropboxMacUpdate.agent",
+  uninstall launchctl: [
+              "com.dropbox.DropboxMacUpdate.agent",
+              "com.dropbox.dropboxmacupdate.xpcservice",
+              "com.dropbox.DropboxUpdater.wake",
+            ],
+            quit:      "com.getdropbox.dropbox",
             kext:      "com.getdropbox.dropbox.kext",
             delete:    [
               "/Library/DropboxHelperTools",
@@ -38,6 +43,7 @@ cask "dropbox@beta" do
     "~/Library/Application Scripts/com.getdropbox.dropbox.fileprovider",
     "~/Library/Application Scripts/com.getdropbox.dropbox.garcon",
     "~/Library/Application Scripts/com.getdropbox.dropbox.TransferExtension",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.getdropbox.dropbox.sfl*",
     "~/Library/Application Support/Dropbox",
     "~/Library/Application Support/DropboxElectron",
     "~/Library/Application Support/FileProvider/com.getdropbox.dropbox.fileprovider",
@@ -61,6 +67,8 @@ cask "dropbox@beta" do
     "~/Library/HTTPStorages/com.dropbox.DropboxMacUpdate",
     "~/Library/HTTPStorages/com.getdropbox.dropbox",
     "~/Library/LaunchAgents/com.dropbox.DropboxMacUpdate.agent.plist",
+    "~/Library/LaunchAgents/com.dropbox.dropboxmacupdate.xpcservice.plist",
+    "~/Library/LaunchAgents/com.dropbox.DropboxUpdater.wake.plist",
     "~/Library/Logs/Dropbox_debug.log",
     "~/Library/Preferences/com.apple.FileProvider/com.getdropbox.dropbox.fileprovider",
     "~/Library/Preferences/com.dropbox.DropboxMacUpdate.plist",

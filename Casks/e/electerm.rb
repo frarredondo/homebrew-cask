@@ -1,22 +1,30 @@
 cask "electerm" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.70.6"
-  sha256 arm:   "9829f90a323fe95815b2012ff4fe58d8da949d5fa64412a1c1b6c2e608cd3cae",
-         intel: "dac88b00120075292f883151ad8e63e619254c3209d341df9b8f8ab500780734"
+  version "5.3.15"
+  sha256 arm:   "dd9bddadcc1270af6a84c4e83ebc90c9bcbaf0deb0c5ceb42ed6f84145d0c148",
+         intel: "4d5392de13202407a1e6d37f1613888e95674eaa1c7bbebd10cc2605337cd08a"
 
-  url "https://github.com/electerm/electerm/releases/download/v#{version}/electerm-#{version}-mac-#{arch}.dmg"
+  url "https://mirror.electerm.org/https://github.com/electerm/electerm/releases/download/v#{version}/electerm-#{version}-mac-#{arch}.dmg"
   name "electerm"
-  desc "Terminal/ssh/sftp client"
-  homepage "https://github.com/electerm/electerm/"
+  desc "Terminal/ssh/sftp/telnet/serialport/RDP/VNC/Spice/ftp client"
+  homepage "https://electerm.org/"
+
+  livecheck do
+    url "https://electerm.org/data/electerm-github-release.json"
+    strategy :json do |json|
+      json.dig("release", "tag_name")&.sub("v", "")
+    end
+  end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :monterey
 
   app "electerm.app"
   binary "#{appdir}/electerm.app/Contents/MacOS/electerm"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.electerm.electerm.sfl*",
     "~/Library/Application Support/electerm",
     "~/Library/Logs/electerm",
     "~/Library/Preferences/org.electerm.electerm.plist",

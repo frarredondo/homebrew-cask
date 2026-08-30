@@ -1,8 +1,8 @@
 cask "font-caskaydia-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "50b54f568224836b976edbda730c274a626384ba5dc69452dab4ddccb4c8ad06"
+  version "3.5.1"
+  sha256 "e4fe0248bbe2558e907d26b55ed287403972f946239a4ea3f7a8afd3365ad6ba"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/CascadiaMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/CascadiaMono.tar.xz"
   name "CaskaydiaMono Nerd Font (Cascadia Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-caskaydia-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "CaskaydiaMonoNerdFont-Bold.ttf"
   font "CaskaydiaMonoNerdFont-BoldItalic.ttf"

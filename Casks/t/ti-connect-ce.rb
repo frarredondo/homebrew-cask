@@ -1,6 +1,6 @@
 cask "ti-connect-ce" do
-  version "6.0.1.344,D96C79959E494383BDCA94D0478FFF05"
-  sha256 "e112df8a5b4d441d262b03e17966c84136bdc71d64387bfa52a83937e4885bb9"
+  version "6.0.4.688,4A6786493CA947879440842241901349"
+  sha256 "3412d77aace33a6ef7f520a8013797fe1d509c1bdcfd24c149459a165c2cc360"
 
   url "https://education.ti.com/download/en/ed-tech/68CEDD34FDC94622B4DBD173E6A0D8C3/#{version.csv.second}/TIConnectCE-#{version.csv.first}.dmg"
   name "TI Connect™ CE"
@@ -14,6 +14,8 @@ cask "ti-connect-ce" do
       page.scan(regex).map { |match| "#{match[1]},#{match[0]}" }
     end
   end
+
+  depends_on :macos
 
   app "TI Connect CE.app"
 

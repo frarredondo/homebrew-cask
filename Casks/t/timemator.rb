@@ -1,20 +1,20 @@
 cask "timemator" do
-  version "3.1.1"
-  sha256 "9e613a70f7e93fc23d731819e103d517fbea14bb942402366ea94102865bd6f1"
+  version "3.2.2"
+  sha256 "8450093db94e3ad856a820b2849a3c8f64abbf4d7427ae524a823462344a00c7"
 
-  url "https://catforce-timemator.s3.amazonaws.com/releases/Timemator_#{version}.dmg",
-      verified: "catforce-timemator.s3.amazonaws.com/"
+  url "https://timemator.s3.amazonaws.com/releases/Timemator_#{version}.dmg",
+      verified: "timemator.s3.amazonaws.com/"
   name "Timemator"
   desc "Automatic time-tracking application"
   homepage "https://timemator.com/"
 
   livecheck do
-    url "https://catforce-timemator.s3.amazonaws.com/releases/appcast.xml"
+    url "https://timemator.com/assets/updates/appcast.xml"
     strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Timemator.app"
 

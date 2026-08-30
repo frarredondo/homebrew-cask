@@ -1,6 +1,6 @@
 cask "pitch" do
-  version "2.64.1,stable.2,7066684"
-  sha256 "59d5d3fdfdadfcf736d64fff6c680d8f1e3d692a299449ddf1cf9bd07720f648"
+  version "2.142.0,stable.4,8374426"
+  sha256 "81a2ad621a4ab2e15907aef040263308df44d2a0c08beec857d0c0b263f67a76"
 
   url "https://desktop-app-builds.pitch.com/Pitch-#{version.csv.first}-#{version.csv.second}-ci#{version.csv.third}.dmg"
   name "Pitch"
@@ -20,11 +20,12 @@ cask "pitch" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Pitch.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.pitch.pitch-macos.sfl*",
     "~/Library/Application Support/Pitch",
     "~/Library/Logs/Pitch",
     "~/Library/Preferences/io.pitch.pitch-macos.plist",

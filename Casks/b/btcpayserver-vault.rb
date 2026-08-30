@@ -1,8 +1,11 @@
 cask "btcpayserver-vault" do
-  version "2.0.10"
-  sha256 "fff1f489b170a2481cce696c7822ad42f531856ae7d9afc74efa51a2745a9e3d"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://github.com/btcpayserver/BTCPayServer.Vault/releases/download/Vault%2Fv#{version}/BTCPayServerVault-osx-x64-#{version}.dmg"
+  version "3.0.1"
+  sha256 arm:   "a5349bf725938f38b8ede8204e253ce1b2b97385005207d485d277c9138dc4fd",
+         intel: "5176aae4ece6ca93d51cdcc092c43b9f809e40696dffedeb07e3ef4d6972a189"
+
+  url "https://github.com/btcpayserver/BTCPayServer.Vault/releases/download/Vault%2Fv#{version}/BTCPayServerVault-osx-#{arch}-#{version}.dmg"
   name "BTCPayServer Vault"
   desc "App that allows web applications to access a hardware wallet"
   homepage "https://github.com/btcpayserver/BTCPayServer.Vault"
@@ -13,13 +16,9 @@ cask "btcpayserver-vault" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "BTCPayServer Vault.app"
 
   zap trash: "~/Library/Saved Application State/com.btcpayserver.vault.savedState"
-
-  caveats do
-    requires_rosetta
-  end
 end

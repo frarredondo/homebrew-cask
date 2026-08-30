@@ -1,6 +1,6 @@
 cask "veracrypt-fuse-t" do
-  version "1.26.20"
-  sha256 "25d94e9e145c48a16762d226e3a0117b66aa29adf16b5336658b8c02941a0e42"
+  version "1.26.29"
+  sha256 "86bbc492fc2d77c1e36495eb9b101aed0799ba46a13b086cca1082bc2d43a3b4"
 
   url "https://launchpad.net/veracrypt/trunk/#{version}/+download/VeraCrypt_FUSE-T_#{version}.dmg",
       verified: "launchpad.net/veracrypt/trunk/"
@@ -14,6 +14,7 @@ cask "veracrypt-fuse-t" do
   end
 
   conflicts_with cask: "veracrypt"
+  depends_on :macos
   depends_on cask: "fuse-t"
 
   pkg "VeraCrypt_Installer.pkg"

@@ -1,6 +1,6 @@
 cask "uhk-agent" do
-  version "5.1.0"
-  sha256 "462da267567608ac73c8d2dc607ae8aa70d042c90b2cd5f2aa7aeebc38312d2f"
+  version "10.1.0"
+  sha256 "d4e89a27272ecdb8b0252be470dc6ed007c659dd4883978b83e22fe28714faa7"
 
   url "https://github.com/UltimateHackingKeyboard/agent/releases/download/v#{version}/UHK.Agent-#{version}-mac.dmg"
   name "Ultimate Hacking Keyboard Agent"
@@ -14,7 +14,7 @@ cask "uhk-agent" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "UHK Agent.app"
 

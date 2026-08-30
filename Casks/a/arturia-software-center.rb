@@ -1,6 +1,6 @@
 cask "arturia-software-center" do
-  version "2.9.2.2901"
-  sha256 "9abfe039721084624ddce6d68f346c2f2326bb3b1b817db4415a4083f5ba6659"
+  version "2.12.0.3157"
+  sha256 "a164c345c6c916179a3ff4c04fd3380dd41ad08f72c1fc3cc6ff66026e35871f"
 
   url "https://dl.arturia.net/products/asc/soft/Arturia_Software_Center__#{version.dots_to_underscores}.pkg",
       verified: "dl.arturia.net/"
@@ -9,17 +9,15 @@ cask "arturia-software-center" do
   homepage "https://www.arturia.com/technology/asc"
 
   livecheck do
-    url "https://www.arturia.com/api/resources?slugs=asc&types=soft"
-    strategy :json do |json|
-      json.map do |item|
-        next if item["platform_type"] != "mac"
-
-        item["version"]
-      end
+    url "https://www.arturia.com/support/downloads-manuals"
+    regex(/href=.*?Arturia[._-]Software[._-]Center[._-]+v?(\d+(?:[._]\d+)+)\.pkg/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| match[0].tr("_", ".") }
     end
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "Arturia_Software_Center__#{version.dots_to_underscores}.pkg"
 
@@ -31,7 +29,7 @@ cask "arturia-software-center" do
 
   zap delete: [
         "/Library/Arturia/Arturia Software Center",
-        "/Library/ArturiaSC/",
+        "/Library/ArturiaSC",
       ],
       trash:  [
         "~/Library/Caches/com.Arturia.ArturiaSoftwareCenter",

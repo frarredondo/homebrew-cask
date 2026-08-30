@@ -1,6 +1,6 @@
 cask "coconutbattery" do
-  version "4.0.1,130"
-  sha256 "30a48f0fd4090e1a29623ac24f7cff26ffbb406e9603923ea38c7d2a61122cf4"
+  version "4.3.4,224"
+  sha256 "7eb936629795e2577a44494a04899abedfbdae5630fcc5d06ca9868a390bfffb"
 
   url "https://www.coconut-flavour.com/downloads/coconutBattery_#{version.csv.first.no_dots}_#{version.csv.second}.zip"
   name "coconutBattery"
@@ -8,15 +8,14 @@ cask "coconutbattery" do
   homepage "https://www.coconut-flavour.com/coconutbattery/"
 
   livecheck do
-    url "https://coconut-flavour.com/updates/coconutBattery.xml"
-    regex(/_\d+_(.*?)\./i)
-    strategy :sparkle do |item, regex|
-      "#{item.version},#{item.url[regex, 1]}"
+    url "https://coconut-flavour.com/updates/coconutBattery_#{version.csv.first.major}.xml"
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.nice_version
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "coconutBattery.app"
 
@@ -24,11 +23,14 @@ cask "coconutbattery" do
             quit:      "com.coconut-flavour.coconutBattery-Menu"
 
   zap trash: [
+    "~/Library/Application Scripts/R5SC3K86L5.com.coconut-flavour.coconutBattery",
     "~/Library/Application Support/coconutBattery",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.coconut-flavour.coconutbattery.sfl*",
     "~/Library/Caches/com.coconut-flavour.coconutBattery*",
     "~/Library/Group Containers/*.coconut-flavour.coconutBattery",
     "~/Library/Preferences/com.coconut-flavour.coconutBattery-Menu.plist",
     "~/Library/Preferences/com.coconut-flavour.coconutBattery.plist",
     "~/Library/Saved Application State/com.coconut-flavour.coconutBattery.savedState",
+    "~/Library/WebKit/com.coconut-flavour.coconutBattery",
   ]
 end

@@ -1,8 +1,10 @@
 cask "mixing-station" do
-  version "2.2.5"
+  arch arm: "-aarch64"
+
+  version "3.1.3"
   sha256 :no_check
 
-  url "https://mixingstation.app/backend/api/web/download/attachment/mixing-station-pc/release/OSX"
+  url "https://mixingstation.app/backend/api/web/download/attachment/mixing-station-pc/release/macos#{arch}"
   name "Mixing Station"
   desc "Audio mixer controller"
   homepage "https://mixingstation.app/"
@@ -18,14 +20,12 @@ cask "mixing-station" do
     end
   end
 
+  depends_on :macos
+
   app "Mixing Station.app"
 
   zap trash: [
     "~/Library/Saved Application State/org.devcore.mixingstation.pc.savedState",
     "~/MixingStation",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

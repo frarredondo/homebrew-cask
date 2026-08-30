@@ -2,25 +2,9 @@ cask "github" do
   arch arm: "arm64", intel: "x64"
   platform = on_arch_conditional arm: "darwin-arm64", intel: "darwin"
 
-  on_mojave :or_older do
-    version "3.3.13-1b0804db"
-    sha256 "df85436557e7b3d709cc702b751f180f48655a3241cce6a864e55cf5161d9a7a"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_catalina :or_newer do
-    version "3.4.17-dd36e2aa"
-    sha256 arm:   "51412de0ace108ac2fb005aeb2e2321f8b42f66f9343a63b7f284e55e648981b",
-           intel: "ab9cba2b6cf467f69f2b4af73ba533706cc9cc4370706def08cfc664fa82d97c"
-
-    livecheck do
-      url "https://central.github.com/deployments/desktop/desktop/latest/#{platform}"
-      regex(%r{(\d+(?:\.\d+)[^/]*)/GitHubDesktop[._-]#{arch}\.zip}i)
-      strategy :header_match
-    end
-  end
+  version "3.6.4-28955b81"
+  sha256 arm:   "ff99e90964b866af854eb4c0701020bf2b2e209fe06d0ba28308836ec2e34106",
+         intel: "816c2b2f7d0a632a57c82f90455905d792056508607ed0c7daf8fe32b79e6308"
 
   url "https://desktop.githubusercontent.com/releases/#{version}/GitHubDesktop-#{arch}.zip",
       verified: "desktop.githubusercontent.com/"
@@ -28,9 +12,15 @@ cask "github" do
   desc "Desktop client for GitHub repositories"
   homepage "https://desktop.github.com/"
 
+  livecheck do
+    url "https://central.github.com/deployments/desktop/desktop/latest/#{platform}"
+    regex(%r{(\d+(?:\.\d+)[^/]*)/GitHubDesktop[._-]#{arch}\.zip}i)
+    strategy :header_match
+  end
+
   auto_updates true
   conflicts_with cask: "github@beta"
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :monterey
 
   app "GitHub Desktop.app"
   binary "#{appdir}/GitHub Desktop.app/Contents/Resources/app/static/github.sh", target: "github"

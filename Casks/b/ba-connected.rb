@@ -1,6 +1,6 @@
 cask "ba-connected" do
-  version "1.55.1"
-  sha256 "f464f62fea5924fe5084aca2d91269c5095fbe8486caa7117a6c4955c7544eef"
+  version "1.85.0"
+  sha256 "3628c2eab7ee4d36a7e1247e4d2ae5fc8f81e5c671c734dcb0e7912ff3e3a686"
 
   url "https://downloads.bsn.cloud/BA%20connected-#{version}.dmg",
       verified: "downloads.bsn.cloud/"
@@ -9,11 +9,17 @@ cask "ba-connected" do
   homepage "https://www.brightsign.biz/resources/software-downloads/"
 
   livecheck do
-    url "https://downloads.bsn.cloud/latest-mac.yml"
-    strategy :electron_builder
+    url "https://brightsign-builds.s3.us-east-1.amazonaws.com/web/bs-download-versions.json"
+    regex(/BA(?:[+._-]|%20|\s)connected[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    strategy :json do |json|
+      match = json.dig("general", "bacon", "mac-link")&.match(regex)
+      next unless match
+
+      match[1]
+    end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :big_sur
 
   app "BA connected.app"
 

@@ -1,6 +1,6 @@
 cask "whatsize" do
-  version "8.2.1"
-  sha256 "d25cecb982dbbf3f461770594bc3c3aab6df1b0dc6f9964468485ceb45b174ab"
+  version "8.2.8"
+  sha256 "9c0d5cf185cc1d4485375d7614405a31aada6185be203a6234fe3a6faf91c036"
 
   url "https://www.whatsizemac.com/software/whatsize#{version.major}/whatsize_#{version}.pkg"
   name "WhatSize"
@@ -12,7 +12,8 @@ cask "whatsize" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on :macos
 
   pkg "whatsize_#{version}.pkg"
 
@@ -23,8 +24,9 @@ cask "whatsize" do
     "~/Library/Application Support/WhatSize",
     "~/Library/Caches/com.id-design.v#{version.major}.whatsize",
     "~/Library/HTTPStorages/com.id-design.v#{version.major}.whatsize",
-    "~/Library/Logs/WhatSize.log",
+    "~/Library/Logs/WhatSize",
     "~/Library/Preferences/com.id-design.v#{version.major}.whatsize.plist",
     "~/Library/Saved Application State/com.id-design.v#{version.major}.whatsize.savedState",
+    "~/Library/WebKit/com.id-design.v#{version.major}.whatsize",
   ]
 end

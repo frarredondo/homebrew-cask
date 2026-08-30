@@ -1,8 +1,8 @@
 cask "font-departure-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "4721f307cd4a6f3632cfec4aafe68f7459002e4650bb4e5c5906a1d087636aff"
+  version "3.5.1"
+  sha256 "7d2d86db20730e26ee4fc926e3c64429d6f9da6fce91e74c325fe1c5ee74d9ee"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/DepartureMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/DepartureMono.tar.xz"
   name "DepartureMono Nerd Font (Departure Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-departure-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "DepartureMonoNerdFont-Regular.otf"
   font "DepartureMonoNerdFontMono-Regular.otf"

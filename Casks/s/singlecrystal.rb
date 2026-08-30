@@ -1,5 +1,5 @@
 cask "singlecrystal" do
-  version "5.2.0"
+  version "5.3.3"
   sha256 :no_check
 
   url "https://crystalmaker.com/downloads/singlecrystal#{version.major}_mac.zip"
@@ -14,7 +14,7 @@ cask "singlecrystal" do
     end
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "SingleCrystal.app"
 

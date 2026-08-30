@@ -8,7 +8,10 @@ cask "pb" do
   desc "Unofficial Pushbullet desktop app to get push notifications"
   homepage "https://sidneys.github.io/pb-for-desktop"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
+  depends_on :macos
 
   app "PB for Desktop.app"
 

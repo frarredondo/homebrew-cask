@@ -7,6 +7,15 @@ cask "wail" do
   desc "Web Archiving Integration Layer: One-Click User Instigated Preservation"
   homepage "https://github.com/machawk1/wail"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "WAIL.app"
 
   zap trash: [

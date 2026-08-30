@@ -1,6 +1,6 @@
 cask "openra" do
-  version "20250303"
-  sha256 "3e2239d9776e660d49ce509cf318a305eed086feccaa799c0f7c3b0c0b1d0d1b"
+  version "20250330"
+  sha256 "2a78cd58603fd06ed6006ae5916065455a7ac7c1290dba1d06c0292bad4238ab"
 
   url "https://github.com/OpenRA/OpenRA/releases/download/release-#{version}/OpenRA-release-#{version}.dmg",
       verified: "github.com/OpenRA/OpenRA/"
@@ -13,7 +13,8 @@ cask "openra" do
     regex(/^release[._-]v?(\d+(?:[.-]\d+)*)$/i)
   end
 
-  conflicts_with cask: "openra-playtest"
+  conflicts_with cask: "openra@playtest"
+  depends_on :macos
 
   app "OpenRA - Dune 2000.app"
   app "OpenRA - Red Alert.app"

@@ -1,6 +1,6 @@
 cask "ditto" do
-  version "1.11.6"
-  sha256 "8daf35257077173b982e6550160b014e3f8ec6a29bc5b16f0712e1f6351c648e"
+  version "1.11.10"
+  sha256 "9882c093c86f12743b6fd1e8cf980f2a74d1ee5e887cd77c8ed7ca6d2e0ef9fb"
 
   url "https://download.airsquirrels.com/Ditto/App/Mac/Ditto-#{version}.dmg"
   name "Ditto"
@@ -12,7 +12,8 @@ cask "ditto" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on :macos
 
   app "Ditto.app"
 
@@ -22,7 +23,10 @@ cask "ditto" do
   ]
 
   zap trash: [
+    "~/Library/Application Support/Logs/Ditto.log*",
     "~/Library/Caches/com.squirrels.Ditto",
+    "~/Library/HTTPStorages/com.squirrels.Ditto",
     "~/Library/Preferences/com.squirrels.Ditto.plist",
+    "~/Library/Saved Application State/com.squirrels.Ditto.savedState",
   ]
 end

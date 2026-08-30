@@ -1,5 +1,5 @@
 cask "ecamm-live" do
-  version "4.3.15"
+  version "4.5.9"
   sha256 :no_check
 
   url "https://downloads.ecamm.com/EcammLive.zip"
@@ -13,9 +13,13 @@ cask "ecamm-live" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: :big_sur
 
-  app "Ecamm Live v#{version}/Ecamm Live.app"
+  # The url is unversioned but the zip contains an app directory with a version
+  # number
+  rename "Ecamm*/", "Ecamm/"
+
+  app "Ecamm/Ecamm Live.app"
 
   uninstall delete: [
               "/Library/Application Support/EcammLive/EcammLiveAudioXPCHelper.xpc",

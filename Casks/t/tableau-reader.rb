@@ -1,12 +1,12 @@
 cask "tableau-reader" do
   arch arm: "-arm64"
 
-  version "2024.3.3"
-  sha256 arm:   "7d2c7789e9cb71169c70ed06508a1e3fdbe7357ad96cef1614b20f1743c8879c",
-         intel: "c92274f9ea83d36dac6e0475b636d6eb1ace6b5e1575f47f30ecfc8297aca280"
+  version "2026.2.2"
+  sha256 arm:   "c968170587c303c1e303c647184b404bd3d2cfbc6737ec1989492663653f4735",
+         intel: "2cab47542da6c2cf2099b3abdc7fb97d65949fd66b845e449c53eb0e125440fc"
 
   url "https://downloads.tableau.com/esdalt/#{version}/TableauReader-#{version.dots_to_hyphens}#{arch}.pkg",
-      user_agent: "curl/8.7.1"
+      user_agent: :curl
   name "Tableau Reader"
   desc "Open and interact with data visualisations built in Tableau Desktop"
   homepage "https://www.tableau.com/products/reader"
@@ -14,6 +14,8 @@ cask "tableau-reader" do
   livecheck do
     cask "tableau"
   end
+
+  depends_on macos: :ventura
 
   pkg "TableauReader-#{version.dots_to_hyphens}#{arch}.pkg"
 

@@ -12,14 +12,15 @@ cask "bbedit@14" do
     url "https://versioncheck.barebones.com/BBEdit.xml"
     regex(/^v?(#{version.major}(?:\.\d+)*)$/i)
     strategy :xml do |xml, regex|
-      xml.get_elements("//key[text()='SUFeedEntryShortVersionString']").map { |item| item.next_element&.text&.strip }
+      xml.get_elements("//key[text()='SUFeedEntryShortVersionString']")
+         .map { |item| item.next_element&.text&.strip }
          .grep(regex)
     end
   end
 
   auto_updates true
   conflicts_with cask: "bbedit"
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "BBEdit.app"
   binary "#{appdir}/BBEdit.app/Contents/Helpers/bbedit_tool", target: "bbedit"

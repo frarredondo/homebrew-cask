@@ -1,5 +1,5 @@
 cask "istat-menus" do
-  version "7.10.0"
+  version "7.30"
   sha256 :no_check # required as upstream package is updated in-place
 
   url "https://cdn.istatmenus.app/files/istatmenus#{version.major}/versions/iStatMenus#{version}.zip",
@@ -9,12 +9,12 @@ cask "istat-menus" do
   homepage "https://bjango.com/mac/istatmenus/"
 
   livecheck do
-    url "https://download.bjango.com/istatmenus#{version.major}/"
+    url "https://download.istatmenus.app/istatmenus#{version.major}/download/"
     strategy :header_match
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "iStat Menus.app"
 

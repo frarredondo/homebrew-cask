@@ -8,6 +8,10 @@ cask "menutube" do
   desc "Tool to capture YouTube into the menu bar"
   homepage "https://edanchenkov.github.io/MenuTube/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "MenuTube.app"
 
   zap trash: [

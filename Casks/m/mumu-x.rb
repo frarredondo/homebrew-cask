@@ -19,7 +19,7 @@ cask "mumu-x" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Mumu X.app"
 

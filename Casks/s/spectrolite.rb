@@ -1,11 +1,11 @@
 cask "spectrolite" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.22.2"
-  sha256 intel: "434706d8433b3bc69b35fced32064eda40c5737aab22e106d28c1537aa9b2091",
-         arm:   "61a3881d0b8f80e4bf6967ee835e30fedf72c9f54c0d7fcd28caa166a168607f"
+  version "1.4.5"
+  sha256 arm:   "45b35a72b9f78430aed1c973cd4327fd86fe9ea83410d3dd77bf7417b9d71f6b",
+         intel: "5a6eacdeb47eee28031c66ed78452e8d03c6dead8efe293931fc022ca8340847"
 
-  url "https://spectrolite.app/downloads/Spectrolite-#{version}-#{arch}.dmg"
+  url "https://spectrolite.app/downloads/Spectrolite-#{version}-#{arch}.zip"
   name "Spectrolite"
   desc "App for making risograph prints"
   homepage "https://spectrolite.app/"
@@ -16,7 +16,7 @@ cask "spectrolite" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Spectrolite.app"
 

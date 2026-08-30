@@ -9,20 +9,16 @@ cask "subsync" do
   homepage "https://subsync.online/"
 
   deprecate! date: "2024-10-04", because: :unmaintained
+  disable! date: "2025-10-04", because: :unmaintained
+
+  depends_on :macos
 
   app "subsync.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/subsync.wrapper.sh"
-  binary shimscript, target: "subsync"
+  command_wrapper "subsync",
+                  executable: "#{appdir}/subsync.app/Contents/MacOS/subsync",
+                  args:       "--cli"
 
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/subsync.app/Contents/MacOS/subsync' --cli "$@"
-    EOS
-  end
-
-  zap trash: "~/Library/Preferences/subsync/"
+  zap trash: "~/Library/Preferences/subsync"
 
   caveats do
     requires_rosetta

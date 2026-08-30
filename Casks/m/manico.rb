@@ -1,6 +1,6 @@
 cask "manico" do
-  version "3.9,498"
-  sha256 "cc09e5ae7d726f142842a21e4cf9ec337e81538c9a558a1fe63e567c3d3f1dea"
+  version "3.14,543"
+  sha256 "5b8e3bc05c2e3e3fcf202af07f39daff8c135ba9055162af08b013a62479a36d"
 
   url "https://manico.im/api/release_manager/downloads/im.manico.Manico/#{version.csv.second}.zip"
   name "Manico"
@@ -12,9 +12,20 @@ cask "manico" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :monterey"
+  auto_updates true
+  depends_on macos: :ventura
 
   app "Manico.app"
 
-  zap trash: "~/Library/Containers/im.manico.Manico"
+  uninstall login_item: "Manico"
+
+  zap trash: [
+    "~/Library/Application Support/im.manico.Manico",
+    "~/Library/Application Support/Manico",
+    "~/Library/Caches/im.manico.Manico",
+    "~/Library/Containers/im.manico.Manico",
+    "~/Library/HTTPStorages/im.manico.Manico",
+    "~/Library/Preferences/im.manico.Manico.plist",
+    "~/Library/WebKit/im.manico.Manico",
+  ]
 end

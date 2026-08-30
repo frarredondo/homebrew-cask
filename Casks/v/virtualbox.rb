@@ -1,13 +1,19 @@
 cask "virtualbox" do
   arch arm: "macOSArm64", intel: "OSX"
 
-  version "7.1.6,167084"
-  sha256 arm:   "f46db4a00d7cc72c50696cfd86c2f90bd3a4727bddd41a5e6b21a1ae07c32547",
-         intel: "73f7f088c1c098e9f5fbddc6cb1a0d7b56b9a500a1f34db0bee4c07ec06064b4"
+  version "7.2.16,174877"
+  sha256 arm:   "43984f01e4dedd82a22d3c38d432a22f6df9bc2f5e5333a722b734c5bf8b6636",
+         intel: "8237c1c8ef0c837c47394b82959d7ea42626ad3140e452f4f59561021b428eed"
+
+  on_arm do
+    desc "Virtualiser for arm64 hardware"
+  end
+  on_intel do
+    desc "Virtualiser for x86 hardware"
+  end
 
   url "https://download.virtualbox.org/virtualbox/#{version.csv.first}/VirtualBox-#{version.csv.first}-#{version.csv.second}-#{arch}.dmg"
   name "Oracle VirtualBox"
-  desc "Virtualiser for x86 hardware"
   homepage "https://www.virtualbox.org/"
 
   livecheck do
@@ -25,15 +31,10 @@ cask "virtualbox" do
     "virtualbox@6",
     "virtualbox@beta",
   ]
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "VirtualBox.pkg",
       choices: [
-        {
-          "choiceIdentifier" => "choiceVBoxKEXTs",
-          "choiceAttribute"  => "selected",
-          "attributeSetting" => 1,
-        },
         {
           "choiceIdentifier" => "choiceVBox",
           "choiceAttribute"  => "selected",
@@ -44,16 +45,11 @@ cask "virtualbox" do
           "choiceAttribute"  => "selected",
           "attributeSetting" => 1,
         },
-        {
-          "choiceIdentifier" => "choiceOSXFuseCore",
-          "choiceAttribute"  => "selected",
-          "attributeSetting" => 0,
-        },
       ]
 
-  postflight do
-    # If VirtualBox is installed before `/usr/local/lib/pkgconfig` is created by Homebrew, it creates it itself
-    # with incorrect permissions that break other packages
+  postflight_steps do
+    # If VirtualBox is installed before `/usr/local/lib/pkgconfig` is created by Homebrew,
+    # it creates it itself with incorrect permissions that break other packages.
     # See https://github.com/Homebrew/homebrew-cask/issues/68730#issuecomment-534363026
     set_ownership "/usr/local/lib/pkgconfig"
   end

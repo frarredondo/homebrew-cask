@@ -1,9 +1,9 @@
 cask "pycharm" do
   arch arm: "-aarch64"
 
-  version "2024.3.4,243.25659.43"
-  sha256 arm:   "243d94467cfaeccbfcb21976d2bcf262beb31a9d52bb2cf8c6ab998987e4e49c",
-         intel: "7441c8878953c6e46177d9a99d09b328f7c2d493b4f1967ea67276f2f8f9f025"
+  version "2026.2.1,262.9437.214"
+  sha256 arm:   "8d3bc9436e159811a337d46aaab9cdbbb58b172ab23d750159bfbea31064218f",
+         intel: "be03df215e0493a5e001ce762f9d37a9c451b00420b88aad480de12733c155f2"
 
   url "https://download.jetbrains.com/python/pycharm-professional-#{version.csv.first}#{arch}.dmg"
   name "PyCharm"
@@ -25,10 +25,11 @@ cask "pycharm" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "PyCharm.app"
-  binary "#{appdir}/PyCharm.app/Contents/MacOS/pycharm"
+  command_wrapper "pycharm",
+                  executable: "#{appdir}/PyCharm.app/Contents/MacOS/pycharm"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/PyCharm#{version.major_minor}",
@@ -36,6 +37,8 @@ cask "pycharm" do
     "~/Library/Caches/JetBrains/PyCharm#{version.major_minor}",
     "~/Library/Logs/JetBrains/PyCharm#{version.major_minor}",
     "~/Library/Preferences/com.jetbrains.pycharm.plist",
+    "~/Library/Preferences/jetbrains.pc.*.plist",
+    "~/Library/Preferences/jetbrains.py.*.plist",
     "~/Library/Preferences/jetbrains.pycharm.*.plist",
     "~/Library/Preferences/PyCharm#{version.major_minor}",
     "~/Library/Saved Application State/com.jetbrains.pycharm.savedState",

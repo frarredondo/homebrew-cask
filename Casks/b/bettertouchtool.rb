@@ -1,6 +1,6 @@
 cask "bettertouchtool" do
-  version "5.252,2025030501"
-  sha256 "5de3cd6b264338ccbbeedbeae3ce1855cffe21386c4e87b4719b60ef80e2349a"
+  version "6.760,2026082704"
+  sha256 "56280e4db3c5721231fff7e0a63993c77ad43e979a67cd38b95363edcad129d1"
 
   url "https://folivora.ai/releases/btt#{version.csv.first}-#{version.csv.second}.zip"
   name "BetterTouchTool"
@@ -8,31 +8,27 @@ cask "bettertouchtool" do
   homepage "https://folivora.ai/"
 
   livecheck do
-    url "https://folivora.ai/releases/"
-    regex(/btt(\d+(?:[._-]\d+)*)\.zip.*?(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})/i)
-    strategy :page_match do |page, regex|
-      current_version, current_build = version.csv
-      version, build = page.scan(regex).max_by { |match| Time.parse(match[1]) }&.first&.split("-", 2)
-
-      # Throttle updates to every 5th release.
-      if build && current_build.to_i + 5 > build.to_i
-        version = current_version
-        build = current_build
-      end
-
-      "#{version},#{build}"
-    end
+    url "https://updates.folivora.ai/appcast_manual.xml"
+    strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  conflicts_with cask: "bettertouchtool@alpha"
+  depends_on macos: :monterey
 
   app "BetterTouchTool.app"
 
   uninstall quit: "com.hegenberg.BetterTouchTool"
 
   zap trash: [
+    "~/Library/Application Scripts/com.hegenberg.BetterTouchTool.BetterTouchTool-Widgets",
+    "~/Library/Application Scripts/com.hegenberg.BetterTouchTool.BTTFinderContextMenu",
     "~/Library/Application Support/BetterTouchTool",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hegenberg.bettertouchtool.sfl*",
+    "~/Library/Caches/com.hegenberg.BetterTouchTool",
+    "~/Library/Containers/com.hegenberg.BetterTouchTool.BetterTouchTool-Widgets",
+    "~/Library/Containers/com.hegenberg.BetterTouchTool.BTTFinderContextMenu",
+    "~/Library/HTTPStorages/com.hegenberg.BetterTouchTool",
     "~/Library/Preferences/com.hegenberg.BetterTouchTool.plist",
   ]
 end

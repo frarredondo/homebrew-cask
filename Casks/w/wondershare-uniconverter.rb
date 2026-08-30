@@ -1,11 +1,11 @@
 cask "wondershare-uniconverter" do
-  arch arm: "arm_"
+  arch arm: "_arm"
 
-  version "16.3.0"
-  sha256 arm:   "f0f35983862b58ad589ca3d322a12b320d25b8d852950f9713d1871ca96fccec",
-         intel: "c3cab5a9100fca05d76a95870e7fa4c89afb9b851cbf8007b875964ac4fdc845"
+  version "17.4.7"
+  sha256 arm:   "da8f317fc533ea75369c94d321fd6679f9e4cb399867c96a1541a0f7b49b67dd",
+         intel: "5a60948e9b077381b7c8407abe8b24298fad943d358ee1a55792f97d236a7715"
 
-  url "https://download.wondershare.com/cbs_down/uniconverter#{version.major}-mac_#{arch}#{version}_full14207.zip"
+  url "https://download.wondershare.com/cbs_down/uniconverter-mac#{arch}_#{version}_full14207.zip"
   name "UniConverter"
   desc "Video editing software"
   homepage "https://videoconverter.wondershare.com/"
@@ -17,7 +17,11 @@ cask "wondershare-uniconverter" do
     end
   end
 
+  depends_on :macos
+
   app "Wondershare UniConverter #{version.major}.app"
+
+  uninstall quit: "com.Wondershare.UniConverter#{version.major}"
 
   zap trash: [
     "/Users/Shared/.Wondershare*.dat",

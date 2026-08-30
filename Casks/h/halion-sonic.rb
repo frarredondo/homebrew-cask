@@ -1,6 +1,6 @@
 cask "halion-sonic" do
-  version "7.1.20,79d9ffab-0816-4c13-b3df-d21a52ddbe48"
-  sha256 "956b3bafa767f5d15d2818f59d10c873a8db087d515ff970ab0708cbdc05f224"
+  version "7.5,c7e52464-1b72-4194-b0b1-0c2deaca8b01"
+  sha256 "542a505ae186bd502436c7a2673f8081b3acca28ddc65cb06e68cd03f1b83757"
 
   url "https://download.steinberg.net/automated_updates/sda_downloads/#{version.csv.second}/Halion_Sonic_#{version.csv.first}_Installer_mac.dmg"
   name "HALion Sonic"
@@ -23,7 +23,7 @@ cask "halion-sonic" do
     "steinberg-library-manager",
     "steinberg-mediabay",
   ]
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   pkg "HALion_Sonic_Installer.pkg"
 

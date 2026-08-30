@@ -1,12 +1,14 @@
 cask "mcbopomofo" do
-  version "2.9.2"
-  sha256 "ba67fe4f990cd1a6f7e5e96ef3c1889307b1996440c3157db97862f06a50034b"
+  version "3.1"
+  sha256 "0f940645ee8b471474d2c9e6068edd795b84486bbb396b3ce6757f407ae6e806"
 
   url "https://github.com/openvanilla/McBopomofo/releases/download/#{version}/McBopomofo-Installer-#{version}.zip",
       verified: "github.com/openvanilla/McBopomofo/"
   name "McBopomofo"
   desc "Input method for Bopomofo (Phonetic Symbols of Mandarin Chinese)"
   homepage "https://mcbopomofo.openvanilla.org/"
+
+  depends_on :macos
 
   installer manual: "McBopomofoInstaller.app"
 

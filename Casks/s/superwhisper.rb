@@ -1,9 +1,9 @@
 cask "superwhisper" do
-  version "1.45.0"
-  sha256 "2eaca4f57e9c88c4bede39c5f86a3cd7bc7a71cc2035636dbc04d11e242fc27a"
+  version "2.18.2"
+  sha256 "da7ed15ab88fdcb2259ca29c6f3a2f779da702dad15b180c2c94c1a647e750a5"
 
   url "https://builds.superwhisper.com/v#{version}/superwhisper.zip"
-  name "superwhisper"
+  name "Superwhisper"
   desc "Dictation tool including LLM reformatting"
   homepage "https://superwhisper.com/"
 
@@ -13,7 +13,7 @@ cask "superwhisper" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "superwhisper.app"
 

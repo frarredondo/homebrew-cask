@@ -1,6 +1,6 @@
 cask "unipro-ugene" do
-  version "52.0"
-  sha256 "51015a1bb9d1de617d157842ab781ead8992999469c23b0bd43dc6a1fb427a72"
+  version "53.1"
+  sha256 "460a194a25e351d477891de812bab820231655778d7572e6b9fe343946c79ef6"
 
   url "https://github.com/ugeneunipro/ugene/releases/download/#{version}/ugene-#{version}-mac-x86-64.dmg",
       verified: "github.com/ugeneunipro/ugene/"
@@ -8,7 +8,7 @@ cask "unipro-ugene" do
   desc "Free open-source cross-platform bioinformatics software"
   homepage "https://ugene.net/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Unipro UGENE.app"
 

@@ -1,6 +1,6 @@
 cask "zerotier-one" do
-  version "1.14.2"
-  sha256 "018e2368cf1f571606ad173339910470d3e253854b0bdb51b81b18d3c3105edd"
+  version "1.16.2"
+  sha256 "13b5054c0b51e337970e83da6f32bd245a70a5dd92421b08dadbefcaadf2f37f"
 
   url "https://download.zerotier.com/RELEASES/#{version}/dist/ZeroTier%20One.pkg"
   name "ZeroTier One"
@@ -12,7 +12,7 @@ cask "zerotier-one" do
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   pkg "ZeroTier One.pkg"
 

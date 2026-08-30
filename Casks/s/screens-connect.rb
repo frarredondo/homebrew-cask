@@ -1,6 +1,6 @@
 cask "screens-connect" do
-  version "5.2.1,22793"
-  sha256 "373ec3702f1bedcdd96770671292c915905e005c2c669ce50b68b8745a1ca0f7"
+  version "5.4.3,22984"
+  sha256 "32ce6e900b2a4d6c3c1543628a5dbad155b8f8066fd4cf51852ac1c5b6257c10"
 
   url "https://updates.edovia.com/com.edovia.screens.connect.mac/ScreensConnect_#{version.csv.first}b#{version.csv.second}.zip"
   name "Screens Connect"
@@ -13,7 +13,7 @@ cask "screens-connect" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Screens Connect.app"
 
@@ -23,12 +23,7 @@ cask "screens-connect" do
               "com.edovia.Screens-Connect.launcher",
               "com.edovia.screens.connect",
             ],
-            quit:      "com.edovia.Screens-Connect",
-            script:    {
-              executable:   "#{appdir}/Screens Connect.app/Contents/Resources/sc-uninstaller.tool",
-              must_succeed: false,
-              sudo:         true,
-            }
+            quit:      "com.edovia.Screens-Connect"
 
   zap trash: [
     "~/Library/Preferences/com.edovia.Screens-Connect.plist",

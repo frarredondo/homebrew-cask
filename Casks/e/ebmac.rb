@@ -12,7 +12,7 @@ cask "ebmac" do
     regex(%r{href=.*?/EBMacv?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "EBMac.app"
 

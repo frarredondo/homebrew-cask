@@ -1,6 +1,6 @@
 cask "wire" do
-  version "3.39.5211"
-  sha256 "93a088a87b7aec014bef4cdd2b4ffdd5a41ca5b6f4d0e220824e5317bcb520e6"
+  version "3.43.5493"
+  sha256 "462106e7817fb93422943be69fbb29dea83c06d7f91db1bc617f516ed2cb1fdd"
 
   url "https://github.com/wireapp/wire-desktop/releases/download/macos%2F#{version}/Wire.pkg",
       verified: "github.com/wireapp/wire-desktop/"
@@ -24,6 +24,10 @@ cask "wire" do
       end.flatten
     end
   end
+
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :monterey
 
   pkg "Wire.pkg"
 

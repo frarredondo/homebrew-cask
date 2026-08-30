@@ -1,6 +1,6 @@
 cask "chatty" do
-  version "0.26"
-  sha256 "376f573cf8d088da9a05ebd28e45e61f7370f8781b0e2e46511b7652df3a7850"
+  version "0.28"
+  sha256 "0a6def5121c07d10823969e3cb0d201d934de6a0bdecde7e068672705e5c7f7c"
 
   url "https://github.com/chatty/chatty/releases/download/v#{version}/Chatty_#{version}.zip",
       verified: "github.com/chatty/chatty/"
@@ -13,11 +13,13 @@ cask "chatty" do
     strategy :github_latest
   end
 
+  depends_on :macos
+
   suite "Chatty"
 
-  preflight do
+  preflight_steps do
     # There is no sub-folder in the ZIP; the root *is* the folder
-    FileUtils.mv(staged_path.children, staged_path.join("Chatty").tap(&:mkpath))
+    move_contents ".", "Chatty"
   end
 
   zap trash: "~/.chatty"

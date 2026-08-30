@@ -8,8 +8,10 @@ cask "peakhour" do
   homepage "https://old.peakhourapp.com/"
 
   deprecate! date: "2024-09-21", because: :moved_to_mas
+  disable! date: "2025-09-24", because: :moved_to_mas
 
   auto_updates true
+  depends_on :macos
 
   app "PeakHour #{version.major}.app"
 

@@ -1,9 +1,9 @@
 cask "framer" do
   arch arm: "arm64", intel: "x64"
 
-  version "2025.9.3"
-  sha256 arm:   "c4870043cedd53c73e1e8b6f4c231f6970ad6a2421ff56362ea3651b6624ba16",
-         intel: "fa93c0c41170a5bb038f1642bf9bcfe3a7460b7205e48f83973aa101a02b7f2e"
+  version "2026.34.0"
+  sha256 arm:   "b6a3fc4811ece95f7ddc11a58d61849d18d29779ae91c16e323b789e6949c6a2",
+         intel: "86cbdd5e252daaf264c0a31f2bbc29d64a5a076963d8287bcacf8851c2c41a02"
 
   url "https://updates.framer.com/electron/darwin/#{arch}/Framer-#{version}.zip"
   name "Framer"
@@ -16,11 +16,12 @@ cask "framer" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Framer.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.framer.electron.sfl*",
     "~/Library/Application Support/Framer",
     "~/Library/Caches/com.framer.electron",
     "~/Library/Caches/com.framer.electron.ShipIt",

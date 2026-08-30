@@ -1,8 +1,8 @@
 cask "font-zed-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "b30e3c6ed1680bce02efce381517d37d6f6dd78b7e50d958ffe1973624d7816c"
+  version "3.5.1"
+  sha256 "0411af0883248778335d34bbad8e400466b638d5d896e15c2eb37cd9d4518321"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ZedMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/ZedMono.tar.xz"
   name "ZedMono Nerd Font (Zed Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-zed-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "ZedMonoNerdFont-Bold.ttf"
   font "ZedMonoNerdFont-BoldItalic.ttf"

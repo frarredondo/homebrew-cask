@@ -1,6 +1,6 @@
 cask "letter-opener" do
-  version "15.0.2"
-  sha256 "7f38bb02b8a431d7698a15dfd6e7b48a56f69c22a3d18dd85b625a01b4303375"
+  version "16.0.7"
+  sha256 "b2bf3662a2c1f27a042cf3524ce23d8fd7c8614134416a68e193a3bad7f3d1cf"
 
   url "https://s3.amazonaws.com/LetterOpener/dmg/Letter-Opener-#{version}.zip",
       verified: "s3.amazonaws.com/LetterOpener/dmg/"
@@ -13,7 +13,7 @@ cask "letter-opener" do
     regex(%r{Version:\s*<strong>(\d+(?:\.\d+)+)</strong>}i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   pkg "Install Letter Opener.pkg"
 

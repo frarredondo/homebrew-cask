@@ -1,9 +1,9 @@
 cask "qobuz" do
   arch arm: "arm64/bigsur", intel: "x64/elCapitan_sierra"
 
-  version "7.2.0,129"
-  sha256 arm:   "eb98b2e0b48e10d92e2b07c1e58e795ca9491b3af4cb31a89885ce6044777b16",
-         intel: "7747bea09f252926ee6b7fb14f95be6d871e227255e944e6ad450d9709dbbd04"
+  version "8.2.0,033"
+  sha256 arm:   "a33b008770682ac90c1faa2f6b4a0886ca632f6043c5819389ad5bb5de259e19",
+         intel: "9535d930aa82e9e19034cc74c02d93a9e62996a4f3da66fc7367d1e28c9fb205"
 
   url "https://desktop.qobuz.com/releases/darwin/#{arch}/#{version.csv.first}-b#{version.csv.second}/Qobuz.dmg"
   name "Qobuz"
@@ -11,14 +11,14 @@ cask "qobuz" do
   homepage "https://www.qobuz.com/applications"
 
   livecheck do
-    url :homepage
-    regex(%r{href=.*?/v?(\d+(?:\.\d+)+)-b(\d+)/Qobuz\.dmg}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    url "https://desktop.qobuz.com/updates/check/darwin/#{arch}/updates.json"
+    strategy :json do |json|
+      json["version"]&.sub("-b", ",")
     end
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Qobuz.app"
 

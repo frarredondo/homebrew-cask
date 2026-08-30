@@ -1,6 +1,6 @@
 cask "aifun" do
-  version "0.8.7"
-  sha256 "eacdfa064c58f46462e688cbf82f82c2cec5501e53f4ee7732ca2b4b05bfa751"
+  version "0.8.10"
+  sha256 "a650c4ce9cbcc6e24243560fa38ade436ca2cc8880b16903f2b8e7a77d74527f"
 
   url "https://static.aifun.kapokcloud.com/v#{version}/AiFun_#{version}_macos.dmg",
       verified: "static.aifun.kapokcloud.com/"
@@ -15,8 +15,10 @@ cask "aifun" do
     end
   end
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "AiFun.app"
 

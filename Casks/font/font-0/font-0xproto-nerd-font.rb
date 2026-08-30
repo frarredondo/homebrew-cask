@@ -1,8 +1,8 @@
 cask "font-0xproto-nerd-font" do
-  version "3.3.0"
-  sha256 "99deb8d6b26e8946792f75107761bb46c4b927b5d21e4f9b2e163eb6efd6487b"
+  version "3.5.1"
+  sha256 "3f2d36e4fa8b3af2f97b14b57c5b0f57f4c1bda5a59533fb913a9ff3344db7ce"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/0xProto.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/0xProto.tar.xz"
   name "0xProto Nerd Font (0xProto)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-0xproto-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "0xProtoNerdFont-Bold.ttf"
   font "0xProtoNerdFont-Italic.ttf"

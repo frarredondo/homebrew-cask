@@ -1,8 +1,8 @@
 cask "font-jetbrains-mono-nerd-font" do
-  version "3.3.0"
-  sha256 "2d83782a350b604bfa70fce880604a41a7f77c3eec8f922f9cdc3c20952ddbe4"
+  version "3.5.1"
+  sha256 "04d5e8f903693f9dd13e16f867e994834e681eb3c72c0d337a770dcda09010cf"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/JetBrainsMono.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/JetBrainsMono.tar.xz"
   name "JetBrainsMono Nerd Font families (JetBrains Mono)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-jetbrains-mono-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "JetBrainsMonoNLNerdFont-Bold.ttf"
   font "JetBrainsMonoNLNerdFont-BoldItalic.ttf"

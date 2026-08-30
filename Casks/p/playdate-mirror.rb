@@ -1,6 +1,6 @@
 cask "playdate-mirror" do
-  version "1.2.0"
-  sha256 "fe4f6ee254ed54974a358540d5af1afeb38f7d8d0a1c8df21aef3215239d4e54"
+  version "1.4.0"
+  sha256 "9a963fc8769e4e81630347467787fff2d9c863f6efffc57c0aa4c8973867167e"
 
   url "https://download-cdn.panic.com/mirror/Mirror-#{version}.zip",
       verified: "download-cdn.panic.com/mirror/"
@@ -14,7 +14,7 @@ cask "playdate-mirror" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Mirror.app"
 

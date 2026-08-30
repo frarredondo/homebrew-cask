@@ -1,6 +1,6 @@
 cask "thingsmacsandboxhelper" do
-  version "3.42"
-  sha256 "cab6e0761cf465e14117d57140d02dc4eb2cc2c1b30126e300794dfe40e4ed33"
+  version "3.48"
+  sha256 "5a2c4bab5f050e5413e93b90b94e5a0ef736c391bdb52ae54b7e0bd514a9a15e"
 
   url "https://static.culturedcode.com/things/thingssandboxhelper/#{version}/ThingsHelper.zip"
   name "Things Helper"
@@ -12,7 +12,7 @@ cask "thingsmacsandboxhelper" do
     regex(%r{href=.*?/(\d+(?:\.\d+)+)/ThingsHelper\.zip}i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "ThingsMacSandboxHelper.app"
 

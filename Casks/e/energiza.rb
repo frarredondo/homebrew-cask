@@ -1,5 +1,5 @@
 cask "energiza" do
-  version "1.3.2"
+  version "1.3.5"
   sha256 :no_check
 
   url "https://appgineers.de/energiza/files/Energiza.zip"
@@ -12,7 +12,7 @@ cask "energiza" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "Energiza.app"
 

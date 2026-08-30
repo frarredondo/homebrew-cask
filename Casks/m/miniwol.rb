@@ -20,7 +20,7 @@ cask "miniwol" do
     regex(/href=.*?miniWOL[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "miniWOL.app"
 

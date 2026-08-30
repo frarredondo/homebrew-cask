@@ -2,9 +2,9 @@ cask "dropbox" do
   arch arm: ".arm64"
   livecheck_query = on_arch_conditional arm: "&arch=arm64"
 
-  version "219.4.4463"
-  sha256 arm:   "b23c9e6927fd77b496b424ad4bd1a9ff056330a0baf115f7bd7707163bf01cea",
-         intel: "3ede38a0a2eabd8a663a5bc86f5d37d3545eaf711cab0e974bc6904bab4ffd89"
+  version "266.4.3911"
+  sha256 arm:   "e2b52305d2f93d5b656f0d861bb37e0601fd16cb5fad2aa071c96b582370e0ab",
+         intel: "fb46c1076e73b851d552746fd78fcbb83bd407fff77c8f331137d4a27d2b7b03"
 
   url "https://edge.dropboxstatic.com/dbx-releng/client/Dropbox%20#{version}#{arch}.dmg",
       verified: "dropboxstatic.com/dbx-releng/client/"
@@ -20,10 +20,16 @@ cask "dropbox" do
 
   auto_updates true
   conflicts_with cask: "dropbox@beta"
+  depends_on :macos
 
   app "Dropbox.app"
 
-  uninstall launchctl: "com.dropbox.DropboxMacUpdate.agent",
+  uninstall launchctl: [
+              "com.dropbox.DropboxMacUpdate.agent",
+              "com.dropbox.dropboxmacupdate.xpcservice",
+              "com.dropbox.DropboxUpdater.wake",
+            ],
+            quit:      "com.getdropbox.dropbox",
             kext:      "com.getdropbox.dropbox.kext",
             delete:    [
               "/Library/DropboxHelperTools",
@@ -44,6 +50,7 @@ cask "dropbox" do
     "~/Library/Application Support/FileProvider/com.getdropbox.dropbox.fileprovider",
     "~/Library/Caches/CloudKit/com.apple.bird/iCloud.com.getdropbox.Dropbox",
     "~/Library/Caches/com.dropbox.DropboxMacUpdate",
+    "~/Library/Caches/com.dropbox.DropboxUpdater",
     "~/Library/Caches/com.getdropbox.dropbox",
     "~/Library/Caches/com.getdropbox.DropboxMetaInstaller",
     "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.dropbox.DropboxMacUpdate",

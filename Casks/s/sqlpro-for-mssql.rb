@@ -1,6 +1,6 @@
 cask "sqlpro-for-mssql" do
-  version "2024.73"
-  sha256 "59cc4497aa30b76e9f3811413f8d5776a722303b15ba61ef9988baa5c9d75374"
+  version "2026.238"
+  sha256 "01bc90bab8b63e0205d42edc610a7a88396052eb8d940e0ec9bda9bdd4c03ad4"
 
   url "https://d3fwkemdw8spx3.cloudfront.net/mssql/SQLProMSSQL.#{version}.app.zip",
       verified: "d3fwkemdw8spx3.cloudfront.net/mssql/"
@@ -13,7 +13,7 @@ cask "sqlpro-for-mssql" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: :sonoma
 
   app "SQLPro for MSSQL.app"
 

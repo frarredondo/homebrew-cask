@@ -1,23 +1,23 @@
 cask "elektron-overbridge" do
-  version "2.13.4,10,2024"
-  sha256 "4c64786cf1e0ec485de955f7cb688bed2a3fd7c0d91cd99389a76f9e5cee541c"
+  version "2.25.7"
+  sha256 "e205f7cabc1908fc52347449f630181c0a012b69cb2834bbec966a3cad13cbe6"
 
-  url "https://elektron.se/wp-content/uploads/#{version.csv.third}/#{version.csv.second}/Elektron_Overbridge_#{version.csv.first}.dmg"
+  url "https://elektron-software.s3.eu-west-1.amazonaws.com/overbridge/Elektron_Overbridge_#{version}.dmg",
+      verified: "elektron-software.s3.eu-west-1.amazonaws.com/overbridge/"
   name "Overbridge"
   desc "Integrate Elektron hardware into music software"
-  homepage "https://elektron.se/overbridge"
+  homepage "https://www.elektron.se/overbridge"
 
+  # The upstream download page links to the latest dmg file but Cloudflare
+  # protections prevent us from fetching it, so it must be checked manually:
+  # https://www.elektron.se/support-downloads/overbridge
   livecheck do
-    url "https://elektron.se/support-downloads/overbridge"
-    regex(%r{uploads/(\d+)/(\d+)/Elektron[._-]?Overbridge[._-]?v?(\d+(?:\.\d+)+)\.dmg}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[2]},#{match[1]},#{match[0]}" }
-    end
+    skip "Cannot be fetched due to Cloudflare protections"
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: :big_sur
 
-  pkg "Elektron Overbridge Installer #{version.csv.first}.pkg"
+  pkg "Elektron Overbridge Installer #{version}.pkg"
 
   uninstall launchctl: [
               "asp.se.elektron.overbridge.coreaudio2",

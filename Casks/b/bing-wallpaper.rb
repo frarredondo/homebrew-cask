@@ -1,21 +1,26 @@
 cask "bing-wallpaper" do
-  version "1.1.6"
-  sha256 "63dfe61a6e7f463186a35ac69c9191ba9412e7902f2fef0bf3be0a85db917865"
+  version "1.1.12,9f265e2b-e7fa-4a5a-a9ca-4b608ed11c0c"
+  sha256 "2db703f5c124afc9ae8b1c6a41da2258c56a8cf45d45cb6f7e4ace1594627cd3"
 
-  url "https://download.microsoft.com/download/a/b/9/ab92b51f-92ea-4d46-9d21-9446bd20eed8/Mac/Installer/#{version}/Bing/Flight1/MW011/Defaults/Bing%20Wallpaper.pkg"
+  url "https://download.microsoft.com/download/#{version.csv.second}/Installer/#{version.csv.first}/var1/MW011/2/BingWallpaper.pkg"
   name "Bing Wallpaper"
   desc "Use the Bing daily image as your wallpaper"
   homepage "https://bingwallpaper.microsoft.com/"
 
   livecheck do
     url "https://go.microsoft.com/fwlink/?linkid=2181295&installerType=PKG"
-    regex(%r{Installer/(\d+(?:\.\d+)+)[^/]*/}i)
-    strategy :header_match
+    regex(%r{/([\h-]+)/Installer/(\d+(?:\.\d+)+)[^/]*/}i)
+    strategy :header_match do |headers, regex|
+      match = headers["location"]&.match(regex)
+      next unless match
+
+      "#{match[2]},#{match[1]}"
+    end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
-  pkg "Bing Wallpaper.pkg"
+  pkg "BingWallpaper.pkg"
 
   uninstall launchctl: [
               "com.microsoft.msbwapp",
@@ -27,7 +32,8 @@ cask "bing-wallpaper" do
               "com.microsoft.msbwapp",
               "com.microsoft.msbwdefaults",
             ],
-            pkgutil:   "com.microsoft.msbwpackage"
+            pkgutil:   "com.microsoft.msbwpackage",
+            delete:    "/Applications/Microsoft Bing for Safari.app"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.microsoft.msbwdefaults.sfl*",

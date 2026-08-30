@@ -1,5 +1,5 @@
 cask "macrorecorder" do
-  version "3.0.54"
+  version "4.0.51"
   sha256 :no_check
 
   url "https://www.macrorecorder.com/MacroRecorderSetup.dmg"
@@ -12,7 +12,7 @@ cask "macrorecorder" do
     regex(%r{changelog-mac/'>(\d+(?:\.\d+)+)</a>}i)
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "MacroRecorder.app"
 

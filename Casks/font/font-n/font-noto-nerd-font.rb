@@ -1,8 +1,8 @@
 cask "font-noto-nerd-font" do
-  version "3.3.0"
-  sha256 "131c6ebb6420a170ce558227154cd8949f94e7967994d815e81354d58450b692"
+  version "3.5.1"
+  sha256 "818deb4370c71315986b7d7a92c0dc508dd785a8d57f7cdfa871397a3a3834ab"
 
-  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Noto.zip"
+  url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Noto.tar.xz"
   name "Noto Nerd Font families (Noto)"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
@@ -10,6 +10,8 @@ cask "font-noto-nerd-font" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :bumped_by_upstream
 
   font "NotoMonoNerdFont-Regular.ttf"
   font "NotoMonoNerdFontMono-Regular.ttf"

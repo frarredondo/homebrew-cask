@@ -2,9 +2,13 @@ cask "jasp" do
   arch arm: "arm64", intel: "x86_64"
   livecheck_folder = on_arch_conditional arm: "-apple-silicon"
 
-  version "0.19.3.0"
-  sha256 arm:   "d828e4650a45e48bcfd37837aed89f3feca847f478db4aa0dea951e49093ad3e",
-         intel: "b5bb16e70421ae818c7ce11d606fc944805085b614f669169f3273f7bf79978e"
+  version "0.98.1.0"
+  sha256 arm:   "e980236d1ec6d58571b1f120d48f6c4c8ffc71bc893250a4988e96637220f257",
+         intel: "d39665e1c1478ae04c1b1c5c92754806b0824f31dcb65d4c5f7497b9e1f2fb07"
+
+  on_intel do
+    disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  end
 
   url "https://github.com/jasp-stats/jasp-desktop/releases/download/v#{version.csv.first.major_minor_patch}/JASP-#{version.csv.first}-macOS-#{arch}.dmg",
       verified: "github.com/jasp-stats/jasp-desktop/"
@@ -22,7 +26,7 @@ cask "jasp" do
     end
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "JASP.app"
 

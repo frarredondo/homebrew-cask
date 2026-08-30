@@ -8,7 +8,7 @@ cask "jitouch" do
   desc "Multi-touch gestures editor"
   homepage "https://www.jitouch.com/"
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   pkg "Install-Jitouch.pkg"
 

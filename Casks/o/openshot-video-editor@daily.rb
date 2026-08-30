@@ -1,8 +1,8 @@
 cask "openshot-video-editor@daily" do
-  version "3.3.0,13379-76d6a9a7-8d9fd63a"
-  sha256 "354f9d8490a15cf2a568a47f80b807ea59ad9d5d309b46dd344b6cc5be9d181e"
+  version "4.0.0,16756-732f1829-56930c67,release-candidate"
+  sha256 "bfad1a866265f05024ffee90e5a770d4e584424f2ee6952812c55fcd2133177a"
 
-  url "https://github.com/OpenShot/openshot-qt/releases/download/daily/OpenShot-v#{version.csv.first}-daily-#{version.csv.second}-x86_64.dmg",
+  url "https://github.com/OpenShot/openshot-qt/releases/download/daily/OpenShot-v#{version.csv.first}-#{version.csv.third || "daily"}-#{version.csv.second}-x86_64.dmg",
       verified: "github.com/OpenShot/openshot-qt/"
   name "OpenShot Video Editor (Daily Build)"
   desc "Cross-platform video editor"
@@ -10,14 +10,19 @@ cask "openshot-video-editor@daily" do
 
   livecheck do
     url "https://www.openshot.org/download/"
-    regex(/OpenShot[._-]v?(\d+(?:\.\d+)+)(?:[._-]dev)?[._-]daily[._-](.*)[._-]x86[._-]64\.dmg"/i)
+    regex(/
+      href=.*?OpenShot[._-]v?(\d+(?:\.\d+)+)
+      [._-]((?:dev-)?daily|release-candidate)[._-](.*)[._-]x86[._-]64\.dmg["' >]
+    /ix)
     strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+      page.scan(regex).map do |match|
+        (match[1] == "daily") ? "#{match[0]},#{match[2]}" : "#{match[0]},#{match[2]},#{match[1]}"
+      end
     end
   end
 
   conflicts_with cask: "openshot-video-editor"
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "OpenShot Video Editor.app"
 
@@ -26,8 +31,4 @@ cask "openshot-video-editor@daily" do
     "~/Library/Application Support/openshot",
     "~/Library/Preferences/openshot-qt.plist",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

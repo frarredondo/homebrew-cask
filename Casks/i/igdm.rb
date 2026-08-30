@@ -8,6 +8,10 @@ cask "igdm" do
   desc "Desktop application for Instagram DMs"
   homepage "https://igdm.me/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "IGdm.app"
 
   uninstall quit: "com.ifedapoolarewaju.desktop.igdm"

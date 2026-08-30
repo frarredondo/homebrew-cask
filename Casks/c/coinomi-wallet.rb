@@ -8,12 +8,10 @@ cask "coinomi-wallet" do
   desc "Securely store, manage and exchange many blockchain assets"
   homepage "https://www.coinomi.com/en/"
 
-  livecheck do
-    url "https://www.coinomi.com/downloads/"
-    regex(/href=.*?coinomi[._-]wallet[._-]v?(\d+(?:\.\d+)+)[._-]macos\.dmg/i)
-  end
+  deprecate! date: "2025-05-25", because: :moved_to_mas
+  disable! date: "2026-05-27", because: :moved_to_mas
 
-  depends_on macos: ">= :sierra"
+  depends_on :macos
 
   app "Coinomi Wallet.app"
 

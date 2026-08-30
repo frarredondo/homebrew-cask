@@ -8,6 +8,10 @@ cask "puppetry" do
   desc "Web testing solution for non-developers on top of Puppeteer and Jest"
   homepage "https://puppetry.app/"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
+
   app "puppetry.app"
 
   zap trash: [

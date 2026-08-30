@@ -1,8 +1,8 @@
 cask "neteasemusic" do
-  version "3.0.12.2431"
-  sha256 "ac8515a817a5bdc92081ce082f002a9bc49df16451e3482bfaaae71730f7e998"
+  version "3.1.9,3364"
+  sha256 "6e117a5db6957650fff187cd6c8a3970d8784685ee72ec1cb97f957b46d4d5f7"
 
-  url "https://d1.music.126.net/dmusic/NeteaseCloudMusic_Music_official_#{version}.dmg",
+  url "https://d1.music.126.net/dmusic/NeteaseCloudMusic_Music_official_#{version.csv.join(".")}.dmg",
       verified:   "d1.music.126.net/",
       user_agent: :fake
   name "NetEase cloud music"
@@ -10,21 +10,19 @@ cask "neteasemusic" do
   desc "Music streaming platform"
   homepage "https://music.163.com/"
 
-  # The upstream download page (https://music.163.com/#/download) uses a POST
-  # request to fetch download link information but livecheck doesn't support
-  # POST requests yet. Additionally, the request parameters are encrypted in a
-  # particular way (see https://github.com/orgs/Homebrew/discussions/5756).
-  # That said, the API endpoint appears to work with a simple `GET` request.
   livecheck do
-    url "https://music.163.com/api/appcustomconfig/get"
-    regex(/NeteaseCloudMusic[._-]Music[._-]official[._-]v?(\d+(?:[._]\d+)+)/i)
-    strategy :json do |json, regex|
-      json.dig("data", "web-new-download", "osx", "downloadUrl")&.[](regex, 1)
+    url "https://music.163.com/api/mac/package/download/latest?arch=arm64&productName=music"
+    strategy :json do |json|
+      version = json.dig("data", "appVer")
+      build = json.dig("data", "buildVer")
+      next if version.blank? || build.blank?
+
+      "#{version},#{build}"
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "NeteaseMusic.app"
 

@@ -16,12 +16,14 @@ cask "betterdisplay" do
     end
   end
   on_ventura :or_newer do
-    version "3.4.1"
-    sha256 "193c85b56d2a9588eb1a5f1e16e5c51ae765c7bdf4e306f82b1a87285cec1fe7"
+    version "4.3.6"
+    sha256 "04e212bb1dfa5622e1a0bba078f5aa454e82e73ae3209faf00be413b5dbc854f"
 
     livecheck do
-      url :url
-      strategy :github_latest
+      url "https://betterdisplay.pro/betterdisplay/sparkle/appcast.xml"
+      strategy :sparkle do |items|
+        items.find { |item| item.channel.nil? }&.short_version
+      end
     end
   end
 
@@ -32,16 +34,20 @@ cask "betterdisplay" do
   homepage "https://betterdisplay.pro/"
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on :macos
 
   app "BetterDisplay.app"
+  command_wrapper "betterdisplaycli",
+                  executable: "#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay"
 
-  uninstall quit: "pro.betterdisplay.BetterDisplay"
+  uninstall quit:       "pro.betterdisplay.BetterDisplay",
+            login_item: "BetterDisplay"
 
   zap trash: [
     "~/Library/Application Support/BetterDisplay",
     "~/Library/Application Support/BetterDummy",
     "~/Library/Caches/pro.betterdisplay.BetterDisplay",
+    "~/Library/Caches/SentryCrash/BetterDisplay",
     "~/Library/HTTPStorages/pro.betterdisplay.BetterDisplay",
     "~/Library/HTTPStorages/pro.betterdisplay.BetterDisplay.binarycookies",
     "~/Library/Preferences/pro.betterdisplay.BetterDisplay.plist",

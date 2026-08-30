@@ -1,6 +1,6 @@
 cask "sonos-s1-controller" do
-  version "57.22-59130,72ynP0v9lu"
-  sha256 "18d8e7f79db9ab0951846d8f1c94d4a92cf3e6426f94dc7ee40a552a349f8443"
+  version "57.23-74170,DILU1Q33hC"
+  sha256 "3f3495441881b7767d1724aeabed595aa053cdf4780b156dbece56943f023377"
 
   url "https://update-software.sonos.com/software/#{version.csv.second}/Sonos_#{version.csv.first}.dmg"
   name "Sonos S1"
@@ -19,6 +19,7 @@ cask "sonos-s1-controller" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Sonos S1 Controller.app"
 

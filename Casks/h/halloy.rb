@@ -1,14 +1,14 @@
 cask "halloy" do
-  version "2025.2"
-  sha256 "84786cf29f79ee96f54bc09c3bb6321ac6f3d171841d1b32cdd99a948ff524b7"
+  version "2026.8"
+  sha256 "9e6456c7606cedac34be692527e1566ea0b89175747ad9b8e9ab4722e10cb215"
 
   url "https://github.com/squidowl/halloy/releases/download/#{version}/halloy.dmg",
       verified: "github.com/squidowl/halloy/"
   name "Halloy"
   desc "IRC client"
-  homepage "https://halloy.squidowl.org/"
+  homepage "https://halloy.chat/"
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Halloy.app"
 

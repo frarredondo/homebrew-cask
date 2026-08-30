@@ -12,7 +12,7 @@ cask "smoothscroll" do
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "SmoothScroll.app"
 

@@ -1,6 +1,6 @@
 cask "discord@ptb" do
-  version "0.0.163"
-  sha256 "b5a8a1136f7170b03b7d35dcb9713d01113e719406288d8f2db0704ff7574bc3"
+  version "0.0.257"
+  sha256 "5172c10741fa66dab3dbf23d75031bedea5e986587514f4cd97388df8e5d1d85"
 
   url "https://dl-ptb.discordapp.net/apps/osx/#{version}/DiscordPTB.dmg",
       verified: "dl-ptb.discordapp.net/apps/osx/"
@@ -14,11 +14,12 @@ cask "discord@ptb" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Discord PTB.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hnc.discordptb.sfl*",
     "~/Library/Application Support/com.hnc.DiscordPTB.ShipIt",
     "~/Library/Application Support/discordptb",
     "~/Library/Caches/com.hnc.DiscordPTB",

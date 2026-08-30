@@ -1,25 +1,21 @@
 cask "fathom" do
   arch arm: "arm64", intel: "x64"
-  livecheck_arch = on_arch_conditional arm: "_arm64"
 
-  version "1.38.0"
-  sha256 arm:   "3d2a3fc49145372b85dfb739bb5fae6b563c74dcd7f88b7e2b0a38c407db8e7c",
-         intel: "aa073d828d50c9941c12a8ab47502830a5feb0aa8db015526aca38551f4741da"
+  version "3.6.0"
+  sha256 arm:   "a748a5759c8f00dd4a34a05b6330e69b8f1e6e2f6b341c77daca16a8f22a538a",
+         intel: "b195723f207d1cd2d5b4249f7a8868f86d70cdf3a48ee764fc9409bd5c5aef8c"
 
-  url "https://storage.googleapis.com/electron_releases/v#{version}/Fathom-darwin-#{arch}-#{version}.dmg",
-      verified: "storage.googleapis.com/electron_releases/"
+  url "https://electron-update.fathom.video/download/file/Fathom-darwin-#{arch}-#{version}.dmg"
   name "Fathom"
   desc "Record and transcribe video conferences"
   homepage "https://fathom.video/"
 
   livecheck do
-    url "https://electron-update.fathom.video/update/darwin#{livecheck_arch}/0.0.0"
-    strategy :json do |json|
-      json["name"]&.tr("v", "")
-    end
+    url "https://electron-update.fathom.video/"
+    regex(%r{href=.*?/releases/tag/v?(\d+(?:\.\d+)+)}i)
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: :monterey
 
   app "Fathom.app"
 

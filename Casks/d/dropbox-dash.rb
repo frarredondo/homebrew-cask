@@ -1,6 +1,6 @@
 cask "dropbox-dash" do
-  version "3.58.8"
-  sha256 "b93f18b0c9442620f5077a4f718b4096034aebfb18dadbc066011afd0f99337a"
+  version "3.174.23"
+  sha256 "732483eca97edd66fdb4ef15a2a39ddd7fad6927d903d07cbf83154898a0f740"
 
   url "https://edge.dropboxstatic.com/dbx-releng/products/dash-tesla/#{version}/mac.x86_64/Dropbox%20Dash-#{version}.dmg",
       verified: "edge.dropboxstatic.com/dbx-releng/products/dash-tesla/"
@@ -13,11 +13,17 @@ cask "dropbox-dash" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: :big_sur
 
   app "Dropbox Dash.app"
 
-  uninstall quit: "io.hypertools.Dropbox-Dash"
+  uninstall launchctl: [
+              "com.dropbox.dropboxmacupdate.agent",
+              "com.dropbox.dropboxmacupdate.xpcservice",
+              "com.dropbox.DropboxUpdater.wake",
+            ],
+            quit:      "io.hypertools.Dropbox-Dash"
 
   zap trash: [
     "~/Library/Application Support/Dropbox Dash",

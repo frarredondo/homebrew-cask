@@ -1,5 +1,5 @@
 cask "jabra-direct" do
-  version "6.21.01701"
+  version "8.2.23201"
   sha256 :no_check
 
   url "https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/JabraDirectSetup.dmg",
@@ -9,14 +9,14 @@ cask "jabra-direct" do
   homepage "https://www.jabra.com/software-and-services/jabra-direct"
 
   livecheck do
-    url "https://jabraexpressonlinejdo.jabra.com/jdo/jdo.json"
+    url "https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/jdo.json"
     strategy :json do |json|
       json["MacVersion"]
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   pkg "JabraDirectSetup.pkg"
 
@@ -46,8 +46,4 @@ cask "jabra-direct" do
     "~/Library/Preferences/com.jabra.prefsettings.plist",
     "~/Library/Saved Application State/com.jabra.directonline.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

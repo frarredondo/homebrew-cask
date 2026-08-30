@@ -1,25 +1,25 @@
 cask "sketchup" do
-  version "2025.0.570.242"
-  sha256 "cc35fe587e67efa235dfa18322a16b0b871917cb3d0f3e2a96214ab986ed0ed3"
+  version "2026.2.242.76"
+  sha256 "3a89d6ea7a5eddbd97521bde884f528f2dd6348b6408b74651551fb89d27c344"
 
-  url "https://download.sketchup.com/SketchUp-#{version.dots_to_hyphens}.dmg"
+  url "https://download.sketchup.com/SketchUp-#{version.dots_to_hyphens}.dmg",
+      verified: "download.sketchup.com/"
   name "SketchUp"
   desc "3D modeling software used to create and manipulate 3D models"
-  homepage "https://www.sketchup.com/"
+  homepage "https://sketchup.trimble.com/en"
 
   livecheck do
-    url "https://www.sketchup.com/download/all"
-    strategy :page_match
-    regex(/SketchUp-(\d+(?:-\d+)+)\.dmg/i)
-    strategy :page_match do |page, regex|
-      match = page.scan(regex).map { |v| v.first.tr("-", ".") }
+    url "https://sketchup.trimble.com/sketchup/SketchUpPro-dmg"
+    regex(/SketchUp[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
+    strategy :header_match do |headers, regex|
+      match = headers["location"].match(regex)
       next if match.blank?
 
-      match
+      match[1].tr("-", ".")
     end
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   suite "SketchUp #{version.major}"
 

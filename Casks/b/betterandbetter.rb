@@ -1,18 +1,28 @@
 cask "betterandbetter" do
-  version "2.6.6,2025020902"
-  sha256 "663eb472c397c247277972f6cfb27c34b5182b6ce927f8cdd881bf050c0626d6"
+  version "2.7.9,2026062701"
+  sha256 "34f19dbf4149a62325c7cf0de1e1090b6f6e8b24c18373688318a44bf827b124"
 
   url "https://cdn.better365.cn/BetterAndBetter/#{version.csv.second[0, 4]}/BetterAndBetter_#{version.csv.first}_#{version.csv.second}.zip"
   name "Better And Better"
   desc "Keyboard, mouse and touchpad motion gestures"
   homepage "https://www.better365.cn/bab2.html"
 
+  # The Sparkle item version doesn't always strictly correspond to the number
+  # the file name (i.e. there can be typos), so this matches the version parts
+  # from the file name instead.
   livecheck do
     url "https://www.better365.cn/BetterAndBetterUpdate.xml"
-    strategy :sparkle
+    regex(/BetterAndBetter[._-]v?(\d+(?:[._]\d+)+)/i)
+    strategy :sparkle do |item, regex|
+      match = item.url&.match(regex)
+      next unless match
+
+      match[1].tr("_", ",")
+    end
   end
 
-  depends_on macos: ">= :high_sierra"
+  auto_updates true
+  depends_on :macos
 
   app "BetterAndBetter.app"
 
@@ -20,5 +30,10 @@ cask "betterandbetter" do
     "~/Library/Application Support/BetterAndBetter",
     "~/Library/Application Support/cn.better365.BetterAndBetter",
     "~/Library/Caches/cn.better365.BetterAndBetter",
+    "~/Library/HTTPStorages/cn.better365.BetterAndBetter",
+    "~/Library/HTTPStorages/cn.better365.BetterAndBetter.binarycookies",
+    "~/Library/Preferences/cn.better365.BetterAndBetter.plist",
+    "~/Library/Preferences/com.better365.BetterAndBetterHelper.plist",
+    "~/Library/WebKit/com.better365.BetterAndBetter",
   ]
 end

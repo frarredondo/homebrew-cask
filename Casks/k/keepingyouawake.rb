@@ -1,6 +1,6 @@
 cask "keepingyouawake" do
-  version "1.6.6"
-  sha256 "e5feb78e52080ce46daccc80d5a65c7d7acd58b106b1212e23524c75f3d8943a"
+  version "1.6.8"
+  sha256 "8001a149b4490c008fdac19898bce9902d516c4aa6412a7eb0f9a37443b15c6b"
 
   url "https://github.com/newmarcel/KeepingYouAwake/releases/download/#{version}/KeepingYouAwake-#{version}.zip",
       verified: "github.com/newmarcel/KeepingYouAwake/"
@@ -14,7 +14,7 @@ cask "keepingyouawake" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on :macos
 
   app "KeepingYouAwake.app"
 

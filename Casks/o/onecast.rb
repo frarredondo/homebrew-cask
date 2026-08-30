@@ -1,6 +1,6 @@
 cask "onecast" do
-  version "2.37"
-  sha256 "8b2869053f234230cdbc55a08ea571913ccf0cef4ba90e5ace2f57c7f1273a15"
+  version "3.4"
+  sha256 "f2ebdd44abe7d4b7da6715c672ff250978e29ca4a2db1a9e08df3a9db4fd5935"
 
   url "https://onecast.me/updates/release/OneCast-#{version}.dmg"
   name "OneCast"
@@ -13,7 +13,7 @@ cask "onecast" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "OneCast.app"
 

@@ -1,6 +1,6 @@
 cask "rio" do
-  version "0.2.8"
-  sha256 "c996d3ca6baa5dff4e610748c040e5373eb25d2a7bc6fa4815234d54ad716c27"
+  version "0.5.26"
+  sha256 "7f5ee5217c61767a13fca0144e9da6d365fefe4fe1dce8833805f45bfc3ce54f"
 
   url "https://github.com/raphamorim/rio/releases/download/v#{version}/rio.dmg"
   name "Rio"
@@ -12,12 +12,17 @@ cask "rio" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
-  app "Rio.app"
-  binary "Rio.app/Contents/MacOS/rio"
-  binary "Rio.app/Contents/Resources/72/rio",
+  app "rio.app"
+  binary "#{appdir}/rio.app/Contents/MacOS/rio"
+  binary "#{appdir}/rio.app/Contents/Resources/72/rio",
          target: "#{ENV.fetch("TERMINFO", "~/.terminfo")}/72/rio"
 
-  zap trash: "~/Library/Saved Application State/com.raphaelamorim.rio.savedState"
+  uninstall quit: "com.raphaelamorim.rio"
+
+  zap trash: [
+    "~/Library/Preferences/com.raphaelamorim.rio.plist",
+    "~/Library/Saved Application State/com.raphaelamorim.rio.savedState",
+  ]
 end
