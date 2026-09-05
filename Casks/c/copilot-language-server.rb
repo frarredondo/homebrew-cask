@@ -2,11 +2,11 @@ cask "copilot-language-server" do
   arch arm: "arm64", intel: "x64"
   os macos: "darwin", linux: "linux"
 
-  version "1.539.0"
-  sha256 arm:          "8be161fef7b8bc8b68309959caaf80af40106050c6df69a082c47e81b249d29e",
-         intel:        "7314cb9dc81b1a19702e28cf798210ebdfabbaeb40c2119a19f08f84a8862e8b",
-         arm64_linux:  "610aec6908abb1bbe72b43604f31c501489000f3018576e4f7c1262e9711b388",
-         x86_64_linux: "a5f8a02bd262362017c0aaf4faacb32e0f10dbd7e58469ac1e4211fa24a903b4"
+  version "1.541.0"
+  sha256 arm:          "972ff802cf481909a8dd0865f4a8504e75e5dbb6b6fb2a7f2b1fbc8651d912c9",
+         intel:        "f1e42626652c96022c494ca98290971e12fc9a8a82c3bbb18f923bf077d71491",
+         arm64_linux:  "77e5cd73d044270ff055dc55a515a24b40d43ad45a215ad51591854f4cee2cd7",
+         x86_64_linux: "22a211f163d6c13c016b832c8a4a2908743eada3695ac68ae5b467c8ab66c3c8"
 
   on_macos do
     depends_on macos: :big_sur
@@ -19,6 +19,5 @@ cask "copilot-language-server" do
 
   binary "copilot-language-server"
 
-  zap trash: "~/.cache/pkg/*/rg",
-      rmdir: "~/.cache/pkg"
+  # No zap stanza required
 end

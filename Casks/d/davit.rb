@@ -1,6 +1,6 @@
 cask "davit" do
-  version "0.1.26"
-  sha256 "8570bfaa631740868b2c904a2e19c3974cff5a62df76ea9390c03072ca0bb5a1"
+  version "0.1.29"
+  sha256 "07baf0d5d1bedcea9092a98d91cc78b964230a44de79a9d9ba4dd12b3ce2d87f"
 
   url "https://github.com/wouterdebie/davit/releases/download/v#{version}/Davit-#{version}.zip"
   name "Davit"

@@ -1,9 +1,9 @@
 cask "foxglove" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.0.0"
-  sha256 arm:   "6e976d7925d4ee6781e0617aef65750087c68343266b698f6d16017b9496cbe4",
-         intel: "24fbd77d032fd391f7a3e7015ad787c75fa8941dd6f4c63e0a8424a7a2bb058e"
+  version "3.1.1"
+  sha256 arm:   "5062fce3122af0a83293262cae829fe2c55264819fe9f8c48e78ecf664136937",
+         intel: "36bec01aa1705a503c9d778c0b74198da8258939f3de303892af402109c7d955"
 
   url "https://get.foxglove.dev/desktop/latest/foxglove-#{version}-mac-#{arch}.dmg"
   name "Foxglove"
